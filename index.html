@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>用AI — AI 工具导航 | AI Tools Directory</title>
+<meta name="description" content="精选 AI 工具评测，面向独立开发者和创作者。Curated AI tool reviews for indie builders and creators.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Noto+Serif+SC:wght@400;600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --ink: #1a1814; --ink-2: #3d3a35; --ink-3: #7a7570; --ink-4: #b8b3ac;
+    --paper: #f5f2ed; --paper-2: #ede9e2; --paper-3: #e4dfd6;
+    --accent: #c8440a; --accent-2: #e8956a; --accent-light: #faf0eb;
+    --green: #2d6a4f; --green-light: #eaf3ee;
+    --blue: #1a4a7a; --blue-light: #eaf0f8;
+    --purple: #4a3070; --purple-light: #f0ecf8;
+    --r: 10px; --r-lg: 16px;
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--paper); color: var(--ink);
+    font-size: 15px; line-height: 1.7; min-height: 100vh;
+  }
+  [data-lang="zh"] body { font-family: 'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif; }
+  [data-lang="en"] body { font-family: 'DM Sans',sans-serif; line-height: 1.6; }
+
+  /* hide/show by lang */
+  [data-lang="zh"] .en { display: none !important; }
+  [data-lang="en"] .zh { display: none !important; }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(245,242,237,0.93); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--paper-3);
+    padding: 0 32px; display: flex; align-items: center; gap: 24px; height: 60px;
+  }
+  .nav-logo {
+    font-size: 20px; letter-spacing: .3px;
+    color: var(--ink); text-decoration: none;
+    display: flex; align-items: center; gap: 2px; white-space: nowrap;
+  }
+  [data-lang="zh"] .nav-logo { font-family: 'Noto Serif SC',serif; font-weight: 600; }
+  [data-lang="en"] .nav-logo { font-family: 'Instrument Serif',serif; font-size: 22px; }
+  .nav-logo span { color: var(--accent); }
+  .nav-links { display: flex; gap: 2px; margin-left: auto; }
+  .nav-links a {
+    font-size: 13px; color: var(--ink-3); text-decoration: none;
+    padding: 6px 11px; border-radius: 6px; transition: all .15s; white-space: nowrap;
+  }
+  .nav-links a:hover { background: var(--paper-2); color: var(--ink); }
+
+  /* LANG SWITCHER */
+  .lang-switcher {
+    display: flex; align-items: center;
+    background: var(--paper-2); border-radius: 8px;
+    border: 1px solid var(--paper-3); overflow: hidden; flex-shrink: 0;
+  }
+  .lang-btn {
+    padding: 5px 11px; font-size: 12px; font-weight: 500; cursor: pointer;
+    border: none; background: transparent; color: var(--ink-3);
+    transition: all .15s; font-family: inherit;
+  }
+  .lang-btn.active { background: var(--ink); color: var(--paper); border-radius: 6px; }
+
+  .nav-submit {
+    font-size: 13px; font-weight: 500;
+    background: var(--ink); color: var(--paper);
+    border: none; padding: 8px 15px; border-radius: 8px;
+    cursor: pointer; text-decoration: none; transition: opacity .15s; white-space: nowrap;
+  }
+  .nav-submit:hover { opacity: .85; }
+
+  /* HERO */
+  .hero { max-width: 740px; margin: 0 auto; padding: 72px 32px 56px; text-align: center; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--accent-light); color: var(--accent);
+    font-size: 12px; font-weight: 500; padding: 4px 14px; border-radius: 100px;
+    border: 1px solid rgba(200,68,10,.2); margin-bottom: 24px;
+  }
+  .hero-badge::before { content:''; width:6px; height:6px; border-radius:50%; background:var(--accent); flex-shrink:0; }
+  .hero h1 {
+    font-size: clamp(32px,5.5vw,52px); line-height: 1.15;
+    color: var(--ink); margin-bottom: 16px;
+  }
+  [data-lang="zh"] .hero h1 { font-family:'Noto Serif SC',serif; font-weight:600; letter-spacing:.5px; }
+  [data-lang="en"] .hero h1 { font-family:'Instrument Serif',serif; font-weight:400; letter-spacing:-.5px; }
+  .hero h1 em { font-style: italic; color: var(--accent); }
+  [data-lang="zh"] .hero h1 em { font-style: normal; }
+  .hero p { font-size: 16px; color: var(--ink-3); max-width: 500px; margin: 0 auto 36px; font-weight: 300; }
+
+  /* SEARCH */
+  .search-wrap { position: relative; max-width: 540px; margin: 0 auto; }
+  .search-icon { position: absolute; left:16px; top:50%; transform:translateY(-50%); color:var(--ink-4); pointer-events:none; }
+  .search-input {
+    width:100%; padding:15px 20px 15px 46px; font-size:14px;
+    background:white; color:var(--ink); border:1.5px solid var(--paper-3);
+    border-radius:12px; outline:none; transition:border-color .2s,box-shadow .2s;
+    box-shadow:0 2px 8px rgba(26,24,20,.06);
+  }
+  [data-lang="zh"] .search-input { font-family:'Noto Sans SC',sans-serif; }
+  [data-lang="en"] .search-input { font-family:'DM Sans',sans-serif; }
+  .search-input::placeholder { color:var(--ink-4); }
+  .search-input:focus { border-color:var(--accent); box-shadow:0 0 0 4px rgba(200,68,10,.1),0 2px 8px rgba(26,24,20,.06); }
+  .search-results {
+    position:absolute; top:calc(100% + 8px); left:0; right:0;
+    background:white; border:1.5px solid var(--paper-3); border-radius:12px;
+    overflow:hidden; box-shadow:0 8px 32px rgba(26,24,20,.1); display:none; z-index:50;
+  }
+  .search-results.show { display:block; }
+  .search-result-item {
+    padding:11px 16px; display:flex; align-items:center; gap:12px;
+    cursor:pointer; transition:background .1s; border-bottom:1px solid var(--paper-2);
+  }
+  .search-result-item:last-child { border-bottom:none; }
+  .search-result-item:hover { background:var(--paper); }
+  .sri-icon { width:32px; height:32px; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0; }
+  .sri-name { font-size:14px; font-weight:500; color:var(--ink); }
+  .sri-cat { font-size:11px; color:var(--ink-3); margin-top:1px; }
+
+  /* STATS */
+  .stats { display:flex; gap:40px; justify-content:center; margin-top:36px; padding-top:32px; border-top:1px solid var(--paper-3); flex-wrap:wrap; }
+  .stat-item { text-align:center; }
+  .stat-num { font-size:28px; color:var(--ink); font-weight:600; }
+  [data-lang="zh"] .stat-num { font-family:'Noto Serif SC',serif; }
+  [data-lang="en"] .stat-num { font-family:'Instrument Serif',serif; }
+  .stat-label { font-size:12px; color:var(--ink-3); margin-top:3px; }
+
+  /* LAYOUT */
+  .main { max-width:1160px; margin:0 auto; padding:0 32px 80px; }
+
+  /* CAT NAV */
+  .cat-nav { display:flex; gap:6px; flex-wrap:wrap; padding:28px 0 24px; border-bottom:1px solid var(--paper-3); margin-bottom:32px; }
+  .cat-btn {
+    display:flex; align-items:center; gap:5px; padding:7px 14px; border-radius:8px;
+    font-size:13px; cursor:pointer; border:1px solid transparent;
+    background:transparent; color:var(--ink-3); transition:all .15s; white-space:nowrap;
+  }
+  [data-lang="zh"] .cat-btn { font-family:'Noto Sans SC',sans-serif; }
+  [data-lang="en"] .cat-btn { font-family:'DM Sans',sans-serif; }
+  .cat-btn:hover { background:var(--paper-2); color:var(--ink); }
+  .cat-btn.active { background:var(--ink); color:var(--paper); border-color:var(--ink); }
+  .cat-btn .count { font-size:11px; opacity:.6; background:rgba(255,255,255,.15); padding:1px 5px; border-radius:4px; }
+  .cat-btn:not(.active) .count { background:var(--paper-3); color:var(--ink-3); }
+
+  /* SECTION HEADER */
+  .section-header { display:flex; align-items:baseline; justify-content:space-between; margin-bottom:20px; }
+  .section-title { font-size:21px; color:var(--ink); font-weight:600; }
+  [data-lang="zh"] .section-title { font-family:'Noto Serif SC',serif; }
+  [data-lang="en"] .section-title { font-family:'Instrument Serif',serif; font-weight:400; font-size:23px; }
+  .section-link { font-size:13px; color:var(--ink-3); text-decoration:none; }
+  .section-link:hover { color:var(--accent); }
+
+  /* BADGES */
+  .fc-badge { font-size:11px; font-weight:500; padding:3px 8px; border-radius:6px; }
+  .badge-free { background:var(--green-light); color:var(--green); }
+  .badge-paid { background:var(--blue-light); color:var(--blue); }
+  .badge-freemium { background:var(--purple-light); color:var(--purple); }
+
+  /* FEATURED */
+  .featured-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:48px; }
+  .featured-card {
+    background:white; border:1px solid var(--paper-3); border-radius:var(--r-lg);
+    padding:24px; cursor:pointer; transition:transform .2s,box-shadow .2s; position:relative; overflow:hidden;
+  }
+  .featured-card::after { content:''; position:absolute; inset:0; background:linear-gradient(135deg,rgba(200,68,10,.04),transparent 60%); opacity:0; transition:opacity .2s; }
+  .featured-card:hover { transform:translateY(-2px); box-shadow:0 8px 32px rgba(26,24,20,.09); }
+  .featured-card:hover::after { opacity:1; }
+  .fc-top { display:flex; align-items:flex-start; justify-content:space-between; margin-bottom:14px; }
+  .fc-icon { width:48px; height:48px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:24px; }
+  .fc-name { font-size:17px; font-weight:500; color:var(--ink); margin-bottom:6px; }
+  .fc-desc { font-size:13px; color:var(--ink-3); line-height:1.6; margin-bottom:16px; }
+  .fc-tags { display:flex; gap:6px; flex-wrap:wrap; margin-bottom:14px; }
+  .fc-tag { font-size:11px; color:var(--ink-3); background:var(--paper); border:1px solid var(--paper-3); padding:2px 8px; border-radius:4px; }
+  .fc-footer { display:flex; align-items:center; justify-content:space-between; }
+  .fc-rating { display:flex; align-items:center; gap:4px; font-size:12px; color:var(--ink-3); }
+  .fc-stars { color:#f59e0b; font-size:11px; }
+  .fc-arrow { width:28px; height:28px; border-radius:50%; background:var(--paper-2); border:1px solid var(--paper-3); display:flex; align-items:center; justify-content:center; font-size:13px; color:var(--ink-3); transition:all .15s; }
+  .featured-card:hover .fc-arrow { background:var(--accent); color:white; border-color:var(--accent); }
+
+  /* TOOLS GRID */
+  .tools-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:12px; margin-bottom:48px; }
+  .tool-card { background:white; border:1px solid var(--paper-3); border-radius:var(--r); padding:16px 18px; cursor:pointer; transition:transform .15s,box-shadow .15s; display:flex; align-items:flex-start; gap:14px; }
+  .tool-card:hover { transform:translateY(-1px); box-shadow:0 4px 16px rgba(26,24,20,.07); }
+  .tc-icon { width:40px; height:40px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:20px; flex-shrink:0; }
+  .tc-body { flex:1; min-width:0; }
+  .tc-header { display:flex; align-items:center; gap:8px; margin-bottom:3px; flex-wrap:wrap; }
+  .tc-name { font-size:14px; font-weight:500; color:var(--ink); }
+  .tc-desc { font-size:12px; color:var(--ink-3); line-height:1.5; margin-bottom:8px; }
+  .tc-footer { display:flex; align-items:center; gap:6px; }
+
+  /* NEWSLETTER */
+  .newsletter { background:var(--ink); color:var(--paper); border-radius:var(--r-lg); padding:48px; text-align:center; margin-bottom:48px; position:relative; overflow:hidden; }
+  .newsletter::before { content:''; position:absolute; width:400px; height:400px; border-radius:50%; background:rgba(200,68,10,.15); top:-100px; right:-80px; pointer-events:none; }
+  .nl-title { font-size:28px; font-weight:600; margin-bottom:10px; position:relative; }
+  [data-lang="zh"] .nl-title { font-family:'Noto Serif SC',serif; }
+  [data-lang="en"] .nl-title { font-family:'Instrument Serif',serif; font-weight:400; font-size:32px; }
+  .nl-title em { font-style:italic; color:var(--accent-2); }
+  [data-lang="zh"] .nl-title em { font-style:normal; }
+  .nl-sub { font-size:14px; color:rgba(245,242,237,.6); margin-bottom:28px; font-weight:300; position:relative; line-height:1.8; }
+  .nl-form { display:flex; gap:10px; max-width:400px; margin:0 auto; position:relative; }
+  .nl-input { flex:1; padding:12px 16px; background:rgba(255,255,255,.1); color:var(--paper); border:1px solid rgba(255,255,255,.2); border-radius:8px; font-size:14px; outline:none; }
+  [data-lang="zh"] .nl-input { font-family:'Noto Sans SC',sans-serif; }
+  [data-lang="en"] .nl-input { font-family:'DM Sans',sans-serif; }
+  .nl-input::placeholder { color:rgba(245,242,237,.4); }
+  .nl-input:focus { border-color:var(--accent-2); }
+  .nl-btn { padding:12px 20px; background:var(--accent); color:white; border:none; border-radius:8px; font-size:13px; font-weight:500; cursor:pointer; white-space:nowrap; transition:opacity .15s; }
+  .nl-btn:hover { opacity:.9; }
+
+  /* FOOTER */
+  footer { border-top:1px solid var(--paper-3); padding:28px 32px; display:flex; align-items:center; justify-content:space-between; max-width:1160px; margin:0 auto; }
+  .footer-logo { font-size:17px; color:var(--ink); }
+  [data-lang="zh"] .footer-logo { font-family:'Noto Serif SC',serif; }
+  [data-lang="en"] .footer-logo { font-family:'Instrument Serif',serif; font-size:20px; }
+  .footer-logo span { color:var(--accent); }
+  .footer-links { display:flex; gap:20px; }
+  .footer-links a { font-size:13px; color:var(--ink-3); text-decoration:none; }
+  .footer-links a:hover { color:var(--ink); }
+
+  /* HIDDEN */
+  .tool-card[data-hidden], .featured-card[data-hidden] { display:none; }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+  .hero          { animation:fadeUp .5s ease both; }
+  .cat-nav       { animation:fadeUp .5s .1s ease both; }
+  .featured-grid { animation:fadeUp .5s .15s ease both; }
+  .tools-grid    { animation:fadeUp .5s .2s ease both; }
+
+  /* RESPONSIVE */
+  @media(max-width:900px) { .featured-grid { grid-template-columns:1fr 1fr; } }
+  @media(max-width:600px) {
+    nav { padding:0 16px; gap:10px; }
+    .main { padding:0 16px 60px; }
+    .hero { padding:48px 16px 40px; }
+    .featured-grid { grid-template-columns:1fr; }
+    .nl-form { flex-direction:column; }
+    footer { flex-direction:column; gap:16px; text-align:center; }
+    .nav-links { display:none; }
+    .stats { gap:20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <span class="zh">用<span>AI</span></span>
+    <span class="en">Yong<span>AI</span></span>
+  </a>
+  <div class="nav-links">
+    <a href="#" class="zh">浏览全部</a>
+    <a href="#" class="en">Browse</a>
+    <a href="#" class="zh">工具对比</a>
+    <a href="#" class="en">Compare</a>
+    <a href="#" class="zh">测评文章</a>
+    <a href="#" class="en">Reviews</a>
+    <a href="#" class="zh">周刊</a>
+    <a href="#" class="en">Newsletter</a>
+  </div>
+  <div class="lang-switcher">
+    <button class="lang-btn active" id="btn-zh" onclick="setLang('zh')">中文</button>
+    <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
+  </div>
+  <a href="#" class="nav-submit zh">提交工具 →</a>
+  <a href="#" class="nav-submit en">Submit tool →</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge zh">已收录 247 款工具 · 每周更新</div>
+  <div class="hero-badge en">247 tools indexed · updated weekly</div>
+
+  <h1 class="zh">独立开发者的<br><em>AI 工具</em>导航站</h1>
+  <h1 class="en">The <em>best</em> AI tools<br>for indie builders</h1>
+
+  <p class="zh">精选评测，真实对比，无广告排名 —— 专为独立开发者、创作者和个人创业者打造。</p>
+  <p class="en">Curated reviews, honest comparisons, zero-hype rankings — built for solopreneurs who ship.</p>
+
+  <div class="search-wrap">
+    <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    <input class="search-input" id="search-input" type="text" autocomplete="off">
+    <div class="search-results" id="search-results"></div>
+  </div>
+
+  <div class="stats">
+    <div class="stat-item">
+      <div class="stat-num">247</div>
+      <div class="stat-label zh">收录工具</div>
+      <div class="stat-label en">Tools indexed</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">18</div>
+      <div class="stat-label zh">工具分类</div>
+      <div class="stat-label en">Categories</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">4,200</div>
+      <div class="stat-label zh">周读者数</div>
+      <div class="stat-label en">Weekly readers</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">96%</div>
+      <div class="stat-label zh">读者好评率</div>
+      <div class="stat-label en">Reader approval</div>
+    </div>
+  </div>
+</section>
+
+<!-- MAIN -->
+<main class="main">
+
+  <!-- CATEGORY NAV -->
+  <nav class="cat-nav" id="cat-nav" aria-label="Filter by category">
+    <button class="cat-btn active" data-cat="all">
+      <span class="zh">全部</span><span class="en">All</span>
+      <span class="count">247</span>
+    </button>
+    <button class="cat-btn" data-cat="writing">
+      ✦ <span class="zh">写作</span><span class="en">Writing</span>
+      <span class="count">42</span>
+    </button>
+    <button class="cat-btn" data-cat="coding">
+      ⌥ <span class="zh">编程</span><span class="en">Coding</span>
+      <span class="count">38</span>
+    </button>
+    <button class="cat-btn" data-cat="design">
+      ◈ <span class="zh">设计</span><span class="en">Design</span>
+      <span class="count">31</span>
+    </button>
+    <button class="cat-btn" data-cat="productivity">
+      ⊞ <span class="zh">效率</span><span class="en">Productivity</span>
+      <span class="count">29</span>
+    </button>
+    <button class="cat-btn" data-cat="video">
+      ▷ <span class="zh">视频</span><span class="en">Video</span>
+      <span class="count">24</span>
+    </button>
+    <button class="cat-btn" data-cat="seo">
+      ↑ SEO <span class="count">19</span>
+    </button>
+    <button class="cat-btn" data-cat="research">
+      ⊙ <span class="zh">搜索</span><span class="en">Research</span>
+      <span class="count">17</span>
+    </button>
+    <button class="cat-btn" data-cat="automation">
+      ⟳ <span class="zh">自动化</span><span class="en">Automation</span>
+      <span class="count">22</span>
+    </button>
+    <button class="cat-btn" data-cat="image">
+      ⊡ <span class="zh">图像</span><span class="en">Image</span>
+      <span class="count">25</span>
+    </button>
+  </nav>
+
+  <!-- FEATURED -->
+  <div class="section-header">
+    <h2 class="section-title zh">编辑精选</h2>
+    <h2 class="section-title en">Editor's picks</h2>
+    <a href="#" class="section-link zh">查看全部 →</a>
+    <a href="#" class="section-link en">View all →</a>
+  </div>
+  <div class="featured-grid" id="featured-grid">
+
+    <div class="featured-card" data-cat="writing">
+      <div class="fc-top">
+        <div class="fc-icon" style="background:#fff4ee">🌙</div>
+        <span class="fc-badge badge-freemium zh">免费可用</span>
+        <span class="fc-badge badge-freemium en">Freemium</span>
+      </div>
+      <div class="fc-name">Kimi</div>
+      <div class="fc-desc zh">国内最强长文本 AI，支持 200 万字超长上下文。上传文件直接问答，中文理解业界领先。</div>
+      <div class="fc-desc en">China's leading long-context AI with 2M token support. Upload documents and chat directly — best Chinese language understanding in class.</div>
+      <div class="fc-tags">
+        <span class="fc-tag zh">写作</span><span class="fc-tag en">Writing</span>
+        <span class="fc-tag zh">长文本</span><span class="fc-tag en">Long context</span>
+        <span class="fc-tag zh">国内可用</span><span class="fc-tag en">China accessible</span>
+      </div>
+      <div class="fc-footer">
+        <div class="fc-rating"><span class="fc-stars">★★★★★</span><span>4.8</span></div>
+        <div class="fc-arrow">→</div>
+      </div>
+    </div>
+
+    <div class="featured-card" data-cat="coding">
+      <div class="fc-top">
+        <div class="fc-icon" style="background:#f0f4ff">🖱️</div>
+        <span class="fc-badge badge-paid zh">付费</span>
+        <span class="fc-badge badge-paid en">Paid</span>
+      </div>
+      <div class="fc-name">Cursor</div>
+      <div class="fc-desc zh">目前最强 AI 代码编辑器，理解整个代码库上下文。Tab 补全整段函数、和代码库对话、一键修 bug。</div>
+      <div class="fc-desc en">The AI code editor that understands your entire codebase. Tab-complete whole functions, chat with your repo, fix errors in context.</div>
+      <div class="fc-tags">
+        <span class="fc-tag zh">编程</span><span class="fc-tag en">Coding</span>
+        <span class="fc-tag">VSCode</span>
+        <span class="fc-tag zh">代码补全</span><span class="fc-tag en">Autocomplete</span>
+      </div>
+      <div class="fc-footer">
+        <div class="fc-rating"><span class="fc-stars">★★★★★</span><span>4.9</span></div>
+        <div class="fc-arrow">→</div>
+      </div>
+    </div>
+
+    <div class="featured-card" data-cat="design">
+      <div class="fc-top">
+        <div class="fc-icon" style="background:#f0faf4">🎨</div>
+        <span class="fc-badge badge-freemium zh">免费可用</span>
+        <span class="fc-badge badge-freemium en">Freemium</span>
+      </div>
+      <div class="fc-name zh">即梦 AI</div>
+      <div class="fc-name en">Jimeng AI</div>
+      <div class="fc-desc zh">字节跳动出品，文生图/文生视频，中文提示词效果极佳，国内直接访问无障碍。</div>
+      <div class="fc-desc en">ByteDance's text-to-image and video platform. Excellent Chinese prompt support, accessible from mainland China without VPN.</div>
+      <div class="fc-tags">
+        <span class="fc-tag zh">图像生成</span><span class="fc-tag en">Image gen</span>
+        <span class="fc-tag zh">视频生成</span><span class="fc-tag en">Video gen</span>
+      </div>
+      <div class="fc-footer">
+        <div class="fc-rating"><span class="fc-stars">★★★★☆</span><span>4.6</span></div>
+        <div class="fc-arrow">→</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ALL TOOLS -->
+  <div class="section-header">
+    <h2 class="section-title zh" id="grid-title-zh">全部工具</h2>
+    <h2 class="section-title en" id="grid-title-en">All tools</h2>
+    <span id="grid-count" style="font-size:13px;color:var(--ink-3)"></span>
+  </div>
+  <div class="tools-grid" id="tools-grid">
+
+    <!-- WRITING -->
+    <div class="tool-card" data-cat="writing" data-name="deepseek deep seek 写作 推理 coding">
+      <div class="tc-icon" style="background:#eef8ff">🐋</div>
+      <div class="tc-body">
+        <div class="tc-header">
+          <span class="tc-name">DeepSeek</span>
+          <span class="fc-badge badge-free" style="font-size:10px;padding:2px 6px zh">免费</span>
+          <span class="fc-badge badge-free" style="font-size:10px;padding:2px 6px en">Free</span>
+        </div>
+        <div class="tc-desc zh">推理能力顶级，代码和数学碾压同类。API 价格极低，适合批量内容生产。</div>
+        <div class="tc-desc en">Top-tier reasoning, excellent at code and math. Extremely cheap API — great for bulk content production.</div>
+        <div class="tc-footer"><span class="fc-tag zh">写作</span><span class="fc-tag en">Writing</span><span class="fc-stars" style="font-size:11px">★★★★★</span><span style="font-size:11px;color:var(--ink-3)">4.9</span></div>
+      </div>
+    </div>
+
+    <div class="tool-card" data-cat="writing" data-name="文心一言 ernie baidu 百度 writing">
+      <div class="tc-icon" style="background:#fff8ee">🔥</div>
+      <div class="tc-body">
+        <div class="tc-header">
+          <span class="tc-name">文心一言</span>
+          <span class="fc-badge badge-freemium" style="font-size:10px;padding:2px 6px">Free</span>
+        </div>
+        <div class="tc-desc zh">百度出品，国内最早大模型，创作问答代码全能，微信生态接入方便。</div>
+        <div class="tc-desc en">Baidu's flagship LLM. Writing, Q&A, and code in one. Easy WeChat ecosystem integration.</div>
+        <div class="tc-footer"><span class="fc-tag zh">写作</span><span class="fc-tag en">Writing</span><span class="fc-stars" style="font-size:11px">★★★★☆</span><span style="font-size:11px;color:var(--ink-3)">4.2</span></div>
+      </div>
+    </div>
+
+    <div class="tool-card" data-cat="writing" data-name="通义千问 qwen alibaba 阿里 writing">
+      <div class="tc-icon" style="background:#f0fff4">🌿</div>
+      <div class="tc-body">
+        <div class="tc-header">
+          <span class="tc-name">通义千问</span>
+          <span class="fc-badge badge-freemium" style="font-size:10px;padding:2px 6px">Free</span>
+        </div>
+        <div class="tc-desc zh">阿里大模型，多模态能力强，文档阅读、图像理解、代码生成一体化。</div>
+        <div class="tc-desc en">Alibaba's multimodal LLM — document reading, image understanding, and code generation in one platform.</div>
+        <div class="tc-footer"><span class="fc-tag zh">写作</span><span class="fc-tag en">Writing</span><span class="fc-stars" style="font-size:11px">★★★★☆</span><span style="font-size:11px;color:var(--ink-3)">4.4</span></div>
+      </div>
+    </div>
+
+    <!-- CODING -->
+    <div class="tool-card" data-cat="coding" data-name="github copilot coding code microsoft">
+      <div class="tc-icon" style="background:#f0f0ff">🤖</div>
+      <div class="tc-body">
+        <div class="tc-header">
+          <span class="tc-name">GitHub Copilot</span>
+          <span class="fc-badge badge-paid" style="font-size:10px;padding:2px 6px">$10/mo</span>
+        </div>
+        <div class="tc-desc zh">微软出品，内嵌所有主流 IDE，实时代码补全，免费账户可试用 2000 次/月。</div>
+        <div class="tc-desc en">Microsoft's AI pair programmer. Inline completions in every major IDE. 2,000 free completions/month.</div>
+        <div class="tc-footer"><span class="fc-tag zh">编程</span><span class="fc-tag en">Coding</span><span class="fc-stars" style="font-size:11px">★★★★☆</span><span style="font-size:11px;color:var(--ink-3)">4.5</span></div>
+      </div>
+    </div>
+
+    <div class="tool-card" data-cat="coding" data-name="bolt new coding fullstack web deploy">
+      <div class="tc-icon" style="background:#fffbee">⚡</div>
+      <div class="tc-body">
+        <div class="tc-header">
+          <span class="tc-name">Bolt.new</span>
+          <span class="fc-badge badge-freemium" style="font-size:10px;padding:2px 6px">Free</span>
+        </div>
+        <div class="tc-desc zh">浏览器内全栈 AI 开发环境，输入需求生成可运行项目，一键部署到 Netlify。</div>
+        <div class="tc-desc en">Full-stack AI dev environment in the browser. Describe your app and get a running project — deploy to Netlify in one click.</div>
+        <div class="tc-footer"><span class="fc-tag zh">编程</span><span class="fc-tag en">Coding</span><span class="fc-stars" style="font-size:11px">★★★★★</span><span style="font-size:11px;color:var(--ink-3)">4.7</span></div>
+      </div>
+    </div>
+
+    <div class="tool-card" data-cat="coding" data-name="claude code terminal agentic coding">
+      <div class="tc-icon" style="background:#faf0eb">🧠</div>
+      <div class="tc-body">
+        <div class="tc-header">
+          <span class="tc-name">Claude Code</span>
+          <span class="fc-badge badge-paid" style="font-size:10px;padding:2px 6px zh">按量付费</span>
+          <span class="fc-badge badge-paid" style="font-size:10px;padding:2px 6px en">Pay-as-you-go</span>
+        </div>
+        <div class="tc-desc zh">终端内 AI 编程 Agent，可自主读写文件、执行命令、重构整个代码库。</div>
+        <div class="tc-desc en">Agentic coding in your terminal. Reads and writes files, runs commands, and refactors entire codebases autonomously.</div>
+        <div class="tc-footer"><span class="fc-tag zh">编程</span><span class="fc-tag en">Coding</span><span class="fc-stars" style="font-size:11px">★★★★★</span><span style="font-size:11px;color:var(--ink-3)">4.8</span></div>
+      </div>
+    </div>
+
+    <!-- DESIGN -->
+    <div class="tool-card" data-cat="design" data-name="canva design template ai 设计">
+      <div class="tc-icon" style="background:#fff0fa">🎭</div>
+      <div class="tc-body">
+        <div class="tc-header">
+          <span class="tc-name">Canva AI</span>
+          <span class="fc-badge badge-freemium" style="font-size:10px;padding:2px 6px">Free</span>
+        </div>
+        <div class="tc-desc zh">非设计师首选，AI 生成素材、一键抠图、智能排版，中文模板丰富。</div>
+        <div class="tc-desc en">Non-designer's best friend. AI asset generation, background removal, smart layout — rich template library.</div>
+        <div class="tc-footer"><span class="fc-tag zh">设计</span><span class="fc-tag en">Design</span><span class="fc-stars" style="font-size:11px">★★★★☆</span><span style="font-size:11px;color:var(--ink-3)">4.5</span></div>
+      </div>
+    </div>
+
+    <div class="tool-card" data-cat="design" data-name="framer website builder design no-code">
+      <div class="tc-icon" style="background:#f0f4ff">🌐</div>
+      <div class="tc-body">
+        <div class="tc-header">
+          <span class="tc-name">Framer</span>
+          <span class="fc-badge badge-freemium" style="font-size:10px;padding:2px 6px">Free</span>
+        </div>
+        <div class="tc-desc zh">AI 建站工具，输入描述生成完整网站，独立开发者 landing page 首选。</div>
+        <div class="tc-desc en">AI website builder — describe your site and get a live, polished result. Best landing page tool for indie makers.</div>
+        <div class="tc-footer"><span class="fc-tag zh">设计</span><span class="fc-tag en">Design</span><span class="fc-stars" style="font-size:11px">★★★★★</span><span style="font-size:11px;color:var(--ink-3)">4.7</span></div>
+      </div>
+    </div>
+
+    <!-- PRODUCTIVITY -->
+    <div class="tool-card" data-cat="productivity" data-name="notion ai productivity notes knowledge">
+      <div class="tc-icon" style="background:#f5f5f5">📝</div>
+      <div class="tc-body">
+        <div class="tc-header">
+          <span class="tc-name">Notion AI</span>
+          <span class="fc-badge badge-paid" style="font-size:10px;padding:2px 6px">$10/mo</span>
+        </div>
+        <div class="tc-desc zh">工作区内置 AI，总结会议、扩写草稿、翻译文档，不用切换 Tab。</div>
+        <div class="tc-desc en">AI built into your workspace. Summarize meetings, draft content, translate docs — without switching tabs.</div>
+        <div class="tc-footer"><span class="fc-tag zh">效率</span><span class="fc-tag en">Productivity</span><span class="fc-stars" style="font-size:11px">★★★★☆</span><span style="font-size:11px;color:var(--ink-3)">4.5</span></div>
+      </div>
+    </div>
+
+    <div class="tool-card" data-cat="productivity" data-name="飞书 feishu lark 效率 productivity table">
+      <div class="tc-icon" style="background:#eef8ff">🪶</div>
+      <div class="tc-body">
+        <div class="tc-header">
+          <span class="tc-name zh">飞书多维表格</span>
+          <span class="tc-name en">Feishu / Lark</span>
+          <span class="fc-badge badge-freemium" style="font-size:10px;padding:2px 6px">Free</span>
+        </div>
+        <div class="tc-desc zh">国内最强 AI 表格，AI 字段、自动化流程，国内团队协作首选。</div>
+        <div class="tc-desc en">China's most capable AI spreadsheet — AI fields, automation flows, and team collaboration. International version: Lark.</div>
+        <div class="tc-footer"><span class="fc-tag zh">效率</span><span class="fc-tag en">Productivity</span><span class="fc-stars" style="font-size:11px">★★★★★</span><span style="font-size:11px;color:var(--ink-3)">4.7</span></div>
+      </div>
+    </div>
+
+    <!-- VIDEO -->
+    <div class="tool-card" data-cat="video" data-name="剪映 jianying capcut video editing 视频">
+      <div class="tc-icon" style="background:#f8f0ff">✂️</div>
+      <div class="tc-body">
+        <div class="tc-header">
+          <span class="tc-name zh">剪映专业版</span>
+          <span class="tc-name en">CapCut Pro</span>
+          <span class="fc-badge badge-freemium" style="font-size:10px;padding:2px 6px">Free</span>
+        </div>
+        <div class="tc-desc zh">字节出品，AI 字幕、自动剪辑、数字人、文章转视频，视频创作者必备。</div>
+        <div class="tc-desc en">ByteDance's pro video editor. AI captions, auto-cut, digital avatars, article-to-video. Global version: CapCut.</div>
+        <div class="tc-footer"><span class="fc-tag zh">视频</span><span class="fc-tag en">Video</span><span class="fc-stars" style="font-size:11px">★★★★★</span><span style="font-size:11px;color:var(--ink-3)">4.8</span></div>
+      </div>
+    </div>
+
+    <div class="tool-card" data-cat="video" data-name="descript video editing transcript podcast">
+      <div class="tc-icon" style="background:#eef8ff">🎬</div>
+      <div class="tc-body">
+        <div class="tc-header">
+          <span class="tc-name">Descript</span>
+          <span class="fc-badge badge-freemium" style="font-size:10px;padding:2px 6px">Free</span>
+        </div>
+        <div class="tc-desc zh">通过编辑文字来剪视频，删除口头禅、克隆声音、自动转录。</div>
+        <div class="tc-desc en">Edit video by editing text. Remove filler words, clone your voice, auto-transcribe. Podcasters love it.</div>
+        <div class="tc-footer"><span class="fc-tag zh">视频</span><span class="fc-tag en">Video</span><span class="fc-stars" style="font-size:11px">★★★★★</span><span style="font-size:11px;color:var(--ink-3)">4.8</span></div>
+      </div>
+    </div>
+
+    <!-- SEO -->
+    <div class="tool-card" data-cat="seo" data-name="ahrefs seo keyword backlink traffic">
+      <div class="tc-icon" style="background:#fff4ee">🔍</div>
+      <div class="tc-body">
+        <div class="tc-header">
+          <span class="tc-name">Ahrefs</span>
+          <span class="fc-badge badge-paid" style="font-size:10px;padding:2px 6px">$129/mo</span>
+        </div>
+        <div class="tc-desc zh">英文 SEO 站必备，关键词挖掘、竞品分析、外链数据，行业标准。</div>
+        <div class="tc-desc en">The gold standard for SEO. Keyword research, competitor analysis, backlink data — essential for any content site.</div>
+        <div class="tc-footer"><span class="fc-tag">SEO</span><span class="fc-stars" style="font-size:11px">★★★★★</span><span style="font-size:11px;color:var(--ink-3)">4.8</span></div>
+      </div>
+    </div>
+
+    <!-- RESEARCH -->
+    <div class="tool-card" data-cat="research" data-name="perplexity search research ai citations">
+      <div class="tc-icon" style="background:#f5eeff">🔬</div>
+      <div class="tc-body">
+        <div class="tc-header">
+          <span class="tc-name">Perplexity</span>
+          <span class="fc-badge badge-freemium" style="font-size:10px;padding:2px 6px">Free</span>
+        </div>
+        <div class="tc-desc zh">带引用来源的 AI 搜索引擎，调研、核实信息、竞品分析效率是 Google 的 3 倍。</div>
+        <div class="tc-desc en">AI search with cited sources. Research, fact-check, competitor analysis — 3× faster than Google for deep dives.</div>
+        <div class="tc-footer"><span class="fc-tag zh">搜索</span><span class="fc-tag en">Research</span><span class="fc-stars" style="font-size:11px">★★★★★</span><span style="font-size:11px;color:var(--ink-3)">4.7</span></div>
+      </div>
+    </div>
+
+    <!-- AUTOMATION -->
+    <div class="tool-card" data-cat="automation" data-name="make automation workflow zapier integromat">
+      <div class="tc-icon" style="background:#eef4ff">⚙️</div>
+      <div class="tc-body">
+        <div class="tc-header">
+          <span class="tc-name">Make</span>
+          <span class="fc-badge badge-freemium" style="font-size:10px;padding:2px 6px">Free</span>
+        </div>
+        <div class="tc-desc zh">可视化工作流自动化，支持 AI 步骤，比 Zapier 功能强大、价格低一半。</div>
+        <div class="tc-desc en">Visual workflow automation with AI steps. More powerful than Zapier at half the cost. Indie maker favourite.</div>
+        <div class="tc-footer"><span class="fc-tag zh">自动化</span><span class="fc-tag en">Automation</span><span class="fc-stars" style="font-size:11px">★★★★★</span><span style="font-size:11px;color:var(--ink-3)">4.7</span></div>
+      </div>
+    </div>
+
+    <!-- IMAGE -->
+    <div class="tool-card" data-cat="image" data-name="midjourney image generation art design">
+      <div class="tc-icon" style="background:#f0eeff">🌈</div>
+      <div class="tc-body">
+        <div class="tc-header">
+          <span class="tc-name">Midjourney</span>
+          <span class="fc-badge badge-paid" style="font-size:10px;padding:2px 6px">$10/mo</span>
+        </div>
+        <div class="tc-desc zh">AI 图像生成的黄金标准，出图质量无可匹敌，营销素材和品牌设计首选。</div>
+        <div class="tc-desc en">The gold standard for AI image generation. Unmatched aesthetic quality for marketing and brand visuals.</div>
+        <div class="tc-footer"><span class="fc-tag zh">图像</span><span class="fc-tag en">Image</span><span class="fc-stars" style="font-size:11px">★★★★★</span><span style="font-size:11px;color:var(--ink-3)">4.9</span></div>
+      </div>
+    </div>
+
+    <div class="tool-card" data-cat="image" data-name="remove bg background removal image editing">
+      <div class="tc-icon" style="background:#f0fff5">✂️</div>
+      <div class="tc-body">
+        <div class="tc-header">
+          <span class="tc-name">Remove.bg</span>
+          <span class="fc-badge badge-freemium" style="font-size:10px;padding:2px 6px">Free</span>
+        </div>
+        <div class="tc-desc zh">一键 AI 抠图，发丝和毛发边缘干净，电商主图和社交媒体素材必备。</div>
+        <div class="tc-desc en">One-click AI background removal. Clean results on hair and fur edges — essential for e-commerce and social media.</div>
+        <div class="tc-footer"><span class="fc-tag zh">图像</span><span class="fc-tag en">Image</span><span class="fc-stars" style="font-size:11px">★★★★★</span><span style="font-size:11px;color:var(--ink-3)">4.8</span></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- NEWSLETTER -->
+  <div class="newsletter">
+    <h2 class="nl-title zh">订阅<em>每周工具速报</em></h2>
+    <h2 class="nl-title en">Get the <em>weekly drop</em></h2>
+    <p class="nl-sub zh">每周四发出 · 5 款新工具 + 1 篇深度测评 · 已有 4,200 名读者订阅</p>
+    <p class="nl-sub en">5 new tools · 1 deep review · zero hype — every Thursday. 4,200 readers.</p>
+    <div class="nl-form">
+      <input class="nl-input" id="nl-input" type="email">
+      <button class="nl-btn zh">免费订阅 →</button>
+      <button class="nl-btn en">Subscribe →</button>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <div class="footer-logo">
+    <span class="zh">用<span>AI</span></span>
+    <span class="en">Yong<span>AI</span></span>
+  </div>
+  <div class="footer-links">
+    <a href="#" class="zh">关于我们</a><a href="#" class="en">About</a>
+    <a href="#" class="zh">提交工具</a><a href="#" class="en">Submit</a>
+    <a href="#" class="zh">商务合作</a><a href="#" class="en">Advertise</a>
+  </div>
+  <div style="font-size:12px;color:var(--ink-4)">© 2026 YongAI.online</div>
+</footer>
+
+<script>
+// ── TOOL DATA ──
+const tools = [
+  {name:'DeepSeek',cat:'writing',icon:'🐋',zh:'写作',en:'Writing'},
+  {name:'文心一言 Ernie',cat:'writing',icon:'🔥',zh:'写作',en:'Writing'},
+  {name:'通义千问 Qwen',cat:'writing',icon:'🌿',zh:'写作',en:'Writing'},
+  {name:'Kimi',cat:'writing',icon:'🌙',zh:'写作',en:'Writing'},
+  {name:'GitHub Copilot',cat:'coding',icon:'🤖',zh:'编程',en:'Coding'},
+  {name:'Bolt.new',cat:'coding',icon:'⚡',zh:'编程',en:'Coding'},
+  {name:'Claude Code',cat:'coding',icon:'🧠',zh:'编程',en:'Coding'},
+  {name:'Cursor',cat:'coding',icon:'🖱️',zh:'编程',en:'Coding'},
+  {name:'Canva AI',cat:'design',icon:'🎭',zh:'设计',en:'Design'},
+  {name:'Framer',cat:'design',icon:'🌐',zh:'设计',en:'Design'},
+  {name:'即梦 Jimeng',cat:'design',icon:'🎨',zh:'设计',en:'Design'},
+  {name:'Notion AI',cat:'productivity',icon:'📝',zh:'效率',en:'Productivity'},
+  {name:'飞书 Feishu Lark',cat:'productivity',icon:'🪶',zh:'效率',en:'Productivity'},
+  {name:'剪映 CapCut',cat:'video',icon:'✂️',zh:'视频',en:'Video'},
+  {name:'Descript',cat:'video',icon:'🎬',zh:'视频',en:'Video'},
+  {name:'Ahrefs',cat:'seo',icon:'🔍',zh:'SEO',en:'SEO'},
+  {name:'Perplexity',cat:'research',icon:'🔬',zh:'搜索',en:'Research'},
+  {name:'Make',cat:'automation',icon:'⚙️',zh:'自动化',en:'Automation'},
+  {name:'Midjourney',cat:'image',icon:'🌈',zh:'图像',en:'Image'},
+  {name:'Remove.bg',cat:'image',icon:'✂️',zh:'图像',en:'Image'},
+];
+
+const catLabels = {
+  zh:{ all:'全部工具', writing:'写作工具', coding:'编程工具', design:'设计工具',
+       productivity:'效率工具', video:'视频工具', seo:'SEO 工具',
+       research:'搜索工具', automation:'自动化工具', image:'图像工具' },
+  en:{ all:'All tools', writing:'Writing tools', coding:'Coding tools', design:'Design tools',
+       productivity:'Productivity tools', video:'Video tools', seo:'SEO tools',
+       research:'Research tools', automation:'Automation tools', image:'Image tools' }
+};
+
+let currentLang = 'zh';
+let currentCat = 'all';
+
+// ── LANG ──
+function setLang(lang) {
+  currentLang = lang;
+  document.documentElement.setAttribute('data-lang', lang);
+  document.documentElement.setAttribute('lang', lang === 'zh' ? 'zh-CN' : 'en');
+  document.getElementById('btn-zh').classList.toggle('active', lang === 'zh');
+  document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+  document.getElementById('search-input').placeholder =
+    lang === 'zh' ? '搜索工具名称、分类、使用场景…' : 'Search tools, categories, use cases…';
+  document.getElementById('nl-input').placeholder =
+    lang === 'zh' ? '输入你的邮箱地址' : 'your@email.com';
+  updateCount();
+  updateTitle(currentCat);
+  localStorage.setItem('lang', lang);
+}
+
+// ── SEARCH ──
+const searchInput = document.getElementById('search-input');
+const searchResults = document.getElementById('search-results');
+
+searchInput.addEventListener('input', () => {
+  const q = searchInput.value.trim().toLowerCase();
+  if (!q) { searchResults.classList.remove('show'); filterCards('all'); return; }
+
+  const matches = tools.filter(t =>
+    t.name.toLowerCase().includes(q) ||
+    t.cat.includes(q) ||
+    t.zh.includes(q) ||
+    t.en.toLowerCase().includes(q)
+  );
+  if (!matches.length) { searchResults.classList.remove('show'); return; }
+
+  searchResults.innerHTML = matches.slice(0,6).map(t => `
+    <div class="search-result-item" onclick="filterCards('${t.cat}');searchInput.blur();searchResults.classList.remove('show');">
+      <div class="sri-icon" style="background:var(--paper-2)">${t.icon}</div>
+      <div>
+        <div class="sri-name">${t.name}</div>
+        <div class="sri-cat">${currentLang==='zh'?t.zh:t.en}</div>
+      </div>
+    </div>`).join('');
+  searchResults.classList.add('show');
+
+  document.querySelectorAll('#tools-grid .tool-card').forEach(c => {
+    c.toggleAttribute('data-hidden', !(c.dataset.name||'').toLowerCase().includes(q));
+  });
+  updateCount();
+});
+searchInput.addEventListener('blur', () => setTimeout(()=>searchResults.classList.remove('show'),150));
+
+// ── FILTER ──
+document.getElementById('cat-nav').addEventListener('click', e => {
+  const btn = e.target.closest('.cat-btn');
+  if (!btn) return;
+  document.querySelectorAll('.cat-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  searchInput.value = '';
+  filterCards(btn.dataset.cat);
+});
+
+function filterCards(cat) {
+  currentCat = cat;
+  document.querySelectorAll('#tools-grid .tool-card').forEach(c =>
+    c.toggleAttribute('data-hidden', cat!=='all' && c.dataset.cat!==cat));
+  document.querySelectorAll('#featured-grid .featured-card').forEach(c =>
+    c.toggleAttribute('data-hidden', cat!=='all' && c.dataset.cat!==cat));
+  document.querySelectorAll('.cat-btn').forEach(b=>{
+    if(b.dataset.cat===cat) b.classList.add('active');
+  });
+  updateCount();
+  updateTitle(cat);
+}
+
+function updateCount() {
+  const n = document.querySelectorAll('#tools-grid .tool-card:not([data-hidden])').length;
+  document.getElementById('grid-count').textContent =
+    currentLang==='zh' ? `显示 ${n} 款工具` : `Showing ${n} tools`;
+}
+
+function updateTitle(cat) {
+  const labels = catLabels[currentLang];
+  document.getElementById('grid-title-zh').textContent = catLabels.zh[cat]||'全部工具';
+  document.getElementById('grid-title-en').textContent = catLabels.en[cat]||'All tools';
+}
+
+// ── KEYBOARD ──
+document.addEventListener('keydown', e => {
+  if ((e.metaKey||e.ctrlKey) && e.key==='k') { e.preventDefault(); searchInput.focus(); }
+});
+
+// ── INIT ──
+const saved = localStorage.getItem('lang');
+const browserZh = navigator.language.startsWith('zh');
+setLang(saved || (browserZh ? 'zh' : 'en'));
+updateCount();
+</script>
+</body>
+</html>
