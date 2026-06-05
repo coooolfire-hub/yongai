@@ -290,8 +290,8 @@ footer{border-top:1px solid var(--paper-3);padding:28px 32px;display:flex;align-
 </div>
 <div class="featured-grid" id="featured-grid">
 
-  <div class="featured-card" data-tool-placeholder="writing" data-tool="kimi" onclick="openModal('kimi')">
-    <div class="fc-top"><div class="fc-icon" style="background:white;padding:4px"><img src="https://www.google.com/s2/favicons?domain=kimi.moonshot.cn&sz=64" style="width:36px;height:36px;object-fit:contain;border-radius:6px;" onerror="this.parentNode.textContent='🌙'"></div><span class="fc-badge badge-freemium zh">免费可用</span><span class="fc-badge badge-freemium en">Freemium</span></div>
+  <div class="featured-card" data-cat="writing" onclick="openModal('kimi')">
+    <div class="fc-top"><div class="fc-icon" style="background:#fff4ee">🌙</div><span class="fc-badge badge-freemium zh">免费可用</span><span class="fc-badge badge-freemium en">Freemium</span></div>
     <div class="fc-name">Kimi</div>
     <div class="fc-desc zh">国内最强长文本 AI，支持 200 万字超长上下文，中文理解业界领先。</div>
     <div class="fc-desc en">China's top long-context AI with 2M token support. Best Chinese language understanding in class.</div>
@@ -299,8 +299,8 @@ footer{border-top:1px solid var(--paper-3);padding:28px 32px;display:flex;align-
     <div class="fc-footer"><div class="fc-rating"><span class="fc-stars">★★★★★</span><span>4.8</span></div><div class="fc-arrow">→</div></div>
   </div>
 
-  <div class="featured-card" data-tool-placeholder="coding" data-tool="cursor" onclick="openModal('cursor')">
-    <div class="fc-top"><div class="fc-icon" style="background:white;padding:4px"><img src="https://www.google.com/s2/favicons?domain=cursor.com&sz=64" style="width:36px;height:36px;object-fit:contain;border-radius:6px;" onerror="this.parentNode.textContent='🖱️'"></div><span class="fc-badge badge-paid zh">付费</span><span class="fc-badge badge-paid en">Paid</span></div>
+  <div class="featured-card" data-cat="coding" onclick="openModal('cursor')">
+    <div class="fc-top"><div class="fc-icon" style="background:#f0f4ff">🖱️</div><span class="fc-badge badge-paid zh">付费</span><span class="fc-badge badge-paid en">Paid</span></div>
     <div class="fc-name">Cursor</div>
     <div class="fc-desc zh">目前最强 AI 代码编辑器，理解整个代码库上下文，独立开发者必备。</div>
     <div class="fc-desc en">The AI code editor that understands your entire codebase. Essential for indie developers.</div>
@@ -308,8 +308,8 @@ footer{border-top:1px solid var(--paper-3);padding:28px 32px;display:flex;align-
     <div class="fc-footer"><div class="fc-rating"><span class="fc-stars">★★★★★</span><span>4.9</span></div><div class="fc-arrow">→</div></div>
   </div>
 
-  <div class="featured-card" data-tool-placeholder="design" data-tool="jimeng" onclick="openModal('jimeng')">
-    <div class="fc-top"><div class="fc-icon" style="background:white;padding:4px"><img src="https://www.google.com/s2/favicons?domain=jimeng.jianying.com&sz=64" style="width:36px;height:36px;object-fit:contain;border-radius:6px;" onerror="this.parentNode.textContent='🎨'"></div><span class="fc-badge badge-freemium zh">免费可用</span><span class="fc-badge badge-freemium en">Freemium</span></div>
+  <div class="featured-card" data-cat="design" onclick="openModal('jimeng')">
+    <div class="fc-top"><div class="fc-icon" style="background:#f0faf4">🎨</div><span class="fc-badge badge-freemium zh">免费可用</span><span class="fc-badge badge-freemium en">Freemium</span></div>
     <div class="fc-name zh">即梦 AI</div><div class="fc-name en">Jimeng AI</div>
     <div class="fc-desc zh">字节跳动出品，文生图/文生视频，中文提示词效果极佳，国内直接访问。</div>
     <div class="fc-desc en">ByteDance's text-to-image and video AI. Excellent Chinese prompts, accessible in mainland China.</div>
@@ -326,92 +326,92 @@ footer{border-top:1px solid var(--paper-3);padding:28px 32px;display:flex;align-
 </div>
 <div class="tools-grid" id="tools-grid">
 
-  <div class="tool-card" data-cat="writing" data-name="deepseek 写作 推理 coding" data-tool="deepseek" onclick="openModal('deepseek')">
-    <div class="tc-icon" style="background:white;padding:3px"><img src="https://www.google.com/s2/favicons?domain=chat.deepseek.com&sz=64" style="width:36px;height:36px;object-fit:contain;border-radius:6px;" onerror="this.parentNode.textContent='🐋'"></div>
+  <div class="tool-card" data-cat="writing" data-name="deepseek 写作 推理 coding" onclick="openModal('deepseek')">
+    <div class="tc-icon" style="background:#eef8ff">🐋</div>
     <div class="tc-body"><div class="tc-header"><span class="tc-name">DeepSeek</span><span class="fc-badge badge-free" style="font-size:10px;padding:2px 6px zh">免费</span><span class="fc-badge badge-free" style="font-size:10px;padding:2px 6px en">Free</span></div>
     <div class="tc-desc zh">推理能力顶级，代码和数学碾压同类，API 价格极低。</div><div class="tc-desc en">Top-tier reasoning, excellent at code and math. Cheapest API in class.</div>
     <div class="tc-footer"><span class="fc-tag zh">写作</span><span class="fc-tag en">Writing</span><span class="fc-stars" style="font-size:11px">★★★★★</span><span style="font-size:11px;color:var(--ink-3)">4.9</span></div></div>
   </div>
 
-  <div class="tool-card" data-cat="writing" data-name="文心一言 ernie baidu 百度" data-tool="ernie" onclick="openModal('ernie')">
-    <div class="tc-icon" style="background:white;padding:3px"><img src="https://www.google.com/s2/favicons?domain=yiyan.baidu.com&sz=64" style="width:36px;height:36px;object-fit:contain;border-radius:6px;" onerror="this.parentNode.textContent='🔥'"></div>
+  <div class="tool-card" data-cat="writing" data-name="文心一言 ernie baidu 百度" onclick="openModal('ernie')">
+    <div class="tc-icon" style="background:#fff8ee">🔥</div>
     <div class="tc-body"><div class="tc-header"><span class="tc-name">文心一言</span><span class="fc-badge badge-freemium" style="font-size:10px;padding:2px 6px">Free</span></div>
     <div class="tc-desc zh">百度出品，国内最早大模型，创作问答代码全能。</div><div class="tc-desc en">Baidu's flagship LLM. Writing, Q&A, code — all in one.</div>
     <div class="tc-footer"><span class="fc-tag zh">写作</span><span class="fc-tag en">Writing</span><span class="fc-stars" style="font-size:11px">★★★★☆</span><span style="font-size:11px;color:var(--ink-3)">4.2</span></div></div>
   </div>
 
-  <div class="tool-card" data-cat="writing" data-name="通义千问 qwen alibaba 阿里" data-tool="qwen" onclick="openModal('qwen')">
-    <div class="tc-icon" style="background:white;padding:3px"><img src="https://www.google.com/s2/favicons?domain=tongyi.aliyun.com&sz=64" style="width:36px;height:36px;object-fit:contain;border-radius:6px;" onerror="this.parentNode.textContent='🌿'"></div>
+  <div class="tool-card" data-cat="writing" data-name="通义千问 qwen alibaba 阿里" onclick="openModal('qwen')">
+    <div class="tc-icon" style="background:#f0fff4">🌿</div>
     <div class="tc-body"><div class="tc-header"><span class="tc-name">通义千问</span><span class="fc-badge badge-freemium" style="font-size:10px;padding:2px 6px">Free</span></div>
     <div class="tc-desc zh">阿里大模型，多模态能力强，文档阅读图像理解代码生成一体化。</div><div class="tc-desc en">Alibaba's multimodal LLM — docs, images, and code in one.</div>
     <div class="tc-footer"><span class="fc-tag zh">写作</span><span class="fc-tag en">Writing</span><span class="fc-stars" style="font-size:11px">★★★★☆</span><span style="font-size:11px;color:var(--ink-3)">4.4</span></div></div>
   </div>
 
-  <div class="tool-card" data-cat="coding" data-name="github copilot coding microsoft" data-tool="copilot" onclick="openModal('copilot')">
-    <div class="tc-icon" style="background:white;padding:3px"><img src="https://www.google.com/s2/favicons?domain=github.com&sz=64" style="width:36px;height:36px;object-fit:contain;border-radius:6px;" onerror="this.parentNode.textContent='🤖'"></div>
+  <div class="tool-card" data-cat="coding" data-name="github copilot coding microsoft" onclick="openModal('copilot')">
+    <div class="tc-icon" style="background:#f0f0ff">🤖</div>
     <div class="tc-body"><div class="tc-header"><span class="tc-name">GitHub Copilot</span><span class="fc-badge badge-paid" style="font-size:10px;padding:2px 6px">$10/mo</span></div>
     <div class="tc-desc zh">微软出品，内嵌所有主流 IDE，实时代码补全。</div><div class="tc-desc en">Microsoft's AI pair programmer. Real-time completions in every major IDE.</div>
     <div class="tc-footer"><span class="fc-tag zh">编程</span><span class="fc-tag en">Coding</span><span class="fc-stars" style="font-size:11px">★★★★☆</span><span style="font-size:11px;color:var(--ink-3)">4.5</span></div></div>
   </div>
 
-  <div class="tool-card" data-cat="coding" data-name="bolt new fullstack web deploy" data-tool="bolt" onclick="openModal('bolt')">
-    <div class="tc-icon" style="background:white;padding:3px"><img src="https://www.google.com/s2/favicons?domain=bolt.new&sz=64" style="width:36px;height:36px;object-fit:contain;border-radius:6px;" onerror="this.parentNode.textContent='⚡'"></div>
+  <div class="tool-card" data-cat="coding" data-name="bolt new fullstack web deploy" onclick="openModal('bolt')">
+    <div class="tc-icon" style="background:#fffbee">⚡</div>
     <div class="tc-body"><div class="tc-header"><span class="tc-name">Bolt.new</span><span class="fc-badge badge-freemium" style="font-size:10px;padding:2px 6px">Free</span></div>
     <div class="tc-desc zh">浏览器内全栈 AI 开发，输入需求生成可运行项目，一键部署。</div><div class="tc-desc en">Full-stack AI dev in the browser. Describe → running app → deploy in one click.</div>
     <div class="tc-footer"><span class="fc-tag zh">编程</span><span class="fc-tag en">Coding</span><span class="fc-stars" style="font-size:11px">★★★★★</span><span style="font-size:11px;color:var(--ink-3)">4.7</span></div></div>
   </div>
 
-  <div class="tool-card" data-cat="coding" data-name="claude code terminal agentic" data-tool="claudecode" onclick="openModal('claudecode')">
-    <div class="tc-icon" style="background:white;padding:3px"><img src="https://www.google.com/s2/favicons?domain=claude.ai&sz=64" style="width:36px;height:36px;object-fit:contain;border-radius:6px;" onerror="this.parentNode.textContent='🧠'"></div>
+  <div class="tool-card" data-cat="coding" data-name="claude code terminal agentic" onclick="openModal('claudecode')">
+    <div class="tc-icon" style="background:#faf0eb">🧠</div>
     <div class="tc-body"><div class="tc-header"><span class="tc-name">Claude Code</span><span class="fc-badge badge-paid" style="font-size:10px;padding:2px 6px zh">按量付费</span><span class="fc-badge badge-paid" style="font-size:10px;padding:2px 6px en">Pay-as-you-go</span></div>
     <div class="tc-desc zh">终端内 AI 编程 Agent，自主读写文件、执行命令、重构代码库。</div><div class="tc-desc en">Agentic coding in terminal. Reads files, runs commands, refactors codebases autonomously.</div>
     <div class="tc-footer"><span class="fc-tag zh">编程</span><span class="fc-tag en">Coding</span><span class="fc-stars" style="font-size:11px">★★★★★</span><span style="font-size:11px;color:var(--ink-3)">4.8</span></div></div>
   </div>
 
-  <div class="tool-card" data-cat="design" data-name="canva design template" data-tool="canva" onclick="openModal('canva')">
-    <div class="tc-icon" style="background:white;padding:3px"><img src="https://www.google.com/s2/favicons?domain=canva.com&sz=64" style="width:36px;height:36px;object-fit:contain;border-radius:6px;" onerror="this.parentNode.textContent='🎭'"></div>
+  <div class="tool-card" data-cat="design" data-name="canva design template" onclick="openModal('canva')">
+    <div class="tc-icon" style="background:#fff0fa">🎭</div>
     <div class="tc-body"><div class="tc-header"><span class="tc-name">Canva AI</span><span class="fc-badge badge-freemium" style="font-size:10px;padding:2px 6px">Free</span></div>
     <div class="tc-desc zh">非设计师首选，AI 生成素材、一键抠图、智能排版。</div><div class="tc-desc en">Non-designer's best friend. AI assets, background removal, smart layouts.</div>
     <div class="tc-footer"><span class="fc-tag zh">设计</span><span class="fc-tag en">Design</span><span class="fc-stars" style="font-size:11px">★★★★☆</span><span style="font-size:11px;color:var(--ink-3)">4.5</span></div></div>
   </div>
 
-  <div class="tool-card" data-cat="design" data-name="framer website builder no-code" data-tool="framer" onclick="openModal('framer')">
-    <div class="tc-icon" style="background:white;padding:3px"><img src="https://www.google.com/s2/favicons?domain=framer.com&sz=64" style="width:36px;height:36px;object-fit:contain;border-radius:6px;" onerror="this.parentNode.textContent='🌐'"></div>
+  <div class="tool-card" data-cat="design" data-name="framer website builder no-code" onclick="openModal('framer')">
+    <div class="tc-icon" style="background:#f0f4ff">🌐</div>
     <div class="tc-body"><div class="tc-header"><span class="tc-name">Framer</span><span class="fc-badge badge-freemium" style="font-size:10px;padding:2px 6px">Free</span></div>
     <div class="tc-desc zh">AI 建站工具，输入描述生成完整网站，独立开发者 landing page 首选。</div><div class="tc-desc en">AI website builder — describe your site, get a live polished result instantly.</div>
     <div class="tc-footer"><span class="fc-tag zh">设计</span><span class="fc-tag en">Design</span><span class="fc-stars" style="font-size:11px">★★★★★</span><span style="font-size:11px;color:var(--ink-3)">4.7</span></div></div>
   </div>
 
-  <div class="tool-card" data-cat="productivity" data-name="notion ai notes productivity" data-tool="notion" onclick="openModal('notion')">
-    <div class="tc-icon" style="background:white;padding:3px"><img src="https://www.google.com/s2/favicons?domain=notion.so&sz=64" style="width:36px;height:36px;object-fit:contain;border-radius:6px;" onerror="this.parentNode.textContent='📝'"></div>
+  <div class="tool-card" data-cat="productivity" data-name="notion ai notes productivity" onclick="openModal('notion')">
+    <div class="tc-icon" style="background:#f5f5f5">📝</div>
     <div class="tc-body"><div class="tc-header"><span class="tc-name">Notion AI</span><span class="fc-badge badge-paid" style="font-size:10px;padding:2px 6px">$10/mo</span></div>
     <div class="tc-desc zh">工作区内置 AI，总结会议、扩写草稿、翻译文档，不用切换 Tab。</div><div class="tc-desc en">AI built into your workspace. Summarize, draft, translate — no tab switching.</div>
     <div class="tc-footer"><span class="fc-tag zh">效率</span><span class="fc-tag en">Productivity</span><span class="fc-stars" style="font-size:11px">★★★★☆</span><span style="font-size:11px;color:var(--ink-3)">4.5</span></div></div>
   </div>
 
-  <div class="tool-card" data-cat="video" data-name="剪映 capcut video editing 字幕" data-tool="capcut" onclick="openModal('capcut')">
-    <div class="tc-icon" style="background:white;padding:3px"><img src="https://www.google.com/s2/favicons?domain=capcut.com&sz=64" style="width:36px;height:36px;object-fit:contain;border-radius:6px;" onerror="this.parentNode.textContent='✂️'"></div>
+  <div class="tool-card" data-cat="video" data-name="剪映 capcut video editing 字幕" onclick="openModal('capcut')">
+    <div class="tc-icon" style="background:#f8f0ff">✂️</div>
     <div class="tc-body"><div class="tc-header"><span class="tc-name zh">剪映专业版</span><span class="tc-name en">CapCut Pro</span><span class="fc-badge badge-freemium" style="font-size:10px;padding:2px 6px">Free</span></div>
     <div class="tc-desc zh">字节出品，AI 字幕、自动剪辑、数字人、文章转视频。</div><div class="tc-desc en">ByteDance's pro editor. AI captions, auto-cut, digital avatars, article-to-video.</div>
     <div class="tc-footer"><span class="fc-tag zh">视频</span><span class="fc-tag en">Video</span><span class="fc-stars" style="font-size:11px">★★★★★</span><span style="font-size:11px;color:var(--ink-3)">4.8</span></div></div>
   </div>
 
-  <div class="tool-card" data-cat="seo" data-name="ahrefs seo keyword backlink" data-tool="ahrefs" onclick="openModal('ahrefs')">
-    <div class="tc-icon" style="background:white;padding:3px"><img src="https://www.google.com/s2/favicons?domain=ahrefs.com&sz=64" style="width:36px;height:36px;object-fit:contain;border-radius:6px;" onerror="this.parentNode.textContent='🔍'"></div>
+  <div class="tool-card" data-cat="seo" data-name="ahrefs seo keyword backlink" onclick="openModal('ahrefs')">
+    <div class="tc-icon" style="background:#fff4ee">🔍</div>
     <div class="tc-body"><div class="tc-header"><span class="tc-name">Ahrefs</span><span class="fc-badge badge-paid" style="font-size:10px;padding:2px 6px">$129/mo</span></div>
     <div class="tc-desc zh">英文 SEO 站必备，关键词挖掘、竞品分析、外链数据。</div><div class="tc-desc en">Gold standard SEO tool. Keywords, competitor analysis, backlink data.</div>
     <div class="tc-footer"><span class="fc-tag">SEO</span><span class="fc-stars" style="font-size:11px">★★★★★</span><span style="font-size:11px;color:var(--ink-3)">4.8</span></div></div>
   </div>
 
-  <div class="tool-card" data-cat="image" data-name="midjourney image generation art" data-tool="midjourney" onclick="openModal('midjourney')">
-    <div class="tc-icon" style="background:white;padding:3px"><img src="https://www.google.com/s2/favicons?domain=midjourney.com&sz=64" style="width:36px;height:36px;object-fit:contain;border-radius:6px;" onerror="this.parentNode.textContent='🌈'"></div>
+  <div class="tool-card" data-cat="image" data-name="midjourney image generation art" onclick="openModal('midjourney')">
+    <div class="tc-icon" style="background:#f0eeff">🌈</div>
     <div class="tc-body"><div class="tc-header"><span class="tc-name">Midjourney</span><span class="fc-badge badge-paid" style="font-size:10px;padding:2px 6px">$10/mo</span></div>
     <div class="tc-desc zh">AI 图像生成黄金标准，出图质量无可匹敌，营销素材首选。</div><div class="tc-desc en">Gold standard for AI image generation. Unmatched aesthetic quality for marketing.</div>
     <div class="tc-footer"><span class="fc-tag zh">图像</span><span class="fc-tag en">Image</span><span class="fc-stars" style="font-size:11px">★★★★★</span><span style="font-size:11px;color:var(--ink-3)">4.9</span></div></div>
   </div>
 
-  <div class="tool-card" data-cat="automation" data-name="make automation workflow zapier" data-tool="make" onclick="openModal('make')">
-    <div class="tc-icon" style="background:white;padding:3px"><img src="https://www.google.com/s2/favicons?domain=make.com&sz=64" style="width:36px;height:36px;object-fit:contain;border-radius:6px;" onerror="this.parentNode.textContent='⚙️'"></div>
+  <div class="tool-card" data-cat="automation" data-name="make automation workflow zapier" onclick="openModal('make')">
+    <div class="tc-icon" style="background:#eef4ff">⚙️</div>
     <div class="tc-body"><div class="tc-header"><span class="tc-name">Make</span><span class="fc-badge badge-freemium" style="font-size:10px;padding:2px 6px">Free</span></div>
     <div class="tc-desc zh">可视化工作流自动化，支持 AI 步骤，比 Zapier 功能强价格低。</div><div class="tc-desc en">Visual workflow automation with AI steps. More powerful than Zapier, half the price.</div>
     <div class="tc-footer"><span class="fc-tag zh">自动化</span><span class="fc-tag en">Automation</span><span class="fc-stars" style="font-size:11px">★★★★★</span><span style="font-size:11px;color:var(--ink-3)">4.7</span></div></div>
@@ -1613,16 +1613,8 @@ function openModal(id) {
   if (!t) return;
   var l = currentLang;
   var d = t[l];
-  var micon = document.getElementById('m-icon');
-  if (FAVICONS[id]) {
-    micon.innerHTML = '<img src="' + FAVICONS[id] + '" style="width:100%;height:100%;object-fit:contain;border-radius:12px;" onerror="this.textContent=\''+t.icon+'\';this.style.fontSize=\'32px\'">';
-    micon.style.background = 'white';
-    micon.style.padding = '6px';
-  } else {
-    micon.textContent = t.icon;
-    micon.style.background = t.iconBg;
-    micon.style.padding = '0';
-  }
+  document.getElementById('m-icon').textContent = t.icon;
+  document.getElementById('m-icon').style.background = t.iconBg;
   document.getElementById('m-title').textContent = d.title;
   document.getElementById('m-tagline').textContent = d.tagline;
   document.getElementById('m-stars').textContent = t.stars;
@@ -1729,25 +1721,7 @@ function updateTitle(cat) {
   var browserZh = navigator.language && navigator.language.startsWith('zh');
   setLang(saved || (browserZh ? 'zh' : 'en'));
   updateCount();
-  applyFavicons();
 })();
-
-var FAVICONS = {"kimi": "https://www.google.com/s2/favicons?domain=kimi.moonshot.cn&sz=64", "cursor": "https://www.google.com/s2/favicons?domain=cursor.com&sz=64", "deepseek": "https://www.google.com/s2/favicons?domain=chat.deepseek.com&sz=64", "copilot": "https://www.google.com/s2/favicons?domain=github.com&sz=64", "bolt": "https://www.google.com/s2/favicons?domain=bolt.new&sz=64", "claudecode": "https://www.google.com/s2/favicons?domain=claude.ai&sz=64", "canva": "https://www.google.com/s2/favicons?domain=canva.com&sz=64", "framer": "https://www.google.com/s2/favicons?domain=framer.com&sz=64", "notion": "https://www.google.com/s2/favicons?domain=notion.so&sz=64", "capcut": "https://www.google.com/s2/favicons?domain=capcut.com&sz=64", "ahrefs": "https://www.google.com/s2/favicons?domain=ahrefs.com&sz=64", "midjourney": "https://www.google.com/s2/favicons?domain=midjourney.com&sz=64", "make": "https://www.google.com/s2/favicons?domain=make.com&sz=64", "jimeng": "https://www.google.com/s2/favicons?domain=jimeng.jianying.com&sz=64", "ernie": "https://www.google.com/s2/favicons?domain=yiyan.baidu.com&sz=64", "qwen": "https://www.google.com/s2/favicons?domain=tongyi.aliyun.com&sz=64"};
-
-function applyFavicons() {
-  document.querySelectorAll('[data-tool]').forEach(function(el) {
-    var tid = el.dataset.tool;
-    if (FAVICONS[tid]) {
-      var icon = el.querySelector('.fc-icon, .tc-icon');
-      if (icon) {
-        icon.innerHTML = '<img src="' + FAVICONS[tid] + '" style="width:100%;height:100%;object-fit:contain;border-radius:8px;" onerror="this.style.display=\'none\'">';
-        icon.style.background = 'white';
-        icon.style.padding = '4px';
-      }
-    }
-  });
-}
-
 </script>
 </body>
 </html>
