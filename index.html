@@ -9,106 +9,75 @@
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Noto+Serif+SC:wght@400;600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --ink:#1a1814;--ink-2:#3d3a35;--ink-3:#7a7570;--ink-4:#b8b3ac;
-  --paper:#f5f2ed;--paper-2:#ede9e2;--paper-3:#e4dfd6;
-  --accent:#c8440a;--accent-2:#e8956a;--accent-light:#faf0eb;
-  --green:#2d6a4f;--green-light:#eaf3ee;
-  --blue:#1a4a7a;--blue-light:#eaf0f8;
-  --purple:#4a3070;--purple-light:#f0ecf8;
-  --r:10px;--r-lg:16px;
-}
+:root{--ink:#1a1814;--ink-2:#3d3a35;--ink-3:#7a7570;--ink-4:#b8b3ac;--paper:#f5f2ed;--paper-2:#ede9e2;--paper-3:#e4dfd6;--accent:#c8440a;--accent-2:#e8956a;--accent-light:#faf0eb;--green:#2d6a4f;--green-light:#eaf3ee;--blue:#1a4a7a;--blue-light:#eaf0f8;--purple:#4a3070;--purple-light:#f0ecf8;--r:10px;--r-lg:16px}
 html{scroll-behavior:smooth}
 body{background:var(--paper);color:var(--ink);font-size:15px;line-height:1.7;min-height:100vh}
-[data-lang="zh"] body{font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif}
-[data-lang="en"] body{font-family:'DM Sans',sans-serif;line-height:1.6}
+[data-lang="zh"] body{font-family:"Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif}
+[data-lang="en"] body{font-family:"DM Sans",sans-serif}
 [data-lang="zh"] .en{display:none!important}
 [data-lang="en"] .zh{display:none!important}
-
-/* NAV */
-nav.topnav{position:sticky;top:0;z-index:100;background:rgba(245,242,237,0.93);backdrop-filter:blur(12px);border-bottom:1px solid var(--paper-3);padding:0 32px;display:flex;align-items:center;gap:24px;height:60px}
-.nav-logo{font-size:20px;color:var(--ink);text-decoration:none;display:flex;align-items:center;gap:2px;white-space:nowrap}
-[data-lang="zh"] .nav-logo{font-family:'Noto Serif SC',serif;font-weight:600}
-[data-lang="en"] .nav-logo{font-family:'Instrument Serif',serif;font-size:22px}
+nav.topnav{position:sticky;top:0;z-index:100;background:rgba(245,242,237,.93);backdrop-filter:blur(12px);border-bottom:1px solid var(--paper-3);padding:0 32px;display:flex;align-items:center;gap:24px;height:60px}
+.nav-logo{font-size:20px;color:var(--ink);text-decoration:none;display:flex;align-items:center;gap:2px;white-space:nowrap;cursor:pointer}
+[data-lang="zh"] .nav-logo{font-family:"Noto Serif SC",serif;font-weight:600}
+[data-lang="en"] .nav-logo{font-family:"Instrument Serif",serif;font-size:22px}
 .nav-logo span{color:var(--accent)}
 .nav-links{display:flex;gap:2px;margin-left:auto}
-.nav-links a{font-size:13px;color:var(--ink-3);text-decoration:none;padding:6px 11px;border-radius:6px;transition:all .15s;white-space:nowrap}
+.nav-links a{font-size:13px;color:var(--ink-3);text-decoration:none;padding:6px 11px;border-radius:6px;transition:all .15s;white-space:nowrap;cursor:pointer}
 .nav-links a:hover{background:var(--paper-2);color:var(--ink)}
 .lang-switcher{display:flex;align-items:center;background:var(--paper-2);border-radius:8px;border:1px solid var(--paper-3);overflow:hidden;flex-shrink:0}
 .lang-btn{padding:5px 11px;font-size:12px;font-weight:500;cursor:pointer;border:none;background:transparent;color:var(--ink-3);transition:all .15s;font-family:inherit}
 .lang-btn.active{background:var(--ink);color:var(--paper);border-radius:6px}
 .nav-submit{font-size:13px;font-weight:500;background:var(--ink);color:var(--paper);border:none;padding:8px 15px;border-radius:8px;cursor:pointer;text-decoration:none;transition:opacity .15s;white-space:nowrap}
 .nav-submit:hover{opacity:.85}
-
-/* HERO */
 .hero{max-width:740px;margin:0 auto;padding:72px 32px 56px;text-align:center}
 .hero-badge{display:inline-flex;align-items:center;gap:6px;background:var(--accent-light);color:var(--accent);font-size:12px;font-weight:500;padding:4px 14px;border-radius:100px;border:1px solid rgba(200,68,10,.2);margin-bottom:24px}
-.hero-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0}
+.hero-badge::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0}
 .hero h1{font-size:clamp(32px,5.5vw,52px);line-height:1.15;color:var(--ink);margin-bottom:16px}
-[data-lang="zh"] .hero h1{font-family:'Noto Serif SC',serif;font-weight:600;letter-spacing:.5px}
-[data-lang="en"] .hero h1{font-family:'Instrument Serif',serif;font-weight:400;letter-spacing:-.5px}
+[data-lang="zh"] .hero h1{font-family:"Noto Serif SC",serif;font-weight:600;letter-spacing:.5px}
+[data-lang="en"] .hero h1{font-family:"Instrument Serif",serif;font-weight:400;letter-spacing:-.5px}
 .hero h1 em{font-style:italic;color:var(--accent)}
 [data-lang="zh"] .hero h1 em{font-style:normal}
 .hero p{font-size:16px;color:var(--ink-3);max-width:500px;margin:0 auto 36px;font-weight:300}
-
-/* SEARCH */
 .search-wrap{position:relative;max-width:540px;margin:0 auto}
 .search-icon{position:absolute;left:16px;top:50%;transform:translateY(-50%);color:var(--ink-4);pointer-events:none}
-.search-input{width:100%;padding:15px 20px 15px 46px;font-size:14px;background:white;color:var(--ink);border:1.5px solid var(--paper-3);border-radius:12px;outline:none;transition:border-color .2s,box-shadow .2s;box-shadow:0 2px 8px rgba(26,24,20,.06)}
-[data-lang="zh"] .search-input{font-family:'Noto Sans SC',sans-serif}
-[data-lang="en"] .search-input{font-family:'DM Sans',sans-serif}
+.search-input{width:100%;padding:15px 20px 15px 46px;font-size:14px;background:white;color:var(--ink);border:1.5px solid var(--paper-3);border-radius:12px;outline:none;transition:border-color .2s,box-shadow .2s;box-shadow:0 2px 8px rgba(26,24,20,.06);font-family:inherit}
 .search-input::placeholder{color:var(--ink-4)}
-.search-input:focus{border-color:var(--accent);box-shadow:0 0 0 4px rgba(200,68,10,.1),0 2px 8px rgba(26,24,20,.06)}
+.search-input:focus{border-color:var(--accent);box-shadow:0 0 0 4px rgba(200,68,10,.1)}
 .search-results{position:absolute;top:calc(100% + 8px);left:0;right:0;background:white;border:1.5px solid var(--paper-3);border-radius:12px;overflow:hidden;box-shadow:0 8px 32px rgba(26,24,20,.1);display:none;z-index:50}
 .search-results.show{display:block}
 .search-result-item{padding:11px 16px;display:flex;align-items:center;gap:12px;cursor:pointer;transition:background .1s;border-bottom:1px solid var(--paper-2)}
 .search-result-item:last-child{border-bottom:none}
 .search-result-item:hover{background:var(--paper)}
-.sri-icon{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.sri-icon{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;background:var(--paper-2);overflow:hidden}
 .sri-name{font-size:14px;font-weight:500;color:var(--ink)}
-.sri-cat{font-size:11px;color:var(--ink-3);margin-top:1px}
-
-/* STATS */
 .stats{display:flex;gap:40px;justify-content:center;margin-top:36px;padding-top:32px;border-top:1px solid var(--paper-3);flex-wrap:wrap}
 .stat-item{text-align:center}
 .stat-num{font-size:28px;color:var(--ink);font-weight:600}
-[data-lang="zh"] .stat-num{font-family:'Noto Serif SC',serif}
-[data-lang="en"] .stat-num{font-family:'Instrument Serif',serif}
+[data-lang="zh"] .stat-num{font-family:"Noto Serif SC",serif}
+[data-lang="en"] .stat-num{font-family:"Instrument Serif",serif}
 .stat-label{font-size:12px;color:var(--ink-3);margin-top:3px}
-
-/* MAIN */
 .main{max-width:1160px;margin:0 auto;padding:0 32px 80px}
-
-/* CAT NAV */
 .cat-nav{display:flex;gap:6px;flex-wrap:wrap;padding:28px 0 24px;border-bottom:1px solid var(--paper-3);margin-bottom:32px}
 .cat-btn{display:flex;align-items:center;gap:5px;padding:7px 14px;border-radius:8px;font-size:13px;cursor:pointer;border:1px solid transparent;background:transparent;color:var(--ink-3);transition:all .15s;white-space:nowrap;font-family:inherit}
 .cat-btn:hover{background:var(--paper-2);color:var(--ink)}
 .cat-btn.active{background:var(--ink);color:var(--paper);border-color:var(--ink)}
 .cat-btn .count{font-size:11px;opacity:.6;background:rgba(255,255,255,.15);padding:1px 5px;border-radius:4px}
 .cat-btn:not(.active) .count{background:var(--paper-3);color:var(--ink-3)}
-
-/* SECTION HEADER */
 .section-header{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:20px}
 .section-title{font-size:21px;color:var(--ink);font-weight:600}
-[data-lang="zh"] .section-title{font-family:'Noto Serif SC',serif}
-[data-lang="en"] .section-title{font-family:'Instrument Serif',serif;font-weight:400;font-size:23px}
-.section-link{font-size:13px;color:var(--ink-3);text-decoration:none;cursor:pointer}
+[data-lang="zh"] .section-title{font-family:"Noto Serif SC",serif}
+[data-lang="en"] .section-title{font-family:"Instrument Serif",serif;font-weight:400;font-size:23px}
+.section-link{font-size:13px;color:var(--ink-3);cursor:pointer;text-decoration:none}
 .section-link:hover{color:var(--accent)}
-
-/* BADGES */
 .fc-badge{font-size:11px;font-weight:500;padding:3px 8px;border-radius:6px}
 .badge-free{background:var(--green-light);color:var(--green)}
 .badge-paid{background:var(--blue-light);color:var(--blue)}
 .badge-freemium{background:var(--purple-light);color:var(--purple)}
-
-/* FEATURED */
 .featured-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:48px}
-.featured-card{background:white;border:1px solid var(--paper-3);border-radius:var(--r-lg);padding:24px;cursor:pointer;transition:transform .2s,box-shadow .2s;position:relative;overflow:hidden}
-.featured-card::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(200,68,10,.04),transparent 60%);opacity:0;transition:opacity .2s}
+.featured-card{background:white;border:1px solid var(--paper-3);border-radius:var(--r-lg);padding:24px;cursor:pointer;transition:transform .2s,box-shadow .2s}
 .featured-card:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(26,24,20,.09)}
-.featured-card:hover::after{opacity:1}
 .fc-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:14px}
-.fc-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:24px}
+.fc-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;overflow:hidden}
 .fc-name{font-size:17px;font-weight:500;color:var(--ink);margin-bottom:6px}
 .fc-desc{font-size:13px;color:var(--ink-3);line-height:1.6;margin-bottom:16px}
 .fc-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
@@ -118,77 +87,63 @@ nav.topnav{position:sticky;top:0;z-index:100;background:rgba(245,242,237,0.93);b
 .fc-stars{color:#f59e0b;font-size:11px}
 .fc-arrow{width:28px;height:28px;border-radius:50%;background:var(--paper-2);border:1px solid var(--paper-3);display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--ink-3);transition:all .15s}
 .featured-card:hover .fc-arrow{background:var(--accent);color:white;border-color:var(--accent)}
-
-/* TOOLS GRID */
 .tools-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin-bottom:48px}
 .tool-card{background:white;border:1px solid var(--paper-3);border-radius:var(--r);padding:16px 18px;cursor:pointer;transition:transform .15s,box-shadow .15s;display:flex;align-items:flex-start;gap:14px}
 .tool-card:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(26,24,20,.07)}
-.tc-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.tc-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;overflow:hidden;background:var(--paper-2)}
 .tc-body{flex:1;min-width:0}
 .tc-header{display:flex;align-items:center;gap:8px;margin-bottom:3px;flex-wrap:wrap}
 .tc-name{font-size:14px;font-weight:500;color:var(--ink)}
 .tc-desc{font-size:12px;color:var(--ink-3);line-height:1.5;margin-bottom:8px}
 .tc-footer{display:flex;align-items:center;gap:6px}
-
-/* PRODUCT HUNT SECTION */
 .ph-section{margin-bottom:48px}
 .ph-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:10px}
 .ph-card{background:white;border:1px solid var(--paper-3);border-radius:var(--r);padding:14px 16px;display:flex;align-items:center;gap:14px;cursor:pointer;transition:all .15s}
 .ph-card:hover{border-color:var(--accent);transform:translateY(-1px);box-shadow:0 4px 12px rgba(26,24,20,.07)}
-.ph-icon{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;background:var(--paper-2)}
+.ph-icon{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;background:var(--paper-2);overflow:hidden}
 .ph-body{flex:1;min-width:0}
 .ph-name{font-size:14px;font-weight:500;color:var(--ink);margin-bottom:2px}
-.ph-desc{font-size:12px;color:var(--ink-3);line-height:1.4;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.ph-votes{display:flex;align-items:center;gap:4px;font-size:12px;font-weight:500;color:var(--accent);flex-shrink:0;background:var(--accent-light);padding:4px 10px;border-radius:6px}
-.ph-date{font-size:11px;color:var(--ink-4);margin-top:2px}
-
-/* NEWSLETTER */
+.ph-desc{font-size:12px;color:var(--ink-3);line-height:1.4;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ph-votes{font-size:12px;font-weight:500;color:var(--accent);flex-shrink:0;background:var(--accent-light);padding:4px 10px;border-radius:6px}
+.ph-rank{font-size:11px;color:var(--ink-4);margin-top:2px;text-align:right}
 .newsletter{background:var(--ink);color:var(--paper);border-radius:var(--r-lg);padding:48px;text-align:center;margin-bottom:48px;position:relative;overflow:hidden}
-.newsletter::before{content:'';position:absolute;width:400px;height:400px;border-radius:50%;background:rgba(200,68,10,.15);top:-100px;right:-80px;pointer-events:none}
+.newsletter::before{content:"";position:absolute;width:400px;height:400px;border-radius:50%;background:rgba(200,68,10,.15);top:-100px;right:-80px;pointer-events:none}
 .nl-title{font-size:28px;font-weight:600;margin-bottom:10px;position:relative}
-[data-lang="zh"] .nl-title{font-family:'Noto Serif SC',serif}
-[data-lang="en"] .nl-title{font-family:'Instrument Serif',serif;font-weight:400;font-size:32px}
+[data-lang="zh"] .nl-title{font-family:"Noto Serif SC",serif}
+[data-lang="en"] .nl-title{font-family:"Instrument Serif",serif;font-weight:400;font-size:32px}
 .nl-title em{font-style:italic;color:var(--accent-2)}
 [data-lang="zh"] .nl-title em{font-style:normal}
-.nl-sub{font-size:14px;color:rgba(245,242,237,.6);margin-bottom:28px;font-weight:300;position:relative;line-height:1.8}
+.nl-sub{font-size:14px;color:rgba(245,242,237,.6);margin-bottom:28px;font-weight:300;position:relative}
 .nl-form{display:flex;gap:10px;max-width:400px;margin:0 auto;position:relative}
 .nl-input{flex:1;padding:12px 16px;background:rgba(255,255,255,.1);color:var(--paper);border:1px solid rgba(255,255,255,.2);border-radius:8px;font-size:14px;outline:none;font-family:inherit}
 .nl-input::placeholder{color:rgba(245,242,237,.4)}
-.nl-input:focus{border-color:var(--accent-2)}
-.nl-btn{padding:12px 20px;background:var(--accent);color:white;border:none;border-radius:8px;font-size:13px;font-weight:500;cursor:pointer;white-space:nowrap;transition:opacity .15s;font-family:inherit}
-.nl-btn:hover{opacity:.9}
-
-/* FOOTER */
+.nl-btn{padding:12px 20px;background:var(--accent);color:white;border:none;border-radius:8px;font-size:13px;font-weight:500;cursor:pointer;white-space:nowrap;font-family:inherit}
 footer{border-top:1px solid var(--paper-3);padding:28px 32px;display:flex;align-items:center;justify-content:space-between;max-width:1160px;margin:0 auto}
-.footer-logo{font-size:17px;color:var(--ink)}
-[data-lang="zh"] .footer-logo{font-family:'Noto Serif SC',serif}
-[data-lang="en"] .footer-logo{font-family:'Instrument Serif',serif;font-size:20px}
+.footer-logo{font-size:17px;color:var(--ink);cursor:pointer}
+[data-lang="zh"] .footer-logo{font-family:"Noto Serif SC",serif}
+[data-lang="en"] .footer-logo{font-family:"Instrument Serif",serif;font-size:20px}
 .footer-logo span{color:var(--accent)}
 .footer-links{display:flex;gap:20px}
-.footer-links a{font-size:13px;color:var(--ink-3);text-decoration:none}
+.footer-links a{font-size:13px;color:var(--ink-3);text-decoration:none;cursor:pointer}
 .footer-links a:hover{color:var(--ink)}
-
-/* HIDDEN */
 .tool-card[data-hidden],.featured-card[data-hidden]{display:none}
-
-/* MODAL OVERLAY */
-.modal-overlay{position:fixed;inset:0;background:rgba(26,24,20,.5);z-index:200;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .2s}
+.modal-overlay{position:fixed;inset:0;background:rgba(26,24,20,.55);z-index:200;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .2s}
 .modal-overlay.open{opacity:1;pointer-events:all}
-.modal{background:var(--paper);border-radius:var(--r-lg);max-width:680px;width:100%;max-height:88vh;overflow-y:auto;position:relative;transform:translateY(20px);transition:transform .2s}
+.modal{background:var(--paper);border-radius:var(--r-lg);max-width:680px;width:100%;max-height:88vh;overflow-y:auto;position:relative;transform:translateY(20px);transition:transform .25s}
 .modal-overlay.open .modal{transform:translateY(0)}
-.modal-close{position:absolute;top:16px;right:16px;width:32px;height:32px;border-radius:50%;background:var(--paper-2);border:1px solid var(--paper-3);cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;color:var(--ink-3);z-index:10}
+.modal-close{position:absolute;top:16px;right:16px;width:32px;height:32px;border-radius:50%;background:var(--paper-2);border:1px solid var(--paper-3);cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;color:var(--ink-3);z-index:10;font-family:inherit}
 .modal-close:hover{background:var(--paper-3)}
 .modal-hero{padding:28px 28px 0}
 .modal-top{display:flex;align-items:flex-start;gap:16px;margin-bottom:20px}
-.modal-icon{width:64px;height:64px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:32px;flex-shrink:0}
+.modal-icon{width:64px;height:64px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:32px;flex-shrink:0;overflow:hidden;background:var(--paper-2)}
 .modal-title{font-size:22px;font-weight:500;color:var(--ink);margin-bottom:4px}
-[data-lang="zh"] .modal-title{font-family:'Noto Serif SC',serif}
-[data-lang="en"] .modal-title{font-family:'Instrument Serif',serif;font-size:26px;font-weight:400}
+[data-lang="zh"] .modal-title{font-family:"Noto Serif SC",serif}
+[data-lang="en"] .modal-title{font-family:"Instrument Serif",serif;font-size:26px;font-weight:400}
 .modal-tagline{font-size:14px;color:var(--ink-3)}
-.modal-badges{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
+.modal-badges{display:flex;gap:8px;margin-top:8px}
 .modal-body{padding:0 28px 28px}
-.modal-section{margin-top:24px}
-.modal-section-title{font-size:13px;font-weight:500;color:var(--ink-3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
+.modal-section{margin-top:22px}
+.modal-section-title{font-size:12px;font-weight:500;color:var(--ink-3);text-transform:uppercase;letter-spacing:.07em;margin-bottom:10px}
 .modal-text{font-size:14px;color:var(--ink-2);line-height:1.7}
 .modal-pros-cons{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px}
 .pros-box,.cons-box{background:white;border-radius:var(--r);padding:14px;border:1px solid var(--paper-3)}
@@ -197,32 +152,38 @@ footer{border-top:1px solid var(--paper-3);padding:28px 32px;display:flex;align-
 .pros-title{font-size:12px;font-weight:500;color:var(--green);margin-bottom:8px}
 .cons-title{font-size:12px;font-weight:500;color:#c0392b;margin-bottom:8px}
 .pros-list,.cons-list{list-style:none;display:flex;flex-direction:column;gap:6px}
-.pros-list li,.cons-list li{font-size:13px;color:var(--ink-2);display:flex;gap:6px;line-height:1.4}
-.pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;margin-top:10px}
+.pros-list li,.cons-list li{font-size:13px;color:var(--ink-2);display:flex;gap:6px;line-height:1.5}
+.pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:8px;margin-top:10px}
 .pricing-tier{background:white;border:1px solid var(--paper-3);border-radius:var(--r);padding:12px;text-align:center}
 .pricing-name{font-size:12px;color:var(--ink-3);margin-bottom:4px}
 .pricing-price{font-size:18px;font-weight:500;color:var(--ink)}
 .pricing-note{font-size:11px;color:var(--ink-4);margin-top:2px}
 .modal-cta{display:flex;gap:10px;margin-top:24px;flex-wrap:wrap}
-.btn-primary{padding:11px 22px;background:var(--accent);color:white;border:none;border-radius:8px;font-size:14px;font-weight:500;cursor:pointer;text-decoration:none;transition:opacity .15s;font-family:inherit}
+.btn-primary{padding:11px 22px;background:var(--accent);color:white;border:none;border-radius:8px;font-size:14px;font-weight:500;cursor:pointer;text-decoration:none;transition:opacity .15s;font-family:inherit;display:inline-block}
 .btn-primary:hover{opacity:.88}
-.btn-secondary{padding:11px 22px;background:transparent;color:var(--ink);border:1px solid var(--paper-3);border-radius:8px;font-size:14px;cursor:pointer;text-decoration:none;transition:all .15s;font-family:inherit}
+.btn-secondary{padding:11px 22px;background:transparent;color:var(--ink);border:1px solid var(--paper-3);border-radius:8px;font-size:14px;cursor:pointer;font-family:inherit;transition:all .15s}
 .btn-secondary:hover{background:var(--paper-2)}
-.rating-row{display:flex;align-items:center;gap:8px;margin-top:10px}
-.rating-stars-lg{color:#f59e0b;font-size:18px;letter-spacing:1px}
+.rating-row{display:flex;align-items:center;gap:8px;margin-top:8px}
+.rating-stars-lg{color:#f59e0b;font-size:18px}
 .rating-score{font-size:20px;font-weight:500;color:var(--ink)}
 .rating-count{font-size:13px;color:var(--ink-3)}
 .verdict-box{background:var(--accent-light);border:1px solid rgba(200,68,10,.2);border-radius:var(--r);padding:14px;margin-top:10px}
 .verdict-text{font-size:13px;color:var(--ink-2);line-height:1.6}
-
-/* ANIMATIONS */
-@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
-.hero{animation:fadeUp .5s ease both}
-.cat-nav{animation:fadeUp .5s .1s ease both}
-.featured-grid{animation:fadeUp .5s .15s ease both}
-.tools-grid{animation:fadeUp .5s .2s ease both}
-
-/* RESPONSIVE */
+.form-card{background:white;border-radius:var(--r-lg);padding:32px;max-width:600px;margin:40px auto}
+.form-group{margin-bottom:16px}
+.form-label{font-size:13px;font-weight:500;color:var(--ink-2);margin-bottom:6px;display:block}
+.form-input,.form-select,.form-textarea{width:100%;padding:10px 14px;border:1.5px solid var(--paper-3);border-radius:8px;font-size:14px;font-family:inherit;color:var(--ink);background:white;outline:none;transition:border-color .2s}
+.form-input:focus,.form-select:focus,.form-textarea:focus{border-color:var(--accent)}
+.form-textarea{resize:vertical;min-height:100px}
+.form-submit{padding:12px 28px;background:var(--accent);color:white;border:none;border-radius:8px;font-size:14px;font-weight:500;cursor:pointer;font-family:inherit}
+.articles-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px;margin-top:8px}
+.article-card{background:white;border:1px solid var(--paper-3);border-radius:var(--r-lg);padding:24px;cursor:pointer;transition:transform .15s,box-shadow .15s}
+.article-card:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(26,24,20,.08)}
+.article-cat{font-size:11px;font-weight:500;color:var(--accent);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
+.article-title{font-size:17px;font-weight:500;color:var(--ink);margin-bottom:8px;line-height:1.4}
+.article-desc{font-size:13px;color:var(--ink-3);line-height:1.6;margin-bottom:16px}
+.article-meta{display:flex;align-items:center;gap:12px;font-size:12px;color:var(--ink-4)}
+.page{display:none}.page.active{display:block}
 @media(max-width:900px){.featured-grid{grid-template-columns:1fr 1fr}.modal-pros-cons{grid-template-columns:1fr}}
 @media(max-width:600px){nav.topnav{padding:0 16px;gap:10px}.main{padding:0 16px 60px}.hero{padding:48px 16px 40px}.featured-grid{grid-template-columns:1fr}.nl-form{flex-direction:column}footer{flex-direction:column;gap:16px;text-align:center}.nav-links{display:none}.stats{gap:20px}.ph-grid{grid-template-columns:1fr}}
 </style>
@@ -230,35 +191,37 @@ footer{border-top:1px solid var(--paper-3);padding:28px 32px;display:flex;align-
 <body>
 
 <nav class="topnav">
-  <a href="#" class="nav-logo">
+  <div class="nav-logo" onclick="showPage('home')">
     <span class="zh">用<span>AI</span></span>
     <span class="en">Yong<span>AI</span></span>
-  </a>
+  </div>
   <div class="nav-links">
-    <a href="#" class="zh">浏览全部</a><a href="#" class="en">Browse</a>
-    <a href="#ph-section" class="zh">今日热榜</a><a href="#ph-section" class="en">Today's Hot</a>
-    <a href="#" class="zh">测评文章</a><a href="#" class="en">Reviews</a>
-    <a href="#newsletter" class="zh">周刊</a><a href="#newsletter" class="en">Newsletter</a>
+    <a onclick="showPage('home')" class="zh">浏览全部</a><a onclick="showPage('home')" class="en">Browse</a>
+    <a onclick="scrollTo('ph-section')" class="zh">今日热榜</a><a onclick="scrollTo('ph-section')" class="en">Today's Hot</a>
+    <a onclick="showPage('articles')" class="zh">测评文章</a><a onclick="showPage('articles')" class="en">Reviews</a>
+    <a onclick="scrollTo('newsletter')" class="zh">周刊</a><a onclick="scrollTo('newsletter')" class="en">Newsletter</a>
   </div>
   <div class="lang-switcher">
     <button class="lang-btn active" id="btn-zh" onclick="setLang('zh')">中文</button>
     <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
   </div>
-  <a href="#" class="nav-submit zh">提交工具 →</a>
-  <a href="#" class="nav-submit en">Submit →</a>
+  <button class="nav-submit" onclick="showPage('submit')">
+    <span class="zh">提交工具 →</span><span class="en">Submit →</span>
+  </button>
 </nav>
 
-<!-- HERO -->
+<!-- HOME -->
+<div id="page-home" class="page active">
 <section class="hero">
   <div class="hero-badge zh">已收录 247 款工具 · 每周更新</div>
   <div class="hero-badge en">247 tools indexed · updated weekly</div>
   <h1 class="zh">独立开发者的<br><em>AI 工具</em>导航站</h1>
   <h1 class="en">The <em>best</em> AI tools<br>for indie builders</h1>
-  <p class="zh">精选评测，真实对比，无广告排名 —— 专为独立开发者、创作者和个人创业者打造。</p>
+  <p class="zh">精选评测，真实对比，无广告排名，专为独立开发者、创作者和个人创业者打造。</p>
   <p class="en">Curated reviews, honest comparisons, zero-hype rankings — built for solopreneurs who ship.</p>
   <div class="search-wrap">
     <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-    <input class="search-input" id="search-input" type="text" autocomplete="off">
+    <input class="search-input" id="search-input" type="text" autocomplete="off" placeholder="搜索工具…">
     <div class="search-results" id="search-results"></div>
   </div>
   <div class="stats">
@@ -270,7 +233,6 @@ footer{border-top:1px solid var(--paper-3);padding:28px 32px;display:flex;align-
 </section>
 
 <main class="main">
-<!-- CAT NAV -->
 <nav class="cat-nav" id="cat-nav">
   <button class="cat-btn active" data-cat="all"><span class="zh">全部</span><span class="en">All</span><span class="count">247</span></button>
   <button class="cat-btn" data-cat="writing">✦ <span class="zh">写作</span><span class="en">Writing</span><span class="count">42</span></button>
@@ -283,179 +245,159 @@ footer{border-top:1px solid var(--paper-3);padding:28px 32px;display:flex;align-
   <button class="cat-btn" data-cat="automation">⟳ <span class="zh">自动化</span><span class="en">Automation</span><span class="count">22</span></button>
 </nav>
 
-<!-- FEATURED -->
 <div class="section-header">
-  <h2 class="section-title zh">编辑精选</h2><h2 class="section-title en">Editor's picks</h2>
-  <span class="section-link zh">查看全部 →</span><span class="section-link en">View all →</span>
+  <h2 class="section-title zh">编辑精选</h2><h2 class="section-title en">Editor picks</h2>
+  <span class="section-link zh" onclick="showPage('articles')">查看测评 →</span><span class="section-link en" onclick="showPage('articles')">Read reviews →</span>
 </div>
 <div class="featured-grid" id="featured-grid">
-
   <div class="featured-card" data-cat="writing" onclick="openModal('kimi')">
-    <div class="fc-top"><div class="fc-icon" style="background:#fff4ee">🌙</div><span class="fc-badge badge-freemium zh">免费可用</span><span class="fc-badge badge-freemium en">Freemium</span></div>
+    <div class="fc-top"><div class="fc-icon" style="background:white;padding:4px"><img src="https://www.google.com/s2/favicons?domain=kimi.moonshot.cn&sz=64" width="40" height="40" style="object-fit:contain;border-radius:6px;display:block" alt=""></div><span class="fc-badge badge-freemium zh">免费可用</span><span class="fc-badge badge-freemium en">Freemium</span></div>
     <div class="fc-name">Kimi</div>
     <div class="fc-desc zh">国内最强长文本 AI，支持 200 万字超长上下文，中文理解业界领先。</div>
     <div class="fc-desc en">China's top long-context AI with 2M token support. Best Chinese language understanding in class.</div>
     <div class="fc-tags"><span class="fc-tag zh">写作</span><span class="fc-tag en">Writing</span><span class="fc-tag zh">长文本</span><span class="fc-tag en">Long context</span></div>
     <div class="fc-footer"><div class="fc-rating"><span class="fc-stars">★★★★★</span><span>4.8</span></div><div class="fc-arrow">→</div></div>
   </div>
-
   <div class="featured-card" data-cat="coding" onclick="openModal('cursor')">
-    <div class="fc-top"><div class="fc-icon" style="background:#f0f4ff">🖱️</div><span class="fc-badge badge-paid zh">付费</span><span class="fc-badge badge-paid en">Paid</span></div>
+    <div class="fc-top"><div class="fc-icon" style="background:white;padding:4px"><img src="https://www.google.com/s2/favicons?domain=cursor.com&sz=64" width="40" height="40" style="object-fit:contain;border-radius:6px;display:block" alt=""></div><span class="fc-badge badge-paid zh">付费</span><span class="fc-badge badge-paid en">Paid</span></div>
     <div class="fc-name">Cursor</div>
     <div class="fc-desc zh">目前最强 AI 代码编辑器，理解整个代码库上下文，独立开发者必备。</div>
     <div class="fc-desc en">The AI code editor that understands your entire codebase. Essential for indie developers.</div>
     <div class="fc-tags"><span class="fc-tag zh">编程</span><span class="fc-tag en">Coding</span><span class="fc-tag">VSCode</span></div>
     <div class="fc-footer"><div class="fc-rating"><span class="fc-stars">★★★★★</span><span>4.9</span></div><div class="fc-arrow">→</div></div>
   </div>
-
-  <div class="featured-card" data-cat="design" onclick="openModal('jimeng')">
-    <div class="fc-top"><div class="fc-icon" style="background:#f0faf4">🎨</div><span class="fc-badge badge-freemium zh">免费可用</span><span class="fc-badge badge-freemium en">Freemium</span></div>
+  <div class="featured-card" data-cat="image" onclick="openModal('jimeng')">
+    <div class="fc-top"><div class="fc-icon" style="background:white;padding:4px"><img src="https://www.google.com/s2/favicons?domain=jimeng.jianying.com&sz=64" width="40" height="40" style="object-fit:contain;border-radius:6px;display:block" alt=""></div><span class="fc-badge badge-freemium zh">免费可用</span><span class="fc-badge badge-freemium en">Freemium</span></div>
     <div class="fc-name zh">即梦 AI</div><div class="fc-name en">Jimeng AI</div>
-    <div class="fc-desc zh">字节跳动出品，文生图/文生视频，中文提示词效果极佳，国内直接访问。</div>
-    <div class="fc-desc en">ByteDance's text-to-image and video AI. Excellent Chinese prompts, accessible in mainland China.</div>
+    <div class="fc-desc zh">字节跳动出品，文生图和文生视频，中文提示词效果极佳，国内直接访问。</div>
+    <div class="fc-desc en">ByteDance's text-to-image and video AI. Excellent Chinese prompts, no VPN needed.</div>
     <div class="fc-tags"><span class="fc-tag zh">图像生成</span><span class="fc-tag en">Image gen</span><span class="fc-tag zh">视频生成</span><span class="fc-tag en">Video gen</span></div>
     <div class="fc-footer"><div class="fc-rating"><span class="fc-stars">★★★★☆</span><span>4.6</span></div><div class="fc-arrow">→</div></div>
   </div>
-
 </div>
 
-<!-- ALL TOOLS -->
 <div class="section-header">
   <h2 class="section-title zh" id="grid-title-zh">全部工具</h2><h2 class="section-title en" id="grid-title-en">All tools</h2>
   <span id="grid-count" style="font-size:13px;color:var(--ink-3)"></span>
 </div>
 <div class="tools-grid" id="tools-grid">
-
-  <div class="tool-card" data-cat="writing" data-name="deepseek 写作 推理 coding" onclick="openModal('deepseek')">
-    <div class="tc-icon" style="background:#eef8ff">🐋</div>
-    <div class="tc-body"><div class="tc-header"><span class="tc-name">DeepSeek</span><span class="fc-badge badge-free" style="font-size:10px;padding:2px 6px zh">免费</span><span class="fc-badge badge-free" style="font-size:10px;padding:2px 6px en">Free</span></div>
+  <div class="tool-card" data-cat="writing" onclick="openModal('deepseek')">
+    <div class="tc-icon"><img src="https://www.google.com/s2/favicons?domain=chat.deepseek.com&sz=64" width="32" height="32" style="object-fit:contain;border-radius:6px;display:block" alt=""></div>
+    <div class="tc-body"><div class="tc-header"><span class="tc-name">DeepSeek</span><span class="fc-badge badge-free" style="font-size:10px;padding:2px 6px">Free</span></div>
     <div class="tc-desc zh">推理能力顶级，代码和数学碾压同类，API 价格极低。</div><div class="tc-desc en">Top-tier reasoning, excellent at code and math. Cheapest API in class.</div>
     <div class="tc-footer"><span class="fc-tag zh">写作</span><span class="fc-tag en">Writing</span><span class="fc-stars" style="font-size:11px">★★★★★</span><span style="font-size:11px;color:var(--ink-3)">4.9</span></div></div>
   </div>
-
-  <div class="tool-card" data-cat="writing" data-name="文心一言 ernie baidu 百度" onclick="openModal('ernie')">
-    <div class="tc-icon" style="background:#fff8ee">🔥</div>
+  <div class="tool-card" data-cat="writing" onclick="openModal('ernie')">
+    <div class="tc-icon"><img src="https://www.google.com/s2/favicons?domain=yiyan.baidu.com&sz=64" width="32" height="32" style="object-fit:contain;border-radius:6px;display:block" alt=""></div>
     <div class="tc-body"><div class="tc-header"><span class="tc-name">文心一言</span><span class="fc-badge badge-freemium" style="font-size:10px;padding:2px 6px">Free</span></div>
-    <div class="tc-desc zh">百度出品，国内最早大模型，创作问答代码全能。</div><div class="tc-desc en">Baidu's flagship LLM. Writing, Q&A, code — all in one.</div>
+    <div class="tc-desc zh">百度出品，国内最早大模型，创作问答代码全能。</div><div class="tc-desc en">Baidu's flagship LLM. Writing, Q&A, code all in one.</div>
     <div class="tc-footer"><span class="fc-tag zh">写作</span><span class="fc-tag en">Writing</span><span class="fc-stars" style="font-size:11px">★★★★☆</span><span style="font-size:11px;color:var(--ink-3)">4.2</span></div></div>
   </div>
-
-  <div class="tool-card" data-cat="writing" data-name="通义千问 qwen alibaba 阿里" onclick="openModal('qwen')">
-    <div class="tc-icon" style="background:#f0fff4">🌿</div>
+  <div class="tool-card" data-cat="writing" onclick="openModal('qwen')">
+    <div class="tc-icon"><img src="https://www.google.com/s2/favicons?domain=tongyi.aliyun.com&sz=64" width="32" height="32" style="object-fit:contain;border-radius:6px;display:block" alt=""></div>
     <div class="tc-body"><div class="tc-header"><span class="tc-name">通义千问</span><span class="fc-badge badge-freemium" style="font-size:10px;padding:2px 6px">Free</span></div>
-    <div class="tc-desc zh">阿里大模型，多模态能力强，文档阅读图像理解代码生成一体化。</div><div class="tc-desc en">Alibaba's multimodal LLM — docs, images, and code in one.</div>
+    <div class="tc-desc zh">阿里大模型，多模态能力强，文档阅读图像理解一体化。</div><div class="tc-desc en">Alibaba's multimodal LLM — docs, images, and code in one.</div>
     <div class="tc-footer"><span class="fc-tag zh">写作</span><span class="fc-tag en">Writing</span><span class="fc-stars" style="font-size:11px">★★★★☆</span><span style="font-size:11px;color:var(--ink-3)">4.4</span></div></div>
   </div>
-
-  <div class="tool-card" data-cat="coding" data-name="github copilot coding microsoft" onclick="openModal('copilot')">
-    <div class="tc-icon" style="background:#f0f0ff">🤖</div>
+  <div class="tool-card" data-cat="coding" onclick="openModal('copilot')">
+    <div class="tc-icon"><img src="https://www.google.com/s2/favicons?domain=github.com&sz=64" width="32" height="32" style="object-fit:contain;border-radius:6px;display:block" alt=""></div>
     <div class="tc-body"><div class="tc-header"><span class="tc-name">GitHub Copilot</span><span class="fc-badge badge-paid" style="font-size:10px;padding:2px 6px">$10/mo</span></div>
-    <div class="tc-desc zh">微软出品，内嵌所有主流 IDE，实时代码补全。</div><div class="tc-desc en">Microsoft's AI pair programmer. Real-time completions in every major IDE.</div>
+    <div class="tc-desc zh">微软出品，内嵌所有主流 IDE，实时代码补全。</div><div class="tc-desc en">Microsoft's AI pair programmer. Real-time completions in every IDE.</div>
     <div class="tc-footer"><span class="fc-tag zh">编程</span><span class="fc-tag en">Coding</span><span class="fc-stars" style="font-size:11px">★★★★☆</span><span style="font-size:11px;color:var(--ink-3)">4.5</span></div></div>
   </div>
-
-  <div class="tool-card" data-cat="coding" data-name="bolt new fullstack web deploy" onclick="openModal('bolt')">
-    <div class="tc-icon" style="background:#fffbee">⚡</div>
+  <div class="tool-card" data-cat="coding" onclick="openModal('bolt')">
+    <div class="tc-icon"><img src="https://www.google.com/s2/favicons?domain=bolt.new&sz=64" width="32" height="32" style="object-fit:contain;border-radius:6px;display:block" alt=""></div>
     <div class="tc-body"><div class="tc-header"><span class="tc-name">Bolt.new</span><span class="fc-badge badge-freemium" style="font-size:10px;padding:2px 6px">Free</span></div>
-    <div class="tc-desc zh">浏览器内全栈 AI 开发，输入需求生成可运行项目，一键部署。</div><div class="tc-desc en">Full-stack AI dev in the browser. Describe → running app → deploy in one click.</div>
+    <div class="tc-desc zh">浏览器内全栈 AI 开发，输入需求生成可运行项目，一键部署。</div><div class="tc-desc en">Full-stack AI dev in the browser. Describe to running app in minutes.</div>
     <div class="tc-footer"><span class="fc-tag zh">编程</span><span class="fc-tag en">Coding</span><span class="fc-stars" style="font-size:11px">★★★★★</span><span style="font-size:11px;color:var(--ink-3)">4.7</span></div></div>
   </div>
-
-  <div class="tool-card" data-cat="coding" data-name="claude code terminal agentic" onclick="openModal('claudecode')">
-    <div class="tc-icon" style="background:#faf0eb">🧠</div>
+  <div class="tool-card" data-cat="coding" onclick="openModal('claudecode')">
+    <div class="tc-icon"><img src="https://www.google.com/s2/favicons?domain=claude.ai&sz=64" width="32" height="32" style="object-fit:contain;border-radius:6px;display:block" alt=""></div>
     <div class="tc-body"><div class="tc-header"><span class="tc-name">Claude Code</span><span class="fc-badge badge-paid" style="font-size:10px;padding:2px 6px zh">按量付费</span><span class="fc-badge badge-paid" style="font-size:10px;padding:2px 6px en">Pay-as-you-go</span></div>
-    <div class="tc-desc zh">终端内 AI 编程 Agent，自主读写文件、执行命令、重构代码库。</div><div class="tc-desc en">Agentic coding in terminal. Reads files, runs commands, refactors codebases autonomously.</div>
+    <div class="tc-desc zh">终端内 AI 编程 Agent，自主读写文件执行命令重构代码库。</div><div class="tc-desc en">Agentic coding in terminal. Reads files, runs commands autonomously.</div>
     <div class="tc-footer"><span class="fc-tag zh">编程</span><span class="fc-tag en">Coding</span><span class="fc-stars" style="font-size:11px">★★★★★</span><span style="font-size:11px;color:var(--ink-3)">4.8</span></div></div>
   </div>
-
-  <div class="tool-card" data-cat="design" data-name="canva design template" onclick="openModal('canva')">
-    <div class="tc-icon" style="background:#fff0fa">🎭</div>
+  <div class="tool-card" data-cat="design" onclick="openModal('canva')">
+    <div class="tc-icon"><img src="https://www.google.com/s2/favicons?domain=canva.com&sz=64" width="32" height="32" style="object-fit:contain;border-radius:6px;display:block" alt=""></div>
     <div class="tc-body"><div class="tc-header"><span class="tc-name">Canva AI</span><span class="fc-badge badge-freemium" style="font-size:10px;padding:2px 6px">Free</span></div>
     <div class="tc-desc zh">非设计师首选，AI 生成素材、一键抠图、智能排版。</div><div class="tc-desc en">Non-designer's best friend. AI assets, background removal, smart layouts.</div>
     <div class="tc-footer"><span class="fc-tag zh">设计</span><span class="fc-tag en">Design</span><span class="fc-stars" style="font-size:11px">★★★★☆</span><span style="font-size:11px;color:var(--ink-3)">4.5</span></div></div>
   </div>
-
-  <div class="tool-card" data-cat="design" data-name="framer website builder no-code" onclick="openModal('framer')">
-    <div class="tc-icon" style="background:#f0f4ff">🌐</div>
+  <div class="tool-card" data-cat="design" onclick="openModal('framer')">
+    <div class="tc-icon"><img src="https://www.google.com/s2/favicons?domain=framer.com&sz=64" width="32" height="32" style="object-fit:contain;border-radius:6px;display:block" alt=""></div>
     <div class="tc-body"><div class="tc-header"><span class="tc-name">Framer</span><span class="fc-badge badge-freemium" style="font-size:10px;padding:2px 6px">Free</span></div>
-    <div class="tc-desc zh">AI 建站工具，输入描述生成完整网站，独立开发者 landing page 首选。</div><div class="tc-desc en">AI website builder — describe your site, get a live polished result instantly.</div>
+    <div class="tc-desc zh">AI 建站，输入描述生成完整网站，独立开发者首选。</div><div class="tc-desc en">AI website builder. Describe your site, get a live result instantly.</div>
     <div class="tc-footer"><span class="fc-tag zh">设计</span><span class="fc-tag en">Design</span><span class="fc-stars" style="font-size:11px">★★★★★</span><span style="font-size:11px;color:var(--ink-3)">4.7</span></div></div>
   </div>
-
-  <div class="tool-card" data-cat="productivity" data-name="notion ai notes productivity" onclick="openModal('notion')">
-    <div class="tc-icon" style="background:#f5f5f5">📝</div>
+  <div class="tool-card" data-cat="productivity" onclick="openModal('notion')">
+    <div class="tc-icon"><img src="https://www.google.com/s2/favicons?domain=notion.so&sz=64" width="32" height="32" style="object-fit:contain;border-radius:6px;display:block" alt=""></div>
     <div class="tc-body"><div class="tc-header"><span class="tc-name">Notion AI</span><span class="fc-badge badge-paid" style="font-size:10px;padding:2px 6px">$10/mo</span></div>
-    <div class="tc-desc zh">工作区内置 AI，总结会议、扩写草稿、翻译文档，不用切换 Tab。</div><div class="tc-desc en">AI built into your workspace. Summarize, draft, translate — no tab switching.</div>
+    <div class="tc-desc zh">工作区内置 AI，总结会议、扩写草稿、翻译文档。</div><div class="tc-desc en">AI built into your workspace. Summarize, draft, translate in-doc.</div>
     <div class="tc-footer"><span class="fc-tag zh">效率</span><span class="fc-tag en">Productivity</span><span class="fc-stars" style="font-size:11px">★★★★☆</span><span style="font-size:11px;color:var(--ink-3)">4.5</span></div></div>
   </div>
-
-  <div class="tool-card" data-cat="video" data-name="剪映 capcut video editing 字幕" onclick="openModal('capcut')">
-    <div class="tc-icon" style="background:#f8f0ff">✂️</div>
+  <div class="tool-card" data-cat="video" onclick="openModal('capcut')">
+    <div class="tc-icon"><img src="https://www.google.com/s2/favicons?domain=capcut.com&sz=64" width="32" height="32" style="object-fit:contain;border-radius:6px;display:block" alt=""></div>
     <div class="tc-body"><div class="tc-header"><span class="tc-name zh">剪映专业版</span><span class="tc-name en">CapCut Pro</span><span class="fc-badge badge-freemium" style="font-size:10px;padding:2px 6px">Free</span></div>
-    <div class="tc-desc zh">字节出品，AI 字幕、自动剪辑、数字人、文章转视频。</div><div class="tc-desc en">ByteDance's pro editor. AI captions, auto-cut, digital avatars, article-to-video.</div>
+    <div class="tc-desc zh">字节出品，AI 字幕、自动剪辑、数字人、文章转视频。</div><div class="tc-desc en">ByteDance's pro editor. AI captions, auto-cut, digital avatars.</div>
     <div class="tc-footer"><span class="fc-tag zh">视频</span><span class="fc-tag en">Video</span><span class="fc-stars" style="font-size:11px">★★★★★</span><span style="font-size:11px;color:var(--ink-3)">4.8</span></div></div>
   </div>
-
-  <div class="tool-card" data-cat="seo" data-name="ahrefs seo keyword backlink" onclick="openModal('ahrefs')">
-    <div class="tc-icon" style="background:#fff4ee">🔍</div>
+  <div class="tool-card" data-cat="seo" onclick="openModal('ahrefs')">
+    <div class="tc-icon"><img src="https://www.google.com/s2/favicons?domain=ahrefs.com&sz=64" width="32" height="32" style="object-fit:contain;border-radius:6px;display:block" alt=""></div>
     <div class="tc-body"><div class="tc-header"><span class="tc-name">Ahrefs</span><span class="fc-badge badge-paid" style="font-size:10px;padding:2px 6px">$129/mo</span></div>
     <div class="tc-desc zh">英文 SEO 站必备，关键词挖掘、竞品分析、外链数据。</div><div class="tc-desc en">Gold standard SEO tool. Keywords, competitor analysis, backlink data.</div>
     <div class="tc-footer"><span class="fc-tag">SEO</span><span class="fc-stars" style="font-size:11px">★★★★★</span><span style="font-size:11px;color:var(--ink-3)">4.8</span></div></div>
   </div>
-
-  <div class="tool-card" data-cat="image" data-name="midjourney image generation art" onclick="openModal('midjourney')">
-    <div class="tc-icon" style="background:#f0eeff">🌈</div>
+  <div class="tool-card" data-cat="image" onclick="openModal('midjourney')">
+    <div class="tc-icon"><img src="https://www.google.com/s2/favicons?domain=midjourney.com&sz=64" width="32" height="32" style="object-fit:contain;border-radius:6px;display:block" alt=""></div>
     <div class="tc-body"><div class="tc-header"><span class="tc-name">Midjourney</span><span class="fc-badge badge-paid" style="font-size:10px;padding:2px 6px">$10/mo</span></div>
-    <div class="tc-desc zh">AI 图像生成黄金标准，出图质量无可匹敌，营销素材首选。</div><div class="tc-desc en">Gold standard for AI image generation. Unmatched aesthetic quality for marketing.</div>
+    <div class="tc-desc zh">AI 图像生成黄金标准，出图质量无可匹敌，营销素材首选。</div><div class="tc-desc en">Gold standard for AI image generation. Unmatched aesthetic quality.</div>
     <div class="tc-footer"><span class="fc-tag zh">图像</span><span class="fc-tag en">Image</span><span class="fc-stars" style="font-size:11px">★★★★★</span><span style="font-size:11px;color:var(--ink-3)">4.9</span></div></div>
   </div>
-
-  <div class="tool-card" data-cat="automation" data-name="make automation workflow zapier" onclick="openModal('make')">
-    <div class="tc-icon" style="background:#eef4ff">⚙️</div>
+  <div class="tool-card" data-cat="automation" onclick="openModal('make')">
+    <div class="tc-icon"><img src="https://www.google.com/s2/favicons?domain=make.com&sz=64" width="32" height="32" style="object-fit:contain;border-radius:6px;display:block" alt=""></div>
     <div class="tc-body"><div class="tc-header"><span class="tc-name">Make</span><span class="fc-badge badge-freemium" style="font-size:10px;padding:2px 6px">Free</span></div>
-    <div class="tc-desc zh">可视化工作流自动化，支持 AI 步骤，比 Zapier 功能强价格低。</div><div class="tc-desc en">Visual workflow automation with AI steps. More powerful than Zapier, half the price.</div>
+    <div class="tc-desc zh">可视化工作流自动化，支持 AI 步骤，比 Zapier 功能强价格低。</div><div class="tc-desc en">Visual workflow automation with AI steps. More powerful than Zapier.</div>
     <div class="tc-footer"><span class="fc-tag zh">自动化</span><span class="fc-tag en">Automation</span><span class="fc-stars" style="font-size:11px">★★★★★</span><span style="font-size:11px;color:var(--ink-3)">4.7</span></div></div>
   </div>
-
 </div>
 
-<!-- PRODUCT HUNT HOT -->
+<!-- PRODUCT HUNT -->
 <div class="ph-section" id="ph-section">
   <div class="section-header">
     <h2 class="section-title zh">🔥 今日 Product Hunt 热榜</h2>
     <h2 class="section-title en">🔥 Today on Product Hunt</h2>
-    <span class="section-link" style="font-size:12px;color:var(--ink-4)" id="ph-date"></span>
+    <a href="https://www.producthunt.com" target="_blank" rel="noopener" class="section-link" style="font-size:12px">查看全部 →</a>
   </div>
-  <div class="ph-grid" id="ph-grid">
+  <div class="ph-grid">
     <div class="ph-card" onclick="window.open('https://www.producthunt.com/posts/lovable-2-0','_blank')">
-      <div class="ph-icon">💜</div>
+      <div class="ph-icon"><img src="https://www.google.com/s2/favicons?domain=lovable.dev&sz=64" width="36" height="36" style="object-fit:contain;border-radius:6px;display:block" alt=""></div>
       <div class="ph-body"><div class="ph-name">Lovable 2.0</div><div class="ph-desc zh">AI 全栈开发平台，自然语言构建完整应用</div><div class="ph-desc en">AI full-stack dev — build complete apps with natural language</div></div>
-      <div style="text-align:right;flex-shrink:0"><div class="ph-votes">▲ 1,842</div><div class="ph-date">#1 today</div></div>
+      <div style="text-align:right;flex-shrink:0"><div class="ph-votes">▲ 1,842</div><div class="ph-rank">#1</div></div>
     </div>
     <div class="ph-card" onclick="window.open('https://www.producthunt.com/posts/perplexity-assistant','_blank')">
-      <div class="ph-icon">🔮</div>
-      <div class="ph-body"><div class="ph-name">Perplexity Assistant</div><div class="ph-desc zh">AI 助理，实时搜索+日历+邮件一体化</div><div class="ph-desc en">AI assistant with real-time search, calendar & email</div></div>
-      <div style="text-align:right;flex-shrink:0"><div class="ph-votes">▲ 1,204</div><div class="ph-date">#2 today</div></div>
+      <div class="ph-icon"><img src="https://www.google.com/s2/favicons?domain=perplexity.ai&sz=64" width="36" height="36" style="object-fit:contain;border-radius:6px;display:block" alt=""></div>
+      <div class="ph-body"><div class="ph-name">Perplexity Assistant</div><div class="ph-desc zh">AI 助理，实时搜索加日历加邮件一体化</div><div class="ph-desc en">AI assistant with real-time search, calendar and email</div></div>
+      <div style="text-align:right;flex-shrink:0"><div class="ph-votes">▲ 1,204</div><div class="ph-rank">#2</div></div>
     </div>
     <div class="ph-card" onclick="window.open('https://www.producthunt.com/posts/notebooklm-plus','_blank')">
-      <div class="ph-icon">📓</div>
-      <div class="ph-body"><div class="ph-name">NotebookLM Plus</div><div class="ph-desc zh">Google AI 笔记，上传文档生成播客和摘要</div><div class="ph-desc en">Google's AI notebook — upload docs, get podcasts & summaries</div></div>
-      <div style="text-align:right;flex-shrink:0"><div class="ph-votes">▲ 986</div><div class="ph-date">#3 today</div></div>
+      <div class="ph-icon"><img src="https://www.google.com/s2/favicons?domain=notebooklm.google.com&sz=64" width="36" height="36" style="object-fit:contain;border-radius:6px;display:block" alt=""></div>
+      <div class="ph-body"><div class="ph-name">NotebookLM Plus</div><div class="ph-desc zh">Google AI 笔记，上传文档生成播客和摘要</div><div class="ph-desc en">Google's AI notebook — upload docs, get podcasts and summaries</div></div>
+      <div style="text-align:right;flex-shrink:0"><div class="ph-votes">▲ 986</div><div class="ph-rank">#3</div></div>
     </div>
     <div class="ph-card" onclick="window.open('https://www.producthunt.com/posts/runway-gen-4','_blank')">
-      <div class="ph-icon">🎬</div>
+      <div class="ph-icon"><img src="https://www.google.com/s2/favicons?domain=runwayml.com&sz=64" width="36" height="36" style="object-fit:contain;border-radius:6px;display:block" alt=""></div>
       <div class="ph-body"><div class="ph-name">Runway Gen-4</div><div class="ph-desc zh">新一代视频生成，一致性和真实感大幅提升</div><div class="ph-desc en">Next-gen video generation with vastly improved consistency</div></div>
-      <div style="text-align:right;flex-shrink:0"><div class="ph-votes">▲ 874</div><div class="ph-date">#4 today</div></div>
+      <div style="text-align:right;flex-shrink:0"><div class="ph-votes">▲ 874</div><div class="ph-rank">#4</div></div>
     </div>
     <div class="ph-card" onclick="window.open('https://www.producthunt.com/posts/claude-code','_blank')">
-      <div class="ph-icon">🧠</div>
-      <div class="ph-body"><div class="ph-name">Claude Code</div><div class="ph-desc zh">Anthropic 终端编程 Agent，自主完成复杂任务</div><div class="ph-desc en">Anthropic's terminal coding agent for complex autonomous tasks</div></div>
-      <div style="text-align:right;flex-shrink:0"><div class="ph-votes">▲ 743</div><div class="ph-date">#5 today</div></div>
+      <div class="ph-icon"><img src="https://www.google.com/s2/favicons?domain=claude.ai&sz=64" width="36" height="36" style="object-fit:contain;border-radius:6px;display:block" alt=""></div>
+      <div class="ph-body"><div class="ph-name">Claude Code</div><div class="ph-desc zh">Anthropic 终端编程 Agent，自主完成复杂任务</div><div class="ph-desc en">Anthropic's terminal coding agent for autonomous tasks</div></div>
+      <div style="text-align:right;flex-shrink:0"><div class="ph-votes">▲ 743</div><div class="ph-rank">#5</div></div>
     </div>
     <div class="ph-card" onclick="window.open('https://www.producthunt.com/posts/gamma-app','_blank')">
-      <div class="ph-icon">✨</div>
+      <div class="ph-icon"><img src="https://www.google.com/s2/favicons?domain=gamma.app&sz=64" width="36" height="36" style="object-fit:contain;border-radius:6px;display:block" alt=""></div>
       <div class="ph-body"><div class="ph-name">Gamma 3.0</div><div class="ph-desc zh">AI 演示文稿，一句话生成专业 PPT</div><div class="ph-desc en">AI presentations — one sentence to professional slides</div></div>
-      <div style="text-align:right;flex-shrink:0"><div class="ph-votes">▲ 621</div><div class="ph-date">#6 today</div></div>
+      <div style="text-align:right;flex-shrink:0"><div class="ph-votes">▲ 621</div><div class="ph-rank">#6</div></div>
     </div>
   </div>
 </div>
@@ -464,25 +406,104 @@ footer{border-top:1px solid var(--paper-3);padding:28px 32px;display:flex;align-
 <div class="newsletter" id="newsletter">
   <h2 class="nl-title zh">订阅<em>每周工具速报</em></h2>
   <h2 class="nl-title en">Get the <em>weekly drop</em></h2>
-  <p class="nl-sub zh">每周四发出 · 5 款新工具 + 1 篇深度测评 · 已有 4,200 名读者订阅</p>
-  <p class="nl-sub en">5 new tools · 1 deep review · zero hype — every Thursday · 4,200 readers</p>
+  <p class="nl-sub zh">每周四发出，5 款新工具加 1 篇深度测评，已有 4,200 名读者订阅</p>
+  <p class="nl-sub en">5 new tools, 1 deep review, zero hype — every Thursday. 4,200 readers.</p>
   <div class="nl-form">
-    <input class="nl-input" id="nl-input" type="email">
-    <button class="nl-btn zh">免费订阅 →</button>
-    <button class="nl-btn en">Subscribe →</button>
+    <input class="nl-input" id="nl-input" type="email" placeholder="输入你的邮箱地址">
+    <button class="nl-btn" onclick="submitNewsletter()"><span class="zh">免费订阅 →</span><span class="en">Subscribe →</span></button>
   </div>
 </div>
 </main>
+</div>
 
-<footer>
-  <div class="footer-logo"><span class="zh">用<span>AI</span></span><span class="en">Yong<span>AI</span></span></div>
-  <div class="footer-links">
-    <a href="#" class="zh">关于我们</a><a href="#" class="en">About</a>
-    <a href="#" class="zh">提交工具</a><a href="#" class="en">Submit</a>
-    <a href="#" class="zh">商务合作</a><a href="#" class="en">Advertise</a>
+<!-- ARTICLES PAGE -->
+<div id="page-articles" class="page">
+<main class="main" style="padding-top:40px">
+  <div class="section-header">
+    <h2 class="section-title zh">测评文章</h2><h2 class="section-title en">Reviews</h2>
+    <span class="section-link" onclick="showPage('home')"><span class="zh">← 返回首页</span><span class="en">← Back</span></span>
   </div>
-  <div style="font-size:12px;color:var(--ink-4)">© 2026 YongAI.online</div>
-</footer>
+  <div class="articles-grid">
+    <div class="article-card" onclick="openModal('cursor')">
+      <div class="article-cat zh">编程工具</div><div class="article-cat en">Coding</div>
+      <div class="article-title zh">Cursor vs GitHub Copilot：2026 年最强 AI 代码编辑器对比</div>
+      <div class="article-title en">Cursor vs GitHub Copilot: Best AI Code Editor in 2026</div>
+      <div class="article-desc zh">两款最受欢迎的 AI 编程工具深度对比，帮你做出最适合自己的选择。</div>
+      <div class="article-desc en">Deep comparison of the two most popular AI coding tools. Find the right fit.</div>
+      <div class="article-meta"><span>2026-06-01</span><span>·</span><span>8 min</span></div>
+    </div>
+    <div class="article-card" onclick="openModal('deepseek')">
+      <div class="article-cat zh">写作工具</div><div class="article-cat en">Writing</div>
+      <div class="article-title zh">DeepSeek R1 深度测评：国产模型首次超越 GPT-4？</div>
+      <div class="article-title en">DeepSeek R1 Review: China's First Model to Beat GPT-4?</div>
+      <div class="article-desc zh">DeepSeek R1 在数学和代码推理上的表现让整个 AI 圈震惊。</div>
+      <div class="article-desc en">DeepSeek R1 shocked the AI world with its math and code reasoning.</div>
+      <div class="article-meta"><span>2026-05-28</span><span>·</span><span>10 min</span></div>
+    </div>
+    <div class="article-card" onclick="openModal('kimi')">
+      <div class="article-cat zh">写作工具</div><div class="article-cat en">Writing</div>
+      <div class="article-title zh">Kimi 200 万字上下文实测：真的能读完整本书吗？</div>
+      <div class="article-title en">Kimi 2M Token Context Test: Can It Really Read an Entire Book?</div>
+      <div class="article-desc zh">我们用 Kimi 处理了 150 万字的完整项目代码库，结果超出预期。</div>
+      <div class="article-desc en">We fed Kimi a 1.5M-word project codebase. The results exceeded expectations.</div>
+      <div class="article-meta"><span>2026-05-20</span><span>·</span><span>7 min</span></div>
+    </div>
+    <div class="article-card" onclick="openModal('bolt')">
+      <div class="article-cat zh">编程工具</div><div class="article-cat en">Coding</div>
+      <div class="article-title zh">用 Bolt.new 30 分钟做一个 SaaS MVP：完整实操记录</div>
+      <div class="article-title en">Building a SaaS MVP with Bolt.new in 30 Minutes</div>
+      <div class="article-desc zh">我用 Bolt.new 从零开始搭建了一个完整的订阅制 SaaS 产品。</div>
+      <div class="article-desc en">I built a complete subscription SaaS from scratch with Bolt.new.</div>
+      <div class="article-meta"><span>2026-05-15</span><span>·</span><span>12 min</span></div>
+    </div>
+    <div class="article-card" onclick="openModal('midjourney')">
+      <div class="article-cat zh">图像工具</div><div class="article-cat en">Image</div>
+      <div class="article-title zh">2026 年最好的 AI 图像生成工具横评</div>
+      <div class="article-title en">Best AI Image Generators 2026: Full Comparison</div>
+      <div class="article-desc zh">用同样的提示词在三个平台生成图片，从质量、速度、价格全面对比。</div>
+      <div class="article-desc en">Same prompts, three platforms. Quality, speed, and price compared.</div>
+      <div class="article-meta"><span>2026-05-05</span><span>·</span><span>11 min</span></div>
+    </div>
+    <div class="article-card" onclick="openModal('make')">
+      <div class="article-cat zh">自动化工具</div><div class="article-cat en">Automation</div>
+      <div class="article-title zh">Make vs Zapier 2026：哪个更适合独立开发者？</div>
+      <div class="article-title en">Make vs Zapier 2026: Which Wins for Indie Makers?</div>
+      <div class="article-desc zh">从功能深度、价格、学习曲线三个维度对比两款主流自动化工具。</div>
+      <div class="article-desc en">Feature depth, pricing, and learning curve compared. A clear recommendation.</div>
+      <div class="article-meta"><span>2026-05-10</span><span>·</span><span>9 min</span></div>
+    </div>
+  </div>
+</main>
+</div>
+
+<!-- SUBMIT PAGE -->
+<div id="page-submit" class="page">
+<main class="main" style="padding-top:40px">
+  <div class="section-header" style="max-width:600px;margin:0 auto 0">
+    <h2 class="section-title zh">提交工具</h2><h2 class="section-title en">Submit a Tool</h2>
+    <span class="section-link" onclick="showPage('home')"><span class="zh">← 返回</span><span class="en">← Back</span></span>
+  </div>
+  <div class="form-card">
+    <div style="font-size:22px;font-weight:600;margin-bottom:8px" class="zh">推荐一款 AI 工具</div>
+    <div style="font-size:22px;font-weight:600;margin-bottom:8px" class="en">Recommend an AI Tool</div>
+    <div style="font-size:14px;color:var(--ink-3);margin-bottom:24px" class="zh">我们会在 3 个工作日内审核，通过后免费收录。</div>
+    <div style="font-size:14px;color:var(--ink-3);margin-bottom:24px" class="en">We review within 3 business days. Approved tools are listed for free.</div>
+    <div class="form-group"><label class="form-label zh">工具名称 *</label><label class="form-label en">Tool name *</label><input class="form-input" id="f-name" type="text"></div>
+    <div class="form-group"><label class="form-label zh">官网 URL *</label><label class="form-label en">Official URL *</label><input class="form-input" id="f-url" type="url" placeholder="https://"></div>
+    <div class="form-group"><label class="form-label zh">工具分类 *</label><label class="form-label en">Category *</label>
+      <select class="form-select" id="f-cat">
+        <option value="writing">Writing / 写作</option><option value="coding">Coding / 编程</option>
+        <option value="design">Design / 设计</option><option value="productivity">Productivity / 效率</option>
+        <option value="video">Video / 视频</option><option value="image">Image / 图像</option>
+        <option value="seo">SEO</option><option value="automation">Automation / 自动化</option>
+      </select>
+    </div>
+    <div class="form-group"><label class="form-label zh">简短描述 *</label><label class="form-label en">Short description *</label><textarea class="form-textarea" id="f-desc" rows="3"></textarea></div>
+    <div class="form-group"><label class="form-label zh">你的邮箱（选填）</label><label class="form-label en">Your email (optional)</label><input class="form-input" id="f-email" type="email"></div>
+    <button class="form-submit" onclick="submitTool()"><span class="zh">提交审核</span><span class="en">Submit for Review</span></button>
+  </div>
+</main>
+</div>
 
 <!-- MODAL -->
 <div class="modal-overlay" id="modal-overlay" onclick="closeModalOutside(event)">
@@ -491,1118 +512,65 @@ footer{border-top:1px solid var(--paper-3);padding:28px 32px;display:flex;align-
     <div class="modal-hero">
       <div class="modal-top">
         <div class="modal-icon" id="m-icon"></div>
-        <div>
-          <div class="modal-title" id="m-title"></div>
-          <div class="modal-tagline" id="m-tagline"></div>
-          <div class="modal-badges" id="m-badges"></div>
-        </div>
+        <div><div class="modal-title" id="m-title"></div><div class="modal-tagline" id="m-tagline"></div><div class="modal-badges" id="m-badges"></div></div>
       </div>
     </div>
     <div class="modal-body">
-      <div class="modal-section">
-        <div class="modal-section-title zh">评分</div>
-        <div class="modal-section-title en">Rating</div>
-        <div class="rating-row"><span class="rating-stars-lg" id="m-stars"></span><span class="rating-score" id="m-score"></span><span class="rating-count" id="m-count"></span></div>
-      </div>
-      <div class="modal-section">
-        <div class="modal-section-title zh">工具简介</div>
-        <div class="modal-section-title en">About</div>
-        <div class="modal-text" id="m-about"></div>
-      </div>
-      <div class="modal-section">
-        <div class="modal-section-title zh">核心功能</div>
-        <div class="modal-section-title en">Key features</div>
-        <div class="modal-text" id="m-features"></div>
-      </div>
-      <div class="modal-section">
-        <div class="modal-section-title zh">优缺点</div>
-        <div class="modal-section-title en">Pros & Cons</div>
+      <div class="modal-section"><div class="modal-section-title zh">评分</div><div class="modal-section-title en">Rating</div><div class="rating-row"><span class="rating-stars-lg" id="m-stars"></span><span class="rating-score" id="m-score"></span><span class="rating-count" id="m-count"></span></div></div>
+      <div class="modal-section"><div class="modal-section-title zh">工具简介</div><div class="modal-section-title en">About</div><div class="modal-text" id="m-about"></div></div>
+      <div class="modal-section"><div class="modal-section-title zh">核心功能</div><div class="modal-section-title en">Key features</div><div class="modal-text" id="m-features"></div></div>
+      <div class="modal-section"><div class="modal-section-title zh">优缺点</div><div class="modal-section-title en">Pros and Cons</div>
         <div class="modal-pros-cons">
-          <div class="pros-box"><div class="pros-title zh">✓ 优点</div><div class="pros-title en">✓ Pros</div><ul class="pros-list" id="m-pros"></ul></div>
-          <div class="cons-box"><div class="cons-title zh">✗ 缺点</div><div class="cons-title en">✗ Cons</div><ul class="cons-list" id="m-cons"></ul></div>
+          <div class="pros-box"><div class="pros-title zh">优点</div><div class="pros-title en">Pros</div><ul class="pros-list" id="m-pros"></ul></div>
+          <div class="cons-box"><div class="cons-title zh">缺点</div><div class="cons-title en">Cons</div><ul class="cons-list" id="m-cons"></ul></div>
         </div>
       </div>
-      <div class="modal-section">
-        <div class="modal-section-title zh">定价</div>
-        <div class="modal-section-title en">Pricing</div>
-        <div class="pricing-grid" id="m-pricing"></div>
-      </div>
-      <div class="modal-section">
-        <div class="modal-section-title zh">适合人群</div>
-        <div class="modal-section-title en">Best for</div>
-        <div class="modal-text" id="m-bestfor"></div>
-      </div>
-      <div class="modal-section">
-        <div class="modal-section-title zh">编辑结论</div>
-        <div class="modal-section-title en">Verdict</div>
-        <div class="verdict-box"><div class="verdict-text" id="m-verdict"></div></div>
-      </div>
+      <div class="modal-section"><div class="modal-section-title zh">定价</div><div class="modal-section-title en">Pricing</div><div class="pricing-grid" id="m-pricing"></div></div>
+      <div class="modal-section"><div class="modal-section-title zh">适合人群</div><div class="modal-section-title en">Best for</div><div class="modal-text" id="m-bestfor"></div></div>
+      <div class="modal-section"><div class="modal-section-title zh">编辑结论</div><div class="modal-section-title en">Verdict</div><div class="verdict-box"><div class="verdict-text" id="m-verdict"></div></div></div>
       <div class="modal-cta" id="m-cta"></div>
     </div>
   </div>
 </div>
 
-<script>
-var TOOLS = {
-  "kimi": {
-    "icon": "🌙",
-    "iconBg": "#fff4ee",
-    "score": "4.8",
-    "stars": "★★★★★",
-    "badge": "freemium",
-    "url": "https://kimi.moonshot.cn",
-    "zh": {
-      "title": "Kimi（月之暗面）",
-      "tagline": "国内最强长文本 AI 助手",
-      "about": "Kimi 由月之暗面科技开发，是目前国内支持上下文最长的 AI 助手，最高支持 200 万字输入。无论是超长报告、完整代码库还是学术论文，Kimi 都能一次性读完并精准回答。中文语言理解能力在国内同类产品中处于领先水平。",
-      "features": "200万字超长上下文，业内最长\n支持上传 PDF、Word、Excel 等多种文件格式\n中文写作和摘要质量极佳\n联网搜索，信息实时更新\n完全免费，国内无需梯子",
-      "pros": [
-        "200万字上下文，处理超长文档毫无压力",
-        "中文理解和生成质量国内领先",
-        "支持多格式文件上传",
-        "免费使用无隐藏费用"
-      ],
-      "cons": [
-        "英文能力弱于 Claude 和 GPT-4",
-        "代码生成能力一般",
-        "无法生成图像"
-      ],
-      "pricing": [
-        {
-          "name": "免费版",
-          "price": "¥0",
-          "note": "无限制"
-        }
-      ],
-      "bestfor": "适合需要处理长文档的研究人员、学生、产品经理，以及需要中文写作辅助的所有用户。",
-      "verdict": "如果你是中文用户需要处理长文档，Kimi 是目前最好的免费选择。200万字的上下文窗口是其他产品望尘莫及的优势。强烈推荐作为日常工作助手。",
-      "count": "3,200 条评价"
-    },
-    "en": {
-      "title": "Kimi (Moonshot AI)",
-      "tagline": "China's longest-context AI assistant",
-      "about": "Kimi by Moonshot AI supports up to 2 million tokens — the longest context of any AI assistant in China. Upload entire codebases, academic papers, or lengthy reports and get precise answers. Leading Chinese language understanding among domestic models.",
-      "features": "2M token context window — longest available\nUpload PDF, Word, Excel and more\nExcellent Chinese writing and summarization\nReal-time web search\nCompletely free, no VPN required in China",
-      "pros": [
-        "2M token context handles any long document",
-        "Best Chinese language understanding domestically",
-        "Multi-format file upload",
-        "Completely free"
-      ],
-      "cons": [
-        "English weaker than Claude or GPT-4",
-        "Average code generation",
-        "No image generation"
-      ],
-      "pricing": [
-        {
-          "name": "Free",
-          "price": "¥0",
-          "note": "No limits"
-        }
-      ],
-      "bestfor": "Researchers, students, and product managers who work with long Chinese documents. Anyone needing a free, powerful Chinese writing assistant.",
-      "verdict": "If you are a Chinese-language user dealing with long documents, Kimi is the best free option available. The 2M token context window is unmatched. Highly recommended as a daily work assistant.",
-      "count": "3,200 reviews"
-    }
-  },
-  "cursor": {
-    "icon": "🖱️",
-    "iconBg": "#f0f4ff",
-    "score": "4.9",
-    "stars": "★★★★★",
-    "badge": "paid",
-    "url": "https://cursor.com",
-    "zh": {
-      "title": "Cursor",
-      "tagline": "最强 AI 代码编辑器",
-      "about": "Cursor 是基于 VSCode 的 AI 代码编辑器，能够理解整个代码库的上下文。不同于其他代码补全工具，Cursor 可以跨文件理解项目结构，给出更准确的建议。独立开发者社区评价极高，是目前 AI 编程工具中用户满意度最高的产品。",
-      "features": "Tab 补全：一键补全整个函数或代码块\nChat 模式：用自然语言描述需求直接修改代码\nComposer：同时修改多个文件\n支持所有 VSCode 插件和主题\n内置 Claude 和 GPT-4o 等多个顶级模型",
-      "pros": [
-        "跨文件理解项目结构，上下文最准确",
-        "完全兼容 VSCode，迁移成本为零",
-        "Tab 补全速度极快，体验流畅",
-        "支持切换多个 AI 模型"
-      ],
-      "cons": [
-        "月费 $20，对学生稍贵",
-        "部分功能需要稳定网络",
-        "隐私政策需关注代码会上传服务器"
-      ],
-      "pricing": [
-        {
-          "name": "免费版",
-          "price": "$0",
-          "note": "有限额度"
-        },
-        {
-          "name": "Pro",
-          "price": "$20",
-          "note": "/月"
-        },
-        {
-          "name": "Business",
-          "price": "$40",
-          "note": "/月"
-        }
-      ],
-      "bestfor": "适合所有专业开发者，尤其是独立开发者和全栈工程师。对于已经习惯 VSCode 的开发者，迁移成本几乎为零。",
-      "verdict": "Cursor 是目前市场上最好的 AI 代码编辑器没有之一。$20/月的价格对于提升的生产力来说完全值得。如果你每天写代码，这是最值得投资的工具。",
-      "count": "2,100 条评价"
-    },
-    "en": {
-      "title": "Cursor",
-      "tagline": "The best AI code editor",
-      "about": "Cursor is a VSCode-based AI code editor that understands your entire codebase context. Unlike other completion tools, Cursor reasons across files to give accurate suggestions. Consistently rated number one in developer satisfaction among AI coding tools.",
-      "features": "Tab completion: complete entire functions with one keystroke\nChat mode: describe changes in natural language\nComposer: edit multiple files simultaneously\nFull VSCode plugin and theme compatibility\nSupports Claude, GPT-4o, and more models",
-      "pros": [
-        "Cross-file codebase understanding — most accurate context",
-        "100% VSCode compatible — zero migration cost",
-        "Lightning-fast tab completion",
-        "Switch between multiple AI models"
-      ],
-      "cons": [
-        "$20/mo can be steep for students",
-        "Some features require a stable connection",
-        "Code is uploaded to servers — check privacy policy"
-      ],
-      "pricing": [
-        {
-          "name": "Free",
-          "price": "$0",
-          "note": "Limited quota"
-        },
-        {
-          "name": "Pro",
-          "price": "$20",
-          "note": "/mo"
-        },
-        {
-          "name": "Business",
-          "price": "$40",
-          "note": "/mo"
-        }
-      ],
-      "bestfor": "All professional developers, especially indie hackers and full-stack engineers. If you already use VSCode, migration is effortless.",
-      "verdict": "Cursor is the best AI code editor on the market, period. At $20/mo, the productivity gains pay for themselves within days. If you write code daily, this is the highest-ROI tool you can buy.",
-      "count": "2,100 reviews"
-    }
-  },
-  "deepseek": {
-    "icon": "🐋",
-    "iconBg": "#eef8ff",
-    "score": "4.9",
-    "stars": "★★★★★",
-    "badge": "free",
-    "url": "https://chat.deepseek.com",
-    "zh": {
-      "title": "DeepSeek",
-      "tagline": "国产最强推理模型",
-      "about": "DeepSeek 由深度求索开发，在数学推理、代码生成和逻辑分析方面表现出色，多项基准测试超过 GPT-4。API 价格极低，约为 OpenAI 的十分之一，非常适合批量内容生产和开发者调用。",
-      "features": "R1 推理模型：复杂数学和逻辑推理能力顶级\n代码生成质量高，支持主流编程语言\nAPI 价格极低，每百万 token 约 1 元\n完全免费的网页版\n开源版本可本地部署",
-      "pros": [
-        "数学和推理能力超越 GPT-4",
-        "API 价格是市场最低之一",
-        "完全免费的网页使用",
-        "开源可本地部署保护隐私"
-      ],
-      "cons": [
-        "创意写作能力弱于 Claude",
-        "网页版高峰期偶尔拥堵",
-        "中文以外的语言支持一般"
-      ],
-      "pricing": [
-        {
-          "name": "网页版",
-          "price": "免费",
-          "note": "无限制"
-        },
-        {
-          "name": "API",
-          "price": "¥1",
-          "note": "/百万token"
-        }
-      ],
-      "bestfor": "开发者、研究人员、需要批量处理文本的创业公司。对价格敏感的用户首选。",
-      "verdict": "DeepSeek 是性价比最高的 AI 模型。如果你需要 API 调用或者处理大量数学代码任务，DeepSeek 是最佳选择。免费网页版也是日常使用的好选择。",
-      "count": "4,800 条评价"
-    },
-    "en": {
-      "title": "DeepSeek",
-      "tagline": "China's strongest reasoning model",
-      "about": "DeepSeek by High-Flyer excels at math reasoning, code generation, and logical analysis — outperforming GPT-4 on several benchmarks. Its API is roughly one-tenth the price of OpenAI, making it ideal for bulk content production.",
-      "features": "R1 reasoning model: top-tier complex math and logic\nHigh-quality code generation across major languages\nAPI at roughly $0.14 per million tokens\nCompletely free web interface\nOpen-source model available for local deployment",
-      "pros": [
-        "Math and reasoning surpasses GPT-4",
-        "One of the cheapest APIs available",
-        "Free web version with no limits",
-        "Open-source for local deployment and privacy"
-      ],
-      "cons": [
-        "Creative writing weaker than Claude",
-        "Web version can be slow at peak hours",
-        "Non-Chinese language support is average"
-      ],
-      "pricing": [
-        {
-          "name": "Web",
-          "price": "Free",
-          "note": "No limits"
-        },
-        {
-          "name": "API",
-          "price": "$0.14",
-          "note": "/M tokens"
-        }
-      ],
-      "bestfor": "Developers, researchers, and startups needing bulk text processing. Price-sensitive users who need strong reasoning.",
-      "verdict": "DeepSeek offers the best price-to-performance ratio of any AI model. For API usage or heavy math and code tasks it is the top choice. The free web version is excellent for daily use.",
-      "count": "4,800 reviews"
-    }
-  },
-  "copilot": {
-    "icon": "🤖",
-    "iconBg": "#f0f0ff",
-    "score": "4.5",
-    "stars": "★★★★☆",
-    "badge": "paid",
-    "url": "https://github.com/features/copilot",
-    "zh": {
-      "title": "GitHub Copilot",
-      "tagline": "微软出品，IDE 内嵌 AI 编程助手",
-      "about": "GitHub Copilot 是最早也是最广泛使用的 AI 代码补全工具，由微软和 OpenAI 联合开发。支持 VS Code、JetBrains、Neovim 等主流编辑器，提供行级和块级代码补全。",
-      "features": "内嵌所有主流 IDE，无缝集成\n行级和函数级代码补全\n支持 Copilot Chat 对话式编程\nGitHub 生态深度集成\n免费账户每月 2000 次补全",
-      "pros": [
-        "与 GitHub 深度集成，PR 审查更方便",
-        "支持最多 IDE 种类",
-        "免费额度对轻度用户够用",
-        "企业版安全性好"
-      ],
-      "cons": [
-        "上下文理解弱于 Cursor",
-        "不理解整个代码库结构",
-        "$10/月比 Cursor 便宜但能力也弱"
-      ],
-      "pricing": [
-        {
-          "name": "免费",
-          "price": "$0",
-          "note": "2000次/月"
-        },
-        {
-          "name": "Pro",
-          "price": "$10",
-          "note": "/月"
-        },
-        {
-          "name": "Business",
-          "price": "$19",
-          "note": "/月"
-        }
-      ],
-      "bestfor": "已经在用 GitHub 的开发者，企业团队，以及只需要基础代码补全的用户。",
-      "verdict": "Copilot 是稳定可靠的选择，但如果你追求最高的 AI 编程体验，Cursor 更胜一筹。适合已深度使用 GitHub 生态的开发者。",
-      "count": "5,200 条评价"
-    },
-    "en": {
-      "title": "GitHub Copilot",
-      "tagline": "Microsoft's IDE-native AI coding assistant",
-      "about": "GitHub Copilot is the original and most widely adopted AI code completion tool, built by Microsoft and OpenAI. Integrates with VS Code, JetBrains, Neovim and more.",
-      "features": "Embedded in all major IDEs\nLine-level and function-level completion\nCopilot Chat for conversational coding\nDeep GitHub ecosystem integration\n2000 free completions per month",
-      "pros": [
-        "Deep GitHub integration for PR reviews",
-        "Widest IDE support",
-        "Free tier sufficient for light use",
-        "Strong enterprise security"
-      ],
-      "cons": [
-        "Weaker codebase understanding than Cursor",
-        "Does not reason across the full project",
-        "Less capable than Cursor at similar price point"
-      ],
-      "pricing": [
-        {
-          "name": "Free",
-          "price": "$0",
-          "note": "2k/mo"
-        },
-        {
-          "name": "Pro",
-          "price": "$10",
-          "note": "/mo"
-        },
-        {
-          "name": "Business",
-          "price": "$19",
-          "note": "/mo"
-        }
-      ],
-      "bestfor": "Developers already using GitHub, enterprise teams, and users who need basic inline completions.",
-      "verdict": "Copilot is solid and reliable but Cursor outperforms it on codebase-level reasoning. Best for teams deeply embedded in the GitHub ecosystem.",
-      "count": "5,200 reviews"
-    }
-  },
-  "bolt": {
-    "icon": "⚡",
-    "iconBg": "#fffbee",
-    "score": "4.7",
-    "stars": "★★★★★",
-    "badge": "freemium",
-    "url": "https://bolt.new",
-    "zh": {
-      "title": "Bolt.new",
-      "tagline": "浏览器内全栈 AI 开发环境",
-      "about": "Bolt.new 由 StackBlitz 开发，是一个完全在浏览器中运行的全栈开发环境。用自然语言描述你想要的应用，AI 会自动生成前后端代码，并在浏览器中实时运行预览，一键部署到 Netlify。",
-      "features": "完全在浏览器中运行，无需安装任何工具\n支持 React、Vue、Node.js 等主流框架\n一键部署到 Netlify\n实时预览，修改即时生效\n支持数据库和 API 集成",
-      "pros": [
-        "零安装，浏览器直接用",
-        "从想法到可运行应用极快",
-        "非常适合 MVP 快速验证",
-        "部署到 Netlify 一键完成"
-      ],
-      "cons": [
-        "复杂项目生成质量不稳定",
-        "免费额度有限大项目需付费",
-        "不适合需要精细控制的生产项目"
-      ],
-      "pricing": [
-        {
-          "name": "免费",
-          "price": "$0",
-          "note": "有限额度"
-        },
-        {
-          "name": "Pro",
-          "price": "$20",
-          "note": "/月"
-        }
-      ],
-      "bestfor": "想要快速验证 MVP 的独立开发者、非技术创始人、产品经理。适合构建 demo 和原型。",
-      "verdict": "Bolt.new 是最快速的 MVP 验证工具。从想法到可演示的应用可以在一小时内完成。强烈推荐给想要快速验证产品想法的独立创业者。",
-      "count": "1,900 条评价"
-    },
-    "en": {
-      "title": "Bolt.new",
-      "tagline": "Full-stack AI dev environment in the browser",
-      "about": "Bolt.new by StackBlitz runs entirely in the browser. Describe your app in natural language, get full-stack code generated, preview it live, and deploy to Netlify in one click.",
-      "features": "Runs 100% in the browser — zero install\nSupports React, Vue, Node.js and more\nOne-click deploy to Netlify\nLive preview with instant updates\nDatabase and API integration support",
-      "pros": [
-        "Zero install — works right in the browser",
-        "Fastest path from idea to running app",
-        "Perfect for rapid MVP validation",
-        "One-click Netlify deployment"
-      ],
-      "cons": [
-        "Complex projects can be inconsistent",
-        "Free tier is limited for large projects",
-        "Not suited for fine-grained production work"
-      ],
-      "pricing": [
-        {
-          "name": "Free",
-          "price": "$0",
-          "note": "Limited"
-        },
-        {
-          "name": "Pro",
-          "price": "$20",
-          "note": "/mo"
-        }
-      ],
-      "bestfor": "Indie developers validating MVPs, non-technical founders, and product managers building demos and prototypes.",
-      "verdict": "Bolt.new is the fastest MVP validation tool available. From idea to demoable app in under an hour. Highly recommended for solo founders testing product ideas.",
-      "count": "1,900 reviews"
-    }
-  },
-  "canva": {
-    "icon": "🎭",
-    "iconBg": "#fff0fa",
-    "score": "4.5",
-    "stars": "★★★★☆",
-    "badge": "freemium",
-    "url": "https://www.canva.com",
-    "zh": {
-      "title": "Canva AI",
-      "tagline": "非设计师的 AI 设计神器",
-      "about": "Canva 是全球最受欢迎的在线设计工具，近年大力整合 AI 功能。Magic Studio 套件包含 AI 图像生成、一键抠图、背景生成、魔法橡皮擦等功能，让没有设计基础的用户也能做出专业级视觉内容。",
-      "features": "Magic Write：AI 辅助文案创作\nText to Image：文字生成图像\nBackground Remover：一键去背景\nMagic Eraser：消除不需要的元素\n海量模板库，覆盖各类场景",
-      "pros": [
-        "上手极快，几分钟做出专业设计",
-        "中文模板数量多，本地化好",
-        "AI 功能和设计工具深度整合",
-        "团队协作功能完善"
-      ],
-      "cons": [
-        "免费版 AI 功能受限",
-        "高级功能需订阅 Pro",
-        "对专业设计师来说功能不够深度"
-      ],
-      "pricing": [
-        {
-          "name": "免费",
-          "price": "¥0",
-          "note": "基础功能"
-        },
-        {
-          "name": "Pro",
-          "price": "¥99",
-          "note": "/月"
-        }
-      ],
-      "bestfor": "内容创作者、小企业主、市场运营人员、独立创业者。任何需要制作视觉内容但没有设计经验的用户。",
-      "verdict": "Canva 是非设计师最应该掌握的工具。AI 功能大大降低了设计门槛，免费版已经足够日常使用。强烈推荐给所有需要制作营销素材的创业者。",
-      "count": "8,400 条评价"
-    },
-    "en": {
-      "title": "Canva AI",
-      "tagline": "The non-designer's AI design powerhouse",
-      "about": "Canva is the world's most popular online design tool, now deeply integrated with AI via the Magic Studio suite. Background removal, AI image generation, magic eraser — professional-quality visuals for anyone.",
-      "features": "Magic Write: AI copywriting assistance\nText to Image: generate visuals from prompts\nBackground Remover: one-click removal\nMagic Eraser: remove unwanted elements\nMassive template library for every use case",
-      "pros": [
-        "Up in minutes — professional results fast",
-        "Excellent template variety",
-        "AI features deeply integrated into workflow",
-        "Solid team collaboration"
-      ],
-      "cons": [
-        "Free tier limits AI features",
-        "Advanced features require Pro subscription",
-        "Not deep enough for professional designers"
-      ],
-      "pricing": [
-        {
-          "name": "Free",
-          "price": "$0",
-          "note": "Basic"
-        },
-        {
-          "name": "Pro",
-          "price": "$15",
-          "note": "/mo"
-        }
-      ],
-      "bestfor": "Content creators, small business owners, marketers, and indie founders. Anyone who needs visual content without design training.",
-      "verdict": "Canva is the most important non-technical tool for founders and creators. The AI features dramatically lower the design barrier. The free tier covers most daily needs.",
-      "count": "8,400 reviews"
-    }
-  },
-  "framer": {
-    "icon": "🌐",
-    "iconBg": "#f0f4ff",
-    "score": "4.7",
-    "stars": "★★★★★",
-    "badge": "freemium",
-    "url": "https://framer.com",
-    "zh": {
-      "title": "Framer",
-      "tagline": "AI 建站工具，独立开发者首选",
-      "about": "Framer 是一款 AI 驱动的网站构建工具，用户可以用自然语言描述想要的网站，AI 会自动生成完整的设计和代码。对于需要快速上线 Landing Page 或个人网站的独立开发者来说效率最高。",
-      "features": "AI 网站生成：用文字描述生成完整网站\n可视化编辑器：拖拽调整任意元素\n内置 CMS：管理博客和内容\n自定义域名绑定\nSEO 优化工具内置",
-      "pros": [
-        "从描述到上线最快，体验极佳",
-        "设计质量高，模板精美",
-        "不需要写代码",
-        "SEO 和性能优化自动处理"
-      ],
-      "cons": [
-        "免费版有 Framer 水印",
-        "复杂功能需要升级付费",
-        "定制化程度不如手写代码"
-      ],
-      "pricing": [
-        {
-          "name": "免费",
-          "price": "$0",
-          "note": "带水印"
-        },
-        {
-          "name": "Mini",
-          "price": "$5",
-          "note": "/月"
-        },
-        {
-          "name": "Basic",
-          "price": "$15",
-          "note": "/月"
-        }
-      ],
-      "bestfor": "独立创业者需要快速上线 Landing Page、个人网站或产品官网。不想写代码但要求设计质量的创始人。",
-      "verdict": "Framer 是最快速最高质量的 AI 建站工具。从想法到上线可以在 30 分钟内完成，设计质量远超其他无代码工具。强烈推荐给需要快速验证产品的独立创业者。",
-      "count": "2,600 条评价"
-    },
-    "en": {
-      "title": "Framer",
-      "tagline": "AI website builder for indie makers",
-      "about": "Framer is an AI-powered website builder where you describe your site in natural language and get a fully designed live website. For indie developers who need to launch landing pages fast, Framer delivers the best speed-to-quality ratio.",
-      "features": "AI site generation from text descriptions\nVisual editor: drag-and-drop any element\nBuilt-in CMS for blog and content management\nCustom domain binding\nBuilt-in SEO and performance optimization",
-      "pros": [
-        "Fastest path from description to live site",
-        "High design quality with beautiful templates",
-        "No coding required",
-        "SEO and performance handled automatically"
-      ],
-      "cons": [
-        "Free plan shows Framer watermark",
-        "Complex features require paid plan",
-        "Less customizable than hand-coded sites"
-      ],
-      "pricing": [
-        {
-          "name": "Free",
-          "price": "$0",
-          "note": "Watermarked"
-        },
-        {
-          "name": "Mini",
-          "price": "$5",
-          "note": "/mo"
-        },
-        {
-          "name": "Basic",
-          "price": "$15",
-          "note": "/mo"
-        }
-      ],
-      "bestfor": "Solo founders who need landing pages or product sites fast. Founders who want design quality without writing code.",
-      "verdict": "Framer is the fastest high-quality AI website builder. From idea to live site in 30 minutes with design quality that far exceeds other no-code tools. Highly recommended for indie makers.",
-      "count": "2,600 reviews"
-    }
-  },
-  "notion": {
-    "icon": "📝",
-    "iconBg": "#f5f5f5",
-    "score": "4.5",
-    "stars": "★★★★☆",
-    "badge": "paid",
-    "url": "https://www.notion.so/product/ai",
-    "zh": {
-      "title": "Notion AI",
-      "tagline": "工作区内置 AI，知识管理新标准",
-      "about": "Notion AI 是集成在 Notion 工作区中的 AI 功能套件，可以在文档内直接调用 AI 进行总结、扩写、翻译、改写等操作。对于已经在使用 Notion 管理知识和项目的用户来说是自然的升级选择。",
-      "features": "文档内直接调用 AI，无需切换工具\n自动总结长文档\n会议记录一键提炼行动项\n多语言翻译\nAI 数据库：自动填充属性",
-      "pros": [
-        "与 Notion 工作流无缝集成",
-        "不需要切换工具，在文档内直接使用",
-        "会议记录和总结质量很高",
-        "多语言支持好"
-      ],
-      "cons": [
-        "需要额外付费 $10/月",
-        "不使用 Notion 的用户无法受益",
-        "AI 能力弱于 Claude 和 GPT-4 单独使用"
-      ],
-      "pricing": [
-        {
-          "name": "AI 附加",
-          "price": "$10",
-          "note": "/月"
-        }
-      ],
-      "bestfor": "已经深度使用 Notion 管理工作和知识的用户，需要提升文档处理效率的团队。",
-      "verdict": "如果你已经在用 Notion，Notion AI 的 $10/月额外费用是值得的，它能把你的工作流提升一个档次。但如果你没用 Notion 不建议为了 AI 功能单独入坑。",
-      "count": "6,100 条评价"
-    },
-    "en": {
-      "title": "Notion AI",
-      "tagline": "Workspace-native AI — the new knowledge standard",
-      "about": "Notion AI integrates directly into your Notion workspace. Summarize, expand, translate, and rewrite — all without leaving your document. For existing Notion users it is the natural productivity upgrade.",
-      "features": "AI directly inside documents — no switching\nAuto-summarize long pages\nExtract action items from meeting notes\nMulti-language translation\nAI database: auto-fill properties",
-      "pros": [
-        "Seamless integration with Notion workflow",
-        "No context switching — use AI inside docs",
-        "High-quality meeting summaries",
-        "Strong multilingual support"
-      ],
-      "cons": [
-        "Extra $10/mo on top of Notion subscription",
-        "Useless if you do not use Notion",
-        "Weaker than standalone Claude or GPT-4"
-      ],
-      "pricing": [
-        {
-          "name": "AI Add-on",
-          "price": "$10",
-          "note": "/mo"
-        }
-      ],
-      "bestfor": "Heavy Notion users who want to supercharge their document workflow. Teams managing knowledge bases and project documentation.",
-      "verdict": "If you are already in Notion the extra $10/mo for AI is worth it — it elevates your whole workflow. If you do not use Notion do not start just for the AI.",
-      "count": "6,100 reviews"
-    }
-  },
-  "jimeng": {
-    "icon": "🎨",
-    "iconBg": "#f0faf4",
-    "score": "4.6",
-    "stars": "★★★★☆",
-    "badge": "freemium",
-    "url": "https://jimeng.jianying.com",
-    "zh": {
-      "title": "即梦 AI",
-      "tagline": "字节跳动出品，国内最佳图像生成",
-      "about": "即梦 AI 是字节跳动旗下的 AI 图像和视频生成平台，是国内少数能与 Midjourney 媲美的产品。中文提示词支持非常好，生成的图片风格多样，商业素材质量高，且完全不需要 VPN 即可访问。",
-      "features": "文生图：中文提示词效果极佳\n文生视频：短视频素材生成\n图生视频：静态图转动态视频\n风格多样，支持写实、动漫、艺术等\n国内直接访问，无需 VPN",
-      "pros": [
-        "国内直接访问，无需 VPN",
-        "中文提示词理解能力强",
-        "出图质量媲美 Midjourney",
-        "视频生成功能是加分项"
-      ],
-      "cons": [
-        "商业授权条款需仔细阅读",
-        "每日免费额度有限",
-        "英文提示词效果弱于中文"
-      ],
-      "pricing": [
-        {
-          "name": "免费版",
-          "price": "¥0",
-          "note": "每日有限额度"
-        },
-        {
-          "name": "会员",
-          "price": "¥68",
-          "note": "/月"
-        }
-      ],
-      "bestfor": "需要图像素材的内容创作者、电商卖家、社交媒体运营者、中文用户。",
-      "verdict": "即梦 AI 是国内最好的图像生成工具没有之一。对于不方便使用 Midjourney 的国内用户，即梦是完美的替代品，出图质量令人满意。",
-      "count": "2,800 条评价"
-    },
-    "en": {
-      "title": "Jimeng AI",
-      "tagline": "ByteDance's best-in-class image generator for China",
-      "about": "Jimeng AI is ByteDance's image and video generation platform — one of the few domestic tools that matches Midjourney in output quality. Exceptional Chinese prompt support, no VPN required.",
-      "features": "Text-to-image with excellent Chinese prompt understanding\nText-to-video for short clip generation\nImage-to-video conversion\nDiverse styles: photorealistic, anime, artistic\nAccessible in mainland China without VPN",
-      "pros": [
-        "Accessible in China without VPN",
-        "Strong Chinese prompt comprehension",
-        "Output quality rivals Midjourney",
-        "Video generation is a major bonus"
-      ],
-      "cons": [
-        "Commercial licensing terms need careful review",
-        "Limited free daily quota",
-        "English prompts less effective than Chinese"
-      ],
-      "pricing": [
-        {
-          "name": "Free",
-          "price": "¥0",
-          "note": "Daily limit"
-        },
-        {
-          "name": "Member",
-          "price": "¥68",
-          "note": "/mo"
-        }
-      ],
-      "bestfor": "Content creators, e-commerce sellers, and social media managers — especially Chinese-speaking users who cannot access Midjourney.",
-      "verdict": "Jimeng AI is the best image generation tool available in mainland China. For users who cannot access Midjourney it is a perfect substitute with genuinely impressive output quality.",
-      "count": "2,800 reviews"
-    }
-  },
-  "midjourney": {
-    "icon": "🌈",
-    "iconBg": "#f0eeff",
-    "score": "4.9",
-    "stars": "★★★★★",
-    "badge": "paid",
-    "url": "https://www.midjourney.com",
-    "zh": {
-      "title": "Midjourney",
-      "tagline": "AI 图像生成黄金标准",
-      "about": "Midjourney 是全球最受欢迎的 AI 图像生成工具，以其无与伦比的美学质量著称。无论是营销素材、插画还是概念设计，都能产出令人惊艳的结果。",
-      "features": "图像质量业界最高，独特的艺术风格\nV6 版本真实感大幅提升\n支持丰富的参数控制风格\nVary Region 局部重绘\n网页版已上线，不再依赖 Discord",
-      "pros": [
-        "图像质量和美学风格无可匹敌",
-        "社区活跃，资源丰富",
-        "参数系统灵活，可精细控制风格",
-        "V6 真实感媲美摄影"
-      ],
-      "cons": [
-        "需要学习提示词写法",
-        "在国内需要 VPN",
-        "没有免费试用",
-        "生成速度较慢"
-      ],
-      "pricing": [
-        {
-          "name": "Basic",
-          "price": "$10",
-          "note": "/月"
-        },
-        {
-          "name": "Standard",
-          "price": "$30",
-          "note": "/月"
-        },
-        {
-          "name": "Pro",
-          "price": "$60",
-          "note": "/月"
-        }
-      ],
-      "bestfor": "设计师、创意总监、营销人员、内容创作者。任何对图像质量有极高要求的用户。",
-      "verdict": "Midjourney 是 AI 图像生成领域最好的工具没有争议。如果你对图像质量有要求，$10/月的起步价非常值得。国内用户需要 VPN 访问。",
-      "count": "9,200 条评价"
-    },
-    "en": {
-      "title": "Midjourney",
-      "tagline": "The gold standard for AI image generation",
-      "about": "Midjourney is the world's most popular AI image generator, celebrated for its unmatched aesthetic quality. Marketing assets, illustration, concept art all come out stunning.",
-      "features": "Highest image quality in the industry\nV6: dramatically improved photorealism\nRich parameter system for precise style control\nVary Region inpainting for local edits\nWeb app launched — no more Discord dependency",
-      "pros": [
-        "Unmatched image quality and aesthetic",
-        "Huge active community with rich resources",
-        "Flexible parameter system for precise style control",
-        "V6 realism rivals photography"
-      ],
-      "cons": [
-        "Learning prompt syntax takes time",
-        "Requires VPN in mainland China",
-        "No free trial",
-        "Generation can be slow"
-      ],
-      "pricing": [
-        {
-          "name": "Basic",
-          "price": "$10",
-          "note": "/mo"
-        },
-        {
-          "name": "Standard",
-          "price": "$30",
-          "note": "/mo"
-        },
-        {
-          "name": "Pro",
-          "price": "$60",
-          "note": "/mo"
-        }
-      ],
-      "bestfor": "Designers, creative directors, marketers, and content creators. Anyone with high visual quality standards.",
-      "verdict": "Midjourney is the undisputed best AI image generation tool. At $10/mo to start it is excellent value for the quality delivered. VPN required in mainland China.",
-      "count": "9,200 reviews"
-    }
-  },
-  "ahrefs": {
-    "icon": "🔍",
-    "iconBg": "#fff4ee",
-    "score": "4.8",
-    "stars": "★★★★★",
-    "badge": "paid",
-    "url": "https://ahrefs.com",
-    "zh": {
-      "title": "Ahrefs",
-      "tagline": "SEO 从业者的行业标准工具",
-      "about": "Ahrefs 是全球最全面的 SEO 工具套件，拥有超过 7 万亿个已知 URL 的数据库。关键词研究、外链分析、竞品内容差距分析，所有 SEO 核心任务都能在这一个工具内完成。",
-      "features": "Keywords Explorer：关键词挖掘和难度分析\nSite Explorer：分析任意网站的外链和流量\nContent Gap：找出竞品有而你没有的关键词\nRank Tracker：追踪关键词排名变化\nSite Audit：网站技术 SEO 诊断",
-      "pros": [
-        "数据量最大，覆盖最全面",
-        "关键词难度分析非常准确",
-        "竞品分析功能极强",
-        "学习资源丰富，官方教程质量高"
-      ],
-      "cons": [
-        "价格偏高，$129/月对个人站长较贵",
-        "功能复杂，学习曲线陡",
-        "对中文网站数据覆盖不如英文"
-      ],
-      "pricing": [
-        {
-          "name": "Lite",
-          "price": "$129",
-          "note": "/月"
-        },
-        {
-          "name": "Standard",
-          "price": "$249",
-          "note": "/月"
-        }
-      ],
-      "bestfor": "专注英文内容站的站长、SEO 从业者、数字营销人员。",
-      "verdict": "Ahrefs 是做英文 SEO 最重要的工具。虽然价格不低，但对于认真做内容站的人来说，它提供的数据和分析是无可替代的。",
-      "count": "3,400 条评价"
-    },
-    "en": {
-      "title": "Ahrefs",
-      "tagline": "The industry-standard SEO toolkit",
-      "about": "Ahrefs is the world's most comprehensive SEO suite with a database of over 7 trillion known URLs. Keyword research, backlink analysis, content gap analysis — all core SEO tasks in one tool.",
-      "features": "Keywords Explorer: keyword research and difficulty scoring\nSite Explorer: analyze any site's backlinks and traffic\nContent Gap: find keywords competitors rank for that you do not\nRank Tracker: monitor keyword position changes\nSite Audit: technical SEO diagnostics",
-      "pros": [
-        "Largest data coverage in the industry",
-        "Highly accurate keyword difficulty scores",
-        "Powerful competitor analysis features",
-        "Excellent official learning resources"
-      ],
-      "cons": [
-        "$129/mo is steep for solo operators",
-        "Feature-rich but has a learning curve",
-        "Non-English site data less comprehensive"
-      ],
-      "pricing": [
-        {
-          "name": "Lite",
-          "price": "$129",
-          "note": "/mo"
-        },
-        {
-          "name": "Standard",
-          "price": "$249",
-          "note": "/mo"
-        }
-      ],
-      "bestfor": "English content site owners, SEO professionals, and digital marketers.",
-      "verdict": "Ahrefs is the most important tool for English-language SEO. Despite the price the data and insights are irreplaceable for anyone serious about content monetization.",
-      "count": "3,400 reviews"
-    }
-  },
-  "make": {
-    "icon": "⚙️",
-    "iconBg": "#eef4ff",
-    "score": "4.7",
-    "stars": "★★★★★",
-    "badge": "freemium",
-    "url": "https://www.make.com",
-    "zh": {
-      "title": "Make（前 Integromat）",
-      "tagline": "可视化自动化，比 Zapier 更强大",
-      "about": "Make 是一款可视化工作流自动化工具，允许用户通过拖拽方式连接不同应用和服务，自动完成重复性任务。相比 Zapier 功能更强大、定价更友好，支持更复杂的逻辑和数据处理。",
-      "features": "可视化拖拽界面，无需代码\n支持 1000 多款应用集成\n支持复杂逻辑：条件、循环、过滤器\n数据转换和处理能力强\n免费版每月 1000 次操作",
-      "pros": [
-        "比 Zapier 功能强大，价格更低",
-        "可视化界面直观易用",
-        "支持复杂数据处理逻辑",
-        "免费额度对轻度用户足够"
-      ],
-      "cons": [
-        "学习曲线比 Zapier 稍陡",
-        "某些冷门应用集成较少",
-        "错误调试有时不够清晰"
-      ],
-      "pricing": [
-        {
-          "name": "免费",
-          "price": "$0",
-          "note": "1000次/月"
-        },
-        {
-          "name": "Core",
-          "price": "$9",
-          "note": "/月"
-        },
-        {
-          "name": "Pro",
-          "price": "$16",
-          "note": "/月"
-        }
-      ],
-      "bestfor": "独立开发者、小企业主、需要自动化日常工作流程的创业者。对 Zapier 价格不满意的用户。",
-      "verdict": "Make 是目前性价比最高的自动化工具。如果你想减少重复工作、自动化业务流程，Make 是比 Zapier 更好的选择，价格便宜功能更强。",
-      "count": "2,200 条评价"
-    },
-    "en": {
-      "title": "Make (formerly Integromat)",
-      "tagline": "Visual automation — more powerful than Zapier",
-      "about": "Make connects apps and automates workflows through a visual drag-and-drop interface. More powerful and significantly cheaper than Zapier with better support for complex logic and data processing.",
-      "features": "Visual drag-and-drop — no code required\n1000+ app integrations\nAdvanced logic: conditions, loops, filters\nStrong data transformation capabilities\nFree plan: 1000 operations per month",
-      "pros": [
-        "More powerful than Zapier at lower cost",
-        "Intuitive visual interface",
-        "Handles complex data processing logic",
-        "Free tier is sufficient for light use"
-      ],
-      "cons": [
-        "Slightly steeper learning curve than Zapier",
-        "Some niche apps have limited integrations",
-        "Error debugging can be unclear"
-      ],
-      "pricing": [
-        {
-          "name": "Free",
-          "price": "$0",
-          "note": "1k ops/mo"
-        },
-        {
-          "name": "Core",
-          "price": "$9",
-          "note": "/mo"
-        },
-        {
-          "name": "Pro",
-          "price": "$16",
-          "note": "/mo"
-        }
-      ],
-      "bestfor": "Indie developers, small business owners, and founders wanting to automate repetitive workflows. Zapier users frustrated by the price.",
-      "verdict": "Make is the best-value automation tool available. If you want to eliminate repetitive work and automate business processes Make beats Zapier on both power and price.",
-      "count": "2,200 reviews"
-    }
-  },
-  "capcut": {
-    "icon": "✂️",
-    "iconBg": "#f8f0ff",
-    "score": "4.8",
-    "stars": "★★★★★",
-    "badge": "freemium",
-    "url": "https://www.capcut.cn",
-    "zh": {
-      "title": "剪映专业版",
-      "tagline": "字节出品，AI 视频创作全家桶",
-      "about": "剪映专业版是字节跳动面向专业创作者的视频剪辑工具，集成了大量 AI 功能。从自动字幕到数字人，从文章转视频到语音克隆，剪映几乎涵盖了视频内容创作的全流程。国际版为 CapCut。",
-      "features": "AI 字幕：自动识别语音生成字幕，准确率高\n数字人：生成真实感 AI 主播\n文章转视频：输入文字自动生成视频\n语音克隆：克隆自己的声音配音\n智能剪辑：自动剪辑精彩片段",
-      "pros": [
-        "AI 功能最全面，覆盖视频创作全流程",
-        "免费版功能已经非常强大",
-        "中文字幕识别准确率极高",
-        "模板丰富，上手快"
-      ],
-      "cons": [
-        "专业剪辑精细度弱于 Premiere",
-        "部分 AI 功能需要会员",
-        "数字人效果偶尔不自然"
-      ],
-      "pricing": [
-        {
-          "name": "免费版",
-          "price": "¥0",
-          "note": "大部分功能"
-        },
-        {
-          "name": "个人会员",
-          "price": "¥68",
-          "note": "/月"
-        }
-      ],
-      "bestfor": "短视频创作者、内容运营、自媒体博主、企业视频制作团队。任何需要高效产出视频内容的用户。",
-      "verdict": "剪映是国内最好的 AI 视频创作工具，免费版已经极其强大。无论是做短视频还是长视频，剪映都是首选工具，AI 功能的深度远超竞品。",
-      "count": "7,600 条评价"
-    },
-    "en": {
-      "title": "CapCut Pro",
-      "tagline": "ByteDance's AI video creation powerhouse",
-      "about": "CapCut is ByteDance's professional video editor packed with AI features — from auto-captions to digital avatars. It covers the full video content creation workflow.",
-      "features": "AI captions: high-accuracy speech-to-text\nDigital avatars: realistic AI presenters\nArticle-to-video: auto-generate video from text\nVoice cloning for dubbing\nAuto-highlight reel generation",
-      "pros": [
-        "Most comprehensive AI feature set for video",
-        "Free version is already very powerful",
-        "Excellent caption accuracy",
-        "Rich template library"
-      ],
-      "cons": [
-        "Less precise than Premiere for professional editing",
-        "Some AI features require membership",
-        "Digital avatars can look unnatural"
-      ],
-      "pricing": [
-        {
-          "name": "Free",
-          "price": "$0",
-          "note": "Most features"
-        },
-        {
-          "name": "Pro",
-          "price": "$9.99",
-          "note": "/mo"
-        }
-      ],
-      "bestfor": "Short-form video creators, content marketers, social media managers, and corporate video teams.",
-      "verdict": "CapCut is the best AI video creation tool available and the free version is remarkably powerful. Whether you are making short or long-form content CapCut AI depth far exceeds competitors.",
-      "count": "7,600 reviews"
-    }
-  },
-  "claudecode": {
-    "icon": "🧠",
-    "iconBg": "#faf0eb",
-    "score": "4.8",
-    "stars": "★★★★★",
-    "badge": "paid",
-    "url": "https://claude.ai/code",
-    "zh": {
-      "title": "Claude Code",
-      "tagline": "Anthropic 出品的终端 AI 编程 Agent",
-      "about": "Claude Code 是 Anthropic 推出的终端命令行编程助手，能够自主读写文件、执行终端命令、调用 API，完成复杂的多步骤编程任务。不同于 Cursor 这类 IDE，Claude Code 在终端中工作，更适合处理大型代码库重构等任务。",
-      "features": "自主读写文件，无需人工确认每一步\n执行终端命令和脚本\n理解完整代码库结构\n支持复杂多步骤任务规划\n与 Git 工作流深度集成",
-      "pros": [
-        "自主能力强，可完成复杂多步骤任务",
-        "对大型代码库的理解能力强",
-        "与终端工作流无缝集成",
-        "Claude 本身的代码能力顶级"
-      ],
-      "cons": [
-        "按 token 计费，大任务费用不低",
-        "需要一定终端使用经验",
-        "有时自主操作可能产生意外修改"
-      ],
-      "pricing": [
-        {
-          "name": "按量计费",
-          "price": "$3",
-          "note": "/百万输入token"
-        },
-        {
-          "name": "输出",
-          "price": "$15",
-          "note": "/百万token"
-        }
-      ],
-      "bestfor": "有终端使用经验的后端开发者、需要处理大型代码库的工程师。适合复杂重构和自动化编程任务。",
-      "verdict": "Claude Code 是处理复杂编程任务的最佳 Agent 工具。对于需要自主完成大型代码库改造的开发者，Claude Code 的能力超过市面上所有同类工具。",
-      "count": "1,400 条评价"
-    },
-    "en": {
-      "title": "Claude Code",
-      "tagline": "Anthropic's terminal AI coding agent",
-      "about": "Claude Code is Anthropic's command-line coding agent — it autonomously reads and writes files, runs terminal commands, calls APIs, and completes complex multi-step programming tasks. Unlike IDE tools like Cursor it excels at large-scale codebase tasks.",
-      "features": "Autonomously reads and writes files\nExecutes terminal commands and scripts\nUnderstands full codebase structure\nPlans and executes complex multi-step tasks\nDeep Git workflow integration",
-      "pros": [
-        "Strong autonomous capability for complex tasks",
-        "Excellent large codebase understanding",
-        "Seamless terminal workflow integration",
-        "Claude coding ability is top-tier"
-      ],
-      "cons": [
-        "Token-based billing can add up for large tasks",
-        "Requires terminal experience",
-        "Autonomous actions can occasionally produce unexpected changes"
-      ],
-      "pricing": [
-        {
-          "name": "Input",
-          "price": "$3",
-          "note": "/M tokens"
-        },
-        {
-          "name": "Output",
-          "price": "$15",
-          "note": "/M tokens"
-        }
-      ],
-      "bestfor": "Backend developers comfortable with the terminal, engineers managing large codebases, and teams needing autonomous multi-step programming tasks.",
-      "verdict": "Claude Code is the best agent tool for complex programming tasks. For developers who need to autonomously refactor or transform large codebases Claude Code outperforms every competitor.",
-      "count": "1,400 reviews"
-    }
-  }
-};
+<footer>
+  <div class="footer-logo" onclick="showPage('home')"><span class="zh">用<span>AI</span></span><span class="en">Yong<span>AI</span></span></div>
+  <div class="footer-links">
+    <a onclick="showPage('home')" class="zh">首页</a><a onclick="showPage('home')" class="en">Home</a>
+    <a onclick="showPage('submit')" class="zh">提交工具</a><a onclick="showPage('submit')" class="en">Submit</a>
+    <a onclick="showPage('articles')" class="zh">测评文章</a><a onclick="showPage('articles')" class="en">Reviews</a>
+  </div>
+  <div style="font-size:12px;color:var(--ink-4)">© 2026 YongAI.online</div>
+</footer>
 
+<script>
+var TOOLS = {"kimi": {"icon": "🌙", "iconBg": "#fff4ee", "score": "4.8", "stars": "★★★★★", "badge": "freemium", "url": "https://kimi.moonshot.cn", "zh": {"title": "Kimi（月之暗面）", "tagline": "国内最强长文本 AI 助手", "about": "Kimi 由月之暗面科技开发，是目前国内支持上下文最长的 AI 助手，最高支持 200 万字输入。无论是超长报告、完整代码库还是学术论文，Kimi 都能一次性读完并精准回答。", "features": "200万字超长上下文，业内最长\n支持上传 PDF、Word、Excel 等多种文件格式\n中文写作和摘要质量极佳\n联网搜索，信息实时更新\n完全免费，国内无需梯子", "pros": ["200万字上下文，处理超长文档毫无压力", "中文理解和生成质量国内领先", "支持多格式文件上传", "免费使用无隐藏费用"], "cons": ["英文能力弱于 Claude 和 GPT-4", "代码生成能力一般", "无法生成图像"], "pricing": [{"name": "免费版", "price": "¥0", "note": "无限制"}], "bestfor": "适合需要处理长文档的研究人员、学生、产品经理，以及需要中文写作辅助的所有用户。", "verdict": "如果你是中文用户需要处理长文档，Kimi 是目前最好的免费选择。200万字的上下文窗口是其他产品望尘莫及的优势。强烈推荐作为日常工作助手。", "count": "3,200 条评价"}, "en": {"title": "Kimi (Moonshot AI)", "tagline": "China's longest-context AI assistant", "about": "Kimi by Moonshot AI supports up to 2 million tokens — the longest context of any AI assistant in China. Upload entire codebases, academic papers, or lengthy reports and get precise answers.", "features": "2M token context window — longest available\nUpload PDF, Word, Excel and more\nExcellent Chinese writing and summarization\nReal-time web search\nCompletely free, no VPN required in China", "pros": ["2M token context handles any long document", "Best Chinese language understanding domestically", "Multi-format file upload", "Completely free"], "cons": ["English weaker than Claude or GPT-4", "Average code generation", "No image generation"], "pricing": [{"name": "Free", "price": "¥0", "note": "No limits"}], "bestfor": "Researchers, students, and product managers who work with long Chinese documents.", "verdict": "If you are a Chinese-language user dealing with long documents, Kimi is the best free option available. The 2M token context window is unmatched.", "count": "3,200 reviews"}}, "cursor": {"icon": "🖱️", "iconBg": "#f0f4ff", "score": "4.9", "stars": "★★★★★", "badge": "paid", "url": "https://cursor.com", "zh": {"title": "Cursor", "tagline": "最强 AI 代码编辑器", "about": "Cursor 是基于 VSCode 的 AI 代码编辑器，能够理解整个代码库的上下文。不同于其他代码补全工具，Cursor 可以跨文件理解项目结构，给出更准确的建议。", "features": "Tab 补全：一键补全整个函数或代码块\nChat 模式：用自然语言描述需求直接修改代码\nComposer：同时修改多个文件\n支持所有 VSCode 插件和主题\n内置 Claude 和 GPT-4o 等多个顶级模型", "pros": ["跨文件理解项目结构，上下文最准确", "完全兼容 VSCode，迁移成本为零", "Tab 补全速度极快，体验流畅", "支持切换多个 AI 模型"], "cons": ["月费 $20，对学生稍贵", "部分功能需要稳定网络", "隐私政策需关注代码会上传服务器"], "pricing": [{"name": "免费版", "price": "$0", "note": "有限额度"}, {"name": "Pro", "price": "$20", "note": "/月"}, {"name": "Business", "price": "$40", "note": "/月"}], "bestfor": "适合所有专业开发者，尤其是独立开发者和全栈工程师。", "verdict": "Cursor 是目前市场上最好的 AI 代码编辑器没有之一。$20/月的价格对于提升的生产力来说完全值得。", "count": "2,100 条评价"}, "en": {"title": "Cursor", "tagline": "The best AI code editor", "about": "Cursor is a VSCode-based AI code editor that understands your entire codebase context. Unlike other completion tools, Cursor reasons across files to give accurate suggestions.", "features": "Tab completion: complete entire functions with one keystroke\nChat mode: describe changes in natural language\nComposer: edit multiple files simultaneously\nFull VSCode plugin and theme compatibility\nSupports Claude, GPT-4o, and more models", "pros": ["Cross-file codebase understanding — most accurate context", "100% VSCode compatible — zero migration cost", "Lightning-fast tab completion", "Switch between multiple AI models"], "cons": ["$20/mo can be steep for students", "Some features require a stable connection", "Code is uploaded to servers — check privacy policy"], "pricing": [{"name": "Free", "price": "$0", "note": "Limited quota"}, {"name": "Pro", "price": "$20", "note": "/mo"}, {"name": "Business", "price": "$40", "note": "/mo"}], "bestfor": "All professional developers, especially indie hackers and full-stack engineers.", "verdict": "Cursor is the best AI code editor on the market, period. At $20/mo, the productivity gains pay for themselves within days.", "count": "2,100 reviews"}}, "deepseek": {"icon": "🐋", "iconBg": "#eef8ff", "score": "4.9", "stars": "★★★★★", "badge": "free", "url": "https://chat.deepseek.com", "zh": {"title": "DeepSeek", "tagline": "国产最强推理模型", "about": "DeepSeek 由深度求索开发，在数学推理、代码生成和逻辑分析方面表现出色，多项基准测试超过 GPT-4。API 价格极低，约为 OpenAI 的十分之一。", "features": "R1 推理模型：复杂数学和逻辑推理能力顶级\n代码生成质量高，支持主流编程语言\nAPI 价格极低，每百万 token 约 1 元\n完全免费的网页版\n开源版本可本地部署", "pros": ["数学和推理能力超越 GPT-4", "API 价格是市场最低之一", "完全免费的网页使用", "开源可本地部署保护隐私"], "cons": ["创意写作能力弱于 Claude", "网页版高峰期偶尔拥堵", "中文以外的语言支持一般"], "pricing": [{"name": "网页版", "price": "免费", "note": "无限制"}, {"name": "API", "price": "¥1", "note": "/百万token"}], "bestfor": "开发者、研究人员、需要批量处理文本的创业公司。对价格敏感的用户首选。", "verdict": "DeepSeek 是性价比最高的 AI 模型。如果你需要 API 调用或者处理大量数学代码任务，DeepSeek 是最佳选择。", "count": "4,800 条评价"}, "en": {"title": "DeepSeek", "tagline": "China's strongest reasoning model", "about": "DeepSeek by High-Flyer excels at math reasoning, code generation, and logical analysis — outperforming GPT-4 on several benchmarks. Its API is roughly one-tenth the price of OpenAI.", "features": "R1 reasoning model: top-tier complex math and logic\nHigh-quality code generation across major languages\nAPI at roughly $0.14 per million tokens\nCompletely free web interface\nOpen-source model available for local deployment", "pros": ["Math and reasoning surpasses GPT-4", "One of the cheapest APIs available", "Free web version with no limits", "Open-source for local deployment and privacy"], "cons": ["Creative writing weaker than Claude", "Web version can be slow at peak hours", "Non-Chinese language support is average"], "pricing": [{"name": "Web", "price": "Free", "note": "No limits"}, {"name": "API", "price": "$0.14", "note": "/M tokens"}], "bestfor": "Developers, researchers, and startups needing bulk text processing.", "verdict": "DeepSeek offers the best price-to-performance ratio of any AI model. For API usage or heavy math and code tasks it is the top choice.", "count": "4,800 reviews"}}, "copilot": {"icon": "🤖", "iconBg": "#f0f0ff", "score": "4.5", "stars": "★★★★☆", "badge": "paid", "url": "https://github.com/features/copilot", "zh": {"title": "GitHub Copilot", "tagline": "微软出品，IDE 内嵌 AI 编程助手", "about": "GitHub Copilot 是最早也是最广泛使用的 AI 代码补全工具，由微软和 OpenAI 联合开发。支持 VS Code、JetBrains、Neovim 等主流编辑器。", "features": "内嵌所有主流 IDE，无缝集成\n行级和函数级代码补全\n支持 Copilot Chat 对话式编程\nGitHub 生态深度集成\n免费账户每月 2000 次补全", "pros": ["与 GitHub 深度集成，PR 审查更方便", "支持最多 IDE 种类", "免费额度对轻度用户够用", "企业版安全性好"], "cons": ["上下文理解弱于 Cursor", "不理解整个代码库结构", "能力弱于同价位的 Cursor"], "pricing": [{"name": "免费", "price": "$0", "note": "2000次/月"}, {"name": "Pro", "price": "$10", "note": "/月"}, {"name": "Business", "price": "$19", "note": "/月"}], "bestfor": "已经在用 GitHub 的开发者，企业团队，以及只需要基础代码补全的用户。", "verdict": "Copilot 是稳定可靠的选择，但如果你追求最高的 AI 编程体验，Cursor 更胜一筹。", "count": "5,200 条评价"}, "en": {"title": "GitHub Copilot", "tagline": "Microsoft's IDE-native AI coding assistant", "about": "GitHub Copilot is the original and most widely adopted AI code completion tool, built by Microsoft and OpenAI. Integrates with VS Code, JetBrains, Neovim and more.", "features": "Embedded in all major IDEs\nLine-level and function-level completion\nCopilot Chat for conversational coding\nDeep GitHub ecosystem integration\n2000 free completions per month", "pros": ["Deep GitHub integration for PR reviews", "Widest IDE support", "Free tier sufficient for light use", "Strong enterprise security"], "cons": ["Weaker codebase understanding than Cursor", "Does not reason across the full project", "Less capable than Cursor at similar price point"], "pricing": [{"name": "Free", "price": "$0", "note": "2k/mo"}, {"name": "Pro", "price": "$10", "note": "/mo"}, {"name": "Business", "price": "$19", "note": "/mo"}], "bestfor": "Developers already using GitHub, enterprise teams, and users who need basic inline completions.", "verdict": "Copilot is solid and reliable but Cursor outperforms it on codebase-level reasoning. Best for teams deeply embedded in the GitHub ecosystem.", "count": "5,200 reviews"}}, "bolt": {"icon": "⚡", "iconBg": "#fffbee", "score": "4.7", "stars": "★★★★★", "badge": "freemium", "url": "https://bolt.new", "zh": {"title": "Bolt.new", "tagline": "浏览器内全栈 AI 开发环境", "about": "Bolt.new 由 StackBlitz 开发，是一个完全在浏览器中运行的全栈开发环境。用自然语言描述你想要的应用，AI 会自动生成前后端代码，并在浏览器中实时运行预览，一键部署到 Netlify。", "features": "完全在浏览器中运行，无需安装任何工具\n支持 React、Vue、Node.js 等主流框架\n一键部署到 Netlify\n实时预览，修改即时生效\n支持数据库和 API 集成", "pros": ["零安装，浏览器直接用", "从想法到可运行应用极快", "非常适合 MVP 快速验证", "部署到 Netlify 一键完成"], "cons": ["复杂项目生成质量不稳定", "免费额度有限大项目需付费", "不适合需要精细控制的生产项目"], "pricing": [{"name": "免费", "price": "$0", "note": "有限额度"}, {"name": "Pro", "price": "$20", "note": "/月"}], "bestfor": "想要快速验证 MVP 的独立开发者、非技术创始人、产品经理。", "verdict": "Bolt.new 是最快速的 MVP 验证工具。从想法到可演示的应用可以在一小时内完成。", "count": "1,900 条评价"}, "en": {"title": "Bolt.new", "tagline": "Full-stack AI dev environment in the browser", "about": "Bolt.new by StackBlitz runs entirely in the browser. Describe your app in natural language, get full-stack code generated, preview it live, and deploy to Netlify in one click.", "features": "Runs 100% in the browser — zero install\nSupports React, Vue, Node.js and more\nOne-click deploy to Netlify\nLive preview with instant updates\nDatabase and API integration support", "pros": ["Zero install — works right in the browser", "Fastest path from idea to running app", "Perfect for rapid MVP validation", "One-click Netlify deployment"], "cons": ["Complex projects can be inconsistent", "Free tier is limited for large projects", "Not suited for fine-grained production work"], "pricing": [{"name": "Free", "price": "$0", "note": "Limited"}, {"name": "Pro", "price": "$20", "note": "/mo"}], "bestfor": "Indie developers validating MVPs, non-technical founders, and product managers building demos and prototypes.", "verdict": "Bolt.new is the fastest MVP validation tool available. From idea to demoable app in under an hour.", "count": "1,900 reviews"}}, "canva": {"icon": "🎭", "iconBg": "#fff0fa", "score": "4.5", "stars": "★★★★☆", "badge": "freemium", "url": "https://www.canva.com", "zh": {"title": "Canva AI", "tagline": "非设计师的 AI 设计神器", "about": "Canva 是全球最受欢迎的在线设计工具，近年大力整合 AI 功能。Magic Studio 套件包含 AI 图像生成、一键抠图、背景生成等功能，让没有设计基础的用户也能做出专业级视觉内容。", "features": "Magic Write：AI 辅助文案创作\nText to Image：文字生成图像\nBackground Remover：一键去背景\nMagic Eraser：消除不需要的元素\n海量模板库，覆盖各类场景", "pros": ["上手极快，几分钟做出专业设计", "中文模板数量多，本地化好", "AI 功能和设计工具深度整合", "团队协作功能完善"], "cons": ["免费版 AI 功能受限", "高级功能需订阅 Pro", "对专业设计师来说功能不够深度"], "pricing": [{"name": "免费", "price": "¥0", "note": "基础功能"}, {"name": "Pro", "price": "¥99", "note": "/月"}], "bestfor": "内容创作者、小企业主、市场运营人员、独立创业者。", "verdict": "Canva 是非设计师最应该掌握的工具。AI 功能大大降低了设计门槛，免费版已经足够日常使用。", "count": "8,400 条评价"}, "en": {"title": "Canva AI", "tagline": "The non-designer's AI design powerhouse", "about": "Canva is the world's most popular online design tool, now deeply integrated with AI via the Magic Studio suite. Background removal, AI image generation, magic eraser — professional-quality visuals for anyone.", "features": "Magic Write: AI copywriting assistance\nText to Image: generate visuals from prompts\nBackground Remover: one-click removal\nMagic Eraser: remove unwanted elements\nMassive template library for every use case", "pros": ["Up in minutes — professional results fast", "Excellent template variety", "AI features deeply integrated into workflow", "Solid team collaboration"], "cons": ["Free tier limits AI features", "Advanced features require Pro subscription", "Not deep enough for professional designers"], "pricing": [{"name": "Free", "price": "$0", "note": "Basic"}, {"name": "Pro", "price": "$15", "note": "/mo"}], "bestfor": "Content creators, small business owners, marketers, and indie founders.", "verdict": "Canva is the most important non-technical tool for founders and creators. The free tier covers most daily needs.", "count": "8,400 reviews"}}, "framer": {"icon": "🌐", "iconBg": "#f0f4ff", "score": "4.7", "stars": "★★★★★", "badge": "freemium", "url": "https://framer.com", "zh": {"title": "Framer", "tagline": "AI 建站工具，独立开发者首选", "about": "Framer 是一款 AI 驱动的网站构建工具，用户可以用自然语言描述想要的网站，AI 会自动生成完整的设计和代码。对于需要快速上线 Landing Page 的独立开发者来说效率最高。", "features": "AI 网站生成：用文字描述生成完整网站\n可视化编辑器：拖拽调整任意元素\n内置 CMS：管理博客和内容\n自定义域名绑定\nSEO 优化工具内置", "pros": ["从描述到上线最快，体验极佳", "设计质量高，模板精美", "不需要写代码", "SEO 和性能优化自动处理"], "cons": ["免费版有 Framer 水印", "复杂功能需要升级付费", "定制化程度不如手写代码"], "pricing": [{"name": "免费", "price": "$0", "note": "带水印"}, {"name": "Mini", "price": "$5", "note": "/月"}, {"name": "Basic", "price": "$15", "note": "/月"}], "bestfor": "独立创业者需要快速上线 Landing Page、个人网站或产品官网。", "verdict": "Framer 是最快速最高质量的 AI 建站工具。从想法到上线可以在 30 分钟内完成。", "count": "2,600 条评价"}, "en": {"title": "Framer", "tagline": "AI website builder for indie makers", "about": "Framer is an AI-powered website builder where you describe your site in natural language and get a fully designed live website. Best speed-to-quality ratio for landing pages.", "features": "AI site generation from text descriptions\nVisual editor: drag-and-drop any element\nBuilt-in CMS for blog and content management\nCustom domain binding\nBuilt-in SEO and performance optimization", "pros": ["Fastest path from description to live site", "High design quality with beautiful templates", "No coding required", "SEO and performance handled automatically"], "cons": ["Free plan shows Framer watermark", "Complex features require paid plan", "Less customizable than hand-coded sites"], "pricing": [{"name": "Free", "price": "$0", "note": "Watermarked"}, {"name": "Mini", "price": "$5", "note": "/mo"}, {"name": "Basic", "price": "$15", "note": "/mo"}], "bestfor": "Solo founders who need landing pages or product sites fast.", "verdict": "Framer is the fastest high-quality AI website builder. From idea to live site in 30 minutes.", "count": "2,600 reviews"}}, "notion": {"icon": "📝", "iconBg": "#f5f5f5", "score": "4.5", "stars": "★★★★☆", "badge": "paid", "url": "https://www.notion.so/product/ai", "zh": {"title": "Notion AI", "tagline": "工作区内置 AI，知识管理新标准", "about": "Notion AI 是集成在 Notion 工作区中的 AI 功能套件，可以在文档内直接调用 AI 进行总结、扩写、翻译、改写等操作。", "features": "文档内直接调用 AI，无需切换工具\n自动总结长文档\n会议记录一键提炼行动项\n多语言翻译\nAI 数据库：自动填充属性", "pros": ["与 Notion 工作流无缝集成", "不需要切换工具，在文档内直接使用", "会议记录和总结质量很高", "多语言支持好"], "cons": ["需要额外付费 $10/月", "不使用 Notion 的用户无法受益", "AI 能力弱于 Claude 和 GPT-4 单独使用"], "pricing": [{"name": "AI 附加", "price": "$10", "note": "/月"}], "bestfor": "已经深度使用 Notion 管理工作和知识的用户，需要提升文档处理效率的团队。", "verdict": "如果你已经在用 Notion，Notion AI 的 $10/月额外费用是值得的。但如果你没用 Notion 不建议为了 AI 功能单独入坑。", "count": "6,100 条评价"}, "en": {"title": "Notion AI", "tagline": "Workspace-native AI — the new knowledge standard", "about": "Notion AI integrates directly into your Notion workspace. Summarize, expand, translate, and rewrite — all without leaving your document.", "features": "AI directly inside documents — no switching\nAuto-summarize long pages\nExtract action items from meeting notes\nMulti-language translation\nAI database: auto-fill properties", "pros": ["Seamless integration with Notion workflow", "No context switching — use AI inside docs", "High-quality meeting summaries", "Strong multilingual support"], "cons": ["Extra $10/mo on top of Notion subscription", "Useless if you do not use Notion", "Weaker than standalone Claude or GPT-4"], "pricing": [{"name": "AI Add-on", "price": "$10", "note": "/mo"}], "bestfor": "Heavy Notion users who want to supercharge their document workflow.", "verdict": "If you are already in Notion the extra $10/mo for AI is worth it. If you do not use Notion do not start just for the AI.", "count": "6,100 reviews"}}, "jimeng": {"icon": "🎨", "iconBg": "#f0faf4", "score": "4.6", "stars": "★★★★☆", "badge": "freemium", "url": "https://jimeng.jianying.com", "zh": {"title": "即梦 AI", "tagline": "字节跳动出品，国内最佳图像生成", "about": "即梦 AI 是字节跳动旗下的 AI 图像和视频生成平台，是国内少数能与 Midjourney 媲美的产品。中文提示词支持非常好，且完全不需要 VPN 即可访问。", "features": "文生图：中文提示词效果极佳\n文生视频：短视频素材生成\n图生视频：静态图转动态视频\n风格多样，支持写实、动漫、艺术等\n国内直接访问，无需 VPN", "pros": ["国内直接访问，无需 VPN", "中文提示词理解能力强", "出图质量媲美 Midjourney", "视频生成功能是加分项"], "cons": ["商业授权条款需仔细阅读", "每日免费额度有限", "英文提示词效果弱于中文"], "pricing": [{"name": "免费版", "price": "¥0", "note": "每日有限额度"}, {"name": "会员", "price": "¥68", "note": "/月"}], "bestfor": "需要图像素材的内容创作者、电商卖家、社交媒体运营者、中文用户。", "verdict": "即梦 AI 是国内最好的图像生成工具没有之一。对于不方便使用 Midjourney 的国内用户，即梦是完美的替代品。", "count": "2,800 条评价"}, "en": {"title": "Jimeng AI", "tagline": "ByteDance's best-in-class image generator for China", "about": "Jimeng AI is ByteDance's image and video generation platform — one of the few domestic tools that matches Midjourney in output quality. No VPN required.", "features": "Text-to-image with excellent Chinese prompt understanding\nText-to-video for short clip generation\nImage-to-video conversion\nDiverse styles: photorealistic, anime, artistic\nAccessible in mainland China without VPN", "pros": ["Accessible in China without VPN", "Strong Chinese prompt comprehension", "Output quality rivals Midjourney", "Video generation is a major bonus"], "cons": ["Commercial licensing terms need careful review", "Limited free daily quota", "English prompts less effective than Chinese"], "pricing": [{"name": "Free", "price": "¥0", "note": "Daily limit"}, {"name": "Member", "price": "¥68", "note": "/mo"}], "bestfor": "Content creators, e-commerce sellers, and social media managers in China.", "verdict": "Jimeng AI is the best image generation tool in mainland China. A perfect substitute for Midjourney users who cannot access it.", "count": "2,800 reviews"}}, "midjourney": {"icon": "🌈", "iconBg": "#f0eeff", "score": "4.9", "stars": "★★★★★", "badge": "paid", "url": "https://www.midjourney.com", "zh": {"title": "Midjourney", "tagline": "AI 图像生成黄金标准", "about": "Midjourney 是全球最受欢迎的 AI 图像生成工具，以其无与伦比的美学质量著称。无论是营销素材、插画还是概念设计，都能产出令人惊艳的结果。", "features": "图像质量业界最高，独特的艺术风格\nV6 版本真实感大幅提升\n支持丰富的参数控制风格\nVary Region 局部重绘\n网页版已上线，不再依赖 Discord", "pros": ["图像质量和美学风格无可匹敌", "社区活跃，资源丰富", "参数系统灵活，可精细控制风格", "V6 真实感媲美摄影"], "cons": ["需要学习提示词写法", "在国内需要 VPN", "没有免费试用", "生成速度较慢"], "pricing": [{"name": "Basic", "price": "$10", "note": "/月"}, {"name": "Standard", "price": "$30", "note": "/月"}, {"name": "Pro", "price": "$60", "note": "/月"}], "bestfor": "设计师、创意总监、营销人员、内容创作者。任何对图像质量有极高要求的用户。", "verdict": "Midjourney 是 AI 图像生成领域最好的工具没有争议。如果你对图像质量有要求，$10/月的起步价非常值得。", "count": "9,200 条评价"}, "en": {"title": "Midjourney", "tagline": "The gold standard for AI image generation", "about": "Midjourney is the world's most popular AI image generator, celebrated for its unmatched aesthetic quality. Marketing assets, illustration, concept art all come out stunning.", "features": "Highest image quality in the industry\nV6: dramatically improved photorealism\nRich parameter system for precise style control\nVary Region inpainting for local edits\nWeb app launched — no more Discord dependency", "pros": ["Unmatched image quality and aesthetic", "Huge active community with rich resources", "Flexible parameter system for precise style control", "V6 realism rivals photography"], "cons": ["Learning prompt syntax takes time", "Requires VPN in mainland China", "No free trial", "Generation can be slow"], "pricing": [{"name": "Basic", "price": "$10", "note": "/mo"}, {"name": "Standard", "price": "$30", "note": "/mo"}, {"name": "Pro", "price": "$60", "note": "/mo"}], "bestfor": "Designers, creative directors, marketers, and content creators.", "verdict": "Midjourney is the undisputed best AI image generation tool. At $10/mo to start it is excellent value for the quality delivered.", "count": "9,200 reviews"}}, "ahrefs": {"icon": "🔍", "iconBg": "#fff4ee", "score": "4.8", "stars": "★★★★★", "badge": "paid", "url": "https://ahrefs.com", "zh": {"title": "Ahrefs", "tagline": "SEO 从业者的行业标准工具", "about": "Ahrefs 是全球最全面的 SEO 工具套件，拥有超过 7 万亿个已知 URL 的数据库。关键词研究、外链分析、竞品内容差距分析，所有 SEO 核心任务都能在这一个工具内完成。", "features": "Keywords Explorer：关键词挖掘和难度分析\nSite Explorer：分析任意网站的外链和流量\nContent Gap：找出竞品有而你没有的关键词\nRank Tracker：追踪关键词排名变化\nSite Audit：网站技术 SEO 诊断", "pros": ["数据量最大，覆盖最全面", "关键词难度分析非常准确", "竞品分析功能极强", "学习资源丰富，官方教程质量高"], "cons": ["价格偏高，$129/月对个人站长较贵", "功能复杂，学习曲线陡", "对中文网站数据覆盖不如英文"], "pricing": [{"name": "Lite", "price": "$129", "note": "/月"}, {"name": "Standard", "price": "$249", "note": "/月"}], "bestfor": "专注英文内容站的站长、SEO 从业者、数字营销人员。", "verdict": "Ahrefs 是做英文 SEO 最重要的工具。虽然价格不低，但对于认真做内容站的人来说，它提供的数据和分析是无可替代的。", "count": "3,400 条评价"}, "en": {"title": "Ahrefs", "tagline": "The industry-standard SEO toolkit", "about": "Ahrefs is the world's most comprehensive SEO suite with a database of over 7 trillion known URLs. Keyword research, backlink analysis, content gap analysis — all core SEO tasks in one tool.", "features": "Keywords Explorer: keyword research and difficulty scoring\nSite Explorer: analyze any site backlinks and traffic\nContent Gap: find keywords competitors rank for that you do not\nRank Tracker: monitor keyword position changes\nSite Audit: technical SEO diagnostics", "pros": ["Largest data coverage in the industry", "Highly accurate keyword difficulty scores", "Powerful competitor analysis features", "Excellent official learning resources"], "cons": ["$129/mo is steep for solo operators", "Feature-rich but has a learning curve", "Non-English site data less comprehensive"], "pricing": [{"name": "Lite", "price": "$129", "note": "/mo"}, {"name": "Standard", "price": "$249", "note": "/mo"}], "bestfor": "English content site owners, SEO professionals, and digital marketers.", "verdict": "Ahrefs is the most important tool for English-language SEO. The data and insights are irreplaceable for anyone serious about content monetization.", "count": "3,400 reviews"}}, "make": {"icon": "⚙️", "iconBg": "#eef4ff", "score": "4.7", "stars": "★★★★★", "badge": "freemium", "url": "https://www.make.com", "zh": {"title": "Make（前 Integromat）", "tagline": "可视化自动化，比 Zapier 更强大", "about": "Make 是一款可视化工作流自动化工具，允许用户通过拖拽方式连接不同应用和服务，自动完成重复性任务。相比 Zapier 功能更强大、定价更友好。", "features": "可视化拖拽界面，无需代码\n支持 1000 多款应用集成\n支持复杂逻辑：条件、循环、过滤器\n数据转换和处理能力强\n免费版每月 1000 次操作", "pros": ["比 Zapier 功能强大，价格更低", "可视化界面直观易用", "支持复杂数据处理逻辑", "免费额度对轻度用户足够"], "cons": ["学习曲线比 Zapier 稍陡", "某些冷门应用集成较少", "错误调试有时不够清晰"], "pricing": [{"name": "免费", "price": "$0", "note": "1000次/月"}, {"name": "Core", "price": "$9", "note": "/月"}, {"name": "Pro", "price": "$16", "note": "/月"}], "bestfor": "独立开发者、小企业主、需要自动化日常工作流程的创业者。", "verdict": "Make 是目前性价比最高的自动化工具。如果你想减少重复工作，Make 是比 Zapier 更好的选择。", "count": "2,200 条评价"}, "en": {"title": "Make (formerly Integromat)", "tagline": "Visual automation — more powerful than Zapier", "about": "Make connects apps and automates workflows through a visual drag-and-drop interface. More powerful and significantly cheaper than Zapier.", "features": "Visual drag-and-drop — no code required\n1000+ app integrations\nAdvanced logic: conditions, loops, filters\nStrong data transformation capabilities\nFree plan: 1000 operations per month", "pros": ["More powerful than Zapier at lower cost", "Intuitive visual interface", "Handles complex data processing logic", "Free tier is sufficient for light use"], "cons": ["Slightly steeper learning curve than Zapier", "Some niche apps have limited integrations", "Error debugging can be unclear"], "pricing": [{"name": "Free", "price": "$0", "note": "1k ops/mo"}, {"name": "Core", "price": "$9", "note": "/mo"}, {"name": "Pro", "price": "$16", "note": "/mo"}], "bestfor": "Indie developers, small business owners, and founders wanting to automate repetitive workflows.", "verdict": "Make is the best-value automation tool available. It beats Zapier on both power and price.", "count": "2,200 reviews"}}, "capcut": {"icon": "✂️", "iconBg": "#f8f0ff", "score": "4.8", "stars": "★★★★★", "badge": "freemium", "url": "https://www.capcut.cn", "zh": {"title": "剪映专业版", "tagline": "字节出品，AI 视频创作全家桶", "about": "剪映专业版是字节跳动面向专业创作者的视频剪辑工具，集成了大量 AI 功能。从自动字幕到数字人，从文章转视频到语音克隆，剪映几乎涵盖了视频内容创作的全流程。", "features": "AI 字幕：自动识别语音生成字幕，准确率高\n数字人：生成真实感 AI 主播\n文章转视频：输入文字自动生成视频\n语音克隆：克隆自己的声音配音\n智能剪辑：自动剪辑精彩片段", "pros": ["AI 功能最全面，覆盖视频创作全流程", "免费版功能已经非常强大", "中文字幕识别准确率极高", "模板丰富，上手快"], "cons": ["专业剪辑精细度弱于 Premiere", "部分 AI 功能需要会员", "数字人效果偶尔不自然"], "pricing": [{"name": "免费版", "price": "¥0", "note": "大部分功能"}, {"name": "个人会员", "price": "¥68", "note": "/月"}], "bestfor": "短视频创作者、内容运营、自媒体博主、企业视频制作团队。", "verdict": "剪映是国内最好的 AI 视频创作工具，免费版已经极其强大。无论是做短视频还是长视频，剪映都是首选工具。", "count": "7,600 条评价"}, "en": {"title": "CapCut Pro", "tagline": "ByteDance's AI video creation powerhouse", "about": "CapCut is ByteDance's professional video editor packed with AI features — from auto-captions to digital avatars. It covers the full video content creation workflow.", "features": "AI captions: high-accuracy speech-to-text\nDigital avatars: realistic AI presenters\nArticle-to-video: auto-generate video from text\nVoice cloning for dubbing\nAuto-highlight reel generation", "pros": ["Most comprehensive AI feature set for video", "Free version is already very powerful", "Excellent caption accuracy", "Rich template library"], "cons": ["Less precise than Premiere for professional editing", "Some AI features require membership", "Digital avatars can look unnatural"], "pricing": [{"name": "Free", "price": "$0", "note": "Most features"}, {"name": "Pro", "price": "$9.99", "note": "/mo"}], "bestfor": "Short-form video creators, content marketers, social media managers, and corporate video teams.", "verdict": "CapCut is the best AI video creation tool available and the free version is remarkably powerful.", "count": "7,600 reviews"}}, "claudecode": {"icon": "🧠", "iconBg": "#faf0eb", "score": "4.8", "stars": "★★★★★", "badge": "paid", "url": "https://claude.ai/code", "zh": {"title": "Claude Code", "tagline": "Anthropic 出品的终端 AI 编程 Agent", "about": "Claude Code 是 Anthropic 推出的终端命令行编程助手，能够自主读写文件、执行终端命令、调用 API，完成复杂的多步骤编程任务。", "features": "自主读写文件，无需人工确认每一步\n执行终端命令和脚本\n理解完整代码库结构\n支持复杂多步骤任务规划\n与 Git 工作流深度集成", "pros": ["自主能力强，可完成复杂多步骤任务", "对大型代码库的理解能力强", "与终端工作流无缝集成", "Claude 本身的代码能力顶级"], "cons": ["按 token 计费，大任务费用不低", "需要一定终端使用经验", "有时自主操作可能产生意外修改"], "pricing": [{"name": "按量计费", "price": "$3", "note": "/百万输入token"}, {"name": "输出", "price": "$15", "note": "/百万token"}], "bestfor": "有终端使用经验的后端开发者、需要处理大型代码库的工程师。", "verdict": "Claude Code 是处理复杂编程任务的最佳 Agent 工具。对于需要自主完成大型代码库改造的开发者，Claude Code 的能力超过市面上所有同类工具。", "count": "1,400 条评价"}, "en": {"title": "Claude Code", "tagline": "Anthropic's terminal AI coding agent", "about": "Claude Code is Anthropic's command-line coding agent — it autonomously reads and writes files, runs terminal commands, calls APIs, and completes complex multi-step programming tasks.", "features": "Autonomously reads and writes files\nExecutes terminal commands and scripts\nUnderstands full codebase structure\nPlans and executes complex multi-step tasks\nDeep Git workflow integration", "pros": ["Strong autonomous capability for complex tasks", "Excellent large codebase understanding", "Seamless terminal workflow integration", "Claude coding ability is top-tier"], "cons": ["Token-based billing can add up for large tasks", "Requires terminal experience", "Autonomous actions can occasionally produce unexpected changes"], "pricing": [{"name": "Input", "price": "$3", "note": "/M tokens"}, {"name": "Output", "price": "$15", "note": "/M tokens"}], "bestfor": "Backend developers comfortable with the terminal, engineers managing large codebases.", "verdict": "Claude Code is the best agent tool for complex programming tasks. For developers who need to autonomously refactor or transform large codebases Claude Code outperforms every competitor.", "count": "1,400 reviews"}}};
+var FAVICONS = {"kimi": "https://www.google.com/s2/favicons?domain=kimi.moonshot.cn&sz=64", "cursor": "https://www.google.com/s2/favicons?domain=cursor.com&sz=64", "deepseek": "https://www.google.com/s2/favicons?domain=chat.deepseek.com&sz=64", "copilot": "https://www.google.com/s2/favicons?domain=github.com&sz=64", "bolt": "https://www.google.com/s2/favicons?domain=bolt.new&sz=64", "claudecode": "https://www.google.com/s2/favicons?domain=claude.ai&sz=64", "canva": "https://www.google.com/s2/favicons?domain=canva.com&sz=64", "framer": "https://www.google.com/s2/favicons?domain=framer.com&sz=64", "notion": "https://www.google.com/s2/favicons?domain=notion.so&sz=64", "capcut": "https://www.google.com/s2/favicons?domain=capcut.com&sz=64", "ahrefs": "https://www.google.com/s2/favicons?domain=ahrefs.com&sz=64", "midjourney": "https://www.google.com/s2/favicons?domain=midjourney.com&sz=64", "make": "https://www.google.com/s2/favicons?domain=make.com&sz=64", "jimeng": "https://www.google.com/s2/favicons?domain=jimeng.jianying.com&sz=64", "ernie": "https://www.google.com/s2/favicons?domain=yiyan.baidu.com&sz=64", "qwen": "https://www.google.com/s2/favicons?domain=tongyi.aliyun.com&sz=64"};
+var currentLang = 'zh', currentCat = 'all';
 var catLabels = {
   zh: {all:'全部工具',writing:'写作工具',coding:'编程工具',design:'设计工具',productivity:'效率工具',video:'视频工具',seo:'SEO 工具',image:'图像工具',automation:'自动化工具'},
   en: {all:'All tools',writing:'Writing tools',coding:'Coding tools',design:'Design tools',productivity:'Productivity tools',video:'Video tools',seo:'SEO tools',image:'Image tools',automation:'Automation tools'}
 };
-var currentLang = 'zh';
-var currentCat = 'all';
+
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(function(p) { p.classList.remove('active'); });
+  var el = document.getElementById('page-' + id);
+  if (el) { el.classList.add('active'); window.scrollTo(0, 0); }
+}
+
+function scrollTo(id) {
+  showPage('home');
+  setTimeout(function() {
+    var el = document.getElementById(id);
+    if (el) el.scrollIntoView({behavior: 'smooth'});
+  }, 100);
+}
 
 function setLang(lang) {
   currentLang = lang;
   document.documentElement.setAttribute('data-lang', lang);
-  document.documentElement.setAttribute('lang', lang === 'zh' ? 'zh-CN' : 'en');
   document.getElementById('btn-zh').classList.toggle('active', lang === 'zh');
   document.getElementById('btn-en').classList.toggle('active', lang === 'en');
-  var si = document.getElementById('search-input');
-  if (si) si.placeholder = lang === 'zh' ? '搜索工具名称、分类、使用场景…' : 'Search tools, categories, use cases…';
-  var ni = document.getElementById('nl-input');
-  if (ni) ni.placeholder = lang === 'zh' ? '输入你的邮箱地址' : 'your@email.com';
   updateCount();
   updateTitle(currentCat);
   try { localStorage.setItem('lang', lang); } catch(e) {}
@@ -1611,18 +579,26 @@ function setLang(lang) {
 function openModal(id) {
   var t = TOOLS[id];
   if (!t) return;
-  var l = currentLang;
-  var d = t[l];
-  document.getElementById('m-icon').textContent = t.icon;
-  document.getElementById('m-icon').style.background = t.iconBg;
+  var l = currentLang, d = t[l];
+  var micon = document.getElementById('m-icon');
+  if (FAVICONS[id]) {
+    micon.innerHTML = '<img src="' + FAVICONS[id] + '" width="56" height="56" style="object-fit:contain;border-radius:10px;display:block" alt="">';
+    micon.style.background = 'white';
+    micon.style.padding = '4px';
+  } else {
+    micon.textContent = t.icon;
+    micon.style.background = t.iconBg;
+    micon.style.padding = '0';
+    micon.style.fontSize = '32px';
+  }
   document.getElementById('m-title').textContent = d.title;
   document.getElementById('m-tagline').textContent = d.tagline;
   document.getElementById('m-stars').textContent = t.stars;
   document.getElementById('m-score').textContent = t.score;
   document.getElementById('m-count').textContent = d.count;
-  var bmap = {free:{zh:'完全免费',en:'Free',cls:'badge-free'}, freemium:{zh:'免费可用',en:'Freemium',cls:'badge-freemium'}, paid:{zh:'付费',en:'Paid',cls:'badge-paid'}};
+  var bmap = {free:{zh:'完全免费',en:'Free',cls:'badge-free'},freemium:{zh:'免费可用',en:'Freemium',cls:'badge-freemium'},paid:{zh:'付费',en:'Paid',cls:'badge-paid'}};
   var bm = bmap[t.badge] || bmap.freemium;
-  document.getElementById('m-badges').innerHTML = '<span class="fc-badge ' + bm.cls + '">' + (l === 'zh' ? bm.zh : bm.en) + '</span>';
+  document.getElementById('m-badges').innerHTML = '<span class="fc-badge ' + bm.cls + '">' + (l==='zh'?bm.zh:bm.en) + '</span>';
   document.getElementById('m-about').textContent = d.about;
   document.getElementById('m-features').innerHTML = d.features.split('\n').map(function(f) { return f ? '• ' + f : ''; }).join('<br>');
   document.getElementById('m-pros').innerHTML = d.pros.map(function(p) { return '<li>✓ ' + p + '</li>'; }).join('');
@@ -1630,7 +606,7 @@ function openModal(id) {
   document.getElementById('m-pricing').innerHTML = d.pricing.map(function(p) { return '<div class="pricing-tier"><div class="pricing-name">' + p.name + '</div><div class="pricing-price">' + p.price + '</div><div class="pricing-note">' + p.note + '</div></div>'; }).join('');
   document.getElementById('m-bestfor').textContent = d.bestfor;
   document.getElementById('m-verdict').textContent = d.verdict;
-  document.getElementById('m-cta').innerHTML = '<a href="' + t.url + '" target="_blank" rel="noopener" class="btn-primary">' + (l === 'zh' ? '立即使用 →' : 'Visit site →') + '</a><button class="btn-secondary" onclick="closeModal()">' + (l === 'zh' ? '关闭' : 'Close') + '</button>';
+  document.getElementById('m-cta').innerHTML = '<a href="' + t.url + '" target="_blank" rel="noopener" class="btn-primary">' + (l==='zh'?'立即使用 →':'Visit site →') + '</a><button class="btn-secondary" onclick="closeModal()">' + (l==='zh'?'关闭':'Close') + '</button>';
   document.getElementById('modal-overlay').classList.add('open');
   document.body.style.overflow = 'hidden';
 }
@@ -1649,77 +625,76 @@ document.addEventListener('keydown', function(e) { if (e.key === 'Escape') close
 var searchInput = document.getElementById('search-input');
 var searchResults = document.getElementById('search-results');
 var toolIndex = Object.keys(TOOLS).map(function(id) {
-  var t = TOOLS[id];
-  return {id: id, nameZh: t.zh.title, nameEn: t.en.title, icon: t.icon, iconBg: t.iconBg};
+  return {id:id, nameZh:TOOLS[id].zh.title, nameEn:TOOLS[id].en.title, fav:FAVICONS[id]||'', icon:TOOLS[id].icon, iconBg:TOOLS[id].iconBg};
 });
 
-if (searchInput) {
-  searchInput.addEventListener('input', function() {
-    var q = searchInput.value.trim().toLowerCase();
-    if (!q) { searchResults.classList.remove('show'); return; }
-    var matches = toolIndex.filter(function(t) {
-      return t.nameZh.toLowerCase().indexOf(q) > -1 || t.nameEn.toLowerCase().indexOf(q) > -1 || t.id.indexOf(q) > -1;
-    });
-    if (!matches.length) { searchResults.classList.remove('show'); return; }
-    searchResults.innerHTML = '';
-    matches.slice(0, 6).forEach(function(t) {
-      var name = currentLang === 'zh' ? t.nameZh : t.nameEn;
-      var div = document.createElement('div');
-      div.className = 'search-result-item';
-      div.innerHTML = '<div class="sri-icon" style="background:' + t.iconBg + '">' + t.icon + '</div><div><div class="sri-name">' + name + '</div></div>';
-      (function(tid){ div.addEventListener('click', function(){ openModal(tid); searchInput.value=''; searchResults.classList.remove('show'); }); })(t.id);
-      searchResults.appendChild(div);
-    });
-    searchResults.classList.add('show');
+searchInput.addEventListener('input', function() {
+  var q = searchInput.value.trim().toLowerCase();
+  if (!q) { searchResults.classList.remove('show'); return; }
+  var matches = toolIndex.filter(function(t) {
+    return t.nameZh.toLowerCase().indexOf(q) > -1 || t.nameEn.toLowerCase().indexOf(q) > -1 || t.id.indexOf(q) > -1;
   });
-  searchInput.addEventListener('blur', function() { setTimeout(function() { searchResults.classList.remove('show'); }, 150); });
-}
+  searchResults.innerHTML = '';
+  if (!matches.length) { searchResults.classList.remove('show'); return; }
+  matches.slice(0, 6).forEach(function(t) {
+    var div = document.createElement('div');
+    div.className = 'search-result-item';
+    var iconHtml = t.fav ? '<img src="' + t.fav + '" width="24" height="24" style="object-fit:contain;border-radius:4px">' : t.icon;
+    div.innerHTML = '<div class="sri-icon">' + iconHtml + '</div><div><div class="sri-name">' + (currentLang==='zh'?t.nameZh:t.nameEn) + '</div></div>';
+    div.addEventListener('click', (function(tid) { return function() { openModal(tid); searchInput.value=''; searchResults.classList.remove('show'); }; })(t.id));
+    searchResults.appendChild(div);
+  });
+  searchResults.classList.add('show');
+});
+searchInput.addEventListener('blur', function() { setTimeout(function() { searchResults.classList.remove('show'); }, 150); });
 
-var catNav = document.getElementById('cat-nav');
-if (catNav) {
-  catNav.addEventListener('click', function(e) {
-    var btn = e.target.closest('.cat-btn');
-    if (!btn) return;
-    document.querySelectorAll('.cat-btn').forEach(function(b) { b.classList.remove('active'); });
-    btn.classList.add('active');
-    if (searchInput) searchInput.value = '';
-    filterCards(btn.dataset.cat);
-  });
-}
+document.getElementById('cat-nav').addEventListener('click', function(e) {
+  var btn = e.target.closest('.cat-btn');
+  if (!btn) return;
+  document.querySelectorAll('.cat-btn').forEach(function(b) { b.classList.remove('active'); });
+  btn.classList.add('active');
+  searchInput.value = '';
+  filterCards(btn.dataset.cat);
+});
 
 function filterCards(cat) {
   currentCat = cat;
-  document.querySelectorAll('#tools-grid .tool-card').forEach(function(c) {
-    c.toggleAttribute('data-hidden', cat !== 'all' && c.dataset.cat !== cat);
-  });
-  document.querySelectorAll('#featured-grid .featured-card').forEach(function(c) {
-    c.toggleAttribute('data-hidden', cat !== 'all' && c.dataset.cat !== cat);
-  });
-  document.querySelectorAll('.cat-btn').forEach(function(b) {
-    if (b.dataset.cat === cat) b.classList.add('active');
-  });
-  updateCount();
-  updateTitle(cat);
+  document.querySelectorAll('#tools-grid .tool-card').forEach(function(c) { c.toggleAttribute('data-hidden', cat !== 'all' && c.dataset.cat !== cat); });
+  document.querySelectorAll('#featured-grid .featured-card').forEach(function(c) { c.toggleAttribute('data-hidden', cat !== 'all' && c.dataset.cat !== cat); });
+  updateCount(); updateTitle(cat);
 }
 
 function updateCount() {
   var n = document.querySelectorAll('#tools-grid .tool-card:not([data-hidden])').length;
   var el = document.getElementById('grid-count');
-  if (el) el.textContent = currentLang === 'zh' ? ('显示 ' + n + ' 款工具') : ('Showing ' + n + ' tools');
+  if (el) el.textContent = currentLang==='zh' ? ('显示 '+n+' 款工具') : ('Showing '+n+' tools');
 }
 
 function updateTitle(cat) {
-  var zh = document.getElementById('grid-title-zh');
-  var en = document.getElementById('grid-title-en');
+  var zh = document.getElementById('grid-title-zh'), en = document.getElementById('grid-title-en');
   if (zh) zh.textContent = catLabels.zh[cat] || '全部工具';
   if (en) en.textContent = catLabels.en[cat] || 'All tools';
 }
 
-(function init() {
-  var saved = '';
-  try { saved = localStorage.getItem('lang') || ''; } catch(e) {}
-  var browserZh = navigator.language && navigator.language.startsWith('zh');
-  setLang(saved || (browserZh ? 'zh' : 'en'));
+function submitNewsletter() {
+  var v = document.getElementById('nl-input').value.trim();
+  if (!v || v.indexOf('@') < 0) { alert(currentLang==='zh'?'请输入有效的邮箱地址':'Please enter a valid email'); return; }
+  alert(currentLang==='zh'?('感谢订阅！将发送至 '+v):('Thanks! Weekly drop will go to '+v));
+  document.getElementById('nl-input').value = '';
+}
+
+function submitTool() {
+  var name = document.getElementById('f-name').value.trim();
+  var url = document.getElementById('f-url').value.trim();
+  var desc = document.getElementById('f-desc').value.trim();
+  if (!name || !url || !desc) { alert(currentLang==='zh'?'请填写所有必填项':'Please fill in all required fields'); return; }
+  alert(currentLang==='zh'?'提交成功！我们会在 3 个工作日内审核。':'Submitted! We will review within 3 business days.');
+  showPage('home');
+}
+
+(function() {
+  var saved = ''; try { saved = localStorage.getItem('lang') || ''; } catch(e) {}
+  setLang(saved || (navigator.language && navigator.language.startsWith('zh') ? 'zh' : 'en'));
   updateCount();
 })();
 </script>
