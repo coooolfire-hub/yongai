@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>用AI — AI 工具导航 | AI Tools Directory</title>
-<meta name="description" content="精选 AI 工具评测，面向独立开发者和创作者。Curated AI tool reviews for indie builders and creators.">
+<meta name="description" content="AI 提示词技巧专栏，精选各工具的高效使用方法。Curated AI prompt library and skill guides organized by tool and use case.">
 <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="16" fill="%231d1d1f"/><text x="32" y="42" font-size="28" text-anchor="middle" fill="white" font-family="Arial">AI</text></svg>'>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Noto+Serif+SC:wght@400;600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
@@ -238,9 +238,165 @@ footer{border-top:1px solid var(--paper-3);padding:28px 32px;display:flex;align-
 .mini-list{padding-left:18px}
 .mini-list li{margin-bottom:5px}
 .page{display:none}.page.active{display:block}
-@media(max-width:900px){.hero{grid-template-columns:1fr;text-align:center}.hero-copy{max-width:none}.hero p{margin-left:auto;margin-right:auto}.hero-actions{justify-content:center}.hero-visual{display:none}.featured-grid{grid-template-columns:1fr 1fr}.modal-pros-cons{grid-template-columns:1fr}}
-@media(max-width:600px){nav.topnav{padding:0 16px;gap:10px}.main{padding:0 16px 60px}.hero{padding:48px 16px 40px}.featured-grid{grid-template-columns:1fr}.nl-form{flex-direction:column}footer{flex-direction:column;gap:16px;text-align:center}.nav-links{display:none}.stats{gap:20px}.ph-grid,.decision-grid{grid-template-columns:1fr}}
+.hero-copy{max-width:none}.hero p{margin-left:auto;margin-right:auto}.hero-actions{justify-content:center}.hero-visual{display:none}.featured-grid{grid-template-columns:1fr 1fr}.modal-pros-cons{grid-template-columns:1fr}}
+.main{padding:0 16px 60px}.hero{padding:48px 16px 40px}.featured-grid{grid-template-columns:1fr}.nl-form{flex-direction:column}footer{flex-direction:column;gap:16px;text-align:center}.nav-links{display:none}.stats{gap:20px}.ph-grid,.decision-grid{grid-template-columns:1fr}}
+
+/* ═══ MOBILE OPTIMIZATIONS ═══ */
+@media(max-width:768px){
+
+  /* NAV */
+  nav.topnav{height:52px;padding:0 16px;gap:8px}
+  .nav-logo{font-size:18px}
+  .nav-links{display:none}
+  .lang-switcher{margin-left:auto}
+  .lang-btn{padding:4px 9px;font-size:11px}
+  .nav-submit{padding:7px 12px;font-size:12px}
+
+  /* HERO */
+  .hero{padding:32px 16px 28px;text-align:center}
+  .hero-copy h1{font-size:clamp(26px,7vw,36px);line-height:1.2;letter-spacing:-.5px}
+  .hero-copy p{font-size:15px;line-height:1.6}
+  .hero-badge{font-size:11px;padding:4px 12px;margin-bottom:14px}
+  .hero-btns{flex-direction:column;gap:10px;align-items:center}
+  .hero-btns .btn-primary,.hero-btns .btn-outline{width:100%;max-width:280px;text-align:center;padding:13px 20px;font-size:15px}
+  .hero-image,.hero-visual{display:none}
+  .hero{grid-template-columns:1fr}
+
+  /* SEARCH */
+  .search-wrap{margin-top:20px}
+  .search-input{font-size:16px;padding:13px 16px 13px 42px} /* 16px prevents iOS zoom */
+
+  /* STATS */
+  .stats{gap:0;flex-wrap:wrap}
+  .stat-item{flex:1 1 45%;padding:14px 8px;text-align:center;min-width:80px}
+  .stat-num{font-size:22px}
+  .stat-label{font-size:11px}
+
+  /* CATEGORY NAV */
+  .cat-nav{padding:16px 0 12px;gap:6px;overflow-x:auto;flex-wrap:nowrap;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:4px}
+  .cat-nav::-webkit-scrollbar{display:none}
+  .cat-btn{white-space:nowrap;padding:7px 12px;font-size:12px;flex-shrink:0}
+
+  /* SECTION HEADERS */
+  .section-header{margin-bottom:14px}
+  .section-title{font-size:18px}
+
+  /* FEATURED GRID */
+  .featured-grid{grid-template-columns:1fr;gap:12px;margin-bottom:28px}
+  .featured-card{padding:18px}
+  .fc-icon{width:42px;height:42px;font-size:20px}
+  .fc-name{font-size:15px}
+  .fc-desc{font-size:13px;margin-bottom:12px}
+
+  /* TOOLS GRID */
+  .tools-grid{grid-template-columns:1fr;gap:10px;margin-bottom:28px}
+  .tool-card{padding:14px 14px}
+  .tc-icon{width:36px;height:36px;font-size:18px}
+  .tc-name{font-size:13px}
+  .tc-desc{font-size:12px;line-height:1.45}
+
+  /* PRODUCT HUNT */
+  .ph-grid{grid-template-columns:1fr;gap:8px}
+  .ph-card{padding:12px 14px}
+  .ph-icon{width:38px;height:38px;font-size:18px}
+  .ph-name{font-size:13px}
+  .ph-desc{font-size:11px}
+  .ph-votes{font-size:11px;padding:3px 8px}
+
+  /* NEWSLETTER */
+  .newsletter{padding:28px 16px;border-radius:14px;margin:0 0 28px}
+  .nl-title{font-size:22px;margin-bottom:8px}
+  .nl-sub{font-size:13px;margin-bottom:20px}
+  .nl-form{flex-direction:column;gap:8px}
+  .nl-input{padding:12px 14px;font-size:16px;border-radius:10px}
+  .nl-btn{padding:12px;font-size:14px;border-radius:10px;width:100%}
+
+  /* MODAL */
+  .modal-overlay{padding:0;align-items:flex-end}
+  .modal{border-radius:20px 20px 0 0;max-height:92vh}
+  .modal-hero{padding:20px 20px 0}
+  .modal-body{padding:0 20px 32px}
+  .modal-icon{width:52px;height:52px;font-size:26px}
+  .modal-title{font-size:18px}
+  .modal-tagline{font-size:13px}
+  .modal-section-title{font-size:11px}
+  .modal-text{font-size:14px}
+  .modal-pros-cons{grid-template-columns:1fr;gap:10px}
+  .pricing-grid{grid-template-columns:repeat(auto-fit,minmax(90px,1fr))}
+  .pricing-price{font-size:16px}
+  .modal-cta{gap:8px}
+  .btn-primary,.btn-secondary{padding:11px 18px;font-size:14px;flex:1;text-align:center}
+  .modal-close{top:12px;right:12px;width:30px;height:30px;font-size:14px}
+
+  /* TUTORIAL & REVIEWS in modal */
+  .tutorial-steps{gap:10px}
+  .tutorial-step{padding:12px}
+  .step-num{width:24px;height:24px;font-size:12px;flex-shrink:0}
+  .review-card{padding:14px}
+  .review-stars{font-size:13px}
+  .review-text{font-size:13px}
+
+  /* FOOTER */
+  footer{flex-direction:column;gap:12px;text-align:center;padding:20px 16px}
+  .footer-links{flex-wrap:wrap;justify-content:center;gap:12px}
+  .footer-links a{font-size:13px}
+
+  /* MAIN PADDING */
+  .main{padding:0 16px 48px}
+
+  /* DECISION / COMPARE SECTION */
+  .decision-grid{grid-template-columns:1fr}
+  .decision-card{padding:16px}
+
+  /* TRUST NOTE */
+  .trust-note{font-size:12px;padding:10px 14px;border-radius:8px;margin-bottom:16px}
+
+  /* ARTICLE CARDS */
+  .articles-grid{grid-template-columns:1fr;gap:10px}
+  .article-card{padding:18px}
+  .article-title{font-size:15px}
+  .article-desc{font-size:13px}
+
+  /* ART (article detail) */
+  .art-h1{font-size:clamp(18px,5vw,24px)}
+  .art-table-wrap{margin:10px -4px 16px;border-radius:8px}
+  .art-table{font-size:12px}
+  .art-table th,.art-table td{padding:7px 9px}
+  .art-faq{gap:8px}
+  .fq{padding:12px}
+  .fq-q{font-size:13px}
+  .fq-a{font-size:12px}
+
+  /* SKILLS */
+  .skills-grid{grid-template-columns:1fr}
+  .skill-card{padding:16px}
+
+  /* COMPARE */
+  .compare-table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .compare-table{font-size:12px;min-width:500px}
+
+  /* GENERAL */
+  h2{font-size:17px}
+  p{font-size:14px}
+}
+
+/* SMALL PHONES */
+@media(max-width:375px){
+  .hero-copy h1{font-size:24px}
+  .stat-num{font-size:20px}
+  .nav-submit{display:none}
+}
+
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How to write effective AI prompts for productivity",
+  "description": "A curated library of proven AI prompts and skill guides for indie developers and creators, organized by tool and use case.",
+  "url": "https://yongai.online/skills.html"
+}
+</script>
 </head>
 <body data-page="skills">
 
