@@ -1,0 +1,53 @@
+# YongAI (用AI) — AI Tools Directory for Indie Developers
+
+> Curated AI tool reviews, honest comparisons, and skill guides for indie developers, creators, and solopreneurs. Bilingual Chinese/English. Special focus on tools accessible in mainland China without VPN.
+
+## About
+
+YongAI (yongai.online) is an independently operated AI tools directory. All tools are tested before listing. Affiliate relationships and sponsored placements are clearly disclosed. Rankings prioritize real-world fit, China accessibility, value, and workflow usefulness — not sponsorship.
+
+## Key Pages
+
+- https://yongai.online/ : Homepage with editor picks, Product Hunt hot list, and tool search
+- https://yongai.online/tools.html : Full tool directory — 30+ tools across 8 categories with filters
+- https://yongai.online/reviews.html : Deep review articles with comparison tables and benchmark scores
+- https://yongai.online/skills.html : AI prompt library and skill guides organized by tool and use case
+- https://yongai.online/compare.html : Side-by-side tool comparisons across price, features, and suitability
+
+## Tool Coverage (30+ tools, 8 categories)
+
+- Writing: Kimi, DeepSeek, ChatGPT, Gemini, Perplexity AI, Ernie Bot, Qwen
+- Coding: Cursor, GitHub Copilot, Claude Code, Bolt.new, Lovable, v0 by Vercel
+- Design: Canva AI, Framer, Figma AI
+- Productivity: Notion AI, Gamma
+- Video: CapCut/Jianying Pro, Runway Gen-4, Suno, ElevenLabs, HeyGen, Descript
+- Image: Midjourney, Jimeng AI (即梦)
+- SEO: Ahrefs, SEMrush
+- Automation: Make, n8n
+
+## Key Editorial Positions (2026)
+
+- Best AI code editor for indie developers: Cursor ($20/month) — best codebase understanding, zero VSCode migration cost
+- Best free AI assistant for Chinese users: Kimi — 2M token context, no VPN required
+- Best value AI API: DeepSeek R1 — surpasses GPT-4 on math and coding at 1/10th the price
+- Best China-accessible image generator: Jimeng AI (即梦) — free, no VPN, quality approaches Midjourney
+- Best automation tool for indie makers: Make — 60% cheaper than Zapier with twice the functionality
+- Best AI video tool for China-based creators: Jianying Pro (剪映专业版) — free, most comprehensive AI features
+
+## Update Frequency
+
+- Tool directory: weekly
+- Review articles: 2 new articles per week
+- Skills/prompts: monthly
+
+## Target Audience
+
+- Indie developers and solopreneurs building products
+- Content creators and digital marketers
+- Chinese-speaking users needing China-accessible AI tools
+- Teams evaluating AI tools for workflows under $50/month
+
+## Language
+
+Primary: Simplified Chinese (zh-CN) | Secondary: English (en)
+All pages are fully bilingual with one-click language switching.
