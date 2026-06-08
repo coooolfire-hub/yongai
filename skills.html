@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>用AI — AI 工具导航 | AI Tools Directory</title>
-<meta name="description" content="AI 提示词技巧专栏，精选各工具的高效使用方法和提示词模板。Curated AI prompt library and skill guides for Cursor, Kimi, DeepSeek, Midjourney and more.">
+<meta name="description" content="精选 AI 工具评测，面向独立开发者和创作者。Curated AI tool reviews for indie builders and creators.">
 <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="16" fill="%231d1d1f"/><text x="32" y="42" font-size="28" text-anchor="middle" fill="white" font-family="Arial">AI</text></svg>'>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Noto+Serif+SC:wght@400;600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
@@ -241,6 +241,60 @@ footer{border-top:1px solid var(--paper-3);padding:28px 32px;display:flex;align-
 @media(max-width:900px){.hero{grid-template-columns:1fr;text-align:center}.hero-copy{max-width:none}.hero p{margin-left:auto;margin-right:auto}.hero-actions{justify-content:center}.hero-visual{display:none}.featured-grid{grid-template-columns:1fr 1fr}.modal-pros-cons{grid-template-columns:1fr}}
 @media(max-width:600px){nav.topnav{padding:0 16px;gap:10px}.main{padding:0 16px 60px}.hero{padding:48px 16px 40px}.featured-grid{grid-template-columns:1fr}.nl-form{flex-direction:column}footer{flex-direction:column;gap:16px;text-align:center}.nav-links{display:none}.stats{gap:20px}.ph-grid,.decision-grid{grid-template-columns:1fr}}
 
+/* ═══ SCENARIO SECTION ═══ */
+.scenario-section{margin-bottom:48px}
+.scenario-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;margin-top:4px}
+.scenario-card{background:white;border:1px solid rgba(0,0,0,.08);border-radius:14px;padding:22px;cursor:pointer;transition:transform .18s,box-shadow .18s;position:relative;overflow:hidden}
+.scenario-card::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#06c,#5ac8fa)}
+.scenario-card:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,0,0,.09)}
+.sc-icon{font-size:28px;margin-bottom:12px}
+.sc-title{font-size:16px;font-weight:700;color:#1d1d1f;margin-bottom:6px;letter-spacing:-.2px}
+.sc-desc{font-size:13px;color:#6e6e73;line-height:1.55;margin-bottom:14px}
+.sc-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.sc-tag{font-size:11px;color:#06c;background:#e8f0fb;padding:2px 8px;border-radius:100px;font-weight:500}
+.sc-meta{display:flex;align-items:center;justify-content:space-between}
+.sc-cost{font-size:12px;color:#1a7f37;font-weight:600;background:#eaf3ee;padding:3px 10px;border-radius:100px}
+.sc-arrow{font-size:14px;color:#06c;font-weight:600}
+
+/* ═══ SCENARIO DETAIL ═══ */
+.scene-detail{display:none}
+.scene-back{font-size:14px;color:#06c;cursor:pointer;font-weight:500;padding:0 0 20px;display:inline-block}
+.scene-back:hover{opacity:.8}
+.scene-hero{margin-bottom:28px;padding-bottom:24px;border-bottom:1px solid #e8e8ed}
+.scene-icon{font-size:40px;margin-bottom:10px}
+.scene-h1{font-size:clamp(22px,3.5vw,32px);font-weight:700;letter-spacing:-.5px;color:#1d1d1f;margin-bottom:10px;line-height:1.2}
+.scene-sub{font-size:15px;color:#6e6e73;margin-bottom:16px;line-height:1.6}
+.scene-verdict{background:#f0f6ff;border-left:4px solid #06c;border-radius:0 10px 10px 0;padding:14px 18px;font-size:14px;line-height:1.7;color:#3d3d3f}
+.scene-h2{font-size:19px;font-weight:700;color:#1d1d1f;margin:28px 0 12px;letter-spacing:-.3px}
+.scene-h3{font-size:15px;font-weight:600;color:#1d1d1f;margin:18px 0 8px}
+.scene-p{font-size:14px;color:#3d3d3f;line-height:1.8;margin-bottom:12px}
+.stack-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px;margin:12px 0 24px}
+.stack-card{background:white;border:1px solid rgba(0,0,0,.08);border-radius:12px;padding:16px;display:flex;gap:12px;align-items:flex-start}
+.stack-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;background:#f5f5f7;overflow:hidden}
+.stack-body{flex:1;min-width:0}
+.stack-name{font-size:14px;font-weight:600;color:#1d1d1f;margin-bottom:3px}
+.stack-role{font-size:12px;color:#06c;font-weight:500;margin-bottom:4px}
+.stack-desc{font-size:12px;color:#6e6e73;line-height:1.5}
+.stack-price{font-size:11px;color:#1a7f37;font-weight:600;background:#eaf3ee;padding:2px 7px;border-radius:100px;display:inline-block;margin-top:6px}
+.steps-list{display:flex;flex-direction:column;gap:14px;margin:12px 0 24px}
+.step-item{display:flex;gap:14px;align-items:flex-start}
+.step-num{width:28px;height:28px;border-radius:50%;background:#06c;color:white;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.step-body{flex:1}
+.step-title{font-size:14px;font-weight:600;color:#1d1d1f;margin-bottom:4px}
+.step-desc{font-size:13px;color:#6e6e73;line-height:1.6}
+.step-tools{font-size:12px;color:#06c;margin-top:4px;font-weight:500}
+.cost-table{width:100%;border-collapse:collapse;margin:12px 0 24px;border-radius:10px;overflow:hidden;border:1px solid #e8e8ed}
+.cost-table th{background:#f5f5f7;padding:10px 14px;text-align:left;font-size:13px;font-weight:600;color:#1d1d1f}
+.cost-table td{padding:10px 14px;border-top:1px solid #e8e8ed;font-size:13px;color:#3d3d3f}
+.cost-total td{font-weight:700;color:#1d1d1f;background:#f0f6ff}
+.scene-faq{display:flex;flex-direction:column;gap:10px;margin-top:12px}
+.sfaq{background:white;border:1px solid rgba(0,0,0,.08);border-radius:10px;padding:14px}
+.sfaq-q{font-size:14px;font-weight:600;color:#1d1d1f;margin-bottom:6px}
+.sfaq-a{font-size:13px;color:#3d3d3f;line-height:1.7}
+.cn-badge{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:500;padding:2px 8px;border-radius:100px;background:#eaf3ee;color:#1a7f37}
+.vpn-badge{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:500;padding:2px 8px;border-radius:100px;background:#fff3cd;color:#856404}
+@media(max-width:600px){.stack-grid{grid-template-columns:1fr}.scenario-grid{grid-template-columns:1fr}}
+
 @media(max-width:600px){
   .tools-grid{grid-template-columns:1fr}
   .cat-nav{overflow-x:auto;flex-wrap:nowrap;-webkit-overflow-scrolling:touch;padding-bottom:4px}
@@ -256,12 +310,10 @@ footer{border-top:1px solid var(--paper-3);padding:28px 32px;display:flex;align-
   .nl-form{flex-direction:column;gap:8px}
   .nl-btn{width:100%}
   .skills-grid{grid-template-columns:1fr}
-  .compare-table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .scenario-grid{grid-template-columns:1fr}
+  .stack-grid{grid-template-columns:1fr}
 }
 </style>
-
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"AI 提示词技巧专栏 — YongAI Skills","description":"精选 AI 工具高效使用提示词和技巧，按工具和使用场景分类整理。Curated AI prompt library and skill guides organized by tool and use case.","url":"https://yongai.online/skills.html"}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","name":"Best AI Prompts for Indie Developers 2026","url":"https://yongai.online/skills.html","itemListElement":[{"@type":"ListItem","position":1,"name":"Kimi 长文档分析提示词","description":"让 Kimi 把100页报告变成一页结论的结构化提示词模板"},{"@type":"ListItem","position":2,"name":"Cursor 代码库重构提示词","description":"让 Cursor 理解重构意图、减少反复修改的提示词框架"},{"@type":"ListItem","position":3,"name":"DeepSeek 复杂推理解题框架","description":"激活 R1 模型完整推理能力的五步框架提示词"},{"@type":"ListItem","position":4,"name":"Midjourney 商业产品图提示词","description":"生成可直接用于电商的高质量产品图提示词模板"},{"@type":"ListItem","position":5,"name":"Claude Code 大项目任务规划提示词","description":"让 Claude Code 先规划后执行、避免混乱的提示词结构"}]}</script>
 </head>
 <body data-page="skills">
 
@@ -389,6 +441,391 @@ footer{border-top:1px solid var(--paper-3);padding:28px 32px;display:flex;align-
   </div>
   <div class="verdict-box" id="compare-empty"><div class="verdict-text zh">点击工具卡片右下角的 +，选择 2 到 4 款工具后即可横向对比价格、评分、国内可用性、适合人群和核心功能。</div><div class="verdict-text en">Tap the + on tool cards to compare 2 to 4 tools by pricing, rating, China availability, best fit, and features.</div></div>
   <div class="compare-table-wrap" id="compare-table-wrap"><table class="compare-table" id="compare-table"></table></div>
+</div>
+
+
+<!-- SCENARIO SOLUTIONS -->
+<div class="scenario-section" id="scenario-section">
+  <div class="section-header">
+    <h2 class="section-title zh">场景解决方案</h2>
+    <h2 class="section-title en">Scenario Playbooks</h2>
+    <span class="section-link zh">选择你的场景，获取完整工具组合</span>
+    <span class="section-link en">Pick your scenario, get the full tool stack</span>
+  </div>
+  <div class="scenario-grid">
+    <div class="scenario-card" onclick="openScene('indie')">
+      <div class="sc-icon">🚀</div>
+      <div class="sc-title zh">一个人从零做独立产品</div>
+      <div class="sc-title en">Building an indie product solo from zero</div>
+      <div class="sc-desc zh">从想法到上线，6 个工具覆盖产品开发全流程，不需要团队，不需要代理商。</div>
+      <div class="sc-desc en">From idea to launch, 6 tools covering the full indie product workflow. No team, no agency.</div>
+      <div class="sc-tags"><span class="sc-tag zh">编程</span><span class="sc-tag en">Coding</span><span class="sc-tag zh">设计</span><span class="sc-tag en">Design</span><span class="sc-tag zh">运营</span><span class="sc-tag en">Marketing</span></div>
+      <div class="sc-meta"><span class="sc-cost">≈ $31/月</span><span class="sc-arrow">查看方案 →</span></div>
+    </div>
+    <div class="scenario-card" onclick="openScene('video')">
+      <div class="sc-icon">🎬</div>
+      <div class="sc-title zh">做短视频但不想出镜</div>
+      <div class="sc-title en">Making short-form videos without showing your face</div>
+      <div class="sc-desc zh">用 AI 数字人、语音克隆、自动字幕，一个人做出专业级短视频内容。</div>
+      <div class="sc-desc en">AI avatars, voice cloning, and auto-captions. One person, professional video output.</div>
+      <div class="sc-tags"><span class="sc-tag zh">视频</span><span class="sc-tag en">Video</span><span class="sc-tag zh">内容创作</span><span class="sc-tag en">Content</span></div>
+      <div class="sc-meta"><span class="sc-cost">≈ $0–29/月</span><span class="sc-arrow">查看方案 →</span></div>
+    </div>
+    <div class="scenario-card" onclick="openScene('landing')">
+      <div class="sc-icon">⚡</div>
+      <div class="sc-title zh">30 分钟做出一个 Landing Page</div>
+      <div class="sc-title en">Launch a Landing Page in 30 minutes</div>
+      <div class="sc-desc zh">不需要设计师，不需要程序员，用 AI 工具组合快速验证你的产品想法。</div>
+      <div class="sc-desc en">No designer, no developer needed. Validate your product idea fast with AI tools.</div>
+      <div class="sc-tags"><span class="sc-tag zh">建站</span><span class="sc-tag en">Website</span><span class="sc-tag zh">MVP</span></div>
+      <div class="sc-meta"><span class="sc-cost">≈ $5/月</span><span class="sc-arrow">查看方案 →</span></div>
+    </div>
+    <div class="scenario-card" onclick="openScene('overseas')">
+      <div class="sc-icon">🌍</div>
+      <div class="sc-title zh">把中文产品推向海外市场</div>
+      <div class="sc-title en">Taking your Chinese product global</div>
+      <div class="sc-desc zh">翻译、本地化、海外内容运营，全流程 AI 工具方案，低成本打入英语市场。</div>
+      <div class="sc-desc en">Translation, localization, overseas content ops. Full AI stack for breaking into English markets.</div>
+      <div class="sc-tags"><span class="sc-tag zh">出海</span><span class="sc-tag en">Overseas</span><span class="sc-tag">SEO</span></div>
+      <div class="sc-meta"><span class="sc-cost">≈ $29/月</span><span class="sc-arrow">查看方案 →</span></div>
+    </div>
+    <div class="scenario-card" onclick="openScene('content')">
+      <div class="sc-icon">✍️</div>
+      <div class="sc-title zh">一个人运营一个公众号</div>
+      <div class="sc-title en">Running a content channel solo</div>
+      <div class="sc-desc zh">选题、写作、配图、排版、数据分析，AI 把公众号运营成本降到最低。</div>
+      <div class="sc-desc en">Topic research, writing, visuals, layout, analytics. AI cuts solo content op costs to near zero.</div>
+      <div class="sc-tags"><span class="sc-tag zh">写作</span><span class="sc-tag en">Writing</span><span class="sc-tag zh">自媒体</span><span class="sc-tag en">Media</span></div>
+      <div class="sc-meta"><span class="sc-cost">≈ $0/月</span><span class="sc-arrow">查看方案 →</span></div>
+    </div>
+    <div class="scenario-card" onclick="openScene('document')">
+      <div class="sc-icon">📄</div>
+      <div class="sc-title zh">处理大量文档和合同</div>
+      <div class="sc-title en">Processing large volumes of documents and contracts</div>
+      <div class="sc-desc zh">律师、咨询师、研究员必备，AI 读懂百页文档，找风险条款，生成摘要。</div>
+      <div class="sc-desc en">Essential for lawyers, consultants, researchers. AI reads 100-page docs, flags risks, summarizes.</div>
+      <div class="sc-tags"><span class="sc-tag zh">文档</span><span class="sc-tag en">Documents</span><span class="sc-tag zh">法律</span><span class="sc-tag en">Legal</span></div>
+      <div class="sc-meta"><span class="sc-cost">≈ $0/月</span><span class="sc-arrow">查看方案 →</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- SCENE DETAIL PAGES -->
+<div id="scene-indie" class="scene-detail">
+  <span class="scene-back" onclick="closeScene()">← <span class="zh">返回场景列表</span><span class="en">Back to scenarios</span></span>
+  <div class="scene-hero">
+    <div class="scene-icon">🚀</div>
+    <h1 class="scene-h1 zh">一个人从零做独立产品</h1>
+    <h1 class="scene-h1 en">Building an indie product solo from zero</h1>
+    <div class="scene-sub zh">适合：独立开发者、非技术创始人、想做 SaaS 或工具产品的个人创业者</div>
+    <div class="scene-sub en">For: indie developers, non-technical founders, solopreneurs building SaaS or tool products</div>
+    <div class="scene-verdict">
+      <div class="zh"><strong>核心结论：</strong>用 Cursor + Framer + DeepSeek API + 即梦 AI + Make + Kimi 这 6 个工具，月花费约 $31，可以覆盖独立产品从立项到上线运营的全流程。这个组合比雇一个兼职设计师+程序员便宜 95%，速度快 10 倍。</div>
+      <div class="en"><strong>Bottom line:</strong> Cursor + Framer + DeepSeek API + Jimeng AI + Make + Kimi — 6 tools, ~$31/month, covering the full indie product lifecycle from idea to live. This stack is 95% cheaper than hiring part-time designers and developers, and 10x faster.</div>
+    </div>
+  </div>
+
+  <h2 class="scene-h2 zh">工具组合</h2>
+  <h2 class="scene-h2 en">The tool stack</h2>
+  <div class="stack-grid">
+    <div class="stack-card">
+      <div class="stack-icon"><img src="https://www.google.com/s2/favicons?domain=cursor.com&sz=64" width="40" height="40" style="border-radius:8px"></div>
+      <div class="stack-body">
+        <div class="stack-name">Cursor</div>
+        <div class="stack-role zh">核心开发</div><div class="stack-role en">Core development</div>
+        <div class="stack-desc zh">写代码、修 Bug、新功能开发。理解整个代码库，Tab 补全每小时省 25 分钟。</div>
+        <div class="stack-desc en">Write code, fix bugs, build features. Understands your whole codebase. Tab completion saves 25 min/hour.</div>
+        <span class="stack-price">$20/月</span>
+        <span class="vpn-badge">需网络</span>
+      </div>
+    </div>
+    <div class="stack-card">
+      <div class="stack-icon"><img src="https://www.google.com/s2/favicons?domain=framer.com&sz=64" width="40" height="40" style="border-radius:8px"></div>
+      <div class="stack-body">
+        <div class="stack-name">Framer</div>
+        <div class="stack-role zh">官网 / Landing Page</div><div class="stack-role en">Website / Landing Page</div>
+        <div class="stack-desc zh">描述你的产品，AI 生成完整网站，30 分钟上线。内置 SEO 和 CMS。</div>
+        <div class="stack-desc en">Describe your product, AI generates the full site, live in 30 minutes. Built-in SEO and CMS.</div>
+        <span class="stack-price">$5/月起</span>
+        <span class="vpn-badge">需网络</span>
+      </div>
+    </div>
+    <div class="stack-card">
+      <div class="stack-icon"><img src="https://www.google.com/s2/favicons?domain=chat.deepseek.com&sz=64" width="40" height="40" style="border-radius:8px"></div>
+      <div class="stack-body">
+        <div class="stack-name">DeepSeek API</div>
+        <div class="stack-role zh">AI 能力接入</div><div class="stack-role en">AI capability layer</div>
+        <div class="stack-desc zh">给产品加 AI 功能。数学推理和代码质量超过 GPT-4，价格是 OpenAI 的十分之一。</div>
+        <div class="stack-desc en">Add AI features to your product. Beats GPT-4 on reasoning and code at 1/10th the price.</div>
+        <span class="stack-price">≈¥10/月</span>
+        <span class="cn-badge">国内可用</span>
+      </div>
+    </div>
+    <div class="stack-card">
+      <div class="stack-icon"><img src="https://www.google.com/s2/favicons?domain=jimeng.jianying.com&sz=64" width="40" height="40" style="border-radius:8px"></div>
+      <div class="stack-body">
+        <div class="stack-name zh">即梦 AI</div><div class="stack-name en">Jimeng AI</div>
+        <div class="stack-role zh">产品图 / 营销素材</div><div class="stack-role en">Product images / Marketing assets</div>
+        <div class="stack-desc zh">生成产品配图、Banner、社媒素材。中文描述效果极佳，无需 VPN，完全免费。</div>
+        <div class="stack-desc en">Generate product images, banners, social assets. Excellent Chinese prompts, no VPN needed, free.</div>
+        <span class="stack-price zh">免费</span><span class="stack-price en">Free</span>
+        <span class="cn-badge">国内可用</span>
+      </div>
+    </div>
+    <div class="stack-card">
+      <div class="stack-icon"><img src="https://www.google.com/s2/favicons?domain=make.com&sz=64" width="40" height="40" style="border-radius:8px"></div>
+      <div class="stack-body">
+        <div class="stack-name">Make</div>
+        <div class="stack-role zh">自动化运营</div><div class="stack-role en">Automated operations</div>
+        <div class="stack-desc zh">自动化用户通知、数据同步、内容分发。比 Zapier 便宜 60%，功能更强。</div>
+        <div class="stack-desc en">Automate user notifications, data sync, content distribution. 60% cheaper than Zapier, more powerful.</div>
+        <span class="stack-price">$9/月</span>
+        <span class="vpn-badge">需网络</span>
+      </div>
+    </div>
+    <div class="stack-card">
+      <div class="stack-icon"><img src="https://www.google.com/s2/favicons?domain=kimi.moonshot.cn&sz=64" width="40" height="40" style="border-radius:8px"></div>
+      <div class="stack-body">
+        <div class="stack-name">Kimi</div>
+        <div class="stack-role zh">文档 / 调研 / 写作</div><div class="stack-role en">Docs / Research / Writing</div>
+        <div class="stack-desc zh">读竞品分析报告、写产品文案、处理合同。200 万字上下文，完全免费。</div>
+        <div class="stack-desc en">Read competitor reports, write product copy, handle contracts. 2M token context, completely free.</div>
+        <span class="stack-price zh">免费</span><span class="stack-price en">Free</span>
+        <span class="cn-badge">国内可用</span>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="scene-h2 zh">一步步怎么做</h2>
+  <h2 class="scene-h2 en">Step-by-step workflow</h2>
+  <div class="steps-list">
+    <div class="step-item">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <div class="step-title zh">验证想法（1-2天）</div>
+        <div class="step-title en">Validate the idea (1-2 days)</div>
+        <div class="step-desc zh">用 Kimi 上传竞品的文档、产品页、用户评价，让它分析市场空白和差异化机会。再用 Perplexity 搜索相关关键词，看看现有解决方案的不足。</div>
+        <div class="step-desc en">Upload competitor docs, product pages, and user reviews to Kimi. Ask it to identify market gaps and differentiation opportunities. Use Perplexity to search related keywords and find gaps in existing solutions.</div>
+        <div class="step-tools zh">🛠 工具：Kimi + Perplexity</div>
+        <div class="step-tools en">🛠 Tools: Kimi + Perplexity</div>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <div class="step-title zh">做 Landing Page（30分钟）</div>
+        <div class="step-title en">Build Landing Page (30 minutes)</div>
+        <div class="step-desc zh">在 Framer 里用一段话描述你的产品定位，AI 生成完整的 Landing Page。调整文案和颜色，绑定域名，发布上线。先有落地页再写代码，可以先收集意向用户。</div>
+        <div class="step-desc en">In Framer, describe your product positioning in one paragraph. AI generates a complete Landing Page. Adjust copy and colors, bind your domain, publish. Having the landing page before writing code lets you collect interested users first.</div>
+        <div class="step-tools zh">🛠 工具：Framer</div>
+        <div class="step-tools en">🛠 Tools: Framer</div>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <div class="step-title zh">开发产品（持续进行）</div>
+        <div class="step-title en">Build the product (ongoing)</div>
+        <div class="step-desc zh">用 Cursor 写代码。新功能用 Composer 模式描述需求，Cursor 自动修改多个文件。遇到复杂问题先问 Kimi 或 DeepSeek 设计方案，再让 Cursor 实现。如果完全不会写代码，用 Lovable 或 Bolt.new 替代 Cursor。</div>
+        <div class="step-desc en">Use Cursor to write code. For new features, describe requirements in Composer mode — Cursor automatically edits multiple files. For complex problems, ask Kimi or DeepSeek to design the approach, then let Cursor implement it. If you cannot code, replace Cursor with Lovable or Bolt.new.</div>
+        <div class="step-tools zh">🛠 工具：Cursor（或 Lovable）+ Kimi + DeepSeek</div>
+        <div class="step-tools en">🛠 Tools: Cursor (or Lovable) + Kimi + DeepSeek</div>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">4</div>
+      <div class="step-body">
+        <div class="step-title zh">做产品图和营销素材（随时）</div>
+        <div class="step-title en">Create product visuals and marketing assets (as needed)</div>
+        <div class="step-desc zh">用即梦 AI 生成产品 Banner、App Store 截图背景、社媒配图。中文描述直接用，无需 VPN，每天免费额度够用。</div>
+        <div class="step-desc en">Use Jimeng AI to generate product banners, App Store screenshot backgrounds, and social media assets. Chinese descriptions work great, no VPN needed, free daily quota is sufficient.</div>
+        <div class="step-tools zh">🛠 工具：即梦 AI</div>
+        <div class="step-tools en">🛠 Tools: Jimeng AI</div>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">5</div>
+      <div class="step-body">
+        <div class="step-title zh">上线后自动化运营</div>
+        <div class="step-title en">Automate operations after launch</div>
+        <div class="step-desc zh">用 Make 把重复工作自动化：新用户注册发欢迎邮件、收到付款发通知、每周自动生成数据报告。设置一次，永远自动运行。</div>
+        <div class="step-desc en">Use Make to automate repetitive work: welcome emails for new signups, payment notifications, weekly automated data reports. Set it up once, runs forever.</div>
+        <div class="step-tools zh">🛠 工具：Make</div>
+        <div class="step-tools en">🛠 Tools: Make</div>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">6</div>
+      <div class="step-body">
+        <div class="step-title zh">持续迭代：用 AI 处理用户反馈</div>
+        <div class="step-title en">Iterate: use AI to process user feedback</div>
+        <div class="step-desc zh">把用户反馈、支持邮件、评论截图发给 Kimi，让它归纳高频问题和改进方向。用 DeepSeek 分析数据，用 Cursor 快速实现改动。</div>
+        <div class="step-desc en">Send user feedback, support emails, and review screenshots to Kimi. Ask it to identify frequent issues and improvement directions. Use DeepSeek to analyze data, Cursor to implement changes fast.</div>
+        <div class="step-tools zh">🛠 工具：Kimi + DeepSeek + Cursor</div>
+        <div class="step-tools en">🛠 Tools: Kimi + DeepSeek + Cursor</div>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="scene-h2 zh">每月费用明细</h2>
+  <h2 class="scene-h2 en">Monthly cost breakdown</h2>
+  <table class="cost-table">
+    <thead><tr><th class="zh">工具</th><th class="en">Tool</th><th class="zh">用途</th><th class="en">Purpose</th><th class="zh">费用</th><th class="en">Cost</th></tr></thead>
+    <tbody>
+      <tr><td>Cursor</td><td>Cursor</td><td class="zh">日常编程</td><td class="en">Daily coding</td><td>$20/月</td><td>$20/mo</td></tr>
+      <tr><td>Framer</td><td>Framer</td><td class="zh">官网建站</td><td class="en">Website</td><td>$5/月</td><td>$5/mo</td></tr>
+      <tr><td>DeepSeek API</td><td>DeepSeek API</td><td class="zh">产品 AI 能力</td><td class="en">Product AI</td><td>≈¥10</td><td>≈$1.5</td></tr>
+      <tr><td class="zh">即梦 AI</td><td class="en">Jimeng AI</td><td class="zh">图像素材</td><td class="en">Visuals</td><td class="zh">免费</td><td class="en">Free</td></tr>
+      <tr><td>Make</td><td>Make</td><td class="zh">自动化</td><td class="en">Automation</td><td>$9/月</td><td>$9/mo</td></tr>
+      <tr><td>Kimi</td><td>Kimi</td><td class="zh">文档写作</td><td class="en">Docs & writing</td><td class="zh">免费</td><td class="en">Free</td></tr>
+    </tbody>
+    <tfoot><tr class="cost-total"><td colspan="2"><strong class="zh">合计</strong><strong class="en">Total</strong></td><td colspan="2"></td><td colspan="2"><strong>≈ $35/月</strong></td></tr></tfoot>
+  </table>
+
+  <h2 class="scene-h2 zh">常见问题</h2>
+  <h2 class="scene-h2 en">FAQ</h2>
+  <div class="scene-faq">
+    <div class="sfaq">
+      <div class="sfaq-q zh">Q: 完全不会写代码也能做产品吗？</div>
+      <div class="sfaq-q en">Q: Can I build a product with zero coding experience?</div>
+      <div class="sfaq-a zh">A: 可以。把 Cursor 换成 Lovable（$20/月），它可以用自然语言生成完整的 Web 应用，包括数据库、用户登录、支付功能，不需要写一行代码。但有一定的技术理解能力会让你用得更顺。</div>
+      <div class="sfaq-a en">A: Yes. Replace Cursor with Lovable ($20/month). It generates complete Web applications from natural language — including database, user auth, and payments — with zero code. Basic technical understanding helps but is not required.</div>
+    </div>
+    <div class="sfaq">
+      <div class="sfaq-q zh">Q: 做出来的产品质量能商用吗？</div>
+      <div class="sfaq-q en">Q: Is the product quality good enough for commercial use?</div>
+      <div class="sfaq-a zh">A: 完全可以。现在很多已经在赚钱的独立产品（月收入 $1000–$10000）都是用这个工具栈做出来的。关键是产品定位和解决的问题是否清晰，工具本身不是瓶颈。</div>
+      <div class="sfaq-a en">A: Absolutely. Many profitable indie products making $1,000–$10,000/month are built with exactly this stack. The key variable is whether your product solves a clear problem — the tools are not the bottleneck.</div>
+    </div>
+    <div class="sfaq">
+      <div class="sfaq-q zh">Q: 这些工具国内都能用吗？</div>
+      <div class="sfaq-q en">Q: Are these tools all accessible in mainland China?</div>
+      <div class="sfaq-a zh">A: 即梦 AI 和 Kimi 国内直接访问。DeepSeek API 国内可以调用。Cursor、Framer、Make 需要稳定的网络环境。如果网络条件有限，编程部分可以考虑用 Trae（字节出品的国内 AI 编程工具）替代 Cursor。</div>
+      <div class="sfaq-a en">A: Jimeng AI and Kimi are directly accessible in mainland China. DeepSeek API works domestically. Cursor, Framer, and Make need reliable network access. If network is limited, consider Trae (ByteDance's domestic AI coding tool) as a Cursor alternative.</div>
+    </div>
+    <div class="sfaq">
+      <div class="sfaq-q zh">Q: 从想法到上线大概需要多长时间？</div>
+      <div class="sfaq-q en">Q: How long from idea to launch?</div>
+      <div class="sfaq-a zh">A: Landing Page 当天就能上线。简单工具类产品（单一功能）1–2 周可以有可用的 MVP。有数据库和用户系统的 SaaS 产品，认真做的话 2–4 周出 Beta 版本是合理预期。</div>
+      <div class="sfaq-a en">A: Landing Page live the same day. Simple single-function tools: working MVP in 1–2 weeks. SaaS with database and user system: Beta in 2–4 weeks is a reasonable expectation if you put in the hours.</div>
+    </div>
+  </div>
+</div>
+
+<!-- More scene details (placeholders, expandable) -->
+<div id="scene-video" class="scene-detail">
+  <span class="scene-back" onclick="closeScene()">← <span class="zh">返回场景列表</span><span class="en">Back</span></span>
+  <div class="scene-hero">
+    <div class="scene-icon">🎬</div>
+    <h1 class="scene-h1 zh">做短视频但不想出镜</h1>
+    <h1 class="scene-h1 en">Making short-form videos without showing your face</h1>
+    <div class="scene-sub zh">适合：知识博主、教育创作者、企业新媒体团队、任何想做视频但不想出镜的人</div>
+    <div class="scene-sub en">For: knowledge creators, educators, corporate media teams, anyone who wants to make videos without being on camera</div>
+    <div class="scene-verdict">
+      <div class="zh"><strong>核心结论：</strong>用剪映专业版（免费）+ 即梦 AI（免费）+ ElevenLabs（$5/月）这个组合，可以做出专业级短视频，完全不需要出镜，月成本可以低至 $5。如果需要数字人播报，加 HeyGen（$29/月）。</div>
+      <div class="en"><strong>Bottom line:</strong> Jianying Pro (free) + Jimeng AI (free) + ElevenLabs ($5/month) produces professional short-form video without any on-camera presence. Monthly cost as low as $5. Add HeyGen ($29/month) if you need a digital avatar presenter.</div>
+    </div>
+  </div>
+  <div class="steps-list">
+    <div class="step-item"><div class="step-num">1</div><div class="step-body"><div class="step-title zh">写脚本</div><div class="step-title en">Write the script</div><div class="step-desc zh">用 Kimi 或 DeepSeek 生成视频脚本，输入主题，它会给你开场钩子、三个信息点、结尾行动引导。</div><div class="step-desc en">Use Kimi or DeepSeek to generate the video script. Input your topic and get an opening hook, three key points, and a closing call-to-action.</div><div class="step-tools">🛠 Kimi / DeepSeek</div></div></div>
+    <div class="step-item"><div class="step-num">2</div><div class="step-body"><div class="step-title zh">生成配音</div><div class="step-title en">Generate voiceover</div><div class="step-desc zh">把脚本粘贴到 ElevenLabs，选一个自然的中文声音，或者克隆你自己的声音。生成的音频下载备用。</div><div class="step-desc en">Paste the script into ElevenLabs, pick a natural voice or clone your own. Download the generated audio.</div><div class="step-tools">🛠 ElevenLabs</div></div></div>
+    <div class="step-item"><div class="step-num">3</div><div class="step-body"><div class="step-title zh">生成配图和素材</div><div class="step-title en">Generate visuals</div><div class="step-desc zh">用即梦 AI 生成每个场景对应的配图，或者在剪映里用「文章转视频」自动匹配素材。</div><div class="step-desc en">Use Jimeng AI to generate images for each scene, or use Jianying's article-to-video feature to auto-match footage.</div><div class="step-tools zh">🛠 即梦 AI / 剪映</div><div class="step-tools en">🛠 Jimeng AI / Jianying</div></div></div>
+    <div class="step-item"><div class="step-num">4</div><div class="step-body"><div class="step-title zh">剪辑和加字幕</div><div class="step-title en">Edit and add captions</div><div class="step-desc zh">在剪映里导入音频和素材，AI 自动生成字幕（准确率 96%），调整时间轴，加背景音乐。</div><div class="step-desc en">Import audio and visuals into Jianying. AI auto-generates captions (96% accuracy). Adjust timeline, add background music.</div><div class="step-tools zh">🛠 剪映专业版</div><div class="step-tools en">🛠 Jianying Pro</div></div></div>
+    <div class="step-item"><div class="step-num">5</div><div class="step-body"><div class="step-title zh">（可选）加数字人播报</div><div class="step-title en">(Optional) Add digital avatar presenter</div><div class="step-desc zh">如果想要真人出镜感，用 HeyGen 生成数字人视频。上传脚本，选虚拟主播形象，几分钟生成播报视频。</div><div class="step-desc en">For a real on-camera feel, use HeyGen to generate a digital avatar video. Upload your script, pick an avatar, get a presenter video in minutes.</div><div class="step-tools">🛠 HeyGen ($29/月)</div></div></div>
+  </div>
+  <table class="cost-table">
+    <thead><tr><th class="zh">工具</th><th class="en">Tool</th><th class="zh">费用</th><th class="en">Cost</th></tr></thead>
+    <tbody>
+      <tr><td class="zh">剪映专业版</td><td class="en">Jianying Pro</td><td class="zh">免费</td><td class="en">Free</td></tr>
+      <tr><td class="zh">即梦 AI</td><td class="en">Jimeng AI</td><td class="zh">免费</td><td class="en">Free</td></tr>
+      <tr><td>ElevenLabs</td><td>ElevenLabs</td><td>$5/月</td><td>$5/mo</td></tr>
+      <tr><td>HeyGen <span class="zh">（可选）</span><span class="en">(optional)</span></td><td>HeyGen (optional)</td><td>$29/月</td><td>$29/mo</td></tr>
+    </tbody>
+    <tfoot><tr class="cost-total"><td><strong class="zh">合计</strong><strong class="en">Total</strong></td><td></td><td colspan="2"><strong>$5–34/月</strong></td></tr></tfoot>
+  </table>
+</div>
+
+<div id="scene-landing" class="scene-detail">
+  <span class="scene-back" onclick="closeScene()">← <span class="zh">返回场景列表</span><span class="en">Back</span></span>
+  <div class="scene-hero">
+    <div class="scene-icon">⚡</div>
+    <h1 class="scene-h1 zh">30 分钟做出一个 Landing Page</h1>
+    <h1 class="scene-h1 en">Launch a Landing Page in 30 minutes</h1>
+    <div class="scene-sub zh">适合：需要快速验证想法的创业者、想做产品预热的开发者、需要活动落地页的运营</div>
+    <div class="scene-sub en">For: founders validating ideas fast, developers launching product teasers, marketers needing campaign landing pages</div>
+    <div class="scene-verdict">
+      <div class="zh"><strong>核心结论：</strong>Framer 是最快的 AI 建站工具，从描述到上线 30 分钟内完成。$5/月去掉水印。配合 Kimi 写文案，即梦 AI 做配图，整套下来月费 $5，质量不输花几万找设计公司做的页面。</div>
+      <div class="en"><strong>Bottom line:</strong> Framer is the fastest AI website builder — description to live site in 30 minutes. $5/month removes the watermark. Combine with Kimi for copywriting and Jimeng AI for visuals. Total: $5/month. Quality rivals pages that cost thousands from agencies.</div>
+    </div>
+  </div>
+  <div class="steps-list">
+    <div class="step-item"><div class="step-num">1</div><div class="step-body"><div class="step-title zh">用 Kimi 写产品文案（10分钟）</div><div class="step-title en">Write product copy with Kimi (10 minutes)</div><div class="step-desc zh">告诉 Kimi 你的产品是什么、解决什么问题、目标用户是谁，让它生成首屏标题、副标题、三个核心卖点、CTA 文案。</div><div class="step-desc en">Tell Kimi what your product does, what problem it solves, and who it is for. Get headline, subheadline, three key benefits, and CTA copy in return.</div><div class="step-tools">🛠 Kimi</div></div></div>
+    <div class="step-item"><div class="step-num">2</div><div class="step-body"><div class="step-title zh">在 Framer 生成网站（10分钟）</div><div class="step-title en">Generate the site in Framer (10 minutes)</div><div class="step-desc zh">访问 framer.com，点击 Start with AI，粘贴你的产品描述和文案，选择风格，生成完整网站。在可视化编辑器里微调颜色和布局。</div><div class="step-desc en">Go to framer.com, click Start with AI, paste your product description and copy, choose a style, generate. Fine-tune colors and layout in the visual editor.</div><div class="step-tools">🛠 Framer</div></div></div>
+    <div class="step-item"><div class="step-num">3</div><div class="step-body"><div class="step-title zh">用即梦 AI 生成配图（5分钟）</div><div class="step-title en">Generate visuals with Jimeng AI (5 minutes)</div><div class="step-desc zh">用即梦 AI 生成产品 Hero 图或背景图，风格和你的品牌色匹配。下载后上传到 Framer 替换默认图片。</div><div class="step-desc en">Generate a product hero image or background with Jimeng AI, matching your brand colors. Download and upload to Framer to replace the default image.</div><div class="step-tools zh">🛠 即梦 AI</div><div class="step-tools en">🛠 Jimeng AI</div></div></div>
+    <div class="step-item"><div class="step-num">4</div><div class="step-body"><div class="step-title zh">绑定域名上线（5分钟）</div><div class="step-title en">Bind domain and publish (5 minutes)</div><div class="step-desc zh">在 Framer 设置里绑定你的自定义域名，点击 Publish 发布。如果没有域名，Framer 提供免费的子域名先用。</div><div class="step-desc en">Bind your custom domain in Framer settings and click Publish. If you do not have a domain yet, Framer provides a free subdomain to get started.</div><div class="step-tools">🛠 Framer</div></div></div>
+  </div>
+</div>
+
+<div id="scene-overseas" class="scene-detail">
+  <span class="scene-back" onclick="closeScene()">← <span class="zh">返回场景列表</span><span class="en">Back</span></span>
+  <div class="scene-hero">
+    <div class="scene-icon">🌍</div>
+    <h1 class="scene-h1 zh">把中文产品推向海外市场</h1>
+    <h1 class="scene-h1 en">Taking your Chinese product global</h1>
+    <div class="scene-sub zh">适合：有国内产品想出海的创业者、独立开发者、想做英文内容站的站长</div>
+    <div class="scene-sub en">For: founders with domestic products looking to expand, indie developers, content site owners targeting English markets</div>
+    <div class="scene-verdict">
+      <div class="zh"><strong>核心结论：</strong>出海的核心障碍是语言和本地化，AI 已经可以把这个成本降到接近零。用 DeepSeek 或 Claude 做翻译和本地化文案，用 HeyGen 把视频多语言化，用 Ahrefs 找英文关键词，整套月费 $30–50。</div>
+      <div class="en"><strong>Bottom line:</strong> The core barrier to going global is language and localization — AI can now reduce this cost to near zero. Use DeepSeek or Claude for translation and localized copy, HeyGen for multilingual video, Ahrefs for English keyword research. Total: $30–50/month.</div>
+    </div>
+  </div>
+  <div class="steps-list">
+    <div class="step-item"><div class="step-num">1</div><div class="step-body"><div class="step-title zh">翻译和本地化产品文案</div><div class="step-title en">Translate and localize product copy</div><div class="step-desc zh">不要用直译，用 DeepSeek 或 Claude 做「本地化翻译」：告诉它目标市场（美国/东南亚/欧洲）、用户画像，让它翻译时同时调整表达习惯和文化语境。</div><div class="step-desc en">Do not use direct translation. Use DeepSeek or Claude for localization: specify target market (US/Southeast Asia/Europe) and user profile. Ask it to adapt cultural context and phrasing, not just translate words.</div><div class="step-tools">🛠 DeepSeek / Claude</div></div></div>
+    <div class="step-item"><div class="step-num">2</div><div class="step-body"><div class="step-title zh">视频多语言化</div><div class="step-title en">Multilingual video localization</div><div class="step-desc zh">用 HeyGen 的 Video Translation 功能，上传中文产品视频，选择目标语言，自动翻译配音并同步口型。一个视频变成多语言版本，省去重新录制的成本。</div><div class="step-desc en">Use HeyGen's Video Translation feature. Upload your Chinese product video, select target languages, get auto-translated dubbing with lip-sync. One video becomes multilingual versions without re-recording.</div><div class="step-tools">🛠 HeyGen</div></div></div>
+    <div class="step-item"><div class="step-num">3</div><div class="step-body"><div class="step-title zh">做英文内容和 SEO</div><div class="step-title en">Build English content and SEO</div><div class="step-desc zh">用 Ahrefs 找你产品类别的英文关键词，找出低竞争的机会词。用 DeepSeek 批量生成英文博客文章，发布在你的英文官网上，积累自然流量。</div><div class="step-desc en">Use Ahrefs to find English keywords in your product category — focus on low-competition opportunities. Use DeepSeek to generate English blog articles in bulk. Publish on your English site to build organic traffic.</div><div class="step-tools">🛠 Ahrefs + DeepSeek</div></div></div>
+  </div>
+</div>
+
+<div id="scene-content" class="scene-detail">
+  <span class="scene-back" onclick="closeScene()">← <span class="zh">返回场景列表</span><span class="en">Back</span></span>
+  <div class="scene-hero">
+    <div class="scene-icon">✍️</div>
+    <h1 class="scene-h1 zh">一个人运营一个公众号</h1>
+    <h1 class="scene-h1 en">Running a content channel solo</h1>
+    <div class="scene-sub zh">适合：自媒体博主、知识创作者、企业新媒体运营、想做内容副业的人</div>
+    <div class="scene-sub en">For: independent media creators, knowledge bloggers, corporate social media managers, anyone building a content side hustle</div>
+    <div class="scene-verdict">
+      <div class="zh"><strong>核心结论：</strong>用 Kimi + DeepSeek + 即梦 AI 三个完全免费的工具，可以覆盖公众号内容生产的全流程：选题、写作、配图。月费 $0，每周产出 3–5 篇高质量文章是可实现的目标。</div>
+      <div class="en"><strong>Bottom line:</strong> Kimi + DeepSeek + Jimeng AI — three completely free tools — cover the full content production workflow: topic research, writing, and visuals. $0/month. Producing 3–5 high-quality articles per week is an achievable target.</div>
+    </div>
+  </div>
+  <div class="steps-list">
+    <div class="step-item"><div class="step-num">1</div><div class="step-body"><div class="step-title zh">选题和调研</div><div class="step-title en">Topic research</div><div class="step-desc zh">用 Kimi 上传竞品公众号的爆款文章，让它分析哪些话题最受欢迎、读者最关心什么问题。用 Perplexity 搜索最新行业动态，找到值得写的新选题。</div><div class="step-desc en">Upload competitor accounts' top articles to Kimi. Ask it to analyze which topics perform best and what questions readers care most about. Use Perplexity to search latest industry news for timely topics.</div><div class="step-tools">🛠 Kimi + Perplexity</div></div></div>
+    <div class="step-item"><div class="step-num">2</div><div class="step-body"><div class="step-title zh">写作</div><div class="step-title en">Writing</div><div class="step-desc zh">用 DeepSeek 生成文章初稿，给它明确的指令：目标读者、文章风格、核心观点、字数要求。初稿出来后自己修改加入个人观点，不要直接发 AI 原文。</div><div class="step-desc en">Use DeepSeek to generate a first draft. Give it clear instructions: target reader, article style, core argument, word count. Edit the draft to add your own perspective — never publish AI output directly.</div><div class="step-tools">🛠 DeepSeek</div></div></div>
+    <div class="step-item"><div class="step-num">3</div><div class="step-body"><div class="step-title zh">配图</div><div class="step-title en">Visuals</div><div class="step-desc zh">用即梦 AI 生成文章封面图和配图，中文描述直接用。封面图风格建议固定一个调性，让读者一眼认出你的内容。</div><div class="step-desc en">Use Jimeng AI to generate cover images and article illustrations. Chinese descriptions work great. Keep a consistent visual style for your cover images so readers recognize your content at a glance.</div><div class="step-tools zh">🛠 即梦 AI</div><div class="step-tools en">🛠 Jimeng AI</div></div></div>
+    <div class="step-item"><div class="step-num">4</div><div class="step-body"><div class="step-title zh">数据分析和迭代</div><div class="step-title en">Data analysis and iteration</div><div class="step-desc zh">每月把公众号的数据（阅读量、点赞、分享）截图发给 Kimi，让它分析哪类内容效果最好，给出下个月的内容方向建议。</div><div class="step-desc en">Every month, send your account analytics (views, likes, shares) to Kimi. Ask it to identify which content types perform best and recommend topics for next month.</div><div class="step-tools">🛠 Kimi</div></div></div>
+  </div>
+</div>
+
+<div id="scene-document" class="scene-detail">
+  <span class="scene-back" onclick="closeScene()">← <span class="zh">返回场景列表</span><span class="en">Back</span></span>
+  <div class="scene-hero">
+    <div class="scene-icon">📄</div>
+    <h1 class="scene-h1 zh">处理大量文档和合同</h1>
+    <h1 class="scene-h1 en">Processing large volumes of documents and contracts</h1>
+    <div class="scene-sub zh">适合：律师、法务人员、咨询顾问、研究人员、需要处理大量文档的任何人</div>
+    <div class="scene-sub en">For: lawyers, legal teams, consultants, researchers, anyone dealing with high document volume</div>
+    <div class="scene-verdict">
+      <div class="zh"><strong>核心结论：</strong>Kimi 的 200 万字上下文可以一次读完整本合同或整个项目的所有文档，找风险条款、生成摘要、回答具体问题。完全免费，国内直接访问，是文档处理场景下性价比最高的工具。</div>
+      <div class="en"><strong>Bottom line:</strong> Kimi's 2M token context reads an entire contract or all project documents in one session — finds risk clauses, generates summaries, answers specific questions. Completely free, directly accessible in China. Best-value tool for document-heavy workflows.</div>
+    </div>
+  </div>
+  <div class="steps-list">
+    <div class="step-item"><div class="step-num">1</div><div class="step-body"><div class="step-title zh">上传文档</div><div class="step-title en">Upload documents</div><div class="step-desc zh">直接把 PDF、Word、Excel 文件上传到 Kimi。支持同时上传多个文件，它会跨文件理解内容之间的关联。</div><div class="step-desc en">Upload PDF, Word, or Excel files directly to Kimi. Multiple files can be uploaded simultaneously — it understands cross-document relationships.</div><div class="step-tools">🛠 Kimi</div></div></div>
+    <div class="step-item"><div class="step-num">2</div><div class="step-body"><div class="step-title zh">提取关键信息</div><div class="step-title en">Extract key information</div><div class="step-desc zh">用结构化的提问方式：「列出所有涉及违约金的条款」「总结双方的核心权利和义务」「找出和行业惯例不符的条款」。越具体的问题，答案越有用。</div><div class="step-desc en">Ask structured questions: "List all clauses involving liquidated damages" / "Summarize the core rights and obligations of each party" / "Identify clauses that deviate from industry norms." More specific questions yield more useful answers.</div><div class="step-tools">🛠 Kimi</div></div></div>
+    <div class="step-item"><div class="step-num">3</div><div class="step-body"><div class="step-title zh">生成摘要和报告</div><div class="step-title en">Generate summaries and reports</div><div class="step-desc zh">让 Kimi 按固定格式输出摘要：核心结论、关键数据、风险点、建议行动。这个格式可以直接发给客户或上级，节省整理时间。</div><div class="step-desc en">Ask Kimi to output summaries in a fixed format: key conclusions, critical data, risk points, recommended actions. This format can be sent directly to clients or managers, saving formatting time.</div><div class="step-tools">🛠 Kimi</div></div></div>
+    <div class="step-item"><div class="step-num">4</div><div class="step-body"><div class="step-title zh">跨文档对比分析</div><div class="step-title en">Cross-document comparison</div><div class="step-desc zh">同时上传多份合同或报告，让 Kimi 做对比：「这三份合同在付款条款上有什么差异」「哪个方案的条件对我方更有利」。这是人工做最耗时的部分，AI 几秒钟完成。</div><div class="step-desc en">Upload multiple contracts or reports simultaneously. Ask Kimi to compare: "What are the differences in payment terms across these three contracts?" / "Which proposal has more favorable terms for our side?" The most time-consuming part of manual review, done in seconds by AI.</div><div class="step-tools">🛠 Kimi</div></div></div>
+  </div>
 </div>
 
 <div class="skill-section" id="skill-section">
@@ -1193,6 +1630,24 @@ function submitTool() {
   updateCount();
   openInitialHash();
 })();
+
+function openScene(id) {
+  var sceneSec = document.getElementById('scenario-section');
+  var skillSec = document.getElementById('skill-section');
+  document.querySelectorAll('.scene-detail').forEach(function(el){ el.style.display='none'; });
+  if(sceneSec) sceneSec.style.display='none';
+  if(skillSec) skillSec.style.display='none';
+  var el = document.getElementById('scene-' + id);
+  if(el){ el.style.display='block'; window.scrollTo(0,0); }
+}
+function closeScene() {
+  document.querySelectorAll('.scene-detail').forEach(function(el){ el.style.display='none'; });
+  var sceneSec = document.getElementById('scenario-section');
+  var skillSec = document.getElementById('skill-section');
+  if(sceneSec) sceneSec.style.display='';
+  if(skillSec) skillSec.style.display='';
+  window.scrollTo(0,0);
+}
 </script>
 </body>
 </html>
