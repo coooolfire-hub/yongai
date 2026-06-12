@@ -1639,6 +1639,7 @@ const net={ws:null,isHost:false,myPid:-1,room:'',lastSend:0,
   players:{},kills:{}};
 const PCOLS=['#caa53c','#1d3a8a','#8a1d6e','#1d7a4a'];
 const scoreEl=document.getElementById('score');
+const NET_SEND_INTERVAL=3;
 function setStatus(s,col){const el=document.getElementById('netStatus');if(el){el.textContent=s;el.style.color=col||'#9ad'}}
 function randCode(){const s='ABCDEFGHJKMNPQRSTUVWXYZ23456789';let r='';for(let i=0;i<4;i++)r+=s[(Math.random()*s.length)|0];return r}
 const NET_TIMEOUT=15000;
@@ -1775,7 +1776,7 @@ window.netBulletCheck=b=>{
 };
 window.netTick=()=>{
   if(net.myPid<0)return;
-  if(frame-net.lastSend>=5){
+  if(frame-net.lastSend>=NET_SEND_INTERVAL){
     net.lastSend=frame;
     const c=p.car?{x:p.car.x,y:p.car.y,a:p.car.a,ty:p.car.type,co:p.car.col,ta:p.car.ta}:0;
     netSend({t:'s',x:px(),y:py(),a:p.car?p.car.a:p.a,hp:dead?0:p.hp,c,jp:p.jumpT>0?1:0});
@@ -1785,8 +1786,9 @@ window.netTick=()=>{
     const R=net.players[k];
     if(+k===net.myPid||!R.active||!R.init)continue;
     any=true;
-    R.rx+=(R.x-R.rx)*0.25;R.ry+=(R.y-R.ry)*0.25;
-    R.ra+=norm(R.a-R.ra)*0.25;R.rta+=norm(R.ta-R.rta)*0.25;
+    const follow=dist(R.rx,R.ry,R.x,R.y)>180?1:0.38;
+    R.rx+=(R.x-R.rx)*follow;R.ry+=(R.y-R.ry)*follow;
+    R.ra+=norm(R.a-R.ra)*0.38;R.rta+=norm(R.ta-R.rta)*0.38;
   }
   scoreEl.style.display='block';
   if(net.isHost&&!any){
