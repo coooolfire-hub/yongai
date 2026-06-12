@@ -1,0 +1,1814 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>罪恶都市风云 Retro City Havoc · 免费4人联机网页游戏 | yongai.online</title>
+<meta name="description" content="免费俯视角开放城市小游戏,支持最多4人在线联机对战。偷车、坦克、火箭筒、通缉系统,中英双语,无需下载浏览器即玩。Free top-down city action game with 4-player online multiplayer.">
+<link rel="canonical" href="https://yongai.online/game/">
+<meta property="og:title" content="罪恶都市风云 Retro City Havoc · 4人联机网页小游戏">
+<meta property="og:description" content="浏览器即开即玩的俯视角城市动作游戏,坦克/火箭筒/4人联机。Top-down city mayhem, tanks, RPGs, 4-player online.">
+<meta property="og:url" content="https://yongai.online/game/">
+<style>
+html,body{margin:0;height:100%;overflow:hidden;background:#0a0a0d;font-family:'Segoe UI','Microsoft YaHei',Arial,sans-serif;user-select:none}
+canvas#c{display:block;cursor:crosshair}
+#hud{position:fixed;top:12px;left:14px;z-index:5;pointer-events:none;color:#fff;text-shadow:0 1px 3px #000}
+#apbar{width:170px;height:9px;background:#1a1a1f;border:2px solid #000;border-radius:3px;overflow:hidden;margin-bottom:3px}
+#apf{height:100%;width:0%;background:linear-gradient(#7ab8ff,#2a6ad0);transition:width .15s}
+#hpbar{width:170px;height:15px;background:#1a1a1f;border:2px solid #000;border-radius:3px;overflow:hidden;box-shadow:0 0 6px rgba(0,0,0,.6)}
+#hpf{height:100%;width:100%;background:linear-gradient(#ff6a5e,#c0241a);transition:width .15s}
+#money{color:#7dffa0;font-weight:700;font-size:22px;margin-top:6px;letter-spacing:1px}
+#weapon{color:#e8e8e8;font-size:14px;margin-top:2px}
+#topright{position:fixed;top:12px;right:14px;z-index:5;text-align:right;pointer-events:none}
+#stars{font-size:24px;color:#ffd24a;text-shadow:0 0 6px #000;letter-spacing:3px;margin-bottom:6px}
+#stars .off{color:#3a3a44}
+#mm{border:2px solid #000;border-radius:4px;box-shadow:0 0 10px rgba(0,0,0,.7);background:#111}
+#msg{position:fixed;bottom:64px;left:50%;transform:translateX(-50%);z-index:5;color:#ffe9a8;font-size:18px;text-shadow:0 1px 4px #000;pointer-events:none;transition:opacity .3s;white-space:nowrap}
+#score{position:fixed;top:12px;left:50%;transform:translateX(-50%);z-index:5;color:#ffd24a;font-size:18px;font-weight:700;text-shadow:0 1px 4px #000;display:none;pointer-events:none}
+#wasted{position:fixed;inset:0;z-index:9;display:none;align-items:center;justify-content:center;flex-direction:column;background:rgba(60,0,0,.45);backdrop-filter:grayscale(.8)}
+#wasted h1{color:#fff;font-size:72px;letter-spacing:14px;text-shadow:0 0 24px #900;margin:0}
+#wasted p{color:#ffd;font-size:18px}
+#intro{position:fixed;inset:0;z-index:10;display:flex;align-items:center;justify-content:center;background:radial-gradient(ellipse at 50% 30%,#1d2030,#07070a 75%)}
+#intro .box{max-width:580px;padding:32px 44px;background:rgba(10,10,16,.85);border:1px solid #2c2c3c;border-radius:10px;color:#dcdce4;box-shadow:0 12px 60px rgba(0,0,0,.8)}
+#intro h1{margin:0 0 4px;font-size:36px;color:#fff;letter-spacing:2px}
+#intro h1 span{color:#ffd24a}
+#intro .sub{color:#8a8a9a;margin-bottom:14px;font-size:13px}
+#intro table{border-collapse:collapse;font-size:13.5px;margin-bottom:14px}
+#intro td{padding:2.5px 14px 2.5px 0;color:#bcbcc8}
+#intro td.k{color:#ffd24a;font-weight:600;white-space:nowrap}
+#startBtn{display:block;width:100%;padding:13px;font-size:18px;font-weight:700;letter-spacing:4px;color:#111;background:linear-gradient(#ffe07a,#f2b830);border:none;border-radius:6px;cursor:pointer}
+#startBtn:hover{filter:brightness(1.08)}
+.mpRow{display:flex;gap:8px;margin-top:10px}
+.mpBtn{flex:1;padding:11px 6px;font-size:14px;font-weight:600;color:#cfe0ff;background:#1c2438;border:1px solid #3a4a6a;border-radius:6px;cursor:pointer;letter-spacing:1px}
+.mpBtn:hover{background:#263250}
+#roomInput{width:90px;text-align:center;font-size:16px;letter-spacing:3px;text-transform:uppercase;background:#10141f;border:1px solid #3a4a6a;border-radius:6px;color:#fff;padding:10px 4px;outline:none}
+#netStatus{margin-top:10px;font-size:13px;min-height:18px;color:#9ad}
+.langRow{display:flex;gap:6px;justify-content:flex-end;margin-bottom:8px}
+.langBtn{padding:4px 12px;font-size:12px;color:#9aa;background:#15151f;border:1px solid #33334a;border-radius:4px;cursor:pointer}
+.langBtn.on{color:#ffd24a;border-color:#ffd24a}
+#stats{color:#ffb44a;font-size:13px;margin-top:4px;font-weight:600}
+#mission{color:#8ad4ff;font-size:14px;margin-top:3px;font-weight:600}
+#shop{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);z-index:6;display:none;background:rgba(12,12,20,.92);border:1px solid #3a4a6a;border-radius:10px;padding:12px 16px;box-shadow:0 8px 40px rgba(0,0,0,.8)}
+#shop h3{margin:0 0 8px;color:#ffd24a;font-size:15px;text-align:center;letter-spacing:1px}
+.shopRow{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;max-width:560px}
+.shopBtn{padding:8px 12px;font-size:13px;color:#dce8ff;background:#1c2438;border:1px solid #3a4a6a;border-radius:6px;cursor:pointer;white-space:nowrap}
+.shopBtn:hover{background:#2a3654}
+.shopBtn b{color:#7dffa0}
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+
+<div id="hud">
+  <div id="apbar"><div id="apf"></div></div>
+  <div id="hpbar"><div id="hpf"></div></div>
+  <div id="money">$0</div>
+  <div id="weapon"></div>
+  <div id="stats"></div>
+  <div id="mission"></div>
+</div>
+<div id="topright">
+  <div id="stars"></div>
+  <canvas id="mm" width="180" height="180"></canvas>
+</div>
+<div id="msg"></div>
+<div id="score"></div>
+<div id="shop"></div>
+
+<div id="wasted"><h1>WASTED</h1><p id="wastedSub"></p></div>
+
+<div id="intro"><div class="box" id="introBox"></div></div>
+
+<script>
+'use strict';
+/* ================= 中英双语 ================= */
+const L={
+zh:{
+  title1:'罪恶都市',title2:'风云',
+  sub:'原创俯视角开放城市 · 最多4人联机 · 浏览器即开即玩',
+  rows:[['W A S D','步行移动 / 驾驶(W油门 S刹车 AD转向)'],
+        ['鼠标','瞄准,按住左键射击 / 坦克开炮'],
+        ['F','上车 / 下车(轿车·卡车·警车·坦克 随便偷)'],
+        ['Shift / 空格','步行奔跑 / 跳跃(可躲车撞) · 驾驶时空格=手刹'],
+        ['1 ~ 4','手枪 · 冲锋枪 · 霰弹枪 · 火箭筒'],
+        ['R','死亡后复活'],
+        ['联机','创建房间得4位房间码,最多4人混战计分']],
+  note:'犯罪会提升通缉星级★。地图上有 💰现金 ❤️医疗 🛡️护甲 🔫💥🚀弹药,还有随机刷新的坦克。',
+  single:'单 人 开 始',host:'创建联机房间',join:'加 入',roomPh:'房间码',
+  wnames:['手枪','冲锋枪','霰弹枪','火箭筒'],
+  driving:'驾驶中 · 按 F 下车',drivingTank:'坦克 · 鼠标开炮 · F 下车',
+  wastedSub:'你挂了 · 按 R 在医院复活(损失一半现金)',
+  m_welcome:'欢迎来到罪恶都市。偷辆车,搞点钱,别被条子抓到。',
+  m_enter:'按 F 上车',m_enterP:'按 F 偷警车(高风险)',m_enterT:'按 F 进入坦克',
+  m_in:'上车!',m_inP:'你偷了一辆警车!胆子不小',m_inT:'你开上坦克了!整座城市都在瑟瑟发抖',
+  m_out:'已下车',m_hp:'生命 +50',m_armor:'护甲 +50',m_uzi:'冲锋枪弹药 +60 (按2)',
+  m_shot:'霰弹 +12 (按3)',m_rkt:'火箭弹 +3 (按4)',m_noammo:'弹药不足,去捡补给',
+  m_hosp:'你在医院醒来,医药费花掉了一半现金…',
+  n_load:'联机组件未能加载(需要联网),请检查网络后刷新页面',
+  n_creating:'正在创建房间…',n_room:c=>'房间码: '+c+' — 最多4人,可先进游戏等待',
+  n_wait:c=>'房间码 '+c+' · 等待玩家加入…',n_conn:c=>'正在连接房间 '+c+' …',
+  n_code4:'请输入4位房间码',n_assigned:'已连接,等待房主分配…',
+  n_youare:p=>'已加入!你是 '+p,n_joinedAs:p=>'已加入房间,你是 '+p,
+  n_full:'房间已满(4人上限)',n_notfound:'找不到该房间,确认房间码并让房主先创建',
+  n_err:t=>'联机错误: '+t,n_joined:p=>p+' 加入了游戏!',n_left:p=>p+' 离开了游戏',
+  n_disc:'与房主断开连接',n_disc2:'已断线,可重新输入房间码加入',n_bye:'对方已离开',
+  n_kill:p=>'💀 击杀 '+p+'!+$150',n_killed:(a,b)=>a+' 击杀了 '+b,
+  n_city:p=>p+' 挂了(被这座城市干掉的)',n_ok:'已连接!',
+  s_you:'你',
+  st_line:(k,c)=>'击杀 '+k+(c>1?'  ·  🔥连杀 ×'+c:''),
+  sh_title:'💲 黑市商店(点击购买)',
+  sh_hp:'回满生命',sh_armor:'满护甲',sh_uzi:'冲锋枪弹药 ×120',
+  sh_shot:'霰弹 ×24',sh_rkt:'火箭弹 ×3',sh_tank:'坦克快递(刷在附近)',
+  sh_no:'钱不够!',sh_tankok:'坦克已送达附近街道,小地图找黄绿点',
+  ms_taxi_pick:'🚕 去接乘客(靠近停稳)',
+  ms_taxi_drop:s=>'🚕 送乘客到目的地 · '+s+'s',
+  ms_taxi_ok:(v,st)=>'车费 +$'+v+(st>1?' (连单 ×'+st+')':''),
+  ms_taxi_fail:'乘客等不及跑了,连单中断',
+  ms_b_new:'💀 街上出现悬赏目标!有保镖,小心',
+  ms_b_obj:v=>'💀 干掉悬赏目标 · 赏金 $'+v,
+  ms_b_ok:v=>'悬赏到手 +$'+v,
+  ms_b_gone:'悬赏目标跑路了',
+  ms_d_new:'📦 接到送货单!去取橙色货车',
+  ms_d_get:'📦 去取橙色送货车',
+  ms_d_go:s=>'📦 开到目的地 · '+s+'s',
+  ms_d_ok:v=>'送货完成 +$'+v,
+  ms_d_fail:'送货失败',
+},
+en:{
+  title1:'RETRO CITY',title2:'HAVOC',
+  sub:'Original top-down open city · Up to 4-player online · Play in browser',
+  rows:[['W A S D','Walk / Drive (W gas, S brake, AD steer)'],
+        ['Mouse','Aim, hold LMB to shoot / fire tank cannon'],
+        ['F','Enter / exit vehicle (steal anything, even tanks)'],
+        ['Shift / Space','Sprint / Jump (dodge cars) · handbrake while driving'],
+        ['1 ~ 4','Pistol · SMG · Shotgun · RPG'],
+        ['R','Respawn after death'],
+        ['Online','Host a room, share the 4-letter code, up to 4 players']],
+  note:'Crime raises your wanted level ★. Find 💰cash ❤️health 🛡️armor 🔫💥🚀ammo on the map, plus tanks that spawn randomly.',
+  single:'SINGLE PLAYER',host:'CREATE ROOM',join:'JOIN',roomPh:'CODE',
+  wnames:['Pistol','SMG','Shotgun','RPG'],
+  driving:'Driving · Press F to exit',drivingTank:'TANK · Mouse to fire · F to exit',
+  wastedSub:'You died · Press R to respawn at the hospital (lose half your cash)',
+  m_welcome:'Welcome to the city. Steal a car, make some cash, dodge the cops.',
+  m_enter:'Press F to enter',m_enterP:'Press F to steal cop car (risky)',m_enterT:'Press F to board the TANK',
+  m_in:'In!',m_inP:'You stole a cop car! Bold move',m_inT:'You got a TANK! The whole city trembles',
+  m_out:'Exited',m_hp:'Health +50',m_armor:'Armor +50',m_uzi:'SMG ammo +60 (key 2)',
+  m_shot:'Shells +12 (key 3)',m_rkt:'Rockets +3 (key 4)',m_noammo:'Out of ammo, find a pickup',
+  m_hosp:'You wake up in hospital. The bill took half your cash…',
+  n_load:'Multiplayer module failed to load (internet required). Check network and refresh.',
+  n_creating:'Creating room…',n_room:c=>'Room code: '+c+' — up to 4 players, you can play while waiting',
+  n_wait:c=>'Room '+c+' · waiting for players…',n_conn:c=>'Connecting to room '+c+' …',
+  n_code4:'Enter the 4-letter room code',n_assigned:'Connected, waiting for host…',
+  n_youare:p=>'Joined! You are '+p,n_joinedAs:p=>'Joined the room as '+p,
+  n_full:'Room is full (max 4)',n_notfound:'Room not found. Check the code; host must create it first',
+  n_err:t=>'Network error: '+t,n_joined:p=>p+' joined the game!',n_left:p=>p+' left the game',
+  n_disc:'Disconnected from host',n_disc2:'Disconnected. Enter the room code again to reconnect',n_bye:'Player left',
+  n_kill:p=>'💀 You killed '+p+'! +$150',n_killed:(a,b)=>a+' killed '+b,
+  n_city:p=>p+' died (the city got them)',n_ok:'Connected!',
+  s_you:'You',
+  st_line:(k,c)=>'Kills '+k+(c>1?'  ·  🔥Streak ×'+c:''),
+  sh_title:'💲 BLACK MARKET (click to buy)',
+  sh_hp:'Full health',sh_armor:'Full armor',sh_uzi:'SMG ammo ×120',
+  sh_shot:'Shells ×24',sh_rkt:'Rockets ×3',sh_tank:'Tank delivery (spawns nearby)',
+  sh_no:'Not enough cash!',sh_tankok:'Tank delivered nearby — find the yellow-green dot on the minimap',
+  ms_taxi_pick:'🚕 Pick up the passenger (stop close)',
+  ms_taxi_drop:s=>'🚕 Drop off the passenger · '+s+'s',
+  ms_taxi_ok:(v,st)=>'Fare +$'+v+(st>1?' (streak ×'+st+')':''),
+  ms_taxi_fail:'Passenger walked away. Streak lost',
+  ms_b_new:'💀 Bounty target spotted! Bodyguards around',
+  ms_b_obj:v=>'💀 Take out the bounty target · $'+v,
+  ms_b_ok:v=>'Bounty collected +$'+v,
+  ms_b_gone:'Bounty target got away',
+  ms_d_new:'📦 Delivery job! Grab the orange van',
+  ms_d_get:'📦 Get the orange delivery car',
+  ms_d_go:s=>'📦 Drive to the destination · '+s+'s',
+  ms_d_ok:v=>'Delivery done +$'+v,
+  ms_d_fail:'Delivery failed',
+}};
+let lang='zh';
+try{const q=new URLSearchParams(location.search);if(q.get('lang')==='en')lang='en'}catch(_){ }
+function t(k){const v=L[lang][k];if(typeof v==='function'){const a=[].slice.call(arguments,1);return v.apply(null,a)}return v===undefined?k:v}
+
+/* ================= 基础 ================= */
+const cv=document.getElementById('c'),ctx=cv.getContext('2d');
+let W=0,H=0;
+function rs(){W=cv.width=innerWidth;H=cv.height=innerHeight}
+rs();addEventListener('resize',rs);
+let seed=987654321;
+function rnd(){seed=(seed*1103515245+12345)&0x7fffffff;return seed/0x7fffffff}
+function rr(a,b){return a+rnd()*(b-a)}
+function hash(i,j){let h=(i*374761393+j*668265263)|0;h=Math.imul(h^(h>>>13),1274126177);return ((h^(h>>>16))>>>0)/4294967295}
+const clamp=(v,a,b)=>v<a?a:(v>b?b:v);
+const dist=(a,b,c,d)=>Math.hypot(c-a,d-b);
+function norm(a){while(a>Math.PI)a-=Math.PI*2;while(a<-Math.PI)a+=Math.PI*2;return a}
+
+/* ================= 地图生成 15×15 街区 =================
+ 0=马路 1=人行道 2=建筑 3=草地公园 */
+const TILE=48,BLOCKS=15,GW=BLOCKS*9,GH=BLOCKS*9,WPX=GW*TILE,HPX=GH*TILE;
+const map=[],bType=[];
+for(let bj=0;bj<BLOCKS;bj++){bType[bj]=[];for(let bi=0;bi<BLOCKS;bi++)bType[bj][bi]=rnd()<0.14?'park':'bld'}
+for(let j=0;j<GH;j++){map[j]=[];
+  for(let i=0;i<GW;i++){
+    const ri=i%9<2,rj=j%9<2;let tt;
+    if(ri||rj)tt=0;
+    else{
+      const li=i%9,lj=j%9,bt=bType[(j/9)|0][(i/9)|0];
+      if(bt==='park')tt=3;
+      else if(li===2||li===8||lj===2||lj===8)tt=1;
+      else tt=2;
+    }
+    map[j][i]=tt;
+  }
+}
+function tileAt(x,y){const i=(x/TILE)|0,j=(y/TILE)|0;if(i<0||j<0||i>=GW||j>=GH)return 2;return map[j][i]}
+const solid=(x,y)=>tileAt(x,y)===2;
+const roofPal=['#5a4c50','#4c5258','#565a48','#5d5044','#4a4e5e','#605648','#525048','#4e4456'];
+function roofCol(i,j){const bi=(i/9)|0,bj=(j/9)|0;return roofPal[(hash(bi*7+3,bj*5+1)*roofPal.length)|0]}
+
+/* ================= 音效 ================= */
+let AC=null;
+function initAudio(){try{AC=new (window.AudioContext||window.webkitAudioContext)()}catch(e){}}
+function noiseBuf(len){const b=AC.createBuffer(1,AC.sampleRate*len,AC.sampleRate),d=b.getChannelData(0);for(let i=0;i<d.length;i++)d[i]=Math.random()*2-1;return b}
+function sfx(name){
+  if(!AC)return;const tt=AC.currentTime;
+  try{
+    if(name==='shot'||name==='uzi'){
+      const s=AC.createBufferSource();s.buffer=noiseBuf(0.12);
+      const f=AC.createBiquadFilter();f.type='highpass';f.frequency.value=900;
+      const g=AC.createGain();g.gain.setValueAtTime(name==='uzi'?0.18:0.3,tt);g.gain.exponentialRampToValueAtTime(0.001,tt+(name==='uzi'?0.07:0.13));
+      s.connect(f);f.connect(g);g.connect(AC.destination);s.start(tt);
+    }else if(name==='shotgun'){
+      const s=AC.createBufferSource();s.buffer=noiseBuf(0.25);
+      const f=AC.createBiquadFilter();f.type='lowpass';f.frequency.setValueAtTime(2600,tt);f.frequency.exponentialRampToValueAtTime(300,tt+0.2);
+      const g=AC.createGain();g.gain.setValueAtTime(0.55,tt);g.gain.exponentialRampToValueAtTime(0.001,tt+0.24);
+      s.connect(f);f.connect(g);g.connect(AC.destination);s.start(tt);
+    }else if(name==='rocket'){
+      const s=AC.createBufferSource();s.buffer=noiseBuf(0.4);
+      const f=AC.createBiquadFilter();f.type='bandpass';f.frequency.setValueAtTime(400,tt);f.frequency.exponentialRampToValueAtTime(1600,tt+0.35);
+      const g=AC.createGain();g.gain.setValueAtTime(0.3,tt);g.gain.exponentialRampToValueAtTime(0.001,tt+0.4);
+      s.connect(f);f.connect(g);g.connect(AC.destination);s.start(tt);
+    }else if(name==='cannon'){
+      const s=AC.createBufferSource();s.buffer=noiseBuf(0.4);
+      const f=AC.createBiquadFilter();f.type='lowpass';f.frequency.setValueAtTime(500,tt);f.frequency.exponentialRampToValueAtTime(70,tt+0.32);
+      const g=AC.createGain();g.gain.setValueAtTime(0.8,tt);g.gain.exponentialRampToValueAtTime(0.001,tt+0.38);
+      s.connect(f);f.connect(g);g.connect(AC.destination);s.start(tt);
+    }else if(name==='boom'){
+      const s=AC.createBufferSource();s.buffer=noiseBuf(0.7);
+      const f=AC.createBiquadFilter();f.type='lowpass';f.frequency.setValueAtTime(700,tt);f.frequency.exponentialRampToValueAtTime(60,tt+0.6);
+      const g=AC.createGain();g.gain.setValueAtTime(0.9,tt);g.gain.exponentialRampToValueAtTime(0.001,tt+0.7);
+      s.connect(f);f.connect(g);g.connect(AC.destination);s.start(tt);
+    }else if(name==='pickup'){
+      const o=AC.createOscillator(),g=AC.createGain();o.type='square';
+      o.frequency.setValueAtTime(660,tt);o.frequency.setValueAtTime(990,tt+0.07);
+      g.gain.setValueAtTime(0.12,tt);g.gain.exponentialRampToValueAtTime(0.001,tt+0.16);
+      o.connect(g);g.connect(AC.destination);o.start(tt);o.stop(tt+0.18);
+    }else if(name==='thud'){
+      const o=AC.createOscillator(),g=AC.createGain();o.type='triangle';
+      o.frequency.setValueAtTime(120,tt);o.frequency.exponentialRampToValueAtTime(40,tt+0.15);
+      g.gain.setValueAtTime(0.4,tt);g.gain.exponentialRampToValueAtTime(0.001,tt+0.18);
+      o.connect(g);g.connect(AC.destination);o.start(tt);o.stop(tt+0.2);
+    }else if(name==='jump'){
+      const o=AC.createOscillator(),g=AC.createGain();o.type='triangle';
+      o.frequency.setValueAtTime(240,tt);o.frequency.exponentialRampToValueAtTime(480,tt+0.1);
+      g.gain.setValueAtTime(0.14,tt);g.gain.exponentialRampToValueAtTime(0.001,tt+0.13);
+      o.connect(g);g.connect(AC.destination);o.start(tt);o.stop(tt+0.14);
+    }else if(name==='hurt'){
+      const o=AC.createOscillator(),g=AC.createGain();o.type='sawtooth';
+      o.frequency.setValueAtTime(220,tt);o.frequency.exponentialRampToValueAtTime(90,tt+0.12);
+      g.gain.setValueAtTime(0.15,tt);g.gain.exponentialRampToValueAtTime(0.001,tt+0.14);
+      o.connect(g);g.connect(AC.destination);o.start(tt);o.stop(tt+0.15);
+    }
+  }catch(e){}
+}
+
+/* ================= 输入 ================= */
+const keys={};
+addEventListener('keydown',e=>{keys[e.code]=true;
+  if(e.code==='KeyF')tryEnterExit();
+  if(e.code==='Digit1')switchWeapon(0);
+  if(e.code==='Digit2')switchWeapon(1);
+  if(e.code==='Digit3')switchWeapon(2);
+  if(e.code==='Digit4')switchWeapon(3);
+  if(e.code==='KeyR'&&dead)respawn();
+  if(['Space','ArrowUp','ArrowDown'].includes(e.code))e.preventDefault();
+});
+addEventListener('keyup',e=>{keys[e.code]=false});
+const mouse={x:0,y:0,down:false};
+addEventListener('mousemove',e=>{mouse.x=e.clientX;mouse.y=e.clientY});
+addEventListener('mousedown',e=>{if(e.button===0&&e.target===cv)mouse.down=true});
+addEventListener('mouseup',e=>{if(e.button===0)mouse.down=false});
+addEventListener('contextmenu',e=>e.preventDefault());
+</script>
+<script>
+'use strict';
+/* ================= 实体与武器 ================= */
+const cars=[],peds=[],cops=[],bullets=[],parts=[],decals=[],pickups=[];
+let heat=0,frame=0,dead=false,shake=0,started=false;
+const cam={x:0,y:0};
+
+const CARTYPES=[
+  {name:'sedan', len:42,wid:20,max:6.2,acc:0.16,hp:100,cols:['#b8443c','#3c6bb8','#3aa05a','#9a8d3c','#7a4ba0','#b87a3c']},
+  {name:'taxi',  len:42,wid:20,max:6.0,acc:0.15,hp:100,cols:['#e8c020']},
+  {name:'sports',len:44,wid:19,max:8.6,acc:0.26,hp:80, cols:['#e03030','#f0f0f0','#20c0d0']},
+  {name:'truck', len:60,wid:25,max:4.6,acc:0.10,hp:170,cols:['#6a7078','#5a6a50','#806858']},
+  {name:'police',len:44,wid:20,max:7.6,acc:0.22,hp:120,cols:['#e8e8ee']},
+  {name:'tank',  len:64,wid:36,max:3.4,acc:0.08,hp:1000,cols:['#4a5a3a']}
+];
+const TANK=5;
+
+function mkCar(x,y,a,typeIdx,mode){
+  const tp=CARTYPES[typeIdx];
+  return {x,y,a,ta:a,speed:0,type:typeIdx,len:tp.len,wid:tp.wid,
+    col:tp.cols[(rnd()*tp.cols.length)|0],hp:tp.hp,mode,stuck:0,rev:0,sirenT:0,hitByPlayer:false};
+}
+const SKINS=['#e8c8a0','#d2a679','#a9744f','#8a5a3b'];
+const HAIRS=['#1a1a1a','#4a2f1d','#7a5b3a','#b8b8b8','#2a2a3a'];
+function mkPed(x,y){
+  const shirt=['#c05050','#5070c0','#50a060','#c0a040','#9060b0','#d0d0d0','#806050','#3a8a8a'][(rnd()*8)|0];
+  return {x,y,a:rnd()*Math.PI*2,spd:0.55+rnd()*0.3,t:(rnd()*120)|0,state:0,shirt,
+    skin:SKINS[(rnd()*SKINS.length)|0],hair:HAIRS[(rnd()*HAIRS.length)|0],hp:30,ph:0};
+}
+function mkCop(x,y){return {x,y,a:0,hp:60,cool:(rnd()*60)|0,ph:0}}
+
+function randRoadPos(){
+  for(let k=0;k<400;k++){
+    const i=(rnd()*GW)|0,j=(rnd()*GH)|0;
+    if(map[j][i]===0)return {x:(i+0.5)*TILE,y:(j+0.5)*TILE,i,j};
+  }
+  return {x:WPX/2,y:HPX/2,i:GW>>1,j:GH>>1};
+}
+function randWalkPos(){
+  for(let k=0;k<400;k++){
+    const i=(rnd()*GW)|0,j=(rnd()*GH)|0;
+    if(map[j][i]===1||map[j][i]===3)return {x:(i+0.5)*TILE,y:(j+0.5)*TILE};
+  }
+  return {x:WPX/2,y:HPX/2};
+}
+function laneDirAt(i,j){
+  const dirs=[];
+  if(i%9===0&&!(j%9<2))dirs.push(Math.PI/2);
+  if(i%9===1&&!(j%9<2))dirs.push(-Math.PI/2);
+  if(j%9===0&&!(i%9<2))dirs.push(Math.PI);
+  if(j%9===1&&!(i%9<2))dirs.push(0);
+  return dirs;
+}
+
+/* ---- 武器表:手枪/冲锋枪/霰弹枪/火箭筒 ---- */
+const WEAPONS=[
+  {rate:16,dmg:34,spd:13,spread:0.035,auto:false},
+  {rate:5, dmg:13,spd:13,spread:0.13, auto:true, ammo:'uzi'},
+  {rate:34,dmg:12,spd:12,spread:0.30, auto:false,ammo:'shot',pellets:7},
+  {rate:55,dmg:30,spd:8.5,spread:0.01,auto:false,ammo:'rkt', rocket:true}
+];
+const p={x:0,y:0,a:0,hp:100,armor:0,money:0,wIdx:0,ammo:{uzi:0,shot:0,rkt:0},
+  car:null,cool:0,wasFiring:false,lastHurt:-999,hitByRemote:-9999,hitByPid:-1,ph:0,
+  jumpT:0,jumpCd:0,lastCarHit:-99};
+function switchWeapon(i){
+  const w=WEAPONS[i];
+  if(w&&w.ammo&&p.ammo[w.ammo]<=0){showMsg(t('m_noammo'));return}
+  p.wIdx=i;updateHUD();
+}
+
+/* ---- 铺设世界(15×15,密度加大) ---- */
+function populate(){
+  for(let n=0;n<110;n++){
+    const r=randRoadPos(),dirs=laneDirAt(r.i,r.j);
+    if(!dirs.length){n--;continue}
+    const a=dirs[(rnd()*dirs.length)|0];
+    const ti=rnd()<0.18?2:(rnd()<0.22?1:(rnd()<0.18?3:0));
+    const c=mkCar(r.x,r.y,a,ti,'traffic');c.speed=1.5;cars.push(c);
+  }
+  for(let n=0;n<95;n++){
+    const r=randRoadPos();
+    cars.push(mkCar(r.x,r.y,(rnd()<0.5?0:Math.PI/2)+(rnd()<0.5?0:Math.PI),(rnd()*4)|0,'parked'));
+  }
+  for(let n=0;n<2;n++)spawnTank(true);
+  for(let n=0;n<250;n++){const w=randWalkPos();peds.push(mkPed(w.x,w.y))}
+  for(let n=0;n<80;n++)spawnPickup();
+  for(let r2=0;r2<80;r2++){
+    const i=GW/2+((rnd()*16)|0)-8,j=GH/2+((rnd()*16)|0)-8;
+    if(map[j|0]&&map[j|0][i|0]===1){p.x=(i|0)*TILE+24;p.y=(j|0)*TILE+24;break}
+  }
+  if(!p.x){p.x=WPX/2;p.y=HPX/2}
+}
+function spawnTank(initial){
+  const r=randRoadPos();
+  if(!initial&&dist(r.x,r.y,px(),py())<W*0.8){return false}
+  cars.push(mkCar(r.x,r.y,((rnd()*4)|0)*Math.PI/2,TANK,'parked'));
+  return true;
+}
+function spawnPickup(){
+  const w=randWalkPos(),r=rnd();
+  let type;
+  if(r<0.28)type='money';else if(r<0.46)type='uzi';else if(r<0.62)type='health';
+  else if(r<0.78)type='armor';else if(r<0.92)type='shot';else type='rkt';
+  pickups.push({x:w.x,y:w.y,type,bob:rnd()*6});
+}
+
+/* ---- 犯罪 / 粒子 / 爆炸 ---- */
+function isMultiplayerMode(){return typeof net!=='undefined'&&net.myPid>=0}
+function crime(v){heat=Math.min(6.9,heat+v)}
+function stars(){return heat|0}
+function burst(x,y,n,col,pow){
+  for(let i=0;i<n;i++){const a=rnd()*Math.PI*2,s=rnd()*pow;
+    parts.push({x,y,vx:Math.cos(a)*s,vy:Math.sin(a)*s,life:20+rnd()*25,col,size:1.5+rnd()*2.5});}
+}
+function blood(x,y){
+  burst(x,y,14,'#a01818',3);
+  if(decals.length>150)decals.shift();
+  decals.push({x,y,r:7+rnd()*8,a:0.85});
+}
+function explode(x,y,byPlayer){
+  sfx('boom');shake=Math.max(shake,16);
+  burst(x,y,40,'#ff9c30',7);burst(x,y,28,'#ffd870',5);burst(x,y,24,'#404040',4);
+  decals.push({x,y,r:30,a:0.7,dark:true});
+  for(const c of cars){if(c.mode==='wreck')continue;
+    const d=dist(x,y,c.x,c.y);if(d<95&&d>1)damageCar(c,55,byPlayer)}
+  for(const pd of peds){if(pd.state===2)continue;
+    if(dist(x,y,pd.x,pd.y)<95)killPed(pd,byPlayer)}
+  for(const cp of cops){if(dist(x,y,cp.x,cp.y)<95){cp.hp=0;blood(cp.x,cp.y);
+    if(byPlayer){if(!cp.gang)crime(1.2);if(window.onPlayerKill)onPlayerKill('cop',cp)}}}
+  if(!dead&&dist(x,y,px(),py())<95)hurtPlayer(45);
+  if(byPlayer)crime(0.8);
+}
+function damageCar(c,d,byPlayer){
+  if(c.mode==='wreck')return;
+  c.hp-=d;if(byPlayer)c.hitByPlayer=true;
+  if(c.hp<=0){
+    const wasPlayerIn=(c===p.car);
+    c.mode='wreck';c.speed=0;
+    explode(c.x,c.y,c.hitByPlayer);
+    if(wasPlayerIn){p.car=null;hurtPlayer(60);
+      p.x=c.x+Math.cos(c.a+Math.PI/2)*40;p.y=c.y+Math.sin(c.a+Math.PI/2)*40;}
+  }
+}
+function killPed(pd,byPlayer){
+  if(pd.state===2)return;
+  pd.state=2;blood(pd.x,pd.y);sfx('thud');
+  if(byPlayer){if(!pd.bounty)crime(0.55);p.money+=10;
+    if(window.onPlayerKill)onPlayerKill('ped',pd);
+    if(rnd()<0.5)pickups.push({x:pd.x+rr(-8,8),y:pd.y+rr(-8,8),type:'money',bob:0,small:true});
+    updateHUD();}
+}
+function hurtPlayer(d){
+  if(dead)return;
+  if(p.armor>0){const ab=Math.min(p.armor,d*0.7);p.armor-=ab;d-=ab}
+  p.hp-=d;p.lastHurt=frame;sfx('hurt');
+  if(p.hp<=0){p.hp=0;die()}
+  updateHUD();
+}
+function die(){
+  dead=true;blood(px(),py());
+  if(window.netDie)netDie();
+  document.getElementById('wasted').style.display='flex';
+}
+function respawn(){
+  dead=false;p.hp=100;p.armor=0;if(!isMultiplayerMode())p.money=Math.max(0,p.money-100);heat=0;p.car=null;
+  p.hitByRemote=-9999;p.hitByPid=-1;
+  p.x=WPX/2+10;p.y=HPX/2+10;
+  let tries=0;while(solid(p.x,p.y)&&tries++<200)p.x+=TILE;
+  document.getElementById('wasted').style.display='none';
+  showMsg(t('m_hosp'));updateHUD();
+}
+const px=()=>p.car?p.car.x:p.x, py=()=>p.car?p.car.y:p.y;
+
+/* ---- 上下车 (F) ---- */
+function tryEnterExit(){
+  if(dead||!started)return;
+  if(p.car){
+    const c=p.car;
+    const off=c.wid/2+14;
+    const ox=c.x+Math.cos(c.a+Math.PI/2)*off,oy=c.y+Math.sin(c.a+Math.PI/2)*off;
+    if(!solid(ox,oy)){p.x=ox;p.y=oy}else{p.x=c.x-Math.cos(c.a+Math.PI/2)*off;p.y=c.y-Math.sin(c.a+Math.PI/2)*off}
+    c.mode='parked';p.car=null;showMsg(t('m_out'));updateHUD();
+    return;
+  }
+  let best=null,bd=70;
+  for(const c of cars){if(c.mode==='wreck')continue;
+    const d=dist(p.x,p.y,c.x,c.y);if(d<bd){bd=d;best=c}}
+  if(best){
+    if(best.type===TANK)crime(2.0);
+    else if(best.mode==='police')crime(1.4);
+    else if(best.mode==='traffic')crime(0.35);
+    if(best.mode==='traffic'||best.mode==='police'){
+      const pd=mkPed(best.x+rr(-20,20),best.y+rr(-20,20));pd.state=1;pd.t=180;peds.push(pd);
+    }
+    best.mode='player';p.car=best;
+    showMsg(best.type===TANK?t('m_inT'):best.type===4?t('m_inP'):t('m_in'));
+    updateHUD();
+  }
+}
+
+/* ---- 开火(步行武器) ---- */
+function tryFire(){
+  if(dead||p.car)return;
+  const w=WEAPONS[p.wIdx];
+  if(w.ammo&&p.ammo[w.ammo]<=0){p.wIdx=0;updateHUD();return}
+  if(p.cool>0)return;
+  if(!w.auto&&p.wasFiring)return;
+  p.cool=w.rate;
+  const bx=p.x+Math.cos(p.a)*14,by=p.y+Math.sin(p.a)*14;
+  if(w.pellets){
+    for(let i=0;i<w.pellets;i++){
+      const a=p.a+rr(-w.spread,w.spread);
+      bullets.push({x:bx,y:by,vx:Math.cos(a)*(w.spd+rr(-1,1)),vy:Math.sin(a)*(w.spd+rr(-1,1)),
+        life:24+((rnd()*6)|0),dmg:w.dmg,owner:'player'});
+    }
+    sfx('shotgun');
+  }else if(w.rocket){
+    bullets.push({x:bx,y:by,vx:Math.cos(p.a)*w.spd,vy:Math.sin(p.a)*w.spd,
+      life:90,dmg:w.dmg,owner:'player',rocket:true});
+    sfx('rocket');
+  }else{
+    const a=p.a+rr(-w.spread,w.spread);
+    bullets.push({x:bx,y:by,vx:Math.cos(a)*w.spd,vy:Math.sin(a)*w.spd,
+      life:55,dmg:w.dmg,owner:'player'});
+    sfx(p.wIdx===1?'uzi':'shot');
+  }
+  if(w.ammo){p.ammo[w.ammo]--;updateHUD()}
+  if(window.netShot)netShot(bx,by,p.a,p.wIdx);
+  crime(0.02);
+}
+
+/* ---- 坦克开炮 ---- */
+function tankFire(c){
+  if(p.cool>0)return;
+  p.cool=70;
+  const ta=c.ta;
+  const bx=c.x+Math.cos(ta)*42,by=c.y+Math.sin(ta)*42;
+  bullets.push({x:bx,y:by,vx:Math.cos(ta)*11,vy:Math.sin(ta)*11,
+    life:80,dmg:60,owner:'player',shell:true});
+  sfx('cannon');shake=Math.max(shake,7);
+  burst(bx,by,10,'#ffd870',4);
+  c.speed*=0.85;
+  if(window.netShot)netShot(bx,by,ta,9);
+  crime(0.1);
+}
+</script>
+<script>
+'use strict';
+/* ================= 更新逻辑 ================= */
+function movePlayerOnFoot(){
+  if(p.jumpT>0)p.jumpT--;
+  if(p.jumpCd>0)p.jumpCd--;
+  if(keys.Space&&p.jumpT<=0&&p.jumpCd<=0){p.jumpT=28;p.jumpCd=46;sfx('jump')}
+  let dx=0,dy=0;
+  if(keys.KeyW)dy-=1;if(keys.KeyS)dy+=1;if(keys.KeyA)dx-=1;if(keys.KeyD)dx+=1;
+  const l=Math.hypot(dx,dy);
+  if(l>0){
+    const spd=keys.ShiftLeft||keys.ShiftRight?3.3:2.1;
+    dx=dx/l*spd;dy=dy/l*spd;
+    if(!solid(p.x+dx+Math.sign(dx)*7,p.y))p.x+=dx;
+    if(!solid(p.x,p.y+dy+Math.sign(dy)*7))p.y+=dy;
+    p.ph+=spd*0.22;
+  }
+  p.x=clamp(p.x,10,WPX-10);p.y=clamp(p.y,10,HPX-10);
+  p.a=Math.atan2(mouse.y-(p.y-cam.y),mouse.x-(p.x-cam.x));
+  if(mouse.down)tryFire();
+  p.wasFiring=mouse.down;
+  if(p.cool>0)p.cool--;
+  for(let i=pickups.length-1;i>=0;i--){const pk=pickups[i];
+    if(dist(p.x,p.y,pk.x,pk.y)<18){
+      if(pk.type==='money'){const v=pk.small?15+((rnd()*20)|0):40+((rnd()*60)|0);p.money+=v;showMsg('+$'+v)}
+      else if(pk.type==='health'){p.hp=Math.min(100,p.hp+50);showMsg(t('m_hp'))}
+      else if(pk.type==='armor'){p.armor=Math.min(100,p.armor+50);showMsg(t('m_armor'))}
+      else if(pk.type==='uzi'){p.ammo.uzi+=60;showMsg(t('m_uzi'))}
+      else if(pk.type==='shot'){p.ammo.shot+=12;showMsg(t('m_shot'))}
+      else{p.ammo.rkt+=3;showMsg(t('m_rkt'))}
+      sfx('pickup');pickups.splice(i,1);updateHUD();
+      if(!pk.small)spawnPickup();
+    }}
+}
+
+function drivePlayerCar(){
+  const c=p.car,tp=CARTYPES[c.type];
+  let gas=0;
+  if(keys.KeyW)gas=1;if(keys.KeyS)gas=-1;
+  let steer=0;if(keys.KeyA)steer=-1;if(keys.KeyD)steer=1;
+  const hand=keys.Space;
+  c.speed+=gas*tp.acc*(gas<0&&c.speed>0?2.2:1);
+  c.speed*=hand?0.94:0.988;
+  c.speed=clamp(c.speed,-tp.max*0.45,tp.max);
+  const grip=hand?0.085:0.05;
+  c.a+=steer*grip*clamp(Math.abs(c.speed)/2.2,0,1)*(c.speed<0?-1:1);
+  stepCar(c,true);
+  if(c.type===TANK){
+    c.ta=Math.atan2(mouse.y-(c.y-cam.y),mouse.x-(c.x-cam.x));
+    if(mouse.down)tankFire(c);
+    if(p.cool>0)p.cool--;
+    // 坦克碾压车辆
+    if(Math.abs(c.speed)>0.8){
+      for(const o of cars){if(o===c||o.mode==='wreck')continue;
+        if(dist(c.x,c.y,o.x,o.y)<c.len*0.55+o.len*0.35){
+          damageCar(o,28,true);o.speed+=Math.sign(c.speed)*1.5;
+          c.speed*=0.92;sfx('thud');shake=Math.max(shake,4);
+        }}
+    }
+    if(frame%120===0)crime(0.06); // 开坦克上街本身就是犯罪
+  }else c.ta=c.a;
+}
+
+function stepCar(c,isPlayer){
+  const nx=c.x+Math.cos(c.a)*c.speed, ny=c.y+Math.sin(c.a)*c.speed;
+  const fx=nx+Math.cos(c.a)*c.len*0.5*Math.sign(c.speed||1),
+        fy=ny+Math.sin(c.a)*c.len*0.5*Math.sign(c.speed||1);
+  if(solid(fx,fy)||nx<20||ny<20||nx>WPX-20||ny>HPX-20){
+    if(Math.abs(c.speed)>3.4){
+      damageCar(c,Math.abs(c.speed)*4,false);
+      if(isPlayer){hurtPlayer((Math.abs(c.speed)*1.5)|0);shake=Math.max(shake,6)}
+      sfx('thud');burst(fx,fy,8,'#888',3);
+    }
+    c.speed*=-0.32;
+  }else{c.x=nx;c.y=ny}
+  if(Math.abs(c.speed)>1.6){
+    for(const pd of peds){if(pd.state===2)continue;
+      if(dist(c.x,c.y,pd.x,pd.y)<c.len*0.45+8)killPed(pd,isPlayer)}
+    for(const cp of cops){
+      if(dist(c.x,c.y,cp.x,cp.y)<c.len*0.45+8){cp.hp=0;blood(cp.x,cp.y);sfx('thud');
+        if(isPlayer){if(!cp.gang)crime(1.2);if(window.onPlayerKill)onPlayerKill('cop',cp)}}}
+    // 撞步行玩家(跳跃中免疫,有受击间隔)
+    if(!isPlayer&&!dead&&!p.car&&p.jumpT<=0&&frame-p.lastCarHit>30){
+      if(dist(c.x,c.y,p.x,p.y)<c.len*0.45+8){
+        p.lastCarHit=frame;
+        hurtPlayer((6+Math.abs(c.speed)*3)|0);
+        const kb=Math.sign(c.speed)||1;
+        const nx2=p.x+Math.cos(c.a)*kb*16,ny2=p.y+Math.sin(c.a)*kb*16;
+        if(!solid(nx2,ny2)){p.x=nx2;p.y=ny2}
+        c.speed*=0.7;sfx('thud');shake=Math.max(shake,4);
+      }
+    }
+  }
+}
+
+function updateTraffic(c){
+  const lookX=c.x+Math.cos(c.a)*c.len, lookY=c.y+Math.sin(c.a)*c.len;
+  let brake=false;
+  for(const o of cars){if(o===c)continue;
+    if(dist(lookX,lookY,o.x,o.y)<46){brake=true;break}}
+  if(!brake)for(const pd of peds){if(pd.state===2)continue;
+    if(dist(lookX,lookY,pd.x,pd.y)<26){brake=true;break}}
+  const want=brake?0:1.7;
+  c.speed+=(want-c.speed)*0.06;
+  const ci=(c.x/TILE)|0,cj=(c.y/TILE)|0;
+  const cx=(ci+0.5)*TILE,cy=(cj+0.5)*TILE;
+  if(dist(c.x,c.y,cx,cy)<c.speed+1.2){
+    const aheadI=ci+Math.round(Math.cos(c.a)),aheadJ=cj+Math.round(Math.sin(c.a));
+    const aheadRoad=aheadI>=0&&aheadJ>=0&&aheadI<GW&&aheadJ<GH&&map[aheadJ][aheadI]===0;
+    const inter=laneDirAt(ci,cj);
+    if(!aheadRoad||(inter.length>1&&rnd()<0.4)){
+      const opts=[];
+      for(const d of [0,Math.PI/2,Math.PI,-Math.PI/2]){
+        if(Math.abs(norm(d-c.a-Math.PI))<0.3)continue;
+        const ni=ci+Math.round(Math.cos(d)),nj=cj+Math.round(Math.sin(d));
+        if(ni>=0&&nj>=0&&ni<GW&&nj<GH&&map[nj][ni]===0)opts.push(d);
+      }
+      if(opts.length){c.a=opts[(rnd()*opts.length)|0];c.x=cx;c.y=cy}
+      else c.a=norm(c.a+Math.PI);
+    }
+  }
+  c.ta=c.a;
+  stepCar(c,false);
+}
+
+function updatePoliceCar(c){
+  c.sirenT++;
+  const ta=Math.atan2(py()-c.y,px()-c.x);
+  const da=norm(ta-c.a);
+  c.a+=clamp(da,-0.055,0.055)*clamp(Math.abs(c.speed)/2,0.3,1);
+  const d=dist(c.x,c.y,px(),py());
+  let want=Math.abs(da)>2.2?-1.2:(d<70?1.4:4.6);
+  if(c.rev>0){want=-2.4;c.rev--;c.a+=0.05}
+  c.speed+=(want-c.speed)*0.05;
+  const oldX=c.x,oldY=c.y;
+  c.ta=c.a;
+  stepCar(c,false);
+  if(Math.abs(c.x-oldX)<0.3&&Math.abs(c.y-oldY)<0.3&&Math.abs(c.speed)>0.5)c.stuck++;else c.stuck=0;
+  if(c.stuck>40){c.rev=50;c.stuck=0}
+  if(d<c.len*0.55+16&&Math.abs(c.speed)>2.5){
+    if(p.car){
+      if(p.car.type===TANK){damageCar(c,45,false);damageCar(p.car,4,false)} // 撞坦克=自杀
+      else{damageCar(p.car,18,false);p.car.speed*=0.6}
+    }else if(p.jumpT<=0)hurtPlayer(14);
+    c.speed*=-0.4;sfx('thud');shake=Math.max(shake,5);
+  }
+}
+
+function updatePed(pd){
+  if(pd.state===2)return;
+  if(pd.wait)return;
+  if(pd.bounty){if(window.bountyAI)bountyAI(pd);return}
+  if(pd.state===1){
+    pd.t--;pd.ph+=0.45;
+    const nx=pd.x+Math.cos(pd.a)*1.9, ny=pd.y+Math.sin(pd.a)*1.9;
+    if(!solid(nx,pd.y))pd.x=nx;else pd.a=rnd()*Math.PI*2;
+    if(!solid(pd.x,ny))pd.y=ny;else pd.a=rnd()*Math.PI*2;
+    if(pd.t<=0)pd.state=0;
+    return;
+  }
+  pd.t--;
+  if(pd.t<=0){pd.a=((rnd()*4)|0)*Math.PI/2+rr(-0.2,0.2);pd.t=80+rnd()*160}
+  const nx=pd.x+Math.cos(pd.a)*pd.spd, ny=pd.y+Math.sin(pd.a)*pd.spd;
+  const nt=tileAt(nx,ny);
+  if(nt===2||nt===0&&rnd()<0.985){pd.a=norm(pd.a+Math.PI/2+rnd()*Math.PI)}
+  else{pd.x=nx;pd.y=ny;pd.ph+=pd.spd*0.3}
+  pd.x=clamp(pd.x,8,WPX-8);pd.y=clamp(pd.y,8,HPX-8);
+}
+function panicAround(x,y,r){
+  for(const pd of peds){if(pd.state===2)continue;
+    if(dist(x,y,pd.x,pd.y)<r){pd.state=1;pd.t=200;pd.a=Math.atan2(pd.y-y,pd.x-x)+rr(-0.5,0.5)}}
+}
+
+function updateCop(cp){
+  if(cp.gang&&window.gangAI){gangAI(cp);return}
+  const d=dist(cp.x,cp.y,px(),py());
+  const ta=Math.atan2(py()-cp.y,px()-cp.x);
+  cp.a=ta;
+  if(d>60){
+    const sp=1.25;cp.ph+=0.3;
+    const nx=cp.x+Math.cos(ta)*sp, ny=cp.y+Math.sin(ta)*sp;
+    if(!solid(nx,cp.y))cp.x=nx;else if(!solid(cp.x,cp.y+Math.sign(Math.sin(ta))*sp))cp.y+=Math.sign(Math.sin(ta))*sp;
+    if(!solid(cp.x,ny))cp.y=ny;else if(!solid(cp.x+Math.sign(Math.cos(ta))*sp,cp.y))cp.x+=Math.sign(Math.cos(ta))*sp;
+  }
+  cp.cool--;
+  if(cp.cool<=0&&d<330&&!dead){
+    cp.cool=55+((rnd()*40)|0);
+    const a=ta+rr(-0.12,0.12);
+    bullets.push({x:cp.x+Math.cos(ta)*12,y:cp.y+Math.sin(ta)*12,
+      vx:Math.cos(a)*10,vy:Math.sin(a)*10,life:55,dmg:9,owner:'cop'});
+    sfx('shot');
+  }
+}
+
+function maintainPolice(){
+  if(isMultiplayerMode()){
+    for(let i=cops.length-1;i>=0;i--){
+      if(!cops[i].gang)cops.splice(i,1);
+    }
+    for(let i=cars.length-1;i>=0;i--){
+      if(cars[i].mode==='police')cars[i].mode='traffic';
+    }
+    heat=0;
+    return;
+  }
+  const s=stars();
+  const wantCops=s>0?s*2:0;
+  for(let i=cops.length-1;i>=0;i--){
+    if(cops[i].hp<=0){cops.splice(i,1);continue}
+    if(s===0&&!cops[i].gang&&dist(cops[i].x,cops[i].y,px(),py())>500)cops.splice(i,1);
+  }
+  if(cops.filter(c2=>!c2.gang).length<wantCops&&frame%50===0){
+    const a=rnd()*Math.PI*2,r=Math.max(W,H)*0.62;
+    let x=clamp(px()+Math.cos(a)*r,20,WPX-20),y=clamp(py()+Math.sin(a)*r,20,HPX-20);
+    let tries=0;while(solid(x,y)&&tries++<40)x+=TILE/2;
+    cops.push(mkCop(x,y));
+  }
+  const pcs=cars.filter(c=>c.mode==='police');
+  const wantPC=s>=2?Math.min(4,s-1):0;
+  if(pcs.length<wantPC&&frame%90===0){
+    const r=randRoadPos();
+    if(dist(r.x,r.y,px(),py())>W*0.6)cars.push(mkCar(r.x,r.y,rnd()*Math.PI*2,4,'police'));
+  }
+  if(s===0)for(const c of cars)if(c.mode==='police'&&dist(c.x,c.y,px(),py())>900)c.mode='traffic';
+  const hidden=!p.car&&frame-p.lastHurt>240&&
+    !cops.some(c=>!c.gang&&dist(c.x,c.y,px(),py())<520)&&
+    !cars.some(c=>c.mode==='police'&&dist(c.x,c.y,px(),py())<700);
+  heat=Math.max(0,heat-(hidden?0.006:0.0011));
+}
+
+function maintainTanks(){
+  if(frame%600)return;
+  let n=0;
+  for(const c of cars)if(c.type===TANK&&c.mode!=='wreck'&&c!==p.car)n++;
+  if(p.car&&p.car.type===TANK)n++;
+  if(n<2)spawnTank(false);
+}
+
+function updateBullets(){
+  for(let i=bullets.length-1;i>=0;i--){
+    const b=bullets[i];
+    b.x+=b.vx;b.y+=b.vy;b.life--;
+    if(b.rocket&&frame%2===0)parts.push({x:b.x,y:b.y,vx:rr(-0.3,0.3),vy:rr(-0.3,0.3),life:18,col:'#888',size:2.5});
+    if(b.shell&&frame%2===0)parts.push({x:b.x,y:b.y,vx:0,vy:0,life:10,col:'#aa8',size:2});
+    const big=b.rocket||b.shell;
+    if(b.life<=0||solid(b.x,b.y)){
+      if(big)explode(b.x,b.y,b.owner==='player');
+      else if(solid(b.x,b.y))burst(b.x,b.y,4,'#cfcf9a',2);
+      bullets.splice(i,1);continue;
+    }
+    let hit=false;
+    for(const pd of peds){if(pd.state===2)continue;
+      if(dist(b.x,b.y,pd.x,pd.y)<9){
+        if(pd.bounty&&!big){
+          pd.hp-=b.dmg;burst(b.x,b.y,6,'#a01818',2.5);
+          if(pd.hp<=0)killPed(pd,b.owner==='player');
+        }else if(!big)killPed(pd,b.owner==='player');
+        panicAround(pd.x,pd.y,170);hit=true;break}}
+    if(!hit)for(const cp of cops){
+      if(dist(b.x,b.y,cp.x,cp.y)<9){
+        if(!big){cp.hp-=b.dmg;burst(b.x,b.y,6,'#a01818',2.5);
+          if(cp.hp<=0){blood(cp.x,cp.y);if(b.owner==='player'){if(!cp.gang)crime(1.1);p.money+=cp.gang?30:40;if(window.onPlayerKill)onPlayerKill('cop',cp);updateHUD()}}}
+        hit=true;break}}
+    if(!hit&&window.netBulletCheck)hit=netBulletCheck(b);
+    if(!hit&&b.owner!=='player'&&!dead){
+      if(p.car){if(dist(b.x,b.y,p.car.x,p.car.y)<p.car.len*0.42){
+        if(b.owner==='remote'){p.hitByRemote=frame;p.hitByPid=b.pid}
+        if(!big)damageCar(p.car,b.dmg*0.7,false);hit=true}}
+      else if(dist(b.x,b.y,p.x,p.y)<9){
+        if(b.owner==='remote'){p.hitByRemote=frame;p.hitByPid=b.pid}
+        if(!big){hurtPlayer(b.dmg);burst(b.x,b.y,6,'#a01818',2.5)}hit=true}
+    }
+    if(!hit)for(const c of cars){if(c.mode==='wreck'||c===p.car)continue;
+      if(dist(b.x,b.y,c.x,c.y)<c.len*0.42){
+        if(b.shell)damageCar(c,600,b.owner==='player'); // 坦克炮:直击必炸
+        else if(b.rocket)damageCar(c,130,b.owner==='player');
+        else damageCar(c,b.dmg,b.owner==='player');
+        if(!big)burst(b.x,b.y,5,'#ffd870',2.5);
+        if(c.mode==='traffic'&&b.owner==='player')crime(0.06);
+        hit=true;break}}
+    if(hit){
+      if(big)explode(b.x,b.y,b.owner==='player');
+      if(b.owner==='player')panicAround(b.x,b.y,150);
+      bullets.splice(i,1);
+    }
+  }
+}
+
+function recycle(){
+  if(frame%30)return;
+  const R=Math.max(W,H)*1.4;
+  for(const pd of peds){
+    if(dist(pd.x,pd.y,px(),py())>R){
+      const a=rnd()*Math.PI*2,r=Math.max(W,H)*0.7;
+      const x=clamp(px()+Math.cos(a)*r,8,WPX-8),y=clamp(py()+Math.sin(a)*r,8,HPX-8);
+      if(tileAt(x,y)===1||tileAt(x,y)===3){pd.x=x;pd.y=y;pd.state=0;pd.hp=30}
+    }
+  }
+  for(const c of cars){
+    if(c.mode==='traffic'&&dist(c.x,c.y,px(),py())>R){
+      const r=randRoadPos(),dirs=laneDirAt(r.i,r.j);
+      if(dirs.length&&dist(r.x,r.y,px(),py())>W*0.6){
+        c.x=r.x;c.y=r.y;c.a=dirs[(rnd()*dirs.length)|0];c.hp=CARTYPES[c.type].hp;c.hitByPlayer=false}
+    }
+  }
+}
+</script>
+<script>
+'use strict';
+/* ================= 渲染(精细化) ================= */
+function draw(){
+  const tx=px()-W/2, ty=py()-H/2;
+  cam.x+=(tx-cam.x)*0.12;cam.y+=(ty-cam.y)*0.12;
+  cam.x=clamp(cam.x,0,WPX-W);cam.y=clamp(cam.y,0,HPX-H);
+  if(shake>0){cam.x+=rr(-shake,shake);cam.y+=rr(-shake,shake);shake*=0.85;if(shake<0.4)shake=0}
+
+  ctx.fillStyle='#141417';ctx.fillRect(0,0,W,H);
+  const i0=Math.max(0,(cam.x/TILE|0)-1),j0=Math.max(0,(cam.y/TILE|0)-1);
+  const i1=Math.min(GW-1,((cam.x+W)/TILE|0)+1),j1=Math.min(GH-1,((cam.y+H)/TILE|0)+1);
+
+  for(let j=j0;j<=j1;j++)for(let i=i0;i<=i1;i++){
+    const tt=map[j][i],x=i*TILE-cam.x,y=j*TILE-cam.y;
+    if(tt===0){
+      ctx.fillStyle='#26262b';ctx.fillRect(x,y,TILE,TILE);
+      const li=i%9,lj=j%9,inter=li<2&&lj<2;
+      if(!inter){
+        // 车道虚线
+        ctx.fillStyle='#b9a23a';
+        if(li===1&&lj>=2){for(let k=0;k<2;k++)ctx.fillRect(x-1,y+6+k*24,2,12)}
+        if(lj===1&&li>=2){for(let k=0;k<2;k++)ctx.fillRect(x+6+k*24,y-1,12,2)}
+        // 斑马线(街口)
+        ctx.fillStyle='rgba(225,225,225,0.55)';
+        if(li<2&&(lj===2||lj===8)){for(let k=0;k<4;k++)ctx.fillRect(x+3+k*12,y+(lj===2?4:TILE-18),7,14)}
+        if(lj<2&&(li===2||li===8)){for(let k=0;k<4;k++)ctx.fillRect(x+(li===2?4:TILE-18),y+3+k*12,14,7)}
+        // 井盖
+        const h=hash(i*5,j*11);
+        if(h<0.035&&li>=2&&lj>=2){ctx.fillStyle='#1c1c20';ctx.beginPath();ctx.arc(x+24,y+24,7,0,7);ctx.fill();
+          ctx.strokeStyle='#333';ctx.lineWidth=1;ctx.stroke()}
+      }
+    }else if(tt===1){
+      ctx.fillStyle='#46464d';ctx.fillRect(x,y,TILE,TILE);
+      ctx.strokeStyle='rgba(0,0,0,0.18)';ctx.strokeRect(x+0.5,y+0.5,TILE,TILE);
+      const h=hash(i*3,j*5);
+      if(h<0.05){ // 裂缝
+        ctx.strokeStyle='rgba(0,0,0,0.3)';ctx.beginPath();
+        ctx.moveTo(x+8,y+10);ctx.lineTo(x+22,y+26);ctx.lineTo(x+18,y+40);ctx.stroke();
+      }else if(h>0.975){ // 消防栓
+        ctx.fillStyle='#a82a22';ctx.fillRect(x+20,y+18,8,11);
+        ctx.fillRect(x+18,y+21,12,4);ctx.fillStyle='#c8463c';ctx.fillRect(x+22,y+15,4,4);
+      }
+    }else if(tt===3){
+      ctx.fillStyle='#2c4a30';ctx.fillRect(x,y,TILE,TILE);
+      const h=hash(i,j);
+      // 草地纹理
+      ctx.fillStyle='rgba(0,0,0,0.10)';
+      ctx.fillRect(x+((h*37)%40),y+((h*61)%40),3,2);ctx.fillRect(x+((h*89)%40),y+((h*23)%40),2,3);
+      if(h<0.16){ // 树+阴影
+        ctx.fillStyle='rgba(0,0,0,0.25)';ctx.beginPath();ctx.ellipse(x+27,y+28,15,11,0,0,7);ctx.fill();
+        ctx.fillStyle='#1d3522';ctx.beginPath();ctx.arc(x+24,y+24,15,0,7);ctx.fill();
+        ctx.fillStyle='#2f5a36';ctx.beginPath();ctx.arc(x+21,y+21,11,0,7);ctx.fill();
+        ctx.fillStyle='#3d6e44';ctx.beginPath();ctx.arc(x+19,y+19,5,0,7);ctx.fill();
+      }else if(h>0.9){ // 花丛
+        ctx.fillStyle='#c8b050';ctx.fillRect(x+20,y+20,3,3);ctx.fillRect(x+30,y+12,3,3);
+        ctx.fillStyle='#b06a8a';ctx.fillRect(x+12,y+30,3,3);
+      }else if(h>0.85){ // 灌木
+        ctx.fillStyle='#24402a';ctx.beginPath();ctx.arc(x+24,y+30,8,0,7);ctx.fill();
+      }
+    }else{ // 建筑屋顶
+      const base=roofCol(i,j);
+      ctx.fillStyle=base;ctx.fillRect(x,y,TILE,TILE);
+      const li=i%9,lj=j%9;
+      // 2.5D 屋檐:北/西亮边,南/东深影
+      ctx.fillStyle='rgba(255,255,255,0.09)';
+      if(lj===3)ctx.fillRect(x,y,TILE,3);
+      if(li===3)ctx.fillRect(x,y,3,TILE);
+      ctx.fillStyle='rgba(0,0,0,0.34)';
+      if(lj===7)ctx.fillRect(x,y+TILE-4,TILE,4);
+      if(li===7)ctx.fillRect(x+TILE-4,y,4,TILE);
+      // 墙面投影(楼体在人行道上的影子感)
+      if(lj===7){ctx.fillStyle='rgba(0,0,0,0.13)';ctx.fillRect(x,y+TILE-1,TILE,1)}
+      const h=hash(i*3,j*7),bh=hash((i/9)|0,(j/9)|0);
+      if(li===5&&lj===5&&bh<0.10){ // 直升机坪
+        ctx.strokeStyle='rgba(255,255,255,0.5)';ctx.lineWidth=2;
+        ctx.beginPath();ctx.arc(x+24,y+24,17,0,7);ctx.stroke();
+        ctx.fillStyle='rgba(255,255,255,0.5)';ctx.font='bold 18px sans-serif';ctx.textAlign='center';
+        ctx.fillText('H',x+24,y+31);
+      }else if(h<0.10){ // 天窗
+        ctx.fillStyle='rgba(0,0,0,0.3)';ctx.fillRect(x+10,y+10,16,16);
+        ctx.fillStyle='rgba(140,180,220,0.16)';ctx.fillRect(x+12,y+12,12,12);
+        ctx.strokeStyle='rgba(0,0,0,0.4)';ctx.lineWidth=1;
+        ctx.beginPath();ctx.moveTo(x+18,y+12);ctx.lineTo(x+18,y+24);ctx.moveTo(x+12,y+18);ctx.lineTo(x+24,y+18);ctx.stroke();
+      }else if(h>0.92){ // 空调机组
+        ctx.fillStyle='rgba(0,0,0,0.25)';ctx.fillRect(x+15,y+16,20,13);
+        ctx.fillStyle='#33363c';ctx.fillRect(x+14,y+14,20,13);
+        ctx.fillStyle='#787f8a';ctx.fillRect(x+16,y+16,16,3);
+        ctx.fillStyle='#5a606a';ctx.beginPath();ctx.arc(x+24,y+24,3,0,7);ctx.fill();
+      }else if(h>0.86){ // 排气管
+        ctx.fillStyle='#2c2e34';ctx.fillRect(x+20,y+12,7,7);
+        ctx.fillStyle='#46484e';ctx.beginPath();ctx.arc(x+23.5,y+15.5,2.5,0,7);ctx.fill();
+      }else if(h>0.80){ // 水塔
+        ctx.fillStyle='rgba(0,0,0,0.22)';ctx.beginPath();ctx.arc(x+26,y+26,9,0,7);ctx.fill();
+        ctx.fillStyle='#5c5248';ctx.beginPath();ctx.arc(x+24,y+24,9,0,7);ctx.fill();
+        ctx.fillStyle='#6e6358';ctx.beginPath();ctx.arc(x+24,y+24,6,0,7);ctx.fill();
+      }
+    }
+  }
+
+  // 血迹/焦痕
+  for(const d of decals){
+    const x=d.x-cam.x,y=d.y-cam.y;
+    if(x<-50||y<-50||x>W+50||y>H+50)continue;
+    ctx.globalAlpha=d.a;
+    ctx.fillStyle=d.dark?'#141414':'#6e1010';
+    ctx.beginPath();ctx.arc(x,y,d.r,0,7);ctx.fill();
+    ctx.globalAlpha=1;d.a-=0.0004;
+  }
+  for(let i=decals.length-1;i>=0;i--)if(decals[i].a<=0.02)decals.splice(i,1);
+
+  // 道具
+  for(const pk of pickups){
+    const x=pk.x-cam.x,y=pk.y-cam.y;
+    if(x<-30||y<-30||x>W+30||y>H+30)continue;
+    pk.bob+=0.08;const b=Math.sin(pk.bob)*2;
+    ctx.font='16px serif';ctx.textAlign='center';
+    const ic=pk.type==='money'?'💰':pk.type==='health'?'❤️':pk.type==='armor'?'🛡️':
+             pk.type==='uzi'?'🔫':pk.type==='shot'?'💥':'🚀';
+    ctx.fillText(ic,x,y+5+b);
+  }
+
+  for(const c of cars)drawCar(c);
+  for(const pd of peds)drawPed(pd);
+  for(const cp of cops)drawCop(cp);
+  if(!dead&&!p.car)drawPlayer();
+  if(window.netDrawRemote)netDrawRemote();
+  if(window.missionDraw)missionDraw();
+
+  // 子弹
+  for(const b of bullets){
+    const x=b.x-cam.x,y=b.y-cam.y;
+    if(b.rocket){ctx.fillStyle='#d8d8e0';ctx.save();ctx.translate(x,y);ctx.rotate(Math.atan2(b.vy,b.vx));
+      ctx.fillRect(-5,-2,10,4);ctx.fillStyle='#ff9c30';ctx.fillRect(-7,-1.5,3,3);ctx.restore();}
+    else if(b.shell){ctx.fillStyle='#ffb850';ctx.beginPath();ctx.arc(x,y,3.5,0,7);ctx.fill();}
+    else{ctx.fillStyle='#ffe9a0';ctx.fillRect(x-2,y-2,4,4);}
+  }
+  // 粒子
+  for(let i=parts.length-1;i>=0;i--){
+    const q=parts[i];q.x+=q.vx;q.y+=q.vy;q.vx*=0.92;q.vy*=0.92;q.life--;
+    if(q.life<=0){parts.splice(i,1);continue}
+    ctx.globalAlpha=Math.min(1,q.life/15);
+    ctx.fillStyle=q.col;ctx.fillRect(q.x-cam.x,q.y-cam.y,q.size,q.size);
+    ctx.globalAlpha=1;
+  }
+  // 夜色氛围
+  const g=ctx.createRadialGradient(W/2,H/2,H*0.25,W/2,H/2,Math.max(W,H)*0.75);
+  g.addColorStop(0,'rgba(0,0,0,0)');g.addColorStop(1,'rgba(0,0,20,0.42)');
+  ctx.fillStyle=g;ctx.fillRect(0,0,W,H);
+  if(frame-p.lastHurt<14&&!dead){ctx.fillStyle='rgba(180,0,0,'+(0.3*(1-(frame-p.lastHurt)/14))+')';ctx.fillRect(0,0,W,H)}
+
+  drawMinimap();
+}
+
+function drawCar(c){
+  const x=c.x-cam.x,y=c.y-cam.y;
+  if(x<-90||y<-90||x>W+90||y>H+90)return;
+  ctx.save();ctx.translate(x,y);ctx.rotate(c.a);
+  const Lc=c.len,Wd=c.wid,wreck=c.mode==='wreck';
+  if(c.type===TANK){drawTank(c,wreck);ctx.restore();return}
+  // 阴影
+  ctx.fillStyle='rgba(0,0,0,0.35)';ctx.fillRect(-Lc/2+3,-Wd/2+3,Lc,Wd);
+  // 轮胎
+  ctx.fillStyle='#0e0e10';
+  ctx.fillRect(-Lc*0.36,-Wd/2-1.5,9,4);ctx.fillRect(-Lc*0.36,Wd/2-2.5,9,4);
+  ctx.fillRect(Lc*0.22,-Wd/2-1.5,9,4);ctx.fillRect(Lc*0.22,Wd/2-2.5,9,4);
+  // 车身
+  ctx.fillStyle=wreck?'#1c1c1c':c.col;
+  ctx.beginPath();
+  if(ctx.roundRect)ctx.roundRect(-Lc/2,-Wd/2,Lc,Wd,5);else ctx.rect(-Lc/2,-Wd/2,Lc,Wd);
+  ctx.fill();
+  ctx.strokeStyle='rgba(0,0,0,0.5)';ctx.lineWidth=1.5;ctx.stroke();
+  if(!wreck){
+    // 引擎盖高光 + 顶棚
+    ctx.fillStyle='rgba(255,255,255,0.10)';ctx.fillRect(Lc*0.26,-Wd/2+2.5,Lc*0.18,Wd-5);
+    ctx.fillStyle='rgba(0,0,0,0.16)';ctx.fillRect(-Lc*0.20,-Wd/2+2.5,Lc*0.30,Wd-5);
+    // 挡风玻璃 前/后/侧窗
+    ctx.fillStyle='#1a2530';
+    ctx.fillRect(Lc*0.08,-Wd/2+3,Lc*0.15,Wd-6);
+    ctx.fillRect(-Lc*0.34,-Wd/2+3,Lc*0.11,Wd-6);
+    ctx.fillRect(-Lc*0.18,-Wd/2+1.5,Lc*0.26,2);
+    ctx.fillRect(-Lc*0.18,Wd/2-3.5,Lc*0.26,2);
+    // 门缝
+    ctx.strokeStyle='rgba(0,0,0,0.30)';ctx.lineWidth=1;
+    ctx.beginPath();ctx.moveTo(-Lc*0.05,-Wd/2+1);ctx.lineTo(-Lc*0.05,Wd/2-1);ctx.stroke();
+    // 车灯
+    ctx.fillStyle='#ffe9a0';ctx.fillRect(Lc/2-3,-Wd/2+2,3,4);ctx.fillRect(Lc/2-3,Wd/2-6,3,4);
+    ctx.fillStyle='#c03030';ctx.fillRect(-Lc/2,-Wd/2+2,3,4);ctx.fillRect(-Lc/2,Wd/2-6,3,4);
+    if(c.type===4){
+      ctx.fillStyle='#1840a0';ctx.fillRect(-Lc/2+6,-Wd/2,Lc-12,4);ctx.fillRect(-Lc/2+6,Wd/2-4,Lc-12,4);
+      const on=(c.sirenT>>3)&1;
+      if(c.mode==='police'){
+        ctx.fillStyle=on?'#ff3030':'#3060ff';ctx.fillRect(-4,-Wd/2+5,8,4);
+        ctx.fillStyle=on?'#3060ff':'#ff3030';ctx.fillRect(-4,Wd/2-9,8,4);
+      }else{ctx.fillStyle='#888';ctx.fillRect(-4,-3,8,6)}
+    }
+    if(c.type===1){ctx.fillStyle='#222';ctx.fillRect(-6,-5,12,10);ctx.fillStyle='#ffd24a';ctx.fillRect(-4,-3,8,6)}
+    if(c.hp<CARTYPES[c.type].hp*0.4&&frame%4===0)
+      parts.push({x:c.x+Math.cos(c.a)*Lc*0.4,y:c.y+Math.sin(c.a)*Lc*0.4,vx:rr(-0.5,0.5),vy:rr(-1,-0.3),life:30,col:'#555',size:3});
+  }else{
+    ctx.fillStyle='#0c0c0c';ctx.fillRect(-Lc*0.3,-Wd*0.3,Lc*0.6,Wd*0.6);
+    if(frame%3===0)parts.push({x:c.x,y:c.y,vx:rr(-0.4,0.4),vy:rr(-1.2,-0.4),life:26,col:'#333',size:3.5});
+  }
+  ctx.restore();
+}
+
+function drawTank(c,wreck){
+  const Lc=c.len,Wd=c.wid;
+  // 阴影
+  ctx.fillStyle='rgba(0,0,0,0.4)';ctx.fillRect(-Lc/2+3,-Wd/2+3,Lc,Wd);
+  // 履带
+  ctx.fillStyle=wreck?'#141414':'#23261e';
+  ctx.fillRect(-Lc/2,-Wd/2,Lc,9);ctx.fillRect(-Lc/2,Wd/2-9,Lc,9);
+  ctx.fillStyle=wreck?'#1a1a1a':'#3a3e32';
+  for(let k=0;k<8;k++){ctx.fillRect(-Lc/2+3+k*8,-Wd/2+2,4,5);ctx.fillRect(-Lc/2+3+k*8,Wd/2-7,4,5)}
+  // 车体
+  ctx.fillStyle=wreck?'#1e1e1e':'#4a5a3a';
+  ctx.beginPath();
+  if(ctx.roundRect)ctx.roundRect(-Lc/2+4,-Wd/2+7,Lc-8,Wd-14,4);else ctx.rect(-Lc/2+4,-Wd/2+7,Lc-8,Wd-14);
+  ctx.fill();
+  ctx.strokeStyle='rgba(0,0,0,0.5)';ctx.lineWidth=1.5;ctx.stroke();
+  if(!wreck){
+    ctx.fillStyle='rgba(255,255,255,0.08)';ctx.fillRect(Lc*0.12,-Wd/2+8,Lc*0.22,Wd-16);
+    // 炮塔(独立朝向)
+    ctx.save();ctx.rotate(norm((c.ta||c.a)-c.a));
+    ctx.fillStyle='#37452c';
+    ctx.fillRect(8,-3.5,34,7); // 炮管
+    ctx.fillStyle='#2c3823';ctx.fillRect(38,-4.5,6,9); // 炮口
+    ctx.fillStyle='#3f4f31';ctx.beginPath();ctx.arc(0,0,13,0,7);ctx.fill();
+    ctx.strokeStyle='rgba(0,0,0,0.5)';ctx.lineWidth=1.5;ctx.stroke();
+    ctx.fillStyle='#4d5e3c';ctx.beginPath();ctx.arc(-2,-2,7,0,7);ctx.fill();
+    ctx.restore();
+  }else{
+    ctx.fillStyle='#0c0c0c';ctx.fillRect(-Lc*0.25,-Wd*0.2,Lc*0.5,Wd*0.4);
+    if(frame%3===0)parts.push({x:c.x,y:c.y,vx:rr(-0.4,0.4),vy:rr(-1.4,-0.5),life:30,col:'#333',size:4});
+  }
+}
+
+function drawHuman(x,y,a,ph,shirt,skin,hair,gun){
+  ctx.save();ctx.translate(x,y);ctx.rotate(a);
+  // 脚步
+  const s=Math.sin(ph)*3.5;
+  ctx.fillStyle='#1a1a1e';
+  ctx.beginPath();ctx.arc(s,-3.8,2.2,0,7);ctx.fill();
+  ctx.beginPath();ctx.arc(-s,3.8,2.2,0,7);ctx.fill();
+  // 身体
+  ctx.fillStyle='rgba(0,0,0,0.3)';ctx.beginPath();ctx.ellipse(1.5,1.5,7.5,5.6,0,0,7);ctx.fill();
+  ctx.fillStyle=shirt;ctx.beginPath();ctx.ellipse(0,0,7.5,5.6,0,0,7);ctx.fill();
+  // 肩
+  ctx.fillStyle='rgba(0,0,0,0.22)';
+  ctx.beginPath();ctx.arc(-2.5,-4.4,2.3,0,7);ctx.fill();
+  ctx.beginPath();ctx.arc(-2.5,4.4,2.3,0,7);ctx.fill();
+  // 持枪手臂
+  if(gun){
+    ctx.strokeStyle=shirt;ctx.lineWidth=2.5;
+    ctx.beginPath();ctx.moveTo(0,-4);ctx.lineTo(9,-1);ctx.moveTo(0,4);ctx.lineTo(9,1);ctx.stroke();
+    ctx.fillStyle='#111';ctx.fillRect(8,-1.5,8,3);
+  }
+  // 头+发
+  ctx.fillStyle=skin;ctx.beginPath();ctx.arc(2,0,4.2,0,7);ctx.fill();
+  ctx.fillStyle=hair;ctx.beginPath();ctx.arc(0.6,0,4.0,Math.PI*0.6,Math.PI*1.4);ctx.lineTo(0.6,0);ctx.fill();
+  ctx.restore();
+}
+function drawPed(pd){
+  const x=pd.x-cam.x,y=pd.y-cam.y;
+  if(x<-30||y<-30||x>W+30||y>H+30)return;
+  if(pd.state===2){
+    ctx.save();ctx.translate(x,y);ctx.rotate(pd.a+0.6);
+    ctx.fillStyle='#5a4040';ctx.beginPath();ctx.ellipse(0,0,9,5,0,0,7);ctx.fill();
+    ctx.fillStyle=pd.skin;ctx.beginPath();ctx.arc(7,0,3.4,0,7);ctx.fill();
+    ctx.restore();return;
+  }
+  drawHuman(x,y,pd.a,pd.ph,pd.shirt,pd.skin,pd.hair,false);
+}
+function drawCop(cp){
+  const x=cp.x-cam.x,y=cp.y-cam.y;
+  if(x<-30||y<-30||x>W+30||y>H+30)return;
+  if(cp.gang){drawHuman(x,y,cp.a,cp.ph,'#6e2424','#d2a679','#1a1a1a',true);return}
+  drawHuman(x,y,cp.a,cp.ph,'#2244a8','#d8b090','#16307a',true);
+  // 警帽徽
+  ctx.fillStyle='#ffd24a';ctx.fillRect(x-1,y-1,2,2);
+}
+function drawPlayer(){
+  const x=p.x-cam.x,y=p.y-cam.y;
+  const w=WEAPONS[p.wIdx];
+  let lift=0;
+  if(p.jumpT>0){
+    const pr=1-p.jumpT/28;
+    lift=Math.sin(pr*Math.PI); // 0→1→0 抛物线
+    // 地面阴影(随高度缩小变淡)
+    ctx.globalAlpha=0.35-lift*0.18;
+    ctx.fillStyle='#000';
+    ctx.beginPath();ctx.ellipse(x,y+3,8-lift*3,5-lift*2,0,0,7);ctx.fill();
+    ctx.globalAlpha=1;
+    ctx.save();ctx.translate(x,y-lift*13);ctx.scale(1+lift*0.28,1+lift*0.28);ctx.translate(-x,-y+lift*13);
+  }
+  drawHuman(x,y-lift*13,p.a,p.ph,'#23262e','#e8c8a0','#1a1a1a',true);
+  if(p.jumpT>0)ctx.restore();
+  // 枪口火光
+  if(p.cool>w.rate-3&&mouse.down){
+    ctx.fillStyle='rgba(255,220,120,0.9)';
+    ctx.beginPath();ctx.arc(x+Math.cos(p.a)*18,y-lift*13+Math.sin(p.a)*18,3.5+rnd()*2,0,7);ctx.fill();
+  }
+}
+
+/* ---- 小地图(增强) ---- */
+const mmc=document.getElementById('mm'),mmx=mmc.getContext('2d');
+const mmBase=document.createElement('canvas');mmBase.width=GW*2;mmBase.height=GH*2;
+{
+  const b=mmBase.getContext('2d');
+  for(let j=0;j<GH;j++)for(let i=0;i<GW;i++){
+    const tt=map[j][i];
+    b.fillStyle=tt===0?'#3a3a44':tt===1?'#2a2a30':tt===3?'#22381f':'#16161a';
+    b.fillRect(i*2,j*2,2,2);
+  }
+}
+function drawMinimap(){
+  mmx.fillStyle='#0c0c10';mmx.fillRect(0,0,180,180);
+  const scale=0.5;
+  const cxm=px()/TILE*2, cym=py()/TILE*2;
+  mmx.save();
+  mmx.translate(90,90);mmx.scale(scale,scale);mmx.translate(-cxm,-cym);
+  mmx.drawImage(mmBase,0,0);
+  mmx.restore();
+  const dot=(wx,wy,col,sz)=>{
+    const dx=(wx/TILE*2-cxm)*scale+90, dy=(wy/TILE*2-cym)*scale+90;
+    if(dx>3&&dy>3&&dx<177&&dy<177){mmx.fillStyle=col;mmx.fillRect(dx-sz/2,dy-sz/2,sz,sz);return true}
+    return false;
+  };
+  // 坦克(全图标记,黄绿色)
+  for(const c of cars)if(c.type===TANK&&c.mode!=='wreck'&&c!==p.car)dot(c.x,c.y,'#b8d44a',6);
+  // 警察
+  for(const cp of cops)dot(cp.x,cp.y,'#ff4040',4);
+  for(const c of cars)if(c.mode==='police')dot(c.x,c.y,(frame>>3)&1?'#ff4040':'#4060ff',5);
+  // 远端玩家(各自颜色)
+  if(typeof net!=='undefined'&&net.myPid>=0){
+    for(const k in net.players){const R=net.players[k];
+      if(+k===net.myPid||!R.active||!R.init)continue;
+      dot(R.rx,R.ry,PCOLS[(+k)%PCOLS.length],5);
+    }
+  }
+  if(window.missionMM)missionMM(dot);
+  // 玩家(白点+朝向)
+  mmx.fillStyle='#fff';mmx.fillRect(87,87,6,6);
+  const fa=p.car?p.car.a:p.a;
+  mmx.strokeStyle='#fff';mmx.lineWidth=2;
+  mmx.beginPath();mmx.moveTo(90,90);mmx.lineTo(90+Math.cos(fa)*9,90+Math.sin(fa)*9);mmx.stroke();
+  // 边框
+  mmx.strokeStyle='rgba(255,255,255,0.15)';mmx.lineWidth=1;mmx.strokeRect(0.5,0.5,179,179);
+}
+
+/* ---- HUD / 消息 ---- */
+const hpf=document.getElementById('hpf'),apf=document.getElementById('apf'),
+      moneyEl=document.getElementById('money'),weaponEl=document.getElementById('weapon'),
+      starsEl=document.getElementById('stars'),msgEl=document.getElementById('msg');
+let msgT=0;
+function showMsg(s){msgEl.textContent=s;msgEl.style.opacity=1;msgT=160}
+function updateHUD(){
+  hpf.style.width=p.hp+'%';apf.style.width=p.armor+'%';
+  moneyEl.textContent='$'+p.money;
+  if(p.car)weaponEl.textContent=p.car.type===TANK?t('drivingTank'):t('driving');
+  else{
+    const w=WEAPONS[p.wIdx],n=t('wnames')[p.wIdx];
+    weaponEl.textContent=n+' · '+(w.ammo?p.ammo[w.ammo]:'∞');
+  }
+}
+function updateStars(){
+  const s=stars();let h='';
+  for(let i=0;i<6;i++)h+=i<s?'★':'<span class="off">★</span>';
+  starsEl.innerHTML=h;
+}
+
+/* ================= 主循环 ================= */
+function tick(){
+  requestAnimationFrame(tick);
+  if(!started)return;
+  frame++;
+  if(!dead){
+    if(p.car)drivePlayerCar();else movePlayerOnFoot();
+  }
+  for(const c of cars){
+    if(c.mode==='traffic')updateTraffic(c);
+    else if(c.mode==='police')updatePoliceCar(c);
+    else if(c.mode==='parked'&&Math.abs(c.speed)>0.1){c.speed*=0.9;stepCar(c,false)}
+  }
+  for(const pd of peds)updatePed(pd);
+  for(const cp of cops)updateCop(cp);
+  updateBullets();
+  maintainPolice();
+  maintainTanks();
+  recycle();
+  if(msgT>0){msgT--;if(msgT===0)msgEl.style.opacity=0}
+  if(!p.car&&!dead&&frame%20===0){
+    for(const c of cars){if(c.mode==='wreck')continue;
+      if(dist(p.x,p.y,c.x,c.y)<64){
+        showMsg(c.type===TANK?t('m_enterT'):c.type===4?t('m_enterP'):t('m_enter'));break}}
+  }
+  updateStars();
+  if(window.missionTick)missionTick();
+  if(window.netTick)netTick();
+  draw();
+}
+
+/* ---- 开始界面(双语渲染) ---- */
+function renderIntro(){
+  const rows=t('rows').map(r=>'<tr><td class="k">'+r[0]+'</td><td>'+r[1]+'</td></tr>').join('');
+  document.getElementById('introBox').innerHTML=
+    '<div class="langRow">'+
+    '<button class="langBtn'+(lang==='zh'?' on':'')+'" id="langZh">中文</button>'+
+    '<button class="langBtn'+(lang==='en'?' on':'')+'" id="langEn">EN</button></div>'+
+    '<h1>'+t('title1')+'<span>'+t('title2')+'</span></h1>'+
+    '<div class="sub">'+t('sub')+'</div>'+
+    '<table>'+rows+'</table>'+
+    '<div class="sub">'+t('note')+'</div>'+
+    '<button id="startBtn">'+t('single')+'</button>'+
+    '<div class="mpRow">'+
+    '<button id="hostBtn" class="mpBtn">'+t('host')+'</button>'+
+    '<input id="roomInput" placeholder="'+t('roomPh')+'" maxlength="4">'+
+    '<button id="joinBtn" class="mpBtn">'+t('join')+'</button></div>'+
+    '<div id="netStatus"></div>';
+  document.getElementById('wastedSub').textContent=t('wastedSub');
+  document.getElementById('langZh').onclick=()=>{lang='zh';renderIntro()};
+  document.getElementById('langEn').onclick=()=>{lang='en';renderIntro()};
+  document.getElementById('startBtn').onclick=startGame;
+  document.getElementById('hostBtn').onclick=()=>window.hostGame&&hostGame();
+  document.getElementById('joinBtn').onclick=()=>window.joinGame&&joinGame();
+  document.getElementById('roomInput').onkeydown=e=>{e.stopPropagation();if(e.key==='Enter'&&window.joinGame)joinGame()};
+}
+function startGame(){
+  if(started)return;
+  initAudio();
+  document.getElementById('intro').style.display='none';
+  populate();updateHUD();started=true;
+  showMsg(t('m_welcome'));
+}
+renderIntro();
+tick();
+</script>
+<script>
+'use strict';
+/* ================= 单机互动模块:任务 / 商店 / 连杀计分 ================= */
+/* ---- 连杀计分 ---- */
+const stats={kills:0,combo:0,comboT:0,best:0};
+const ftexts=[];
+function addFloat(x,y,txt,col){ftexts.push({x,y,txt,col:col||'#ffd24a',life:70})}
+const statsEl=document.getElementById('stats'),missionEl=document.getElementById('mission');
+function updateStatsHUD(){statsEl.textContent=stats.kills>0?t('st_line',stats.kills,stats.combo):''}
+function setMission(s){missionEl.textContent=s}
+
+window.onPlayerKill=function(kind,ent){
+  stats.kills++;stats.combo++;stats.comboT=300;
+  if(stats.combo>stats.best)stats.best=stats.combo;
+  const base=kind==='cop'?40:10;
+  const mult=Math.min(stats.combo,5);
+  if(mult>1){p.money+=base*(mult-1)}
+  addFloat(ent.x,ent.y,'+$'+(base*mult)+(mult>1?' ×'+mult:''),mult>=3?'#ff8c4a':'#ffd24a');
+  if(ent.bounty&&mission.type==='bounty'){
+    p.money+=mission.reward;
+    addFloat(ent.x,ent.y-14,'+$'+mission.reward,'#ff7d7d');
+    showMsg(t('ms_b_ok',mission.reward));sfx('pickup');
+    endBounty();
+  }
+  updateHUD();
+};
+
+/* ---- 任务状态机 ---- */
+const mission={type:null,stage:0,t:0,x:0,y:0,reward:0,ped:null,car:null,guards:[],streak:0,offerT:700,dx:0,dy:0};
+function farPos(fn,ox,oy,min,max){
+  for(let k=0;k<60;k++){
+    const r=fn();const d=dist(ox,oy,r.x,r.y);
+    if(d>=min&&d<=max)return r;
+  }
+  return fn();
+}
+function endMission(){
+  mission.type=null;mission.ped=null;mission.car=null;
+  mission.offerT=900+((rnd()*900)|0);
+  setMission('');
+}
+
+/* 出租车连单 */
+function startTaxiFare(){
+  const pos=farPos(randWalkPos,px(),py(),500,1600);
+  const fare=mkPed(pos.x,pos.y);fare.wait=true;
+  peds.push(fare);
+  mission.type='taxi';mission.stage=0;mission.ped=fare;
+  mission.x=pos.x;mission.y=pos.y;
+  showMsg(t('ms_taxi_pick'));
+}
+function cancelTaxi(){
+  if(mission.ped)mission.ped.wait=false;
+  endMission();
+}
+function taxiTick(){
+  if(!p.car||p.car.type!==1){cancelTaxi();return}
+  if(mission.stage===0){
+    setMission(t('ms_taxi_pick'));
+    if(!mission.ped||mission.ped.state===2){cancelTaxi();return}
+    mission.x=mission.ped.x;mission.y=mission.ped.y;
+    if(dist(px(),py(),mission.ped.x,mission.ped.y)<58&&Math.abs(p.car.speed)<0.6){
+      const idx=peds.indexOf(mission.ped);
+      if(idx>=0)peds.splice(idx,1);
+      mission.ped=null;
+      const d=farPos(randWalkPos,px(),py(),900,2600);
+      mission.x=d.x;mission.y=d.y;
+      const dd=dist(px(),py(),d.x,d.y);
+      mission.t=((dd/3.0)|0)+380;
+      mission.reward=60+((dd/14)|0);
+      mission.stage=1;sfx('pickup');
+    }
+  }else{
+    mission.t--;
+    setMission(t('ms_taxi_drop',(mission.t/60)|0));
+    if(mission.t<=0){mission.streak=0;showMsg(t('ms_taxi_fail'));endMission();return}
+    if(dist(px(),py(),mission.x,mission.y)<75&&Math.abs(p.car.speed)<0.6){
+      mission.streak++;
+      const v=(mission.reward*(1+0.4*(Math.min(mission.streak,6)-1)))|0;
+      p.money+=v;updateHUD();
+      addFloat(px(),py(),'+$'+v,'#7dffa0');
+      showMsg(t('ms_taxi_ok',v,mission.streak));sfx('pickup');
+      endMission();
+    }
+  }
+}
+
+/* 悬赏追杀 */
+function startBounty(){
+  const pos=farPos(randWalkPos,px(),py(),700,1900);
+  const tg=mkPed(pos.x,pos.y);
+  tg.bounty=true;tg.hp=140;tg.shirt='#e8e8e8';tg.hair='#1a1a1a';tg.t=100;
+  peds.push(tg);
+  mission.guards=[];
+  for(let i=0;i<2;i++){
+    const g=mkCop(pos.x+rr(-45,45),pos.y+rr(-45,45));
+    g.gang=true;g.hp=50;cops.push(g);mission.guards.push(g);
+  }
+  mission.type='bounty';mission.ped=tg;
+  mission.reward=300+((rnd()*300)|0);
+  mission.t=5400;
+  showMsg(t('ms_b_new'));
+}
+function endBounty(){
+  for(const g of mission.guards)g.hp=0;
+  mission.guards=[];
+  endMission();
+}
+function bountyTick(){
+  const tg=mission.ped;
+  if(!tg){endBounty();return}
+  if(tg.state===2){endBounty();return} // 奖励在击杀钩子里发
+  mission.x=tg.x;mission.y=tg.y;
+  mission.t--;
+  setMission(t('ms_b_obj',mission.reward));
+  if(mission.t<=0){
+    tg.bounty=false;tg.wait=false;
+    showMsg(t('ms_b_gone'));endBounty();
+  }
+}
+window.bountyAI=function(pd){
+  const d=dist(pd.x,pd.y,px(),py());
+  let sp;
+  if(d<420){
+    pd.a=Math.atan2(pd.y-py(),pd.x-px())+Math.sin(frame*0.045)*0.5;
+    sp=1.7;
+  }else{
+    pd.t--;
+    if(pd.t<=0){pd.a=rnd()*Math.PI*2;pd.t=90+rnd()*120}
+    sp=0.55;
+  }
+  const nx=pd.x+Math.cos(pd.a)*sp,ny=pd.y+Math.sin(pd.a)*sp;
+  if(!solid(nx,pd.y))pd.x=nx;else pd.a+=Math.PI/2+rnd();
+  if(!solid(pd.x,ny))pd.y=ny;else pd.a+=Math.PI/2+rnd();
+  pd.ph+=sp*0.3;
+  pd.x=clamp(pd.x,8,WPX-8);pd.y=clamp(pd.y,8,HPX-8);
+};
+window.gangAI=function(cp){
+  cp.ph+=0.35;
+  const tg=(mission.type==='bounty'&&mission.ped&&mission.ped.state!==2)?mission.ped:null;
+  const dp=dist(cp.x,cp.y,px(),py());
+  let mx=0,my=0;
+  if(tg){
+    if(dist(cp.x,cp.y,tg.x,tg.y)>110){
+      const a=Math.atan2(tg.y-cp.y,tg.x-cp.x);mx=Math.cos(a)*1.7;my=Math.sin(a)*1.7;
+    }
+  }else if(dp>70){
+    const a=Math.atan2(py()-cp.y,px()-cp.x);mx=Math.cos(a)*1.9;my=Math.sin(a)*1.9;
+  }
+  if(mx&&!solid(cp.x+mx,cp.y))cp.x+=mx;
+  if(my&&!solid(cp.x,cp.y+my))cp.y+=my;
+  cp.a=Math.atan2(py()-cp.y,px()-cp.x);
+  cp.cool--;
+  if(cp.cool<=0&&dp<320&&!dead){
+    cp.cool=60+((rnd()*45)|0);
+    const a=cp.a+rr(-0.14,0.14);
+    bullets.push({x:cp.x+Math.cos(cp.a)*12,y:cp.y+Math.sin(cp.a)*12,
+      vx:Math.cos(a)*10,vy:Math.sin(a)*10,life:55,dmg:9,owner:'cop'});
+    sfx('shot');
+  }
+};
+
+/* 限时送货 */
+function startDelivery(){
+  const r=farPos(randRoadPos,px(),py(),600,1800);
+  const c=mkCar(r.x,r.y,((rnd()*4)|0)*Math.PI/2,0,'parked');
+  c.col='#ff8c2a';c.delivery=true;
+  cars.push(c);
+  const d=farPos(randRoadPos,r.x,r.y,1200,3000);
+  mission.type='delivery';mission.stage=0;mission.car=c;
+  mission.x=c.x;mission.y=c.y;mission.dx=d.x;mission.dy=d.y;
+  showMsg(t('ms_d_new'));
+}
+function deliveryTick(){
+  const c=mission.car;
+  if(!c||c.mode==='wreck'){showMsg(t('ms_d_fail'));endMission();return}
+  if(mission.stage===0){
+    mission.x=c.x;mission.y=c.y;
+    setMission(t('ms_d_get'));
+    if(p.car===c){
+      mission.stage=1;
+      mission.x=mission.dx;mission.y=mission.dy;
+      mission.t=((dist(c.x,c.y,mission.dx,mission.dy)/3.2)|0)+420;
+      mission.reward=200+((rnd()*150)|0);
+    }
+  }else{
+    mission.t--;
+    setMission(t('ms_d_go',(mission.t/60)|0));
+    if(mission.t<=0){c.delivery=false;showMsg(t('ms_d_fail'));endMission();return}
+    if(p.car===c&&dist(c.x,c.y,mission.dx,mission.dy)<85&&Math.abs(c.speed)<0.6){
+      p.money+=mission.reward;updateHUD();
+      addFloat(c.x,c.y,'+$'+mission.reward,'#7dffa0');
+      showMsg(t('ms_d_ok',mission.reward));sfx('pickup');
+      c.delivery=false;endMission();
+    }
+  }
+}
+
+/* ---- 商店 ---- */
+const SHOP_BLOCKS=[[2,2],[2,12],[7,7],[12,2],[12,12]];
+const shops=SHOP_BLOCKS.map(b=>({x:(b[0]*9+2)*TILE+24,y:(b[1]*9+2)*TILE+24}));
+const shopEl=document.getElementById('shop');
+let shopOpen=false;
+const SHOP_ITEMS=[
+  {k:'sh_hp',price:100,buy:()=>{p.hp=100}},
+  {k:'sh_armor',price:150,buy:()=>{p.armor=100}},
+  {k:'sh_uzi',price:80,buy:()=>{p.ammo.uzi+=120}},
+  {k:'sh_shot',price:120,buy:()=>{p.ammo.shot+=24}},
+  {k:'sh_rkt',price:200,buy:()=>{p.ammo.rkt+=3}},
+  {k:'sh_tank',price:2000,buy:()=>{deliverTank()}}
+];
+function renderShop(){
+  let h='<h3>'+t('sh_title')+'</h3><div class="shopRow">';
+  for(let i=0;i<SHOP_ITEMS.length;i++){
+    const it=SHOP_ITEMS[i];
+    h+='<button class="shopBtn" data-i="'+i+'">'+t(it.k)+' <b>$'+it.price+'</b></button>';
+  }
+  shopEl.innerHTML=h+'</div>';
+  shopEl.querySelectorAll('.shopBtn').forEach(btn=>{
+    btn.onclick=()=>{
+      const it=SHOP_ITEMS[+btn.dataset.i];
+      if(p.money<it.price){showMsg(t('sh_no'));return}
+      p.money-=it.price;it.buy();sfx('pickup');updateHUD();
+    };
+  });
+}
+function shopsTick(){
+  if(dead||p.car){if(shopOpen){shopOpen=false;shopEl.style.display='none'}return}
+  let near=false;
+  for(const s of shops)if(dist(p.x,p.y,s.x,s.y)<52){near=true;break}
+  if(near&&!shopOpen){shopOpen=true;renderShop();shopEl.style.display='block'}
+  else if(!near&&shopOpen){shopOpen=false;shopEl.style.display='none'}
+}
+function deliverTank(){
+  // 从玩家位置向外找最近的马路格
+  const pi=(p.x/TILE)|0,pj=(p.y/TILE)|0;
+  for(let r=2;r<22;r++){
+    for(let a=0;a<16;a++){
+      const ang=a/16*Math.PI*2;
+      const i=pi+Math.round(Math.cos(ang)*r),j=pj+Math.round(Math.sin(ang)*r);
+      if(i>0&&j>0&&i<GW&&j<GH&&map[j][i]===0){
+        cars.push(mkCar((i+0.5)*TILE,(j+0.5)*TILE,((rnd()*4)|0)*Math.PI/2,TANK,'parked'));
+        showMsg(t('sh_tankok'));
+        return;
+      }
+    }
+  }
+}
+
+/* ---- 主循环钩子 ---- */
+window.missionTick=function(){
+  if(stats.comboT>0){stats.comboT--;if(stats.comboT===0)stats.combo=0}
+  updateStatsHUD();
+  shopsTick();
+  if(dead)return;
+  if(mission.type===null){
+    if(p.car&&p.car.type===1){startTaxiFare();return}
+    mission.offerT--;
+    if(mission.offerT<=0){
+      if(rnd()<0.5)startBounty();else startDelivery();
+    }
+    return;
+  }
+  if(mission.type==='taxi')taxiTick();
+  else if(mission.type==='bounty')bountyTick();
+  else deliveryTick();
+};
+
+/* ---- 渲染钩子:商店亭/货车光环/目标箭头/飘字 ---- */
+window.missionDraw=function(){
+  // 商店亭
+  for(const s of shops){
+    const x=s.x-cam.x,y=s.y-cam.y;
+    if(x<-60||y<-60||x>W+60||y>H+60)continue;
+    ctx.fillStyle='rgba(0,0,0,0.35)';ctx.fillRect(x-13,y-8,28,24);
+    ctx.fillStyle='#3a3026';ctx.fillRect(x-14,y-10,28,22);
+    for(let k=0;k<4;k++){ctx.fillStyle=k%2?'#d8d8d8':'#c23a32';ctx.fillRect(x-16+k*8,y-14,8,7)}
+    ctx.fillStyle='#ffd24a';ctx.font='bold 13px sans-serif';ctx.textAlign='center';
+    ctx.fillText('$',x,y+6);
+    if(!p.car&&dist(p.x,p.y,s.x,s.y)<120){
+      ctx.strokeStyle='rgba(255,210,74,'+(0.35+Math.sin(frame*0.12)*0.2)+')';
+      ctx.lineWidth=2;ctx.beginPath();ctx.arc(x,y,30,0,7);ctx.stroke();
+    }
+  }
+  // 送货车光环
+  if(mission.type==='delivery'&&mission.car&&mission.car.mode!=='wreck'&&mission.stage===0){
+    const x=mission.car.x-cam.x,y=mission.car.y-cam.y;
+    ctx.strokeStyle='rgba(255,140,42,'+(0.5+Math.sin(frame*0.15)*0.3)+')';
+    ctx.lineWidth=3;ctx.beginPath();ctx.arc(x,y,34,0,7);ctx.stroke();
+  }
+  // 任务目标:屏幕内画地标,屏幕外画边缘箭头
+  if(mission.type){
+    const sx=mission.x-cam.x,sy=mission.y-cam.y;
+    if(sx>30&&sy>30&&sx<W-30&&sy<H-30){
+      const bob=Math.sin(frame*0.1)*4;
+      ctx.fillStyle='#ffe14a';
+      ctx.beginPath();ctx.moveTo(sx,sy-22+bob);ctx.lineTo(sx-8,sy-36+bob);ctx.lineTo(sx+8,sy-36+bob);ctx.fill();
+    }else{
+      const a=Math.atan2(mission.y-py(),mission.x-px());
+      const ex=clamp(sx,36,W-36),ey=clamp(sy,36,H-36);
+      ctx.save();ctx.translate(ex,ey);ctx.rotate(a);
+      ctx.fillStyle='rgba(255,225,74,0.95)';
+      ctx.beginPath();ctx.moveTo(14,0);ctx.lineTo(-8,-9);ctx.lineTo(-8,9);ctx.fill();
+      ctx.restore();
+    }
+  }
+  // 飘字
+  for(let i=ftexts.length-1;i>=0;i--){
+    const f=ftexts[i];f.y-=0.5;f.life--;
+    if(f.life<=0){ftexts.splice(i,1);continue}
+    ctx.globalAlpha=Math.min(1,f.life/25);
+    ctx.font='bold 15px sans-serif';ctx.textAlign='center';
+    ctx.strokeStyle='rgba(0,0,0,0.8)';ctx.lineWidth=3;
+    ctx.strokeText(f.txt,f.x-cam.x,f.y-cam.y);
+    ctx.fillStyle=f.col;ctx.fillText(f.txt,f.x-cam.x,f.y-cam.y);
+    ctx.globalAlpha=1;
+  }
+};
+/* ---- 小地图钩子 ---- */
+window.missionMM=function(dot){
+  for(const s of shops)dot(s.x,s.y,'#3ad4d4',4);
+  if(mission.type)dot(mission.x,mission.y,(frame>>3)&1?'#ffe14a':'#ff8800',7);
+};
+</script>
+<script>
+'use strict';
+/* ================= 联机模块 v4 (WebSocket服务器中转,最多4人) =================
+   GitHub Pages只放网页;腾讯云运行 city-server.js 做房间和消息中转 */
+const MAXP=4;
+const net={ws:null,isHost:false,myPid:-1,room:'',lastSend:0,
+  players:{},kills:{}};
+const PCOLS=['#caa53c','#1d3a8a','#8a1d6e','#1d7a4a'];
+const scoreEl=document.getElementById('score');
+function setStatus(s,col){const el=document.getElementById('netStatus');if(el){el.textContent=s;el.style.color=col||'#9ad'}}
+function randCode(){const s='ABCDEFGHJKMNPQRSTUVWXYZ23456789';let r='';for(let i=0;i<4;i++)r+=s[(Math.random()*s.length)|0];return r}
+const NET_TIMEOUT=15000;
+let netTimer=null;
+const plabel=pid=>'P'+(pid+1);
+function wsUrl(){
+  try{
+    const q=new URLSearchParams(location.search).get('ws');
+    if(q)return q;
+  }catch(_){ }
+  const local=/^(localhost|127\.0\.0\.1)$/i.test(location.hostname);
+  if(local||location.protocol==='file:')return 'ws://127.0.0.1:8788/ws';
+  return 'wss://ws.yongai.online/ws';
+}
+function clearNetTimer(){if(netTimer){clearTimeout(netTimer);netTimer=null}}
+function destroyNet(){
+  clearNetTimer();
+  const ws=net.ws;
+  net.ws=null;net.isHost=false;net.myPid=-1;
+  try{if(ws)ws.close()}catch(_){ }
+}
+function netFail(msg){
+  setStatus(msg,'#f66');
+  destroyNet();
+}
+function getPlayer(pid){
+  if(!net.players[pid])net.players[pid]={active:true,init:false,x:0,y:0,a:0,ta:0,hp:100,car:null,rx:0,ry:0,ra:0,rta:0,pid};
+  return net.players[pid];
+}
+function connectWs(onOpen){
+  if(!('WebSocket'in window)){setStatus('浏览器不支持WebSocket','#f66');return null}
+  const ws=new WebSocket(wsUrl());
+  net.ws=ws;
+  netTimer=setTimeout(()=>netFail('连接服务器超时：请确认腾讯云 WebSocket 服务已启动'),NET_TIMEOUT);
+  ws.onopen=()=>{clearNetTimer();onOpen(ws)};
+  ws.onmessage=e=>{try{const m=JSON.parse(e.data);if(m&&m.t)handleMsg(m)}catch(_){ }};
+  ws.onerror=()=>netFail('联机服务器连接失败：请检查 wss://ws.yongai.online/ws');
+  ws.onclose=()=>{if(net.ws!==ws)return;for(const k in net.players)net.players[k].active=false;
+    if(net.myPid>=0)showMsg(t('n_disc'));setStatus('已断线，可重新创建或加入房间','#fa6');destroyNet()};
+  return ws;
+}
+
+window.hostGame=function(){
+  if(net.ws)return;
+  net.room=randCode();net.isHost=true;net.myPid=0;
+  setStatus(t('n_creating'));
+  connectWs(ws=>ws.send(JSON.stringify({t:'host',room:net.room})));
+};
+window.joinGame=function(){
+  if(net.ws)return;
+  const inp=document.getElementById('roomInput');
+  const code=(inp?inp.value:'').trim().toUpperCase();
+  if(code.length!==4){setStatus(t('n_code4'),'#f66');return}
+  setStatus(t('n_conn',code));
+  net.room=code;net.isHost=false;
+  connectWs(ws=>ws.send(JSON.stringify({t:'joinRoom',room:code})));
+}
+function netSend(o){
+  if(net.ws&&net.ws.readyState===WebSocket.OPEN){try{net.ws.send(JSON.stringify(o))}catch(_){ }}
+}
+function spawnRemoteShot(m){
+  const pid=m.from;
+  if(m.w===9){
+    bullets.push({x:m.x,y:m.y,vx:Math.cos(m.a)*11,vy:Math.sin(m.a)*11,
+      life:80,dmg:60,owner:'remote',pid,shell:true});
+    sfx('cannon');return;
+  }
+  const w=WEAPONS[m.w]||WEAPONS[0];
+  if(w.pellets){
+    for(let i=0;i<w.pellets;i++){
+      const a=m.a+rr(-w.spread,w.spread);
+      bullets.push({x:m.x,y:m.y,vx:Math.cos(a)*(w.spd+rr(-1,1)),vy:Math.sin(a)*(w.spd+rr(-1,1)),
+        life:24+((rnd()*6)|0),dmg:w.dmg,owner:'remote',pid});
+    }
+    sfx('shotgun');
+  }else if(w.rocket){
+    bullets.push({x:m.x,y:m.y,vx:Math.cos(m.a)*w.spd,vy:Math.sin(m.a)*w.spd,
+      life:90,dmg:w.dmg,owner:'remote',pid,rocket:true});
+    sfx('rocket');
+  }else{
+    bullets.push({x:m.x,y:m.y,vx:Math.cos(m.a)*w.spd,vy:Math.sin(m.a)*w.spd,
+      life:55,dmg:w.dmg,owner:'remote',pid});
+    sfx(m.w===1?'uzi':'shot');
+  }
+}
+function handleMsg(m){
+  if(m.t==='w'){net.myPid=m.pid;getPlayer(0);
+    clearNetTimer();
+    if(m.room)net.room=m.room;
+    if(net.isHost){setStatus(t('n_room',net.room),'#7f7');scoreEl.style.display='block';scoreEl.textContent=t('n_wait',net.room)}
+    else setStatus(t('n_youare',plabel(m.pid)),'#7f7');
+    showMsg(t('n_joinedAs',plabel(m.pid)));startGame();return}
+  if(m.t==='full'){netFail(t('n_full'));return}
+  if(m.t==='notfound'){netFail(t('n_notfound'));return}
+  if(m.t==='err'){netFail(t('n_err',m.msg||'unknown'));return}
+  if(m.from===undefined)return;
+  if(m.t==='s'){
+    const R=getPlayer(m.from);
+    if(!R.init){R.rx=m.x;R.ry=m.y;R.ra=m.a;R.rta=m.a;R.init=true}
+    R.x=m.x;R.y=m.y;R.a=m.a;R.hp=m.hp;R.car=m.c||null;R.jp=m.jp||0;
+    R.ta=(m.c&&m.c.ta!==undefined)?m.c.ta:m.a;R.active=true;
+  }else if(m.t==='f'){
+    spawnRemoteShot(m);
+  }else if(m.t==='die'){
+    if(m.by>=0){
+      net.kills[m.by]=(net.kills[m.by]||0)+1;
+      if(m.by===net.myPid){p.money+=150;updateHUD();showMsg(t('n_kill',plabel(m.from)))}
+      else showMsg(t('n_killed',plabel(m.by),plabel(m.from)));
+    }else showMsg(t('n_city',plabel(m.from)));
+  }else if(m.t==='join'){
+    getPlayer(m.pid).active=true;showMsg(t('n_joined',plabel(m.pid)));
+  }else if(m.t==='leave'){
+    if(net.players[m.pid])net.players[m.pid].active=false;
+    showMsg(t('n_left',plabel(m.pid)));
+  }
+}
+/* ---- 游戏主体钩子 ---- */
+window.netShot=(x,y,a,w)=>{if(net.myPid<0)return;netSend({t:'f',x,y,a,w})};
+window.netDie=()=>{
+  if(net.myPid<0)return;
+  const by=(frame-(p.hitByRemote||-9999)<240&&p.hitByPid>=0)?p.hitByPid:-1;
+  if(by>=0)net.kills[by]=(net.kills[by]||0)+1;
+  netSend({t:'die',by});
+};
+window.netBulletCheck=b=>{
+  if(b.owner!=='player'||net.myPid<0)return false;
+  for(const k in net.players){
+    const R=net.players[k];
+    if(+k===net.myPid||!R.active||!R.init||R.hp<=0)continue;
+    const r=R.car?(R.car.ty===5?32:22):10;
+    if(dist(b.x,b.y,R.rx,R.ry)<r){burst(b.x,b.y,6,R.car?'#ffd870':'#a01818',2.5);return true}
+  }
+  return false;
+};
+window.netTick=()=>{
+  if(net.myPid<0)return;
+  if(frame-net.lastSend>=5){
+    net.lastSend=frame;
+    const c=p.car?{x:p.car.x,y:p.car.y,a:p.car.a,ty:p.car.type,co:p.car.col,ta:p.car.ta}:0;
+    netSend({t:'s',x:px(),y:py(),a:p.car?p.car.a:p.a,hp:dead?0:p.hp,c,jp:p.jumpT>0?1:0});
+  }
+  let any=false;
+  for(const k in net.players){
+    const R=net.players[k];
+    if(+k===net.myPid||!R.active||!R.init)continue;
+    any=true;
+    R.rx+=(R.x-R.rx)*0.25;R.ry+=(R.y-R.ry)*0.25;
+    R.ra+=norm(R.a-R.ra)*0.25;R.rta+=norm(R.ta-R.rta)*0.25;
+  }
+  scoreEl.style.display='block';
+  if(net.isHost&&!any){
+    scoreEl.textContent=t('n_wait',net.room);
+  }else{
+    const segs=[t('s_you')+' '+(net.kills[net.myPid]||0)];
+    for(const k in net.players){
+      if(+k===net.myPid||!net.players[k].active)continue;
+      segs.push(plabel(+k)+' '+(net.kills[k]||0));
+    }
+    scoreEl.textContent='⚔ '+segs.join(' · ')+(net.isHost?'  ['+net.room+']':'');
+  }
+};
+window.netDrawRemote=()=>{
+  if(net.myPid<0)return;
+  for(const k in net.players){
+    const R=net.players[k],pid=+k;
+    if(pid===net.myPid||!R.active||!R.init)continue;
+    const x=R.rx-cam.x,y=R.ry-cam.y;
+    if(x<-160||y<-160||x>W+160||y>H+160)continue;
+    const col=PCOLS[pid%PCOLS.length];
+    if(R.car){
+      const tp=CARTYPES[R.car.ty]||CARTYPES[0];
+      drawCar({x:R.rx,y:R.ry,a:R.ra,ta:R.rta,len:tp.len,wid:tp.wid,col:R.car.co||col,
+        type:R.car.ty||0,mode:'remote',hp:9999,sirenT:frame});
+    }else if(R.hp>0){
+      if(R.jp){
+        ctx.globalAlpha=0.25;ctx.fillStyle='#000';
+        ctx.beginPath();ctx.ellipse(x,y+3,6,4,0,0,7);ctx.fill();ctx.globalAlpha=1;
+      }
+      drawHuman(x,y-(R.jp?11:0),R.ra,frame*0.2,col,'#e8c8a0','#1a1a1a',true);
+    }
+    ctx.fillStyle=R.hp>0?'#fff':'#999';ctx.font='12px sans-serif';ctx.textAlign='center';
+    ctx.fillText(plabel(pid)+(R.hp<=0?' 💀':''),x,y-26);
+    ctx.fillStyle='#400';ctx.fillRect(x-16,y-21,32,4);
+    ctx.fillStyle='#e33';ctx.fillRect(x-16,y-21,32*clamp(R.hp,0,100)/100,4);
+  }
+};
+</script>
+</body>
+</html>
