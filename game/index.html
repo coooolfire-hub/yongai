@@ -627,7 +627,7 @@ function stepCar(c,isPlayer){
       if(dist(c.x,c.y,cp.x,cp.y)<c.len*0.45+8){cp.hp=0;blood(cp.x,cp.y);sfx('thud');
         if(isPlayer){if(!cp.gang)crime(1.2);if(window.onPlayerKill)onPlayerKill('cop',cp)}}}
     // 撞步行玩家(跳跃中免疫,有受击间隔)
-    if(!isPlayer&&!dead&&!p.car&&p.jumpT<=0&&frame-p.lastCarHit>30){
+    if(!isMultiplayerMode()&&!isPlayer&&!dead&&!p.car&&p.jumpT<=0&&frame-p.lastCarHit>30){
       if(dist(c.x,c.y,p.x,p.y)<c.len*0.45+8){
         p.lastCarHit=frame;
         hurtPlayer((6+Math.abs(c.speed)*3)|0);
@@ -809,6 +809,7 @@ function updateBullets(){
           if(cp.hp<=0){blood(cp.x,cp.y);if(b.owner==='player'){if(!cp.gang)crime(1.1);p.money+=cp.gang?30:40;if(window.onPlayerKill)onPlayerKill('cop',cp);updateHUD()}}}
         hit=true;break}}
     if(!hit&&window.netBulletCheck)hit=netBulletCheck(b);
+    if(!hit&&isMultiplayerMode()&&b.owner==='cop')hit=true;
     if(!hit&&b.owner!=='player'&&!dead){
       if(p.car){if(dist(b.x,b.y,p.car.x,p.car.y)<p.car.len*0.42){
         if(b.owner==='remote'){p.hitByRemote=frame;p.hitByPid=b.pid}
@@ -850,6 +851,13 @@ function recycle(){
         c.x=r.x;c.y=r.y;c.a=dirs[(rnd()*dirs.length)|0];c.hp=CARTYPES[c.type].hp;c.hitByPlayer=false}
     }
   }
+}
+function maintainMultiplayerNPCs(){
+  if(!isMultiplayerMode())return false;
+  if(mission.type)endMission();
+  if(peds.length)peds.length=0;
+  if(cops.length)cops.length=0;
+  return true;
 }
 </script>
 <script>
@@ -975,7 +983,7 @@ function draw(){
   }
 
   for(const c of cars)drawCar(c);
-  for(const pd of peds)drawPed(pd);
+  if(!isMultiplayerMode())for(const pd of peds)drawPed(pd);
   for(const cp of cops)drawCop(cp);
   if(!dead&&!p.car)drawPlayer();
   if(window.netDrawRemote)netDrawRemote();
@@ -1150,6 +1158,13 @@ function drawPlayer(){
   }
   drawHuman(x,y-lift*13,p.a,p.ph,'#23262e','#e8c8a0','#1a1a1a',true);
   if(p.jumpT>0)ctx.restore();
+  if(isMultiplayerMode()){
+    const label=typeof net!=='undefined'&&net.myPid>=0?plabel(net.myPid):'P?';
+    ctx.fillStyle='#fff';ctx.font='bold 12px sans-serif';ctx.textAlign='center';
+    ctx.strokeStyle='rgba(0,0,0,0.85)';ctx.lineWidth=3;
+    ctx.strokeText(label,x,y-lift*13-26);
+    ctx.fillText(label,x,y-lift*13-26);
+  }
   // 枪口火光
   if(p.cool>w.rate-3&&mouse.down){
     ctx.fillStyle='rgba(255,220,120,0.9)';
@@ -1190,7 +1205,7 @@ function drawMinimap(){
   if(typeof net!=='undefined'&&net.myPid>=0){
     for(const k in net.players){const R=net.players[k];
       if(+k===net.myPid||!R.active||!R.init)continue;
-      dot(R.rx,R.ry,PCOLS[(+k)%PCOLS.length],5);
+      dot(R.rx,R.ry,(frame>>4)&1?'#fff':PCOLS[(+k)%PCOLS.length],8);
     }
   }
   if(window.missionMM)missionMM(dot);
@@ -1237,7 +1252,7 @@ function tick(){
     else if(c.mode==='police')updatePoliceCar(c);
     else if(c.mode==='parked'&&Math.abs(c.speed)>0.1){c.speed*=0.9;stepCar(c,false)}
   }
-  for(const pd of peds)updatePed(pd);
+  if(!maintainMultiplayerNPCs())for(const pd of peds)updatePed(pd);
   for(const cp of cops)updateCop(cp);
   updateBullets();
   maintainPolice();
@@ -1544,6 +1559,7 @@ window.missionTick=function(){
   if(stats.comboT>0){stats.comboT--;if(stats.comboT===0)stats.combo=0}
   updateStatsHUD();
   shopsTick();
+  if(isMultiplayerMode()){if(mission.type)endMission();setMission('');return}
   if(dead)return;
   if(mission.type===null){
     if(p.car&&p.car.type===1){startTaxiFare();return}
