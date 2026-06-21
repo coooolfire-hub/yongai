@@ -291,7 +291,7 @@ footer{border-top:1px solid var(--paper-3);padding:28px 32px;display:flex;align-
     </div>
   </div>
   <div class="hero-visual" aria-hidden="true">
-    <div class="metric-card"><div class="metric-label zh">选型入口</div><div class="metric-label en">Decision entry</div><div class="metric-value">46 tools</div><div class="metric-line"></div></div>
+    <div class="metric-card"><div class="metric-label zh">选型入口</div><div class="metric-label en">Decision entry</div><div class="metric-value">51 tools</div><div class="metric-line"></div></div>
     <div class="metric-card"><div class="metric-label zh">优先推荐</div><div class="metric-label en">Top stack</div><div class="metric-value">Codex + Cursor</div><div class="metric-line"></div></div>
     <div class="metric-card"><div class="metric-label zh">商业模式</div><div class="metric-label en">Revenue</div><div class="metric-value">Affiliate / Sponsor</div><div class="metric-line"></div></div>
   </div>
@@ -861,7 +861,12 @@ function enrichTools() {
     jasper:makeTool('jasper','Jasper','writing','jasper.ai','paid',4.3,false,'营销团队内容生成平台','Content generation platform for marketing teams'),
     semrush:makeTool('semrush','Semrush','seo','semrush.com','paid',4.6,false,'SEO、广告和竞品研究综合平台','SEO, ads, and competitor research suite'),
     surfer:makeTool('surfer','Surfer SEO','seo','surferseo.com','paid',4.5,false,'内容 SEO 优化和文章评分工具','Content SEO optimization and scoring tool'),
-    clearscope:makeTool('clearscope','Clearscope','seo','clearscope.io','paid',4.4,false,'高质量英文内容优化工具','High-quality English content optimization tool')
+    clearscope:makeTool('clearscope','Clearscope','seo','clearscope.io','paid',4.4,false,'高质量英文内容优化工具','High-quality English content optimization tool'),
+    trae:makeTool('trae','Trae','coding','trae.ai','free',4.7,true,'字节跳动 AI 原生 IDE，全链路自动化开发体验','ByteDance AI-native IDE with full-chain automated development'),
+    qwencode:makeTool('qwencode','Qwen Code','coding','github.com','free',4.5,true,'阿里开源 AI 编程 CLI，每日 2000 次免费请求额度','Alibaba open-source AI coding CLI with 2000 free daily requests'),
+    koala:makeTool('koala','Koala AI','seo','koala.sh','paid',4.4,false,'低成本 AI 内容写作，内置 SEO 优化和实时事实核查','Affordable AI content writing with built-in SEO scoring and fact-checking'),
+    ottoseo:makeTool('ottoseo','OTTO SEO','seo','searchatlas.com','paid',4.4,false,'大规模自动化技术与页面 SEO 优化','Automated technical and on-page SEO optimization at scale'),
+    alliai:makeTool('alliai','Alli AI','automation','alli.ai','paid',4.3,false,'企业级技术 SEO 自动化执行平台','Enterprise-scale technical SEO automation platform')
   };
   Object.keys(extra).forEach(function(id) { TOOLS[id] = extra[id]; FAVICONS[id] = favicon(extra[id].url.replace(/^https?:\/\//,'')); });
   if (TOOLS.codex) {
@@ -1149,7 +1154,7 @@ function applyStandalonePage() {
 
   if (name === 'tools.html') {
     setActiveNav('tools');
-    setHeroCopy('完整 <em>AI 工具库</em>', 'Complete <em>AI tool library</em>', '按写作、编程、设计、效率、视频、图像、SEO 和自动化分类浏览工具，每张卡片都能打开教程、评价和定价。', 'Browse tools across writing, coding, design, productivity, video, image, SEO, and automation. Every card includes tutorials, reviews, and pricing.', '46 款工具 · 8 个分类 · 16 款国内可用', '46 tools · 8 categories · 16 China-ready');
+    setHeroCopy('完整 <em>AI 工具库</em>', 'Complete <em>AI tool library</em>', '按写作、编程、设计、效率、视频、图像、SEO 和自动化分类浏览工具，每张卡片都能打开教程、评价和定价。', 'Browse tools across writing, coding, design, productivity, video, image, SEO, and automation. Every card includes tutorials, reviews, and pricing.', '51 款工具 · 8 个分类 · 18 款国内可用', '51 tools · 8 categories · 18 China-ready');
     ensureIntro('tools-page-intro', '<span class="zh"><strong>浏览方式：</strong>先用分类筛选，再打开工具卡查看 5 步教程、用户评价、价格和国内可用性；需要横向比较时点卡片右下角 +。</span><span class="en"><strong>How to browse:</strong> Filter by category, open a card for tutorials, reviews, pricing, and China availability, or tap + to compare tools.</span>');
     showBlock(compare, false); showBlock(skill, false); showBlock(ph, false); showBlock(newsletter, false); showBlock(decision, false); showBlock(sponsor, false);
   }
