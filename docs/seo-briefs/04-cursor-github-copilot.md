@@ -1,6 +1,6 @@
 # SEO Brief: Cursor 适合新手吗？和 GitHub Copilot 怎么选
 
-Generated: 2026-07-04
+Generated: 2026-07-05
 
 ## Search Intent
 

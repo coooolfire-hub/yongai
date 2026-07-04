@@ -1,0 +1,146 @@
+[
+  {
+    "topic": "AI 编程工具月预算 50 美元以内怎么搭配",
+    "cluster": "AI 编程工具",
+    "intent": "high",
+    "target": "/reviews",
+    "files": {
+      "zhihu": "social/zhihu/01-ai-50.md",
+      "toutiao": "social/toutiao/01-ai-50.md",
+      "xiaohongshu": "social/xiaohongshu/01-ai-50.md",
+      "short": "social/short/01-ai-50.md"
+    }
+  },
+  {
+    "topic": "Claude Code 使用成本高吗？适合哪些工程任务",
+    "cluster": "AI 编程工具",
+    "intent": "high",
+    "target": "/reviews",
+    "files": {
+      "zhihu": "social/zhihu/02-claude-code.md",
+      "toutiao": "social/toutiao/02-claude-code.md",
+      "xiaohongshu": "social/xiaohongshu/02-claude-code.md",
+      "short": "social/short/02-claude-code.md"
+    }
+  },
+  {
+    "topic": "Codex vs Cursor vs Claude Code：独立开发者该买哪个？",
+    "cluster": "AI 编程工具",
+    "intent": "high",
+    "target": "/reviews",
+    "files": {
+      "zhihu": "social/zhihu/03-codex-vs-cursor-vs-claude-code.md",
+      "toutiao": "social/toutiao/03-codex-vs-cursor-vs-claude-code.md",
+      "xiaohongshu": "social/xiaohongshu/03-codex-vs-cursor-vs-claude-code.md",
+      "short": "social/short/03-codex-vs-cursor-vs-claude-code.md"
+    }
+  },
+  {
+    "topic": "Cursor 适合新手吗？和 GitHub Copilot 怎么选",
+    "cluster": "AI 编程工具",
+    "intent": "high",
+    "target": "/reviews",
+    "files": {
+      "zhihu": "social/zhihu/04-cursor-github-copilot.md",
+      "toutiao": "social/toutiao/04-cursor-github-copilot.md",
+      "xiaohongshu": "social/xiaohongshu/04-cursor-github-copilot.md",
+      "short": "social/short/04-cursor-github-copilot.md"
+    }
+  },
+  {
+    "topic": "Lovable vs Bolt vs v0：一个人做 SaaS MVP 该用谁",
+    "cluster": "AI 编程工具",
+    "intent": "high",
+    "target": "/reviews",
+    "files": {
+      "zhihu": "social/zhihu/05-lovable-vs-bolt-vs-v0-saas-mvp.md",
+      "toutiao": "social/toutiao/05-lovable-vs-bolt-vs-v0-saas-mvp.md",
+      "xiaohongshu": "social/xiaohongshu/05-lovable-vs-bolt-vs-v0-saas-mvp.md",
+      "short": "social/short/05-lovable-vs-bolt-vs-v0-saas-mvp.md"
+    }
+  },
+  {
+    "topic": "AI 内容站从 0 到 1 的工具栈推荐",
+    "cluster": "AI SEO 和内容站",
+    "intent": "high",
+    "target": "/reviews",
+    "files": {
+      "zhihu": "social/zhihu/06-ai-0-1.md",
+      "toutiao": "social/toutiao/06-ai-0-1.md",
+      "xiaohongshu": "social/xiaohongshu/06-ai-0-1.md",
+      "short": "social/short/06-ai-0-1.md"
+    }
+  },
+  {
+    "topic": "Ahrefs vs Semrush：独立站 SEO 工具怎么选",
+    "cluster": "AI SEO 和内容站",
+    "intent": "high",
+    "target": "/reviews",
+    "files": {
+      "zhihu": "social/zhihu/07-ahrefs-vs-semrush-seo.md",
+      "toutiao": "social/toutiao/07-ahrefs-vs-semrush-seo.md",
+      "xiaohongshu": "social/xiaohongshu/07-ahrefs-vs-semrush-seo.md",
+      "short": "social/short/07-ahrefs-vs-semrush-seo.md"
+    }
+  },
+  {
+    "topic": "Perplexity 适合做 SEO 研究吗",
+    "cluster": "AI SEO 和内容站",
+    "intent": "high",
+    "target": "/reviews",
+    "files": {
+      "zhihu": "social/zhihu/08-perplexity-seo.md",
+      "toutiao": "social/toutiao/08-perplexity-seo.md",
+      "xiaohongshu": "social/xiaohongshu/08-perplexity-seo.md",
+      "short": "social/short/08-perplexity-seo.md"
+    }
+  },
+  {
+    "topic": "Surfer SEO 值不值得买？适合哪些内容站",
+    "cluster": "AI SEO 和内容站",
+    "intent": "high",
+    "target": "/reviews",
+    "files": {
+      "zhihu": "social/zhihu/09-surfer-seo.md",
+      "toutiao": "social/toutiao/09-surfer-seo.md",
+      "xiaohongshu": "social/xiaohongshu/09-surfer-seo.md",
+      "short": "social/short/09-surfer-seo.md"
+    }
+  },
+  {
+    "topic": "做英文 affiliate 内容站需要哪些 AI 工具",
+    "cluster": "AI SEO 和内容站",
+    "intent": "high",
+    "target": "/reviews",
+    "files": {
+      "zhihu": "social/zhihu/10-affiliate-ai.md",
+      "toutiao": "social/toutiao/10-affiliate-ai.md",
+      "xiaohongshu": "social/xiaohongshu/10-affiliate-ai.md",
+      "short": "social/short/10-affiliate-ai.md"
+    }
+  },
+  {
+    "topic": "AI 自动化工具适合电商卖家吗",
+    "cluster": "AI 自动化工具",
+    "intent": "medium",
+    "target": "/compare",
+    "files": {
+      "zhihu": "social/zhihu/11-ai.md",
+      "toutiao": "social/toutiao/11-ai.md",
+      "xiaohongshu": "social/xiaohongshu/11-ai.md",
+      "short": "social/short/11-ai.md"
+    }
+  },
+  {
+    "topic": "Make vs Zapier vs n8n：自动化工具怎么选",
+    "cluster": "AI 自动化工具",
+    "intent": "medium",
+    "target": "/compare",
+    "files": {
+      "zhihu": "social/zhihu/12-make-vs-zapier-vs-n8n.md",
+      "toutiao": "social/toutiao/12-make-vs-zapier-vs-n8n.md",
+      "xiaohongshu": "social/xiaohongshu/12-make-vs-zapier-vs-n8n.md",
+      "short": "social/short/12-make-vs-zapier-vs-n8n.md"
+    }
+  }
+]

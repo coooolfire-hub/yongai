@@ -29,7 +29,7 @@ from urllib.parse import urljoin, urlparse
 ROOT = Path(__file__).resolve().parents[1]
 BASE_URL = "https://yongai.online"
 SKIP_DIRS = {".git", ".github", "node_modules", "__pycache__"}
-GENERATED_DIRS = {"docs"}
+GENERATED_DIRS = {"docs", "drafts", "social"}
 
 
 @dataclass
@@ -383,6 +383,220 @@ def write_briefs(topics: Dict, affiliates: Dict, today: dt.date) -> None:
         (briefs_dir / slug).write_text("\n".join(rows) + "\n", encoding="utf-8")
 
 
+def article_slug(topic: str) -> str:
+    ascii_words = re.findall(r"[A-Za-z0-9]+", topic.lower())
+    if ascii_words:
+        return "-".join(ascii_words[:10])
+    zh = re.sub(r"[^\w\u4e00-\u9fff]+", "-", topic).strip("-")
+    return zh[:42] or topic_slug(topic)
+
+
+def extract_tools(topic: str) -> List[str]:
+    known = [
+        "Claude Code", "GitHub Copilot", "Surfer SEO", "Codex", "Cursor", "Lovable",
+        "Bolt", "v0", "Ahrefs", "Semrush", "Perplexity", "Make", "Zapier", "n8n",
+        "Kimi", "DeepSeek", "通义千问", "即梦", "Midjourney", "剪映"
+    ]
+    tools = [name for name in known if name.lower() in topic.lower()]
+    return tools[:4] or ["工具 A", "工具 B", "工具 C"]
+
+
+def write_article_drafts(topics: Dict, today: dt.date) -> None:
+    drafts_dir = ROOT / "drafts"
+    drafts_dir.mkdir(exist_ok=True)
+    all_items: List[Tuple[int, str, str, str, str]] = []
+    for cluster in topics.get("clusters", []):
+        for topic in cluster.get("topics", []):
+            all_items.append(
+                (
+                    int(cluster.get("priority", 99)),
+                    cluster.get("cluster", ""),
+                    topic,
+                    cluster.get("target_url", "/reviews"),
+                    cluster.get("money_intent", "medium"),
+                )
+            )
+    for i, (_, cluster, topic, target, intent) in enumerate(sorted(all_items)[:12], start=1):
+        slug = f"{i:02d}-{article_slug(topic)}.html"
+        path = drafts_dir / slug
+        if path.exists():
+            continue
+        tools = extract_tools(topic)
+        rows = "\n".join(
+            f"<tr><td>{html.escape(tool)}</td><td>待补充：适合人群</td><td>待补充：价格/优势</td><td>待补充：不足</td></tr>"
+            for tool in tools
+        )
+        primary = html.escape(tools[0])
+        alternatives = "、".join(html.escape(t) for t in tools[1:]) or "其他替代工具"
+        description = f"{topic}。面向独立开发者和创作者的 AI 工具购买建议、适合人群、价格与工作流对比。"
+        page = f"""<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>{html.escape(topic)} | YongAI 草稿</title>
+<meta name="description" content="{html.escape(description)}">
+<style>
+body{{margin:0;background:#f5f5f7;color:#1d1d1f;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Noto Sans SC",sans-serif;line-height:1.75}}
+.wrap{{max-width:880px;margin:0 auto;padding:42px 22px 72px}}
+.draft{{display:inline-flex;background:#fff7e6;color:#8a5a00;border:1px solid #ffe0a3;border-radius:999px;padding:4px 10px;font-size:12px;font-weight:700;margin-bottom:18px}}
+h1{{font-size:38px;line-height:1.18;margin:0 0 16px}}
+h2{{font-size:24px;margin:34px 0 12px}}
+p,li{{color:#424245;font-size:16px}}
+.meta{{color:#6e6e73;margin-bottom:28px}}
+.box{{background:white;border:1px solid #d2d2d7;border-radius:14px;padding:18px;margin:18px 0}}
+table{{width:100%;border-collapse:collapse;background:white;border:1px solid #d2d2d7;border-radius:12px;overflow:hidden}}
+th,td{{padding:12px;border-bottom:1px solid #ececef;text-align:left;vertical-align:top}}
+th{{background:#fafafa;color:#6e6e73;font-size:13px}}
+tr:last-child td{{border-bottom:none}}
+.cta{{background:#1d1d1f;color:white;border-radius:16px;padding:22px;margin-top:34px}}
+.cta p{{color:rgba(255,255,255,.72)}}
+a{{color:#0071e3}}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <div class="draft">DRAFT · 待人工审核，不会被搜索引擎收录</div>
+  <h1>{html.escape(topic)}</h1>
+  <div class="meta">生成日期：{today.isoformat()} · 分类：{html.escape(cluster)} · 意图：{html.escape(intent)} · 建议入口：{html.escape(target)}</div>
+
+  <section class="box">
+    <h2>先给结论</h2>
+    <p>如果你只想快速选择，优先看 <strong>{primary}</strong>；如果你更在意不同预算、团队规模或国内访问条件，再对比 {alternatives}。正式发布前，请把这一段改成你的真实判断。</p>
+  </section>
+
+  <h2>快速对比表</h2>
+  <table>
+    <thead><tr><th>工具</th><th>适合谁</th><th>主要优势</th><th>主要不足</th></tr></thead>
+    <tbody>{rows}</tbody>
+  </table>
+
+  <h2>按场景怎么选</h2>
+  <p><strong>预算有限：</strong>补充低预算选择和免费替代方案。</p>
+  <p><strong>独立开发者：</strong>补充一个人做产品时的推荐组合。</p>
+  <p><strong>小团队：</strong>补充协作、权限、稳定性和成本考虑。</p>
+  <p><strong>国内用户：</strong>补充是否需要网络条件、支付方式、中文体验。</p>
+
+  <h2>购买前要测试什么</h2>
+  <ul>
+    <li>用自己的真实任务测试，而不是只看演示。</li>
+    <li>确认价格、免费额度和取消订阅方式。</li>
+    <li>确认国内访问、团队协作和数据隐私要求。</li>
+    <li>把输出质量和节省时间量化，避免为新鲜感付费。</li>
+  </ul>
+
+  <h2>编辑备注</h2>
+  <p>这里补充真实截图、价格来源、个人测试过程、失败案例和最终推荐。不要直接发布模板内容。</p>
+
+  <section class="cta">
+    <h2>下一步</h2>
+    <p>正式发布时，把这里改成工具官网按钮、/compare 内链、Newsletter 订阅入口和赞助披露。</p>
+    <p>内部链接建议：<a href="../tools.html">工具库</a> · <a href="../compare.html">工具对比</a> · <a href="../reviews.html">测评文章</a></p>
+  </section>
+</main>
+</body>
+</html>
+"""
+        path.write_text(page, encoding="utf-8")
+
+
+def social_texts(topic: str, cluster: str, target: str) -> Dict[str, str]:
+    tools = extract_tools(topic)
+    tool_line = " / ".join(tools)
+    site_url = "https://yongai.online"
+    zhihu = f"""# {topic}
+
+先说结论：这类工具不要只看谁更火，要看你的真实场景、预算、国内访问条件和后续工作流。
+
+我会按 4 个维度判断：
+
+1. 适合谁：新手、独立开发者、小团队、内容创作者分别不一样。
+2. 成本：月费、免费额度、团队价格和隐藏成本。
+3. 上手成本：能不能马上用到真实项目里。
+4. 可替代性：如果不用它，是否有更便宜或更稳定的方案。
+
+本篇重点对比：{tool_line}
+
+简短建议：
+
+- 预算有限：先用免费或低价方案验证需求。
+- 想省时间：优先选择上手快、模板多、生态成熟的工具。
+- 做长期项目：关注数据导出、团队协作、稳定性和隐私。
+- 国内用户：一定要测试访问速度、支付方式和中文体验。
+
+完整对比表、价格和后续更新放在 YongAI：{site_url}{target}
+"""
+    toutiao = f"""# {topic}
+
+很多人选 AI 工具时容易被热度带着走，但真正付费前，应该先问三个问题：
+
+第一，它能不能解决你现在最频繁的任务？
+第二，它的价格是否比节省下来的时间更划算？
+第三，如果以后不用了，数据和工作流能不能迁移？
+
+这篇选题主要比较：{tool_line}。
+
+如果你是一个人做项目，优先看上手速度和能不能直接产出结果；如果你是小团队，优先看协作、稳定性和权限；如果你在国内使用，还要测试访问、支付和中文体验。
+
+我的建议是：不要一上来就买年付，先用真实任务试 3 天，再决定是否长期使用。
+
+更多 AI 工具对比和更新，可以看 YongAI：{site_url}
+"""
+    xhs_cards = [
+        f"封面：{topic}",
+        "第 1 张：先别急着付费，先看你的真实任务是什么。",
+        f"第 2 张：本次对比工具：{tool_line}",
+        "第 3 张：预算有限，优先选免费额度够用、取消方便的工具。",
+        "第 4 张：独立开发者，优先看能不能直接推进项目。",
+        "第 5 张：小团队，优先看协作、稳定性、权限和数据安全。",
+        "第 6 张：国内用户，先测试访问、支付、中文体验。",
+        "第 7 张：不要只看热门榜，要看适合人群和真实工作流。",
+        "第 8 张：完整对比表在 YongAI：yongai.online"
+    ]
+    xiaohongshu = "\n\n".join(xhs_cards) + "\n\n标题建议：\n- " + topic + "\n- AI 工具别乱买，先看这 4 点\n\n话题：#AI工具 #效率工具 #独立开发 #AI编程 #工具推荐"
+    short = f"""今天的 AI 工具选题：{topic}
+
+我的判断标准不是热度，而是：
+1. 是否解决真实任务
+2. 是否值得付费
+3. 是否适合国内使用
+4. 是否能接进长期工作流
+
+完整对比放在 YongAI：{site_url}{target}
+"""
+    return {"zhihu": zhihu, "toutiao": toutiao, "xiaohongshu": xiaohongshu, "short": short}
+
+
+def write_social_packages(topics: Dict, today: dt.date) -> None:
+    social_dir = ROOT / "social"
+    for platform in ["zhihu", "toutiao", "xiaohongshu", "short"]:
+        (social_dir / platform).mkdir(parents=True, exist_ok=True)
+    all_items: List[Tuple[int, str, str, str, str]] = []
+    for cluster in topics.get("clusters", []):
+        for topic in cluster.get("topics", []):
+            all_items.append(
+                (
+                    int(cluster.get("priority", 99)),
+                    cluster.get("cluster", ""),
+                    topic,
+                    cluster.get("target_url", "/reviews"),
+                    cluster.get("money_intent", "medium"),
+                )
+            )
+    index = []
+    for i, (_, cluster, topic, target, intent) in enumerate(sorted(all_items)[:12], start=1):
+        slug = f"{i:02d}-{article_slug(topic)}"
+        texts = social_texts(topic, cluster, target)
+        entry = {"topic": topic, "cluster": cluster, "intent": intent, "target": target, "files": {}}
+        for platform, text in texts.items():
+            rel = f"social/{platform}/{slug}.md"
+            (ROOT / rel).write_text(text, encoding="utf-8")
+            entry["files"][platform] = rel
+        index.append(entry)
+    (social_dir / "index.json").write_text(json.dumps(index, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+
 def write_report(pages: List[Page], issues: List[str], today: dt.date) -> None:
     indexable = [p for p in pages if p.indexable]
     rows = [
@@ -500,6 +714,8 @@ def main() -> int:
         write_robots()
         write_content_calendar(topics, today)
         write_briefs(topics, affiliates, today)
+        write_article_drafts(topics, today)
+        write_social_packages(topics, today)
         write_report(pages, issues, today)
         write_affiliate_report(affiliates, today)
         write_redirects(affiliates)

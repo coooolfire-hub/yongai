@@ -1,6 +1,6 @@
 # SEO Brief: Perplexity 适合做 SEO 研究吗
 
-Generated: 2026-07-04
+Generated: 2026-07-05
 
 ## Search Intent
 

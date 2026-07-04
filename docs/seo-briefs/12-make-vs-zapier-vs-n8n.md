@@ -1,6 +1,6 @@
 # SEO Brief: Make vs Zapier vs n8n：自动化工具怎么选
 
-Generated: 2026-07-04
+Generated: 2026-07-05
 
 ## Search Intent
 

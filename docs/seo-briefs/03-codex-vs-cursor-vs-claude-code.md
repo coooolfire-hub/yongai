@@ -1,6 +1,6 @@
 # SEO Brief: Codex vs Cursor vs Claude Code：独立开发者该买哪个？
 
-Generated: 2026-07-04
+Generated: 2026-07-05
 
 ## Search Intent
 

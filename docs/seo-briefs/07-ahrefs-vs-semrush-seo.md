@@ -1,6 +1,6 @@
 # SEO Brief: Ahrefs vs Semrush：独立站 SEO 工具怎么选
 
-Generated: 2026-07-04
+Generated: 2026-07-05
 
 ## Search Intent
 

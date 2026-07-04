@@ -1,6 +1,6 @@
 # SEO Brief: Surfer SEO 值不值得买？适合哪些内容站
 
-Generated: 2026-07-04
+Generated: 2026-07-05
 
 ## Search Intent
 

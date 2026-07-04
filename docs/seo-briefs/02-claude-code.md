@@ -1,6 +1,6 @@
 # SEO Brief: Claude Code 使用成本高吗？适合哪些工程任务
 
-Generated: 2026-07-04
+Generated: 2026-07-05
 
 ## Search Intent
 

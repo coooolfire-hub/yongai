@@ -1,6 +1,6 @@
 # SEO Brief: 做英文 affiliate 内容站需要哪些 AI 工具
 
-Generated: 2026-07-04
+Generated: 2026-07-05
 
 ## Search Intent
 

@@ -1,6 +1,6 @@
 # SEO Brief: Lovable vs Bolt vs v0：一个人做 SaaS MVP 该用谁
 
-Generated: 2026-07-04
+Generated: 2026-07-05
 
 ## Search Intent
 
