@@ -219,6 +219,11 @@ def write_robots() -> None:
 def audit_pages(pages: List[Page]) -> List[str]:
     issues: List[str] = []
     existing = {p.rel for p in pages}
+    existing_files = {
+        p.relative_to(ROOT).as_posix()
+        for p in ROOT.rglob("*")
+        if p.is_file() and not (set(p.relative_to(ROOT).parts) & SKIP_DIRS)
+    }
     for page in pages:
         if page.indexable:
             if not page.title:
@@ -237,7 +242,10 @@ def audit_pages(pages: List[Page]) -> List[str]:
                 issues.append(f"[missing-h1] {page.rel} has no visible H1.")
         for href in page.local_links:
             target = normalize_local_href(href, page)
-            if target not in existing and not target.startswith("#"):
+            raw_path = urlparse(href).path.lstrip("/")
+            if not raw_path:
+                raw_path = "index.html"
+            if target not in existing and raw_path not in existing_files and not target.startswith("#"):
                 issues.append(f"[broken-local-link] {page.rel} links to missing {href} -> {target}.")
     return issues
 
@@ -453,6 +461,7 @@ def write_affiliate_report(affiliates: Dict, today: dt.date) -> None:
 
 def write_redirects(affiliates: Dict) -> None:
     base_rules = [
+        "/dashboard /dashboard.html 200",
         "/sponsor /sponsor.html 200",
         "/submit /sponsor.html 302",
         "/submit.html /sponsor.html 302",

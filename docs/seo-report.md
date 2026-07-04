@@ -4,7 +4,7 @@ Generated: 2026-07-04
 
 ## Summary
 
-- Scanned HTML pages: 8
+- Scanned HTML pages: 9
 - Indexable pages: 7
 - Issues found: 0
 
