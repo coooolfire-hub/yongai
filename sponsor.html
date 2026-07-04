@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>赞助合作与提交工具 | 用AI YongAI</title>
+<meta name="description" content="在用AI YongAI 提交 AI 工具、申请赞助展示、测评文章或联盟合作。适合 AI SaaS、开发者工具和创作者产品，所有商业合作都会清晰标注，不影响编辑推荐原则。">
+<link rel="canonical" href="https://yongai.online/sponsor">
+<meta property="og:site_name" content="用AI YongAI">
+<meta property="og:title" content="赞助合作与提交工具 | 用AI YongAI">
+<meta property="og:description" content="面向 AI 工具、SaaS 和创作者产品的透明赞助、测评与提交入口。">
+<meta property="og:url" content="https://yongai.online/sponsor">
+<meta property="og:type" content="website">
+<link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="16" fill="%231d1d1f"/><text x="32" y="42" font-size="28" text-anchor="middle" fill="white" font-family="Arial">AI</text></svg>'>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Noto+Serif+SC:wght@400;600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--ink:#1d1d1f;--ink-2:#424245;--ink-3:#6e6e73;--ink-4:#a1a1a6;--paper:#f5f5f7;--paper-2:#ffffff;--paper-3:#d2d2d7;--accent:#0071e3;--accent-2:#2997ff;--accent-light:#e8f2ff;--green:#248a3d;--green-light:#eaf7ed;--r:12px;--r-lg:18px}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-size:15px;line-height:1.7;min-height:100vh;font-family:"Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;background:radial-gradient(circle at 72% 12%,rgba(0,113,227,.11),transparent 30%),radial-gradient(circle at 18% 22%,rgba(36,138,61,.08),transparent 26%);z-index:-1}
+[data-lang="zh"] .en{display:none!important}
+[data-lang="en"] body{font-family:"DM Sans",sans-serif}
+[data-lang="en"] .zh{display:none!important}
+nav.topnav{position:sticky;top:0;z-index:100;background:rgba(245,245,247,.78);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid rgba(0,0,0,.08);padding:0 32px;display:flex;align-items:center;gap:24px;height:60px}
+.nav-logo{font-size:20px;color:var(--ink);text-decoration:none;display:flex;align-items:center;gap:2px;white-space:nowrap;font-family:"Noto Serif SC",serif;font-weight:600}
+[data-lang="en"] .nav-logo{font-family:"Instrument Serif",serif;font-size:22px;font-weight:400}
+.nav-logo span{color:var(--accent)}
+.nav-links{display:flex;gap:4px;margin-left:auto}
+.nav-links a{font-size:13px;color:var(--ink-3);text-decoration:none;padding:7px 12px;border-radius:999px;transition:background .15s,color .15s,box-shadow .15s;white-space:nowrap}
+.nav-links a:hover{background:rgba(0,0,0,.045);color:var(--ink)}
+.nav-links a.active{background:white;color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.08),0 0 0 1px rgba(0,0,0,.06)}
+.nav-links a.active::after{content:"";display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--accent);margin-left:7px;vertical-align:middle}
+.lang-switcher{display:flex;align-items:center;background:var(--paper-2);border-radius:8px;border:1px solid var(--paper-3);overflow:hidden;flex-shrink:0}
+.lang-btn{padding:5px 11px;font-size:12px;font-weight:500;cursor:pointer;border:none;background:transparent;color:var(--ink-3);transition:all .15s;font-family:inherit}
+.lang-btn.active{background:var(--ink);color:var(--paper);border-radius:6px}
+.nav-submit{font-size:13px;font-weight:500;background:var(--accent);color:white;border:none;padding:8px 15px;border-radius:999px;text-decoration:none;white-space:nowrap}
+.wrap{max-width:1100px;margin:0 auto;padding:72px 32px 80px}
+.hero{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(320px,.85fr);gap:54px;align-items:center;margin-bottom:54px}
+.eyebrow{display:inline-flex;align-items:center;gap:6px;background:var(--accent-light);color:var(--accent);font-size:12px;font-weight:500;padding:4px 14px;border-radius:100px;border:1px solid rgba(0,113,227,.18);margin-bottom:24px}
+.eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent)}
+h1{font-size:clamp(34px,5vw,56px);line-height:1.12;margin-bottom:18px;font-family:"Noto Serif SC",serif;font-weight:600}
+[data-lang="en"] h1{font-family:"Instrument Serif",serif;font-weight:400}
+h1 em{font-style:normal;color:var(--accent)}
+[data-lang="en"] h1 em{font-style:italic}
+.lead{font-size:17px;color:var(--ink-3);max-width:640px;font-weight:300;margin-bottom:28px}
+.actions{display:flex;gap:12px;flex-wrap:wrap}
+.btn-primary,.btn-secondary{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;border-radius:999px;font-size:14px;font-weight:500;padding:11px 22px;border:1px solid transparent;font-family:inherit;cursor:pointer}
+.btn-primary{background:var(--accent);color:white}
+.btn-secondary{background:transparent;color:var(--ink);border-color:var(--paper-3)}
+.panel{background:rgba(255,255,255,.9);border:1px solid rgba(0,0,0,.08);border-radius:var(--r-lg);padding:24px;box-shadow:0 18px 44px rgba(0,0,0,.08)}
+.panel-title{font-size:17px;font-weight:600;margin-bottom:10px}
+.panel-copy{font-size:13px;color:var(--ink-3);line-height:1.65;margin-bottom:16px}
+.metric-list{display:grid;gap:10px}
+.metric{display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--paper-3);padding-top:10px;font-size:13px;color:var(--ink-3)}
+.metric strong{font-size:18px;color:var(--ink)}
+.section{margin-top:42px}
+.section-head{display:flex;align-items:baseline;justify-content:space-between;gap:18px;margin-bottom:18px}
+h2{font-size:24px;font-family:"Noto Serif SC",serif;font-weight:600}
+[data-lang="en"] h2{font-family:"Instrument Serif",serif;font-weight:400;font-size:28px}
+.section-note{font-size:13px;color:var(--ink-3)}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.card{background:white;border:1px solid rgba(0,0,0,.08);border-radius:var(--r-lg);padding:22px}
+.kicker{font-size:11px;font-weight:700;color:var(--accent);letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px}
+.card-title{font-size:17px;font-weight:600;margin-bottom:8px}
+.card-copy{font-size:13px;color:var(--ink-3);line-height:1.65;margin-bottom:14px}
+.price{font-size:24px;font-weight:700;margin-bottom:4px}
+.tag{display:inline-flex;font-size:11px;background:#fff7e6;color:#8a5a00;border:1px solid #ffe0a3;padding:3px 8px;border-radius:999px}
+.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.step{background:white;border:1px solid rgba(0,0,0,.08);border-radius:var(--r);padding:16px}
+.step-num{width:26px;height:26px;border-radius:50%;background:var(--ink);color:white;display:flex;align-items:center;justify-content:center;font-size:12px;margin-bottom:12px}
+.form-wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:20px;align-items:start}
+.form-card{background:white;border:1px solid rgba(0,0,0,.08);border-radius:var(--r-lg);padding:24px}
+.form-group{margin-bottom:14px}
+.form-label{display:block;font-size:12px;font-weight:600;color:var(--ink-3);margin-bottom:6px}
+.form-input,.form-select,.form-textarea{width:100%;border:1px solid var(--paper-3);border-radius:8px;padding:11px 12px;font-size:14px;font-family:inherit;background:white;color:var(--ink);outline:none}
+.form-input:focus,.form-select:focus,.form-textarea:focus{border-color:var(--accent);box-shadow:0 0 0 4px rgba(0,113,227,.12)}
+.form-textarea{resize:vertical;min-height:104px}
+.notice{background:white;border:1px solid rgba(0,0,0,.08);border-left:4px solid var(--accent);border-radius:var(--r);padding:14px 16px;color:var(--ink-2);font-size:13px;line-height:1.7}
+footer{border-top:1px solid var(--paper-3);padding:28px 32px;display:flex;align-items:center;justify-content:space-between;max-width:1100px;margin:0 auto}
+.footer-logo{font-size:17px;color:var(--ink);text-decoration:none;font-family:"Noto Serif SC",serif}
+[data-lang="en"] .footer-logo{font-family:"Instrument Serif",serif;font-size:20px}
+.footer-logo span{color:var(--accent)}
+.footer-links{display:flex;gap:20px}
+.footer-links a{font-size:13px;color:var(--ink-3);text-decoration:none}
+@media(max-width:860px){nav.topnav{height:auto;min-height:60px;padding:12px 18px;gap:12px;flex-wrap:wrap}.nav-links{order:3;width:100%;overflow-x:auto;margin-left:0}.wrap{padding:48px 20px 64px}.hero,.form-wrap{grid-template-columns:1fr}.grid,.steps{grid-template-columns:1fr}footer{padding:24px 20px;display:block}.footer-links{margin-top:12px;flex-wrap:wrap}}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ContactPage","name":"YongAI sponsorship and tool submission","url":"https://yongai.online/sponsor","description":"Submit AI tools, sponsorship requests, review partnerships, and affiliate partnerships to YongAI."}</script>
+</head>
+<body>
+<nav class="topnav">
+  <a class="nav-logo" href="index.html"><span class="zh">用<span>AI</span></span><span class="en">Yong<span>AI</span></span></a>
+  <div class="nav-links">
+    <a href="tools.html" class="zh">工具库</a><a href="tools.html" class="en">Tools</a>
+    <a href="compare.html" class="zh">工具对比</a><a href="compare.html" class="en">Compare</a>
+    <a href="skills.html" class="zh">Skill 提示词</a><a href="skills.html" class="en">Skill Prompts</a>
+    <a href="reviews.html" class="zh">测评文章</a><a href="reviews.html" class="en">Reviews</a>
+  </div>
+  <div class="lang-switcher">
+    <button class="lang-btn active" id="btn-zh" onclick="setLang('zh')">中文</button>
+    <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
+  </div>
+  <a class="nav-submit active" href="sponsor.html"><span class="zh">赞助/提交 →</span><span class="en">Sponsor →</span></a>
+</nav>
+
+<main class="wrap">
+  <section class="hero">
+    <div>
+      <div class="eyebrow zh">透明商业合作 · 工具提交 · 联盟返佣</div>
+      <div class="eyebrow en">Transparent sponsorships · submissions · affiliates</div>
+      <h1 class="zh">把你的 AI 工具推荐给<em>真正会购买的人</em></h1>
+      <h1 class="en">Put your AI tool in front of <em>buyers with intent</em></h1>
+      <p class="lead zh">YongAI 面向独立开发者、创作者和小团队，帮助他们选择值得付费的 AI 工具。我们接受工具提交、清晰标注的赞助位、测评合作和联盟计划。</p>
+      <p class="lead en">YongAI helps indie builders, creators, and small teams choose AI tools worth paying for. We accept tool submissions, clearly labeled sponsorships, review partnerships, and affiliate programs.</p>
+      <div class="actions">
+        <a class="btn-primary" href="#apply"><span class="zh">提交合作申请</span><span class="en">Submit request</span></a>
+        <a class="btn-secondary" href="#packages"><span class="zh">查看合作方式</span><span class="en">View packages</span></a>
+      </div>
+    </div>
+    <aside class="panel">
+      <div class="panel-title zh">适合哪些工具？</div>
+      <div class="panel-title en">Best-fit partners</div>
+      <p class="panel-copy zh">AI 编程、写作、SEO、视频、图像、自动化、知识管理、独立开发者工具和创作者 SaaS。</p>
+      <p class="panel-copy en">AI coding, writing, SEO, video, image, automation, knowledge management, indie builder tools, and creator SaaS.</p>
+      <div class="metric-list">
+        <div class="metric"><span class="zh">合作标识</span><span class="en">Disclosure</span><strong>Sponsored</strong></div>
+        <div class="metric"><span class="zh">内容方向</span><span class="en">Content</span><strong>Review + workflow</strong></div>
+        <div class="metric"><span class="zh">推荐原则</span><span class="en">Policy</span><strong>Editorial first</strong></div>
+      </div>
+    </aside>
+  </section>
+
+  <div class="notice">
+    <span class="zh"><strong>透明原则：</strong>赞助和可能产生返佣的链接会明确标注。合作可以获得曝光，但不会购买排名；推荐仍按适合人群、国内可用性、价格价值和真实工作流表现判断。</span>
+    <span class="en"><strong>Transparency policy:</strong> Sponsored and affiliate links are clearly labeled. Partnerships can buy exposure, not ranking. Recommendations are based on audience fit, China availability, value, and workflow performance.</span>
+  </div>
+
+  <section class="section" id="packages">
+    <div class="section-head">
+      <h2 class="zh">合作方式</h2><h2 class="en">Partnership options</h2>
+      <div class="section-note zh">上线初期价格可按流量阶段调整</div><div class="section-note en">Early pricing can scale with traffic</div>
+    </div>
+    <div class="grid">
+      <article class="card">
+        <div class="kicker zh">免费提交</div><div class="kicker en">Free submission</div>
+        <div class="card-title zh">进入测评候选池</div><div class="card-title en">Join the review queue</div>
+        <div class="price">¥0</div>
+        <p class="card-copy zh">适合早期工具。我们会审核官网、定位、价格和用户价值，符合方向后进入待测列表。</p>
+        <p class="card-copy en">For early tools. We review positioning, pricing, website quality, and user value before adding tools to the queue.</p>
+        <span class="tag zh">不保证收录</span><span class="tag en">No guaranteed listing</span>
+      </article>
+      <article class="card">
+        <div class="kicker zh">优先审核</div><div class="kicker en">Priority review</div>
+        <div class="card-title zh">更快获得编辑反馈</div><div class="card-title en">Faster editorial feedback</div>
+        <div class="price">¥299+</div>
+        <p class="card-copy zh">适合想快速知道是否适合 YongAI 读者的团队。可包含分类页候选、定位建议和测评排期。</p>
+        <p class="card-copy en">For teams that want a faster fit check, category consideration, positioning notes, and review scheduling.</p>
+        <span class="tag zh">标注商业合作</span><span class="tag en">Commercially disclosed</span>
+      </article>
+      <article class="card">
+        <div class="kicker zh">赞助套餐</div><div class="kicker en">Sponsorship</div>
+        <div class="card-title zh">分类曝光 + 测评内容</div><div class="card-title en">Category placement + review</div>
+        <div class="price">¥999+/月</div>
+        <p class="card-copy zh">适合有明确获客目标的工具。可包含首页/分类页赞助位、测评文章、Newsletter 推荐和联盟链接。</p>
+        <p class="card-copy en">For tools with acquisition goals. Can include homepage/category placement, review content, newsletter mention, and affiliate links.</p>
+        <span class="tag zh">清晰标注 Sponsored</span><span class="tag en">Clearly labeled Sponsored</span>
+      </article>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head">
+      <h2 class="zh">处理流程</h2><h2 class="en">How it works</h2>
+    </div>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><div class="card-title zh">提交信息</div><div class="card-title en">Submit details</div><p class="card-copy zh">填写工具、官网、分类、合作诉求和联系方式。</p><p class="card-copy en">Share the tool, URL, category, goal, and contact.</p></div>
+      <div class="step"><div class="step-num">2</div><div class="card-title zh">编辑审核</div><div class="card-title en">Editorial review</div><p class="card-copy zh">确认是否符合读者需求和内容方向。</p><p class="card-copy en">We check audience fit and content relevance.</p></div>
+      <div class="step"><div class="step-num">3</div><div class="card-title zh">确认合作</div><div class="card-title en">Confirm package</div><p class="card-copy zh">确定曝光位置、时间、披露方式和链接。</p><p class="card-copy en">Agree on placement, timing, disclosure, and links.</p></div>
+      <div class="step"><div class="step-num">4</div><div class="card-title zh">上线复盘</div><div class="card-title en">Publish and review</div><p class="card-copy zh">上线后复盘点击、反馈和后续内容机会。</p><p class="card-copy en">Review clicks, feedback, and future content opportunities.</p></div>
+    </div>
+  </section>
+
+  <section class="section form-wrap" id="apply">
+    <div>
+      <h2 class="zh">提交合作申请</h2><h2 class="en">Submit a partnership request</h2>
+      <p class="lead zh">现在这个表单会先在本地生成邮件草稿，适合静态站直接上线。等你有表单服务后，可以把提交逻辑接到 Formspree、Tally、Google Forms 或自己的后端。</p>
+      <p class="lead en">This static form creates an email draft for now. Later, it can connect to Formspree, Tally, Google Forms, or your own backend.</p>
+    </div>
+    <form class="form-card" onsubmit="submitSponsor(event)">
+      <div class="form-group"><label class="form-label zh">工具/公司名称 *</label><label class="form-label en">Tool/company name *</label><input class="form-input" id="f-name" required></div>
+      <div class="form-group"><label class="form-label zh">官网 URL *</label><label class="form-label en">Official URL *</label><input class="form-input" id="f-url" type="url" placeholder="https://" required></div>
+      <div class="form-group"><label class="form-label zh">工具分类 *</label><label class="form-label en">Category *</label><select class="form-select" id="f-cat"><option>AI Coding / 编程</option><option>Writing / 写作</option><option>SEO</option><option>Video / 视频</option><option>Image / 图像</option><option>Automation / 自动化</option><option>Productivity / 效率</option><option>Other / 其他</option></select></div>
+      <div class="form-group"><label class="form-label zh">合作诉求 *</label><label class="form-label en">Partnership goal *</label><textarea class="form-textarea" id="f-desc" placeholder="例如：提交工具进入测评候选 / 申请分类页赞助位 / 提供 affiliate 计划" required></textarea></div>
+      <div class="form-group"><label class="form-label zh">联系邮箱 *</label><label class="form-label en">Contact email *</label><input class="form-input" id="f-email" type="email" required></div>
+      <button class="btn-primary" type="submit"><span class="zh">生成邮件申请</span><span class="en">Create email request</span></button>
+    </form>
+  </section>
+</main>
+
+<footer>
+  <a class="footer-logo" href="index.html"><span class="zh">用<span>AI</span></span><span class="en">Yong<span>AI</span></span></a>
+  <div class="footer-links">
+    <a href="tools.html" class="zh">工具库</a><a href="tools.html" class="en">Tools</a>
+    <a href="reviews.html" class="zh">测评文章</a><a href="reviews.html" class="en">Reviews</a>
+    <a href="sponsor.html" class="zh">赞助合作</a><a href="sponsor.html" class="en">Sponsor</a>
+  </div>
+</footer>
+
+<script>
+function setLang(lang){
+  document.documentElement.setAttribute('data-lang',lang);
+  document.getElementById('btn-zh').classList.toggle('active',lang==='zh');
+  document.getElementById('btn-en').classList.toggle('active',lang==='en');
+  try{localStorage.setItem('lang',lang)}catch(e){}
+}
+function submitSponsor(e){
+  e.preventDefault();
+  var name=document.getElementById('f-name').value.trim();
+  var url=document.getElementById('f-url').value.trim();
+  var cat=document.getElementById('f-cat').value;
+  var desc=document.getElementById('f-desc').value.trim();
+  var email=document.getElementById('f-email').value.trim();
+  var subject=encodeURIComponent('[YongAI] Sponsor / tool submission - '+name);
+  var body=encodeURIComponent('Tool/company: '+name+'\nOfficial URL: '+url+'\nCategory: '+cat+'\nContact email: '+email+'\n\nGoal / description:\n'+desc+'\n\nDisclosure: I understand sponsored or affiliate placements will be clearly labeled on YongAI.');
+  window.location.href='mailto:hello@yongai.online?subject='+subject+'&body='+body;
+}
+(function(){var saved='';try{saved=localStorage.getItem('lang')||''}catch(e){}setLang(saved||(navigator.language&&navigator.language.startsWith('zh')?'zh':'en'))})();
+</script>
+</body>
+</html>

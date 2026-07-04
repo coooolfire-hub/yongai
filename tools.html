@@ -3,8 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>用AI — AI 工具导航 | AI Tools Directory</title>
+<title>AI 工具库：评分、价格与国内可用性 | 用AI YongAI</title>
 <meta name="description" content="浏览 30+ 款 AI 工具，按分类筛选，查看评分、定价和国内可用性。Browse 30+ AI tools with ratings, pricing, and China accessibility — updated weekly.">
+<link rel="canonical" href="https://yongai.online/tools">
 <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="16" fill="%231d1d1f"/><text x="32" y="42" font-size="28" text-anchor="middle" fill="white" font-family="Arial">AI</text></svg>'>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Noto+Serif+SC:wght@400;600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
@@ -279,9 +280,7 @@ footer{border-top:1px solid var(--paper-3);padding:28px 32px;display:flex;align-
     <button class="lang-btn active" id="btn-zh" onclick="setLang('zh')">中文</button>
     <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
   </div>
-  <button class="nav-submit" onclick="showPage('submit')">
-    <span class="zh">赞助/提交 →</span><span class="en">Sponsor →</span>
-  </button>
+  <a class="nav-submit" href="sponsor.html"><span class="zh">赞助/提交 →</span><span class="en">Sponsor →</span></a>
 </nav>
 
 <!-- HOME -->
@@ -371,7 +370,7 @@ footer{border-top:1px solid var(--paper-3);padding:28px 32px;display:flex;align-
     <div class="sponsor-title en">Does your AI product serve builders, small teams, or creators?</div>
     <div class="sponsor-desc zh">我们接受清晰标注的赞助展示和联盟合作。合作不会保证排名，但可以获得测评、分类页曝光和工作流场景推荐。</div>
     <div class="sponsor-desc en">We accept clearly labeled sponsorships and affiliate partnerships. Sponsorship does not guarantee ranking, but can include review, category exposure, and workflow placement.</div>
-    <button class="btn-primary" onclick="showPage('submit')"><span class="zh">申请赞助/提交工具</span><span class="en">Apply to sponsor</span></button>
+    <a class="btn-primary" href="sponsor.html"><span class="zh">申请赞助/提交工具</span><span class="en">Apply to sponsor</span></a>
   </div>
 </div>
 
@@ -587,7 +586,7 @@ footer{border-top:1px solid var(--paper-3);padding:28px 32px;display:flex;align-
   <div class="footer-logo" onclick="showPage('home')"><span class="zh">用<span>AI</span></span><span class="en">Yong<span>AI</span></span></div>
   <div class="footer-links">
     <a onclick="showPage('home')" class="zh">首页</a><a onclick="showPage('home')" class="en">Home</a>
-    <a onclick="showPage('submit')" class="zh">提交工具</a><a onclick="showPage('submit')" class="en">Submit</a>
+    <a href="sponsor.html" class="zh">提交工具</a><a href="sponsor.html" class="en">Submit</a>
     <a onclick="showPage('articles')" class="zh">测评文章</a><a onclick="showPage('articles')" class="en">Reviews</a>
   </div>
   <div style="font-size:12px;color:var(--ink-4)">© 2026 YongAI.online</div>
@@ -797,7 +796,9 @@ function openModal(id) {
   document.getElementById('m-reviews').innerHTML = d.reviews.map(function(r) { return '<div class="verdict-box" style="background:white;margin:8px 0"><div class="verdict-text">“' + r + '”</div></div>'; }).join('');
   document.getElementById('m-bestfor').textContent = d.bestfor;
   document.getElementById('m-verdict').textContent = d.verdict;
-  document.getElementById('m-cta').innerHTML = '<a href="' + t.url + '" target="_blank" rel="noopener" class="btn-primary">' + (l==='zh'?'立即使用 →':'Visit site →') + '</a><button class="btn-secondary" onclick="closeModal()">' + (l==='zh'?'关闭':'Close') + '</button>';
+  var rel = t.partner ? 'sponsored noopener' : 'noopener';
+  var disclosure = t.partner ? '<div class="modal-text" style="font-size:12px;color:var(--ink-3);width:100%">' + (l==='zh'?'此链接可能包含赞助或返佣关系；推荐排序仍以适合人群、国内可用性和性价比为准。':'This link may include sponsorship or affiliate compensation; recommendations are still ranked by fit, China availability, and value.') + '</div>' : '';
+  document.getElementById('m-cta').innerHTML = '<a href="' + t.url + '" target="_blank" rel="' + rel + '" class="btn-primary">' + (l==='zh'?'查看官网 →':'Visit site →') + '</a><button class="btn-secondary" onclick="closeModal()">' + (l==='zh'?'关闭':'Close') + '</button>' + disclosure;
   document.getElementById('modal-overlay').classList.add('open');
   document.body.style.overflow = 'hidden';
 }

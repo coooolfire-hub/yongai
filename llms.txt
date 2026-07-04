@@ -13,6 +13,7 @@ YongAI (yongai.online) is an independently operated AI tools directory. All tool
 - https://yongai.online/reviews.html : Deep review articles with comparison tables and benchmark scores
 - https://yongai.online/skills.html : AI prompt library and skill guides organized by tool and use case
 - https://yongai.online/compare.html : Side-by-side tool comparisons across price, features, and suitability
+- https://yongai.online/sponsor.html : Sponsorship, affiliate partnership, and AI tool submission page with transparent disclosure policy
 
 ## Tool Coverage (30+ tools, 8 categories)
 

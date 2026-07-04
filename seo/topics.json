@@ -1,0 +1,62 @@
+{
+  "site": {
+    "name": "YongAI 用AI",
+    "base_url": "https://yongai.online",
+    "audience": "独立开发者、创作者、小团队、中文用户、需要评估 AI 工具付费价值的人",
+    "editorial_policy": "优先写购买决策、工具对比、真实工作流和国内可用性，不批量发布低质量自动生成内容。"
+  },
+  "clusters": [
+    {
+      "cluster": "AI 编程工具",
+      "priority": 1,
+      "money_intent": "high",
+      "target_url": "/reviews",
+      "topics": [
+        "Codex vs Cursor vs Claude Code：独立开发者该买哪个？",
+        "Cursor 适合新手吗？和 GitHub Copilot 怎么选",
+        "Lovable vs Bolt vs v0：一个人做 SaaS MVP 该用谁",
+        "Claude Code 使用成本高吗？适合哪些工程任务",
+        "AI 编程工具月预算 50 美元以内怎么搭配"
+      ]
+    },
+    {
+      "cluster": "AI SEO 和内容站",
+      "priority": 2,
+      "money_intent": "high",
+      "target_url": "/reviews",
+      "topics": [
+        "Ahrefs vs Semrush：独立站 SEO 工具怎么选",
+        "Surfer SEO 值不值得买？适合哪些内容站",
+        "做英文 affiliate 内容站需要哪些 AI 工具",
+        "AI 内容站从 0 到 1 的工具栈推荐",
+        "Perplexity 适合做 SEO 研究吗"
+      ]
+    },
+    {
+      "cluster": "AI 自动化工具",
+      "priority": 3,
+      "money_intent": "medium",
+      "target_url": "/compare",
+      "topics": [
+        "Make vs Zapier vs n8n：自动化工具怎么选",
+        "小团队自动化工作流：从表单到邮件到 CRM",
+        "n8n Cloud 值不值得付费",
+        "AI 自动化工具适合电商卖家吗",
+        "不写代码如何搭建 AI 自动化流程"
+      ]
+    },
+    {
+      "cluster": "国内可用 AI 工具",
+      "priority": 4,
+      "money_intent": "medium",
+      "target_url": "/tools",
+      "topics": [
+        "国内不用 VPN 可以用哪些 AI 工具",
+        "Kimi vs DeepSeek vs 通义千问：中文 AI 助手怎么选",
+        "即梦 AI vs Midjourney：国内图像生成工具替代方案",
+        "剪映 AI 功能适合短视频创作者吗",
+        "国内用户月预算 100 元以内 AI 工具组合"
+      ]
+    }
+  ]
+}

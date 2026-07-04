@@ -1,0 +1,69 @@
+{
+  "note": "把申请到的 affiliate 链接填到 affiliate_url。脚本会报告哪些高价值工具还没有返佣链接。",
+  "tools": [
+    {
+      "id": "cursor",
+      "name": "Cursor",
+      "category": "AI Coding",
+      "official_url": "https://cursor.com",
+      "affiliate_url": "",
+      "priority": "high"
+    },
+    {
+      "id": "framer",
+      "name": "Framer",
+      "category": "AI Website Builder",
+      "official_url": "https://framer.com",
+      "affiliate_url": "",
+      "priority": "high"
+    },
+    {
+      "id": "make",
+      "name": "Make",
+      "category": "Automation",
+      "official_url": "https://www.make.com",
+      "affiliate_url": "",
+      "priority": "high"
+    },
+    {
+      "id": "semrush",
+      "name": "Semrush",
+      "category": "SEO",
+      "official_url": "https://www.semrush.com",
+      "affiliate_url": "",
+      "priority": "high"
+    },
+    {
+      "id": "canva",
+      "name": "Canva",
+      "category": "Design",
+      "official_url": "https://www.canva.com",
+      "affiliate_url": "",
+      "priority": "medium"
+    },
+    {
+      "id": "gamma",
+      "name": "Gamma",
+      "category": "Productivity",
+      "official_url": "https://gamma.app",
+      "affiliate_url": "",
+      "priority": "medium"
+    },
+    {
+      "id": "heygen",
+      "name": "HeyGen",
+      "category": "Video",
+      "official_url": "https://www.heygen.com",
+      "affiliate_url": "",
+      "priority": "medium"
+    },
+    {
+      "id": "elevenlabs",
+      "name": "ElevenLabs",
+      "category": "Voice",
+      "official_url": "https://elevenlabs.io",
+      "affiliate_url": "",
+      "priority": "medium"
+    }
+  ]
+}
