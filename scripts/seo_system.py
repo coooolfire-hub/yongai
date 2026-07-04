@@ -461,7 +461,6 @@ def write_affiliate_report(affiliates: Dict, today: dt.date) -> None:
 
 def write_redirects(affiliates: Dict) -> None:
     base_rules = [
-        "/dashboard /dashboard.html 200",
         "/sponsor /sponsor.html 200",
         "/submit /sponsor.html 302",
         "/submit.html /sponsor.html 302",
