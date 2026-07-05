@@ -1,0 +1,127 @@
+{
+  "generated": "2026-07-05",
+  "daily_limit": 2,
+  "publish_next_command": "python3 scripts/seo_system.py --publish-next 2 --write",
+  "items": [
+    {
+      "topic": "AI 编程工具月预算 50 美元以内怎么搭配",
+      "cluster": "AI 编程工具",
+      "intent": "high",
+      "target": "/reviews",
+      "draft": "drafts/01-ai-50.html",
+      "article": "articles/01-ai-50.html",
+      "published": false,
+      "command": "python3 scripts/seo_system.py --publish-draft drafts/01-ai-50.html --write"
+    },
+    {
+      "topic": "Claude Code 使用成本高吗？适合哪些工程任务",
+      "cluster": "AI 编程工具",
+      "intent": "high",
+      "target": "/reviews",
+      "draft": "drafts/02-claude-code.html",
+      "article": "articles/02-claude-code.html",
+      "published": false,
+      "command": "python3 scripts/seo_system.py --publish-draft drafts/02-claude-code.html --write"
+    },
+    {
+      "topic": "Codex vs Cursor vs Claude Code：独立开发者该买哪个？",
+      "cluster": "AI 编程工具",
+      "intent": "high",
+      "target": "/reviews",
+      "draft": "drafts/03-codex-vs-cursor-vs-claude-code.html",
+      "article": "articles/03-codex-vs-cursor-vs-claude-code.html",
+      "published": false,
+      "command": "python3 scripts/seo_system.py --publish-draft drafts/03-codex-vs-cursor-vs-claude-code.html --write"
+    },
+    {
+      "topic": "Cursor 适合新手吗？和 GitHub Copilot 怎么选",
+      "cluster": "AI 编程工具",
+      "intent": "high",
+      "target": "/reviews",
+      "draft": "drafts/04-cursor-github-copilot.html",
+      "article": "articles/04-cursor-github-copilot.html",
+      "published": false,
+      "command": "python3 scripts/seo_system.py --publish-draft drafts/04-cursor-github-copilot.html --write"
+    },
+    {
+      "topic": "Lovable vs Bolt vs v0：一个人做 SaaS MVP 该用谁",
+      "cluster": "AI 编程工具",
+      "intent": "high",
+      "target": "/reviews",
+      "draft": "drafts/05-lovable-vs-bolt-vs-v0-saas-mvp.html",
+      "article": "articles/05-lovable-vs-bolt-vs-v0-saas-mvp.html",
+      "published": false,
+      "command": "python3 scripts/seo_system.py --publish-draft drafts/05-lovable-vs-bolt-vs-v0-saas-mvp.html --write"
+    },
+    {
+      "topic": "AI 内容站从 0 到 1 的工具栈推荐",
+      "cluster": "AI SEO 和内容站",
+      "intent": "high",
+      "target": "/reviews",
+      "draft": "drafts/06-ai-0-1.html",
+      "article": "articles/06-ai-0-1.html",
+      "published": false,
+      "command": "python3 scripts/seo_system.py --publish-draft drafts/06-ai-0-1.html --write"
+    },
+    {
+      "topic": "Ahrefs vs Semrush：独立站 SEO 工具怎么选",
+      "cluster": "AI SEO 和内容站",
+      "intent": "high",
+      "target": "/reviews",
+      "draft": "drafts/07-ahrefs-vs-semrush-seo.html",
+      "article": "articles/07-ahrefs-vs-semrush-seo.html",
+      "published": false,
+      "command": "python3 scripts/seo_system.py --publish-draft drafts/07-ahrefs-vs-semrush-seo.html --write"
+    },
+    {
+      "topic": "Perplexity 适合做 SEO 研究吗",
+      "cluster": "AI SEO 和内容站",
+      "intent": "high",
+      "target": "/reviews",
+      "draft": "drafts/08-perplexity-seo.html",
+      "article": "articles/08-perplexity-seo.html",
+      "published": false,
+      "command": "python3 scripts/seo_system.py --publish-draft drafts/08-perplexity-seo.html --write"
+    },
+    {
+      "topic": "Surfer SEO 值不值得买？适合哪些内容站",
+      "cluster": "AI SEO 和内容站",
+      "intent": "high",
+      "target": "/reviews",
+      "draft": "drafts/09-surfer-seo.html",
+      "article": "articles/09-surfer-seo.html",
+      "published": false,
+      "command": "python3 scripts/seo_system.py --publish-draft drafts/09-surfer-seo.html --write"
+    },
+    {
+      "topic": "做英文 affiliate 内容站需要哪些 AI 工具",
+      "cluster": "AI SEO 和内容站",
+      "intent": "high",
+      "target": "/reviews",
+      "draft": "drafts/10-affiliate-ai.html",
+      "article": "articles/10-affiliate-ai.html",
+      "published": false,
+      "command": "python3 scripts/seo_system.py --publish-draft drafts/10-affiliate-ai.html --write"
+    },
+    {
+      "topic": "AI 自动化工具适合电商卖家吗",
+      "cluster": "AI 自动化工具",
+      "intent": "medium",
+      "target": "/compare",
+      "draft": "drafts/11-ai.html",
+      "article": "articles/11-ai.html",
+      "published": false,
+      "command": "python3 scripts/seo_system.py --publish-draft drafts/11-ai.html --write"
+    },
+    {
+      "topic": "Make vs Zapier vs n8n：自动化工具怎么选",
+      "cluster": "AI 自动化工具",
+      "intent": "medium",
+      "target": "/compare",
+      "draft": "drafts/12-make-vs-zapier-vs-n8n.html",
+      "article": "articles/12-make-vs-zapier-vs-n8n.html",
+      "published": false,
+      "command": "python3 scripts/seo_system.py --publish-draft drafts/12-make-vs-zapier-vs-n8n.html --write"
+    }
+  ]
+}

@@ -11,7 +11,9 @@ This is the automated SEO maintenance system for the static YongAI site.
 - Generates `docs/seo-report.md`.
 - Generates `docs/seo-content-calendar.md` from `seo/topics.json`.
 - Generates editable article briefs in `docs/seo-briefs/`.
-- Generates editable noindex HTML article drafts in `drafts/`.
+- Generates long noindex HTML article drafts in `drafts/`.
+- Generates local SVG cover images in `assets/covers/`.
+- Generates a publish queue in `seo/publish-queue.json`.
 - Generates semi-automatic social distribution copy in `social/`.
 - Generates `docs/affiliate-report.md` from `seo/affiliate-links.json`.
 - Rebuilds `_redirects`; filled affiliate links become `/go/tool-id` redirect routes.
@@ -29,6 +31,24 @@ Use this before deploying:
 ```bash
 python3 scripts/seo_system.py --write --fail-on-issues
 ```
+
+## Confirmed Publishing
+
+The site uses a semi-automatic publish flow. Drafts are generated every run, but they only become public SEO pages after you confirm.
+
+To publish the next two reviewed drafts:
+
+```bash
+python3 scripts/seo_system.py --publish-next 2 --write
+```
+
+To publish one specific draft:
+
+```bash
+python3 scripts/seo_system.py --publish-draft drafts/01-ai-50.html --write
+```
+
+Publishing creates a matching page in `articles/`, removes `noindex`, adds a canonical URL, updates `sitemap.xml`, and marks the item as published in `seo/publish-queue.json`. The dashboard shows these commands so you can copy and run them only after review.
 
 ## Content Strategy
 

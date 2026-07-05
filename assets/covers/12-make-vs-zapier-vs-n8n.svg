@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0c4a6e"/><stop offset="1" stop-color="#020617"/></linearGradient>
+  <linearGradient id="card" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0891b2"/><stop offset="1" stop-color="#a3e635"/></linearGradient>
+  <style>
+    .brand{font:700 34px -apple-system,BlinkMacSystemFont,"PingFang SC","Noto Sans SC",Arial,sans-serif;fill:#fff}
+    .kicker{font:600 24px -apple-system,BlinkMacSystemFont,"PingFang SC","Noto Sans SC",Arial,sans-serif;fill:rgba(255,255,255,.72)}
+    .title{font:800 48px -apple-system,BlinkMacSystemFont,"PingFang SC","Noto Sans SC",Arial,sans-serif;fill:#fff}
+    .small{font:500 24px -apple-system,BlinkMacSystemFont,"PingFang SC","Noto Sans SC",Arial,sans-serif;fill:rgba(255,255,255,.78)}
+  </style>
+</defs>
+<rect width="1200" height="630" fill="url(#bg)"/>
+<circle cx="1030" cy="100" r="230" fill="#0891b2" opacity=".28"/>
+<circle cx="104" cy="548" r="210" fill="#a3e635" opacity=".18"/>
+<rect x="52" y="52" width="1096" height="526" rx="36" fill="rgba(255,255,255,.08)" stroke="rgba(255,255,255,.18)"/>
+<rect x="70" y="84" width="246" height="58" rx="29" fill="url(#card)"/>
+<text x="102" y="123" class="brand">YongAI</text>
+<text x="70" y="170" class="kicker">AI 自动化工具 · 购买决策指南</text>
+<text x="70" y="190" class="title">Make vs Zapier vs n8</text>
+<text x="70" y="248" class="title">n：自动化工具怎么选</text>
+<rect x="70" y="485" width="760" height="62" rx="18" fill="rgba(255,255,255,.1)" stroke="rgba(255,255,255,.18)"/>
+<text x="96" y="526" class="small">Make / Zapier / n8n</text>
+<g transform="translate(905 350)"><rect x="0" y="0" width="178" height="178" rx="38" fill="url(#card)"/><text x="89" y="104" text-anchor="middle" style="font:800 52px Arial,sans-serif;fill:#fff">AI</text></g>
+</svg>
