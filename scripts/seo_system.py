@@ -568,6 +568,60 @@ def social_texts(topic: str, cluster: str, target: str) -> Dict[str, str]:
     return {"zhihu": zhihu, "toutiao": toutiao, "xiaohongshu": xiaohongshu, "short": short}
 
 
+def social_copy_page(topic: str, platform: str, text: str) -> str:
+    title = f"{topic} - {platform}"
+    safe_text = html.escape(text)
+    safe_title = html.escape(title)
+    return f"""<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>{safe_title}</title>
+<style>
+body{{margin:0;background:#f5f5f7;color:#1d1d1f;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Noto Sans SC",sans-serif;line-height:1.7}}
+.wrap{{max-width:920px;margin:0 auto;padding:36px 20px 72px}}
+.top{{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px}}
+h1{{font-size:26px;line-height:1.25;margin:0}}
+.meta{{color:#6e6e73;font-size:13px;margin-top:6px}}
+.btn{{border:0;border-radius:999px;background:#0071e3;color:white;font-weight:700;padding:10px 18px;cursor:pointer}}
+.btn.secondary{{background:white;color:#1d1d1f;border:1px solid #d2d2d7}}
+.bar{{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0}}
+textarea{{width:100%;min-height:420px;border:1px solid #d2d2d7;border-radius:14px;padding:16px;font-size:15px;line-height:1.7;font-family:inherit;resize:vertical;background:white;color:#1d1d1f}}
+.hint{{background:#fff7e6;color:#8a5a00;border:1px solid #ffe0a3;border-radius:12px;padding:12px 14px;margin-bottom:14px;font-size:13px}}
+pre{{white-space:pre-wrap;background:white;border:1px solid #d2d2d7;border-radius:14px;padding:16px;font-family:inherit;font-size:15px;line-height:1.7}}
+@media(max-width:640px){{.top{{align-items:flex-start;flex-direction:column}}.btn{{width:100%}}}}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <div class="top">
+    <div><h1>{safe_title}</h1><div class="meta">半自动分发文案 · 手动复制到平台发布</div></div>
+    <button class="btn" onclick="copyText()">复制全文</button>
+  </div>
+  <div class="hint">如果平台不接受 Markdown 标题符号，可以复制后删掉开头的 #。发布前建议再按平台语气微调。</div>
+  <textarea id="copybox">{safe_text}</textarea>
+  <div class="bar">
+    <button class="btn" onclick="copyText()">复制全文</button>
+    <button class="btn secondary" onclick="selectText()">全选文本</button>
+    <a class="btn secondary" href="../../dashboard.html" style="text-decoration:none;text-align:center">返回控制台</a>
+  </div>
+  <pre>{safe_text}</pre>
+</main>
+<script>
+function selectText(){{var el=document.getElementById('copybox');el.focus();el.select();}}
+async function copyText(){{
+  var text=document.getElementById('copybox').value;
+  try{{await navigator.clipboard.writeText(text);alert('已复制');}}
+  catch(e){{selectText();alert('已全选，请按 Command+C 复制');}}
+}}
+</script>
+</body>
+</html>
+"""
+
+
 def write_social_packages(topics: Dict, today: dt.date) -> None:
     social_dir = ROOT / "social"
     for platform in ["zhihu", "toutiao", "xiaohongshu", "short"]:
@@ -590,8 +644,8 @@ def write_social_packages(topics: Dict, today: dt.date) -> None:
         texts = social_texts(topic, cluster, target)
         entry = {"topic": topic, "cluster": cluster, "intent": intent, "target": target, "files": {}}
         for platform, text in texts.items():
-            rel = f"social/{platform}/{slug}.md"
-            (ROOT / rel).write_text(text, encoding="utf-8")
+            rel = f"social/{platform}/{slug}.html"
+            (ROOT / rel).write_text(social_copy_page(topic, platform, text), encoding="utf-8")
             entry["files"][platform] = rel
         index.append(entry)
     (social_dir / "index.json").write_text(json.dumps(index, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")

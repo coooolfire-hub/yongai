@@ -5,10 +5,10 @@
     "intent": "high",
     "target": "/reviews",
     "files": {
-      "zhihu": "social/zhihu/01-ai-50.md",
-      "toutiao": "social/toutiao/01-ai-50.md",
-      "xiaohongshu": "social/xiaohongshu/01-ai-50.md",
-      "short": "social/short/01-ai-50.md"
+      "zhihu": "social/zhihu/01-ai-50.html",
+      "toutiao": "social/toutiao/01-ai-50.html",
+      "xiaohongshu": "social/xiaohongshu/01-ai-50.html",
+      "short": "social/short/01-ai-50.html"
     }
   },
   {
@@ -17,10 +17,10 @@
     "intent": "high",
     "target": "/reviews",
     "files": {
-      "zhihu": "social/zhihu/02-claude-code.md",
-      "toutiao": "social/toutiao/02-claude-code.md",
-      "xiaohongshu": "social/xiaohongshu/02-claude-code.md",
-      "short": "social/short/02-claude-code.md"
+      "zhihu": "social/zhihu/02-claude-code.html",
+      "toutiao": "social/toutiao/02-claude-code.html",
+      "xiaohongshu": "social/xiaohongshu/02-claude-code.html",
+      "short": "social/short/02-claude-code.html"
     }
   },
   {
@@ -29,10 +29,10 @@
     "intent": "high",
     "target": "/reviews",
     "files": {
-      "zhihu": "social/zhihu/03-codex-vs-cursor-vs-claude-code.md",
-      "toutiao": "social/toutiao/03-codex-vs-cursor-vs-claude-code.md",
-      "xiaohongshu": "social/xiaohongshu/03-codex-vs-cursor-vs-claude-code.md",
-      "short": "social/short/03-codex-vs-cursor-vs-claude-code.md"
+      "zhihu": "social/zhihu/03-codex-vs-cursor-vs-claude-code.html",
+      "toutiao": "social/toutiao/03-codex-vs-cursor-vs-claude-code.html",
+      "xiaohongshu": "social/xiaohongshu/03-codex-vs-cursor-vs-claude-code.html",
+      "short": "social/short/03-codex-vs-cursor-vs-claude-code.html"
     }
   },
   {
@@ -41,10 +41,10 @@
     "intent": "high",
     "target": "/reviews",
     "files": {
-      "zhihu": "social/zhihu/04-cursor-github-copilot.md",
-      "toutiao": "social/toutiao/04-cursor-github-copilot.md",
-      "xiaohongshu": "social/xiaohongshu/04-cursor-github-copilot.md",
-      "short": "social/short/04-cursor-github-copilot.md"
+      "zhihu": "social/zhihu/04-cursor-github-copilot.html",
+      "toutiao": "social/toutiao/04-cursor-github-copilot.html",
+      "xiaohongshu": "social/xiaohongshu/04-cursor-github-copilot.html",
+      "short": "social/short/04-cursor-github-copilot.html"
     }
   },
   {
@@ -53,10 +53,10 @@
     "intent": "high",
     "target": "/reviews",
     "files": {
-      "zhihu": "social/zhihu/05-lovable-vs-bolt-vs-v0-saas-mvp.md",
-      "toutiao": "social/toutiao/05-lovable-vs-bolt-vs-v0-saas-mvp.md",
-      "xiaohongshu": "social/xiaohongshu/05-lovable-vs-bolt-vs-v0-saas-mvp.md",
-      "short": "social/short/05-lovable-vs-bolt-vs-v0-saas-mvp.md"
+      "zhihu": "social/zhihu/05-lovable-vs-bolt-vs-v0-saas-mvp.html",
+      "toutiao": "social/toutiao/05-lovable-vs-bolt-vs-v0-saas-mvp.html",
+      "xiaohongshu": "social/xiaohongshu/05-lovable-vs-bolt-vs-v0-saas-mvp.html",
+      "short": "social/short/05-lovable-vs-bolt-vs-v0-saas-mvp.html"
     }
   },
   {
@@ -65,10 +65,10 @@
     "intent": "high",
     "target": "/reviews",
     "files": {
-      "zhihu": "social/zhihu/06-ai-0-1.md",
-      "toutiao": "social/toutiao/06-ai-0-1.md",
-      "xiaohongshu": "social/xiaohongshu/06-ai-0-1.md",
-      "short": "social/short/06-ai-0-1.md"
+      "zhihu": "social/zhihu/06-ai-0-1.html",
+      "toutiao": "social/toutiao/06-ai-0-1.html",
+      "xiaohongshu": "social/xiaohongshu/06-ai-0-1.html",
+      "short": "social/short/06-ai-0-1.html"
     }
   },
   {
@@ -77,10 +77,10 @@
     "intent": "high",
     "target": "/reviews",
     "files": {
-      "zhihu": "social/zhihu/07-ahrefs-vs-semrush-seo.md",
-      "toutiao": "social/toutiao/07-ahrefs-vs-semrush-seo.md",
-      "xiaohongshu": "social/xiaohongshu/07-ahrefs-vs-semrush-seo.md",
-      "short": "social/short/07-ahrefs-vs-semrush-seo.md"
+      "zhihu": "social/zhihu/07-ahrefs-vs-semrush-seo.html",
+      "toutiao": "social/toutiao/07-ahrefs-vs-semrush-seo.html",
+      "xiaohongshu": "social/xiaohongshu/07-ahrefs-vs-semrush-seo.html",
+      "short": "social/short/07-ahrefs-vs-semrush-seo.html"
     }
   },
   {
@@ -89,10 +89,10 @@
     "intent": "high",
     "target": "/reviews",
     "files": {
-      "zhihu": "social/zhihu/08-perplexity-seo.md",
-      "toutiao": "social/toutiao/08-perplexity-seo.md",
-      "xiaohongshu": "social/xiaohongshu/08-perplexity-seo.md",
-      "short": "social/short/08-perplexity-seo.md"
+      "zhihu": "social/zhihu/08-perplexity-seo.html",
+      "toutiao": "social/toutiao/08-perplexity-seo.html",
+      "xiaohongshu": "social/xiaohongshu/08-perplexity-seo.html",
+      "short": "social/short/08-perplexity-seo.html"
     }
   },
   {
@@ -101,10 +101,10 @@
     "intent": "high",
     "target": "/reviews",
     "files": {
-      "zhihu": "social/zhihu/09-surfer-seo.md",
-      "toutiao": "social/toutiao/09-surfer-seo.md",
-      "xiaohongshu": "social/xiaohongshu/09-surfer-seo.md",
-      "short": "social/short/09-surfer-seo.md"
+      "zhihu": "social/zhihu/09-surfer-seo.html",
+      "toutiao": "social/toutiao/09-surfer-seo.html",
+      "xiaohongshu": "social/xiaohongshu/09-surfer-seo.html",
+      "short": "social/short/09-surfer-seo.html"
     }
   },
   {
@@ -113,10 +113,10 @@
     "intent": "high",
     "target": "/reviews",
     "files": {
-      "zhihu": "social/zhihu/10-affiliate-ai.md",
-      "toutiao": "social/toutiao/10-affiliate-ai.md",
-      "xiaohongshu": "social/xiaohongshu/10-affiliate-ai.md",
-      "short": "social/short/10-affiliate-ai.md"
+      "zhihu": "social/zhihu/10-affiliate-ai.html",
+      "toutiao": "social/toutiao/10-affiliate-ai.html",
+      "xiaohongshu": "social/xiaohongshu/10-affiliate-ai.html",
+      "short": "social/short/10-affiliate-ai.html"
     }
   },
   {
@@ -125,10 +125,10 @@
     "intent": "medium",
     "target": "/compare",
     "files": {
-      "zhihu": "social/zhihu/11-ai.md",
-      "toutiao": "social/toutiao/11-ai.md",
-      "xiaohongshu": "social/xiaohongshu/11-ai.md",
-      "short": "social/short/11-ai.md"
+      "zhihu": "social/zhihu/11-ai.html",
+      "toutiao": "social/toutiao/11-ai.html",
+      "xiaohongshu": "social/xiaohongshu/11-ai.html",
+      "short": "social/short/11-ai.html"
     }
   },
   {
@@ -137,10 +137,10 @@
     "intent": "medium",
     "target": "/compare",
     "files": {
-      "zhihu": "social/zhihu/12-make-vs-zapier-vs-n8n.md",
-      "toutiao": "social/toutiao/12-make-vs-zapier-vs-n8n.md",
-      "xiaohongshu": "social/xiaohongshu/12-make-vs-zapier-vs-n8n.md",
-      "short": "social/short/12-make-vs-zapier-vs-n8n.md"
+      "zhihu": "social/zhihu/12-make-vs-zapier-vs-n8n.html",
+      "toutiao": "social/toutiao/12-make-vs-zapier-vs-n8n.html",
+      "xiaohongshu": "social/xiaohongshu/12-make-vs-zapier-vs-n8n.html",
+      "short": "social/short/12-make-vs-zapier-vs-n8n.html"
     }
   }
 ]
